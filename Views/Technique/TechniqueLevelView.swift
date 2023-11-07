@@ -1,28 +1,28 @@
 //
-//  TechniqueView.swift
-//  Swooz
+//  TechniqueLevelView.swift
+//  ascenttt
 //
-//  Created by Agung Saputra on 27/10/23.
+//  Created by Agung Saputra on 07/11/23.
 //
 
 import SwiftUI
 
-struct TechniqueData: Hashable {
+struct TechniqueLevelData: Hashable {
     let name: String
+    let desc: String
     let img: String
     let isLock: Bool
 }
 
-struct TechniqueView: View {
+struct TechniqueLevelView: View {
     @EnvironmentObject var vm: HomeViewModel
+    @AppStorage("name") var name: String = ""
+    @AppStorage("desc") var desc: String = ""
     
     private let data = [
-        TechniqueData(name: "Low Serve", img: "LowServe", isLock: false),
-        TechniqueData(name: "High Serve", img: "HighServe", isLock: true),
-        TechniqueData(name: "Drive", img: "Drive", isLock: true),
-        TechniqueData(name: "Clear Shot", img: "ClearShot", isLock: true),
-        TechniqueData(name: "Drop Shot", img: "DropShot", isLock: true),
-        TechniqueData(name: "Smash", img: "Smash", isLock: true)
+        TechniqueLevelData(name: "Intermediate", desc: "SWOOZ will calculate the success of the shuttlecock passing the net. You can also see the consistency of your shot with the visual of the shuttlecock trajectory that SWOOZ provides.", img: "Intermediate", isLock: false),
+        TechniqueLevelData(name: "Experienced", desc: "A good shuttlecock trajectory on a low serve is when the peak is before crossing the net. SWOOZ helps you visualize it and calculate your success in doing it.", img: "Experienced", isLock: false),
+        TechniqueLevelData(name: "Advanced", desc: "A good shuttlecock placement on a low serve is when the shuttlecock is close to the line and there are variations in placement. Swooz helps you mark the shuttlecock's fall with precision.", img: "Advanced", isLock: false)
     ]
     
     var body: some View {
@@ -34,7 +34,9 @@ struct TechniqueView: View {
                     ForEach(data, id: \.self) { d in
                         CardView(action: {
                             if !d.isLock {
-                                vm.path.append(.TechniqueLevel)
+                                name = d.name
+                                desc = d.desc
+                                vm.path.append(.TechniqueDetail)
                             }
                         }, content: {
                             VStack {
@@ -48,7 +50,7 @@ struct TechniqueView: View {
                                     Spacer()
                                     Text(d.name)
                                         .font(Font.custom("Urbanist", size: 20).weight(.medium))
-                                        .foregroundStyle(.neutralBlack)
+                                        .foregroundColor(.neutralBlack)
                                     Spacer()
                                 }
                             }
@@ -62,9 +64,6 @@ struct TechniqueView: View {
                                                 .scaledToFit()
                                                 .frame(height: 24)
                                                 .foregroundStyle(.grayStroke6)
-                                            Text("Cooming Soon")
-                                                .foregroundStyle(.neutralBlack)
-                                                .font(Font.custom("SF Pro", size: 17))
                                             Spacer()
                                         }
                                         Spacer()
@@ -85,7 +84,7 @@ struct TechniqueView: View {
                 }
                 .scrollIndicators(.hidden)
             }
-            .navigationTitle("Choose Technique")
+            .navigationTitle("Choose Level")
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbarBackground(.greenMain, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
@@ -94,5 +93,5 @@ struct TechniqueView: View {
 }
 
 #Preview {
-    TechniqueView()
+    TechniqueLevelView()
 }

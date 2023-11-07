@@ -11,13 +11,19 @@ import Vision
 import SwiftUI
 import ReplayKit
 
+// TODO: buat delegate function save
+protocol ContentAnalysisDelegate: AnyObject {
+    func saveRecord(url: URL)
+}
+
 class ContentAnalysisViewController: UIViewController,
                                      AVCaptureVideoDataOutputSampleBufferDelegate {
-    
     let counter = Counter()
-    @Environment(\.managedObjectContext) var moc
     @AppStorage("isOnRecord") var isOnRecord = true
     @AppStorage("dataUrl") var dataUrl: String = ""
+    
+    // TODO: variable delegate untuk panggil function delegate
+    var contentAnalysisDelegate: ContentAnalysisDelegate?
     
     func startRecordScreen(
         enableMic: Bool = false,
@@ -39,10 +45,7 @@ class ContentAnalysisViewController: UIViewController,
     }
     
     func save(url: URL) {
-        let data = Data(context: moc)
-        data.id = UUID()
-        data.url = url.absoluteString
-        try? moc.save()
+        contentAnalysisDelegate?.saveRecord(url: url)
     }
     
     // MARK: - Static Properties
@@ -131,7 +134,7 @@ class ContentAnalysisViewController: UIViewController,
         Task {
             do {
                 let url = try await stopRecordScreen()
-//                save(url: url)
+                save(url: url)
                 dataUrl = url.absoluteString
                 isOnRecord = false
                 print("OUTPUT: \(url)")

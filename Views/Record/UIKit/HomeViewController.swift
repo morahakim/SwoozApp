@@ -11,7 +11,17 @@ import UniformTypeIdentifiers
 import UniformTypeIdentifiers
 import SwiftUI
 
-class HomeViewController: UIViewController {
+protocol HomeDelegate: AnyObject {
+    func saveRecord(url: URL)
+}
+
+class HomeViewController: UIViewController, ContentAnalysisDelegate {
+    
+    func saveRecord(url: URL) {
+        homeDelegate?.saveRecord(url: url)
+    }
+    
+    var homeDelegate: HomeDelegate?
     
     @AppStorage("hitTotalApp") var hitTotalApp = 0
     @AppStorage("hitTargetApp") var hitTargetApp = 0
@@ -46,6 +56,7 @@ class HomeViewController: UIViewController {
         contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
 //        menuStateApp = "placement"
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateStateMenu), userInfo: nil, repeats: true)
+        contentAnalysisViewController.contentAnalysisDelegate = self
     }
     
     @objc func updateStateMenu(){
