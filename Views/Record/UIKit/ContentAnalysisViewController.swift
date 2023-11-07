@@ -9,11 +9,41 @@ import UIKit
 import AVFoundation
 import Vision
 import SwiftUI
+import ReplayKit
 
 class ContentAnalysisViewController: UIViewController,
                                      AVCaptureVideoDataOutputSampleBufferDelegate {
     
     let counter = Counter()
+    @Environment(\.managedObjectContext) var moc
+    @AppStorage("isOnRecord") var isOnRecord = true
+    @AppStorage("dataUrl") var dataUrl: String = ""
+    
+    func startRecordScreen(
+        enableMic: Bool = false,
+        completion: @escaping (Error?) -> ()
+    ) {
+        let recorder = RPScreenRecorder.shared()
+        recorder.isMicrophoneEnabled = enableMic
+        recorder.startRecording(handler: completion)
+    }
+    
+    func stopRecordScreen() async throws -> URL {
+        let name = "\(UUID().uuidString).mov"
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(name)
+        let recorder = RPScreenRecorder.shared()
+        
+        try await recorder.stopRecording(withOutput: url)
+        
+        return url
+    }
+    
+    func save(url: URL) {
+        let data = Data(context: moc)
+        data.id = UUID()
+        data.url = url.absoluteString
+        try? moc.save()
+    }
     
     // MARK: - Static Properties
     static let segueDestinationId = "ShowAnalysisView"
@@ -61,6 +91,8 @@ class ContentAnalysisViewController: UIViewController,
     var countdownValue = 3
     var timer: Timer?
     var remainingTime = 20 * 60 + 1
+    
+    var remainingTimeFix = 20 * 60 + 1
     //    var remainingTime = 1 * 10 + 1
     
 //    var hitTarget = 3
@@ -86,11 +118,28 @@ class ContentAnalysisViewController: UIViewController,
     }
     
     func startRecording(){
+        startRecordScreen { error in
+            if let e = error {
+                print(e.localizedDescription)
+                return
+            }
+        }
         print("Start Recording!")
     }
+    
     func stopRecording(){
+        Task {
+            do {
+                let url = try await stopRecordScreen()
+//                save(url: url)
+                dataUrl = url.absoluteString
+                isOnRecord = false
+                print("OUTPUT: \(url)")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
         print("Stop Recording!")
-        counter.menuStateSend(menuState: "done")
     }
     
     @objc func updateCountdownLabel() {
@@ -123,11 +172,12 @@ class ContentAnalysisViewController: UIViewController,
             }
         }
     }
-    @AppStorage("isOnRecord") var isOnRecord = true
+
     @objc func stop(){
         stopRecording()
         dismiss(animated: true, completion: nil)
         isOnRecord = false
+        counter.menuStateSend(menuState: "done")
     }
     
     func restart(){
@@ -144,12 +194,14 @@ class ContentAnalysisViewController: UIViewController,
     
     
     func setupView(){
+        let duration = "00:00"
         print("DBUG : ",String(hitTarget))
         counter.hitTotalSend(hitTotal: hitTotal)
         counter.hitTargetSend(hitTarget: hitTarget)
         counter.hitSuccessSend(hitSuccess: hitSuccess)
         counter.hitPerfectSend(hitPerfect: hitPerfect)
         counter.hitFailSend(hitFail: hitFail)
+        counter.durationSend(duration: duration)
         
         var menuState = "done"
         if(hitTotal >= hitTarget){
@@ -413,6 +465,7 @@ class ContentAnalysisViewController: UIViewController,
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
     @AppStorage("menuStateApp") var menuStateApp = ""
+    @AppStorage("duration") var durationApp = ""
     
     var response : [String:Double] = [:]
     
@@ -514,11 +567,18 @@ class ContentAnalysisViewController: UIViewController,
                     circle.clipsToBounds = true
                     self.boxCourtArea.addSubview(circle)
                     
+                    let durationTime = remainingTimeFix - remainingTime
+                    let minutes = durationTime / 60
+                    let seconds = durationTime % 60
+                    let duration = String(format: "%02d:%02d", minutes, seconds)
+                    
+                    
                     counter.hitTotalSend(hitTotal: hitTotal)
                     counter.hitTargetSend(hitTarget: hitTarget)
                     counter.hitSuccessSend(hitSuccess: hitSuccess)
                     counter.hitPerfectSend(hitPerfect: hitPerfect)
                     counter.hitFailSend(hitFail: hitFail)
+                    counter.durationSend(duration: duration)
                     
                     var menuState = "done"
                     if(hitTotal >= hitTarget){

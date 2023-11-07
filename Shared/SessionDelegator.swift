@@ -16,6 +16,7 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     let hitSuccessSubject: PassthroughSubject<Int, Never>
     let hitPerfectSubject: PassthroughSubject<Int, Never>
     let hitFailSubject: PassthroughSubject<Int, Never>
+    let durationSubject: PassthroughSubject<String, Never>
     let menuStateSubject: PassthroughSubject<String, Never>
     
     
@@ -24,11 +25,12 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
     @AppStorage("hitFailApp") var hitFailApp = 0
+    @AppStorage("durationApp") var durationApp = ""
     @AppStorage("menuStateApp") var menuStateApp = ""
     
     @AppStorage("progressApp") var progressApp:Double = 0.0
     
-    init(countSubject: PassthroughSubject<Int, Never>, hitTotalSubject: PassthroughSubject<Int, Never>,  hitTargetSubject: PassthroughSubject<Int, Never>,  hitSuccessSubject: PassthroughSubject<Int, Never>, hitPerfectSubject: PassthroughSubject<Int, Never>,  hitFailSubject: PassthroughSubject<Int, Never>,  menuStateSubject: PassthroughSubject<String, Never>) {
+    init(countSubject: PassthroughSubject<Int, Never>, hitTotalSubject: PassthroughSubject<Int, Never>,  hitTargetSubject: PassthroughSubject<Int, Never>,  hitSuccessSubject: PassthroughSubject<Int, Never>, hitPerfectSubject: PassthroughSubject<Int, Never>,  hitFailSubject: PassthroughSubject<Int, Never>, durationSubject: PassthroughSubject<String, Never>,  menuStateSubject: PassthroughSubject<String, Never>) {
         print("DBUG : RECEIVED INIT 1")
         self.countSubject = countSubject
         self.hitTotalSubject = hitTotalSubject
@@ -36,6 +38,7 @@ class SessionDelegater: NSObject, WCSessionDelegate {
         self.hitSuccessSubject = hitSuccessSubject
         self.hitPerfectSubject = hitPerfectSubject
         self.hitFailSubject = hitFailSubject
+        self.durationSubject = durationSubject
         self.menuStateSubject = menuStateSubject
         super.init()
     }
@@ -96,6 +99,14 @@ class SessionDelegater: NSObject, WCSessionDelegate {
                print("There was an error")
            }
             
+            if let duration = message["duration"] as? String {
+               self.durationSubject.send(duration)
+               print("DBUG : RECEIVED")
+               self.durationApp = duration
+           } else {
+               print("There was an error")
+           }
+            
             if let menuHitState = message["menuState"] as? String {
                 self.menuStateSubject.send(menuHitState)
                 print("DBUG : RECEIVED", menuHitState)
@@ -145,3 +156,4 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     #endif
     
 }
+

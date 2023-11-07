@@ -33,7 +33,7 @@ struct ActivityRingView: View {
     
     @State private var hitSuccess: Int = 0
     @State private var maxHitSuccess: Int = 50
-    var colorsMain: [Color] = [Color.greenMain, Color.greenBlur]
+    var colorsMain: [Color] = [Color.greenMain, Color.greenMain]
     var colors: [Color] = [Color.greenBlur, Color.greenBlur]
 //    @Binding var progress: CGFloat
 //    private var progresss: CGFloat {
@@ -45,23 +45,22 @@ struct ActivityRingView: View {
             ZStack {
                
                 Circle()
-                                .trim(from: 0, to: 1)
-                                .stroke(Color.greenBlur, lineWidth: 20)
-                                .frame(width: 110, height: 110)
-                                .rotationEffect(.degrees(90))
-
-                            Circle()
-                    .trim(from: CGFloat(progressApp), to: 1)
-                                .stroke(
-                                    AngularGradient(
-                                        gradient: Gradient(colors: colorsMain),
-                                        center: .center,
-                                        startAngle: .degrees(0),
-                                        endAngle: .degrees(360)
-                                    ),
-                                    style: StrokeStyle(lineWidth: 20, lineCap: .round)
-                                )
-                                .rotationEffect(.degrees(-90))
+                                    .trim(from: 0, to: 1)
+                                    .stroke(Color.greenBlur, lineWidth: 20)
+                                    .frame(width: 110, height: 110)
+                                    .rotationEffect(.degrees(0))
+                Circle()
+                                    .trim(from: 0, to: CGFloat(progressApp)) // Change this line to start from 0 and go up to your desired progress
+                                    .stroke(
+                                        AngularGradient(
+                                            gradient: Gradient(colors: colorsMain),
+                                            center: .center,
+                                            startAngle: .degrees(0), // Change the startAngle to 0
+                                            endAngle: .degrees(360 * Double(progressApp)) // Adjust the endAngle to make it progress clockwise
+                                        ),
+                                        style: StrokeStyle(lineWidth: 20, lineCap: .square)
+                                    )
+                                    .rotationEffect(.degrees(-90)) // Rotate the circle counterclockwise by -90 degrees
                 VStack(spacing: 5) {
                     Text("\(Int(hitTotalApp))/\(Int(hitTargetApp))")
                         .foregroundColor(Color.greenMain)
@@ -86,6 +85,7 @@ struct ActivityRingView: View {
 struct PauseEndView: View {
     @State private var showingAlert = false
     @Binding var value: Int
+    @Binding var textCountdown:String
     var body: some View {
         VStack(spacing: 40) {
             HStack(spacing: 30) {
@@ -102,20 +102,20 @@ struct PauseEndView: View {
                     Text("End")
                         .foregroundColor(.red)
                 }
-                VStack {
-                    Button(action: {
-                       
-                    }, label: {
-                        Image(systemName: "pause")
-                            .font(.system(size: 19))
-                        
-                    })
-                    .frame(width: 60)
-                    .buttonStyle(.bordered)
-                    Text("Pause")
-                }
+//                VStack {
+//                    Button(action: {
+//                       
+//                    }, label: {
+//                        Image(systemName: "pause")
+//                            .font(.system(size: 19))
+//                        
+//                    })
+//                    .frame(width: 60)
+//                    .buttonStyle(.bordered)
+//                    Text("Pause")
+//                }
             }
-            Text("00:00")
+            Text(textCountdown)
                 .foregroundColor(Color.greenMain)
                 .font(.system(size: 28))
         }
@@ -150,13 +150,13 @@ struct SheetAlert: View {
                     .foregroundColor(Color.redMain)
             })
             
-            Button(action: {
-                counter.menuStateSend(menuState: "restart")
-                showingAlert = false
-            }, label: {
-                Text("Restart")
-                    .font(.system(size: 17))
-            })
+//            Button(action: {
+//                counter.menuStateSend(menuState: "restart")
+//                showingAlert = false
+//            }, label: {
+//                Text("Restart")
+//                    .font(.system(size: 17))
+//            })
             
         }
     }

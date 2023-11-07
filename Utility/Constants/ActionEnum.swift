@@ -1,14 +1,8 @@
 //
 //  ActionEnum.swift
-//  Swooz
+//  ascenttt
 //
-//  Created by Agung Saputra on 20/10/23.
+//  Created by Agung Saputra on 07/11/23.
 //
 
 import Foundation
-
-enum ActionEnum: String {
-    case cancel
-    case process
-    case done
-}

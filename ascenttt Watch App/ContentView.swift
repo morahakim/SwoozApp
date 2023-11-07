@@ -21,7 +21,85 @@ struct ContentView: View {
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
     @AppStorage("menuStateApp") var menuStateApp = ""
+    @AppStorage("durationApp") var durationApp = ""
     
+    
+    @State var countdownTimer: Timer?
+        @State var countdownValue = 3
+        @State var timer: Timer?
+        @State var remainingTime = 20 * 60 + 1
+        
+        @State var labelCountdown = ""
+        
+        @State var textCountdown = ""
+        
+        @State var urlVideoSource : AVAsset?
+        @State var urlVideo : URL? {
+            didSet {
+                updateVideoSource()
+            }
+        }
+        
+        func updateVideoSource(){
+            if(urlVideo != nil){
+                urlVideoSource = AVAsset(url: urlVideo!)
+            }else{
+                urlVideoSource = nil
+            }
+        }
+        
+        func startCountdown() {
+            
+            labelCountdown = ""
+            textCountdown = ""
+            timer?.invalidate()
+            countdownTimer?.invalidate()
+            countdownValue = 3
+            remainingTime = 20 * 60 + 1
+            
+            if urlVideoSource != nil {
+                // Start reading the video.
+                countdownValue = 0
+                labelCountdown = String("")
+            } else {
+                // Start live camera capture.
+                labelCountdown = String(countdownValue)
+            }
+            
+            countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timerr in
+                updateCountdownLabel()
+            }
+            
+        }
+        
+        func updateCountdownLabel() {
+            countdownValue -= 1
+            if countdownValue > 0 {
+                labelCountdown = String(countdownValue)
+            } else if countdownValue == 0 {
+                labelCountdown = "GO"
+            }else {
+                labelCountdown = ""
+                remainingTime -= 1
+                if remainingTime > -1 {
+                    let minutes = remainingTime / 60
+                    let seconds = remainingTime % 60
+                    textCountdown = String(format: "%02d:%02d", minutes, seconds)
+                } else {
+                    timer?.invalidate()
+                    countdownTimer?.invalidate()
+                    textCountdown = ""
+                    stop()
+                }
+            }
+            print(labelCountdown)
+            print(textCountdown)
+        }
+        
+        func stop(){
+            print("DBUG : STOP")
+            counter.menuStateSend(menuState: "done")
+        }
     
     var body: some View {
 //        VStack {
@@ -90,7 +168,13 @@ struct ContentView: View {
                                    }
                                    .buttonStyle(.plain)
                                }else{
-                                   Text("Open Camera!").foregroundColor(.white)
+                                   Text(
+                                    """
+                                    Open Camera
+                                    First!
+""")
+                                   .multilineTextAlignment(.center)
+                                   .foregroundColor(.white)
                                }
                               
                            }
@@ -104,71 +188,25 @@ struct ContentView: View {
                           
                        }
             }else if(menuStateApp == "stillPlay" || menuStateApp == "restart"){
-//                CountingView()
-//                VStack(){
-//                    ScrollView(){
-//                        ZStack {
-//                                    Color.black.edgesIgnoringSafeArea(.all)
-//                                    ActivityRingView()
-//                                        .fixedSize()
-//                        }.padding(.bottom,10)
-//                        VStack(spacing: 0) {
-//                            HStack(spacing: 30) {
-//                                VStack {
-//                                    Button(action: {
-//                                        showingAlert = true
-//                                    }, label: {
-//                                        Image(systemName: "xmark")
-//                                            .foregroundColor(.red)
-//                                            .font(.system(size: 19))
-//                                    })
-//                                    .frame(width: 60)
-//                                    .buttonStyle(.bordered)
-//                                    Text("End")
-//                                        .foregroundColor(.red)
-//                                }
-//                                VStack {
-//                                    Button(action: {
-//                                       
-//                                    }, label: {
-//                                        Image(systemName: "pause")
-//                                            .font(.system(size: 19))
-//                                        
-//                                    })
-//                                    .frame(width: 60)
-//                                    .buttonStyle(.bordered)
-//                                    Text("Pause")
-//                                }
-//                            }
-//                            Text("00:00")
-//                                .foregroundColor(Color.greenMain)
-//                                .font(.system(size: 28))
-//                        }.sheet(isPresented: $showingAlert) {
-//                            VStack(spacing: 10) {
-//                                Text("Are you sure?")
-//                                    .foregroundColor(Color.greenMain)
-//                                Button(action: {
-//                                    counter.menuStateSend(menuState: "done")
-//                                    showingAlert = false
-//                                }, label: {
-//                                    Text("End Drill")
-//                                        .font(.system(size: 17))
-//                                        .foregroundColor(Color.redMain)
-//                                })
-//                                
-//                                Button(action: {
-//                                    counter.menuStateSend(menuState: "restart")
-//                                    showingAlert = false
-//                                }, label: {
-//                                    Text("Restart")
-//                                        .font(.system(size: 17))
-//                                })
-//                                
-//                            }
-//                        }
-//                    }
-//                }
-                CountingPageView()
+                VStack(){
+                    if(labelCountdown == "3" || labelCountdown == "2" || labelCountdown == "1" || labelCountdown == "GO"){
+                                        VStack(){
+                                            Text(labelCountdown)
+                                                .foregroundColor(Color.greenMain)
+                                                .font(.system(size: 48))
+                                                .fontWeight(.semibold)
+                                        }
+                                        
+                    }else{
+                        CountingPageView(textCountdown: $textCountdown)
+                    }
+                }.onAppear(){
+                    startCountdown()
+            }.onDisappear(){
+                timer?.invalidate()
+                countdownTimer?.invalidate()
+            }
+                
             }else if(menuStateApp == "done"){
 //                Text("Statistic View").foregroundColor(.white).bold().padding(.bottom,10)
 //                HStack(){
@@ -222,7 +260,7 @@ struct ContentView: View {
                  
                     //            Spacer()
                                 VStack(alignment: .leading) {
-                                    Text("16:00")
+                                    Text(durationApp)
                                         .font(.system(size: 23))
                                     Text("Duration")
                                        

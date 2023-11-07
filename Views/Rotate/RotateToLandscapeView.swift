@@ -12,12 +12,14 @@ struct RotateToLandscapeView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            Image("RotateLandscapeImg")
-                .scaledToFit()
-                .scaleEffect(x: -1, y: 1)
-            Text("Rotate your iPhone for landscape view.")
-                .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
-                .frame(width: 358, alignment: .top)
+            LottieView(name: "Iphone Rotate")
+//                .frame(width: 300)
+                .scaledToFill()
+                .padding(32)
+//                .scaleEffect(x: -1, y: 1)
+//            Text("Rotate your iPhone for landscape view.")
+//                .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
+//                .frame(width: 358, alignment: .top)
         }
         .padding(16)
         .navigationBarBackButtonHidden(true)

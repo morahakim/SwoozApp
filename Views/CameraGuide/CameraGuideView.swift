@@ -10,7 +10,7 @@ import SwiftUI
 struct CameraGuideView: View {
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("isOnRecord") var isOnRecord = true
-    @AppStorage("isCamerePlacement") var isCamerePlacement: Bool = true
+    
     @State var step = 0
     
     var body: some View {
@@ -26,32 +26,23 @@ struct CameraGuideView: View {
                             LottieView(name: "CameraPlacementHeight")
                         }
                     }
-                    .offset(y: -70)
-                    .rotationEffect(Angle(degrees: 90))
+//                    .offset(y: -70)
+//                    .rotationEffect(Angle(degrees: 90))
                     .animation(.easeInOut, value: step)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                }
-                
-                GeometryReader { gr in
-                    Group {
-                        BtnPrimary(text: "Continue") {
-//                            if step < 2 {
-//                                step += 1
-//                            } else {
-//                                isOnRecord = true
-//                                vm.path.append(.Record)
-//                            }
-                            isOnRecord = true
-                            isCamerePlacement = true
-                            vm.path.append(.Record)
-                        }
-                        .rotationEffect(Angle(degrees: 90))
-                        .frame(width: 220)
+                    
+                    BtnPrimary(text: "Continue") {
+                        //                            if step < 2 {
+                        //                                step += 1
+                        //                            } else {
+                        //                                isOnRecord = true
+                        //                                vm.path.append(.Record)
+                        //                            }
+                        print("DBUG: kalo ini jalan")
+                        isOnRecord = true
+                        vm.path.append(.Record)
                     }
-                    .position(
-                        x: gr.size.width/10,
-                        y: gr.size.height/2
-                    )
+                    .frame(width: 300)
                 }
             }
             .padding(8)

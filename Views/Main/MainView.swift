@@ -15,7 +15,7 @@ enum Path: String {
 
 struct MainView: View {
     @AppStorage("isOnBoarding") var isOnBoarding: Bool = true
-    @State var isSplashScreen = false
+    @State var isSplashScreen = true
     
     var body: some View {
         if isSplashScreen {

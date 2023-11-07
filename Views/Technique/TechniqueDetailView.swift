@@ -10,153 +10,20 @@ import SwiftUI
 struct TechniqueDetailView: View {
     @State var showExplanationSheet = false
     @State var showRepetitionSheet = false
-    @State var selectedRepetition = 5
+    @State var selectedRepetition = 0
     
     var body: some View {
-        TechniqueDetailViewLandscape(
+        TechniqueDetailViewPotrait(
             showExplanationSheet: $showExplanationSheet,
             showRepetitionSheet: $showRepetitionSheet,
             selectedRepetition: $selectedRepetition
         )
-    }
-}
-
-private struct TechniqueDetailViewLandscape: View {
-    @EnvironmentObject var vm: HomeViewModel
-    @Environment(\.dismiss) private var dismiss
-    
-    @Binding var showExplanationSheet: Bool
-    @Binding var showRepetitionSheet: Bool
-    @Binding var selectedRepetition: Int
-    
-    var body: some View {
-        ZStack(alignment: .top) {
-            Color.greenMain.ignoresSafeArea(.all)
-            
-            Group {
-                VStack {
-                    CardView(action: {}, content: {
-                        Image("LowServe")
-                            .resizable()
-                            .scaledToFill()
-                            .padding(.horizontal, 16)
-                            .padding(.top, 16)
-                        HStack {
-                            Spacer()
-                            Text("Low Serve")
-                                .font(Font.custom("Urbanist", size: 20).weight(.medium))
-                                .foregroundColor(.neutralBlack)
-                            Spacer()
-                        }
-                        .padding(.bottom, 16)
-                    })
-                    .frame(width: .infinity)
-                    .padding(.bottom, 16)
-                    
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: .infinity, height: getScreenBound().height * 0.75)
-                            .background(.white)
-                            .clipShape(
-                                .rect(
-                                    topLeadingRadius: 20,
-                                    bottomLeadingRadius: 0,
-                                    bottomTrailingRadius: 0,
-                                    topTrailingRadius: 20
-                                )
-                            )
-                        
-                        ScrollView {
-                            VStack(spacing: 12) {
-                                Text("One of the basic techniques used to start a game.")
-                                    .font(Font.custom("SF Pro", size: 17))
-                                    .foregroundColor(.neutralBlack)
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                
-                                Button {
-                                    showExplanationSheet.toggle()
-                                } label: {
-                                    VStack {
-                                        Text("Details")
-                                            .font(Font.custom("SF Pro", size: 12))
-                                            .foregroundColor(.information)
-                                        Image(systemName: "chevron.down")
-                                            .foregroundStyle(.information)
-                                            .scaledToFit()
-                                            .frame(height: 14)
-                                    }
-                                }
-                                
-                                TextAlignLeading("App ini membantu anda memberikan visual terhadap lintasan shuttlecock sehingga memudahkan anda untuk melihat ketinggian shuttlecock dari net dan juga konsistensi dari pukulan anda.")
-                                    .font(Font.custom("SF Pro", size: 15))
-                                    .foregroundColor(.grayStroke6)
-                                
-                                TextAlignLeading("Preparation")
-                                    .font(Font.custom("SF Pro", size: 20))
-                                    .foregroundColor(.neutralBlack)
-                                
-                                TextAlignLeading("1. Tripod dengan ketinggian minimal 1,5 Meter \n2. iPhone")
-                                    .font(Font.custom("SF Pro", size: 15))
-                                    .foregroundColor(.grayStroke6)
-                                
-                                TextAlignLeading("Camera Placement")
-                                    .font(Font.custom("SF Pro", size: 20))
-                                    .foregroundColor(.neutralBlack)
-                                
-                                Rectangle()
-                                    .frame(width: 358, height: 173)
-                                    .cornerRadius(8)
-                                Spacer()
-                            }
-                            .padding(15)
-                        }
-                        .scrollIndicators(.hidden)
-                        .frame(height: 200)
-                        .offset(y: -45)
-                    }
-                }
-                
-                /** Button record */
-                VStack {
-                    Spacer()
-                    VStack(alignment: .center) {
-                        BtnPrimary(text: "Start Recording") {
-                            showRepetitionSheet.toggle()
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
-                    .background(.white)
-                    .clipShape(
-                        .rect(
-                            topLeadingRadius: 12,
-                            bottomLeadingRadius: 0,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: 12
-                        )
-                    )
-                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
-                }
-                .offset(y: 50)
-                .frame(height: getScreenBound().height)
-                
-                /** Navbar back */
-                NavbarBack(action: {
-                    dismiss()
-                }, bg: .greenMain)
-            }
-            .frame(width: getScreenBound().width * 0.6)
-        }
-        .navigationBarBackButtonHidden(true)
-        .sheet(isPresented: $showExplanationSheet) {
-            ExplanationSheet().presentationDetents([.medium])
-        }
-        .sheet(isPresented: $showRepetitionSheet) {
-            RepetitionSheet(
-                isPresented: $showRepetitionSheet,
-                selectedRepetition: $selectedRepetition
-            ).presentationDetents([.fraction(0.4)])
+        .onAppear {
+            guard let windowScene = UIApplication
+                .shared.connectedScenes.first as? UIWindowScene else { return }
+            windowScene.requestGeometryUpdate(.iOS(
+                interfaceOrientations: .portrait)
+            )
         }
     }
 }
@@ -175,11 +42,13 @@ private struct TechniqueDetailViewPotrait: View {
             
             VStack {
                 CardView(action: {}, content: {
-                    Image("LowServe")
-                        .resizable()
-                        .scaledToFill()
-                        .padding(.horizontal, 16)
-                        .padding(.top, 16)
+                    VStack {
+                        LottieView(name: "Low Serve")
+                            .scaledToFill()
+                    }.frame(height: 80)
+//                        .resizable()
+//                        .padding(.horizontal, 16)
+//                        .padding(.top, 16)
                     HStack {
                         Spacer()
                         Text("Low Serve")
@@ -205,7 +74,7 @@ private struct TechniqueDetailViewPotrait: View {
                             )
                         )
                     VStack(spacing: 12) {
-                        Text("One of the basic techniques used to start a game.")
+                        Text("Basic technique used to start a game.")
                             .font(Font.custom("SF Pro", size: 17))
                             .foregroundColor(.neutralBlack)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -224,25 +93,22 @@ private struct TechniqueDetailViewPotrait: View {
                             }
                         }
                         
-                        TextAlignLeading("App ini membantu anda memberikan visual terhadap lintasan shuttlecock sehingga memudahkan anda untuk melihat ketinggian shuttlecock dari net dan juga konsistensi dari pukulan anda.")
+                        TextAlignLeading("SWOOZ will provide visualizations of your shot strokes and shuttlecock targeting points, color-coded based on shot quality.")
                             .font(Font.custom("SF Pro", size: 15))
                             .foregroundColor(.grayStroke6)
                         
-                        TextAlignLeading("Preparation")
+                        TextAlignLeading("Camera Placement Tutorial")
                             .font(Font.custom("SF Pro", size: 20))
                             .foregroundColor(.neutralBlack)
                         
-                        TextAlignLeading("1. Tripod dengan ketinggian minimal 1,5 Meter \n2. iPhone")
+                        TextAlignLeading("1. Prepare a 1.5-meter-high tripod for optimal performance. \n2. Place the tripod with your iPhone on the side of the court farthest from the service area. \n3. Align the camera guideline with the badminton court net. \n4. Set the Hit Counter as your recording limit or let it stop after 20 minutes automatically.")
                             .font(Font.custom("SF Pro", size: 15))
                             .foregroundColor(.grayStroke6)
-                        
-                        TextAlignLeading("Camera Placement")
-                            .font(Font.custom("SF Pro", size: 20))
-                            .foregroundColor(.neutralBlack)
                         
                         Rectangle()
                             .frame(width: 358, height: 173)
                             .cornerRadius(8)
+                        
                         Spacer()
                     }
                     .padding(15)
@@ -301,14 +167,14 @@ private struct RepetitionSheet: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            TextAlignLeading("Set Repetition")
+            TextAlignLeading("Set Hit Counter")
                 .font(Font.custom("SF Pro", size: 20).bold())
                 .foregroundColor(.neutralBlack)
                 .padding(.top, 18)
                 .padding(.horizontal, 16)
             
             Picker("", selection: $selectedRepetition) {
-//                Text("Tidak Hitung").tag(0)
+                Text("Countless").tag(0)
                 Text("5").tag(5)
                 Text("10").tag(10)
                 Text("20").tag(20)
@@ -325,7 +191,6 @@ private struct RepetitionSheet: View {
             Divider()
             BtnPrimary(text: "Continue") {
                 hitTarget = selectedRepetition
-                print("DBUG : ",String(hitTarget))
                 isPresented.toggle()
                 vm.path.append(.RotateToLandscape)
             }
@@ -368,13 +233,6 @@ private struct ExplanationSheet: View {
     }
 }
 
-//#Preview {
-//    TechniqueDetailView()
-//}
-
-struct TechniqueDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        TechniqueDetailView()
-            .previewInterfaceOrientation(.landscapeRight)
-    }
+#Preview {
+    TechniqueDetailView()
 }

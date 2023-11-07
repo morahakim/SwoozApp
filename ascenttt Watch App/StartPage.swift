@@ -29,15 +29,16 @@ struct StartPage: View {
 
 struct CountingPageView: View {
     @State private var tabViewIndex = 0
+    @Binding var textCountdown:String
     var body: some View {
         TabView(selection: $tabViewIndex) {
-            PauseEndView(value: $tabViewIndex).tag(1)
+            PauseEndView(value: $tabViewIndex,textCountdown: $textCountdown).tag(1)
             ActivityRingView().tag(0)
         }.tabViewStyle(PageTabViewStyle())
     }
 }
 #Preview {
-    CountingPageView()
+    CountingPageView(textCountdown: .constant("20:00"))
 }
 #Preview {
     StartPage()

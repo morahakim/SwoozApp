@@ -20,6 +20,7 @@ final class Counter: ObservableObject {
     let successSubject = PassthroughSubject<Int, Never>()
     let perfectSubject = PassthroughSubject<Int, Never>()
     let failSubject = PassthroughSubject<Int, Never>()
+    let durationSubject = PassthroughSubject<String, Never>()
     let menuSubject = PassthroughSubject<String, Never>()
     
     @Published private(set) var count: Int = 0
@@ -27,7 +28,7 @@ final class Counter: ObservableObject {
     @Published private(set) var hitSuccess: Int = 0
     @Published private(set) var hitPerfect: Int = 0
     @Published private(set) var hitFail: Int = 0
-    @Published private(set) var duration: Int = 0
+    @Published private(set) var duration: String = ""
     @Published private(set) var menuState: String = ""
     
     
@@ -35,7 +36,7 @@ final class Counter: ObservableObject {
     
     init(session: WCSession = .default) {
         print("DBUG : RECEIVED INIT C")
-        self.delegate = SessionDelegater(countSubject: subject, hitTotalSubject: totalSubject,  hitTargetSubject: targetSubject, hitSuccessSubject: successSubject, hitPerfectSubject: perfectSubject,hitFailSubject: failSubject, menuStateSubject: menuSubject)
+        self.delegate = SessionDelegater(countSubject: subject, hitTotalSubject: totalSubject,  hitTargetSubject: targetSubject, hitSuccessSubject: successSubject, hitPerfectSubject: perfectSubject,hitFailSubject: failSubject, durationSubject: durationSubject, menuStateSubject: menuSubject)
         self.session = session
         self.session.delegate = self.delegate
         self.session.activate()
@@ -79,6 +80,12 @@ final class Counter: ObservableObject {
         }
     }
     
+    func durationSend(duration: String) {
+        session.sendMessage(["duration": duration], replyHandler: nil) { error in
+            print(error.localizedDescription)
+        }
+    }
+    
     func menuStateSend(menuState: String) {
         menuStateApp = menuState
         session.sendMessage(["menuState": menuState], replyHandler: nil) { error in
@@ -103,3 +110,4 @@ final class Counter: ObservableObject {
         }
     }
 }
+
