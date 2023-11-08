@@ -172,7 +172,7 @@ struct ContentView: View {
                                     """
                                     Open Camera
                                     First!
-""")
+                                    """)
                                    .multilineTextAlignment(.center)
                                    .foregroundColor(.white)
                                }
