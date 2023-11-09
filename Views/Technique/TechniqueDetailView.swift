@@ -142,6 +142,13 @@ struct TechniqueDetailView: View {
                 .presentationDetents([.fraction(0.4)])
             }
         }
+        .onDisappear {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.landscapeRight.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .landscapeRight
+        }
         
     }
 }
@@ -185,6 +192,13 @@ private struct RepetitionSheet: View {
                 forKey: "orientation"
             )
             AppDelegate.orientationLock = .portrait
+        }
+        .onDisappear {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.landscapeRight.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .landscapeRight
         }
     }
 }

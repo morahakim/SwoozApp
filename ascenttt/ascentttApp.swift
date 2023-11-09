@@ -15,6 +15,13 @@ struct ascentttApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear {
+                    UIDevice.current.setValue(
+                        UIInterfaceOrientation.portrait.rawValue,
+                        forKey: "orientation"
+                    )
+                    AppDelegate.orientationLock = .portrait
+                }
                 .preferredColorScheme(.light)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
