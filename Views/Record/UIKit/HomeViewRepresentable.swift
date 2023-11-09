@@ -13,6 +13,8 @@ import CoreData
 struct HomeViewRepresentable: UIViewControllerRepresentable {
     var moc: NSManagedObjectContext
     
+    @AppStorage("name") var name: String = "Intermediate"
+    
     func makeUIViewController(context: Context) -> some UIViewController {
         let homeViewController = HomeViewController()
         homeViewController.homeDelegate = context.coordinator

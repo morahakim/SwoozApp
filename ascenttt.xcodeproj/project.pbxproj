@@ -36,6 +36,9 @@
 		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
+		BE975BFE2AFCC40A00C802CF /* SetUpLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE975BFB2AFCC40A00C802CF /* SetUpLevel3.mp4 */; };
+		BE975BFF2AFCC40A00C802CF /* SetUpLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE975BFC2AFCC40A00C802CF /* SetUpLevel1.mp4 */; };
+		BE975C002AFCC40A00C802CF /* SetUpLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE975BFD2AFCC40A00C802CF /* SetUpLevel2.mp4 */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
 		BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */; };
@@ -125,6 +128,9 @@
 		18CD6E1A2AF953FC0087B24D /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		18CD6E1C2AF955250087B24D /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		18CD6E1E2AF955580087B24D /* SessionDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegator.swift; sourceTree = "<group>"; };
+		BE975BFB2AFCC40A00C802CF /* SetUpLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel3.mp4; sourceTree = "<group>"; };
+		BE975BFC2AFCC40A00C802CF /* SetUpLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel1.mp4; sourceTree = "<group>"; };
+		BE975BFD2AFCC40A00C802CF /* SetUpLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel2.mp4; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
 		BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToPotraitView.swift; sourceTree = "<group>"; };
@@ -255,6 +261,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE975BFA2AFCC39F00C802CF /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				BE975BFC2AFCC40A00C802CF /* SetUpLevel1.mp4 */,
+				BE975BFD2AFCC40A00C802CF /* SetUpLevel2.mp4 */,
+				BE975BFB2AFCC40A00C802CF /* SetUpLevel3.mp4 */,
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 		BEA1C0A52AF0314F00BFF1A4 /* Shared */ = {
@@ -416,6 +432,7 @@
 		BEF748272AF02AAF00E8FB8B = {
 			isa = PBXGroup;
 			children = (
+				BE975BFA2AFCC39F00C802CF /* Video */,
 				371240D22AF1628F009C8021 /* CoreData */,
 				BEA1C1492AF0436D00BFF1A4 /* Utility */,
 				BEA1C11A2AF0436D00BFF1A4 /* Views */,
@@ -569,9 +586,12 @@
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
+				BE975C002AFCC40A00C802CF /* SetUpLevel2.mp4 in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
+				BE975BFF2AFCC40A00C802CF /* SetUpLevel1.mp4 in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
+				BE975BFE2AFCC40A00C802CF /* SetUpLevel3.mp4 in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
 			);
@@ -792,7 +812,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = CVW5T9L476;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -809,7 +829,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -821,7 +841,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = CVW5T9L476;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -839,7 +859,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -852,7 +872,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = CVW5T9L476;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
@@ -864,7 +884,6 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -889,7 +908,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = CVW5T9L476;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
@@ -901,7 +920,6 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

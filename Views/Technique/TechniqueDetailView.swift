@@ -151,7 +151,7 @@ private struct RepetitionSheet: View {
     @Binding var isPresented: Bool
     @Binding var selectedRepetition: Int
     
-    @AppStorage("hitTarget") var hitTarget: Int = 0
+    @AppStorage("hitTargetApp") var hitTargetApp: Int = 0
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -173,7 +173,7 @@ private struct RepetitionSheet: View {
             
             Divider()
             BtnPrimary(text: "Continue") {
-                hitTarget = selectedRepetition
+                hitTargetApp = selectedRepetition
                 isPresented.toggle()
                 vm.path.append(.RotateToLandscape)
             }
