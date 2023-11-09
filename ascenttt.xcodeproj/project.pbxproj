@@ -22,6 +22,7 @@
 		184E02FD2AF192F60004C569 /* Smash.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F62AF192F60004C569 /* Smash.json */; };
 		188062F12AF9536400310F93 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F02AF9536400310F93 /* SFSymbol.swift */; };
 		188062F32AF9537E00310F93 /* ActionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F22AF9537E00310F93 /* ActionEnum.swift */; };
+		18922FF62AFD2EBC001B68EF /* DetailVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */; };
 		18AD0C132AF95ADB0019DD60 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18AD0C112AF95ADB0019DD60 /* Database.xcdatamodeld */; };
 		18CD6E0D2AF953A60087B24D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E0C2AF953A60087B24D /* Button.swift */; };
 		18CD6E0F2AF953AC0087B24D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E0E2AF953AC0087B24D /* Card.swift */; };
@@ -35,7 +36,7 @@
 		18CD6E1F2AF955580087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
-		376D3E6D2AFAA3E6006A7A4A /* DetailVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D3E6C2AFAA3E6006A7A4A /* DetailVideoView.swift */; };
+		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BE975BFE2AFCC40A00C802CF /* SetUpLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE975BFB2AFCC40A00C802CF /* SetUpLevel3.mp4 */; };
 		BE975BFF2AFCC40A00C802CF /* SetUpLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE975BFC2AFCC40A00C802CF /* SetUpLevel1.mp4 */; };
@@ -118,6 +119,7 @@
 		184E02F62AF192F60004C569 /* Smash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Smash.json; sourceTree = "<group>"; };
 		188062F02AF9536400310F93 /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		188062F22AF9537E00310F93 /* ActionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionEnum.swift; sourceTree = "<group>"; };
+		18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVideoView.swift; sourceTree = "<group>"; };
 		18AD0C122AF95ADB0019DD60 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		18CD6E0C2AF953A60087B24D /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		18CD6E0E2AF953AC0087B24D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		18CD6E222AF957DA0087B24D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				BE975BFA2AFCC39F00C802CF /* Video */,
 				184E02EF2AF192E00004C569 /* Lottie */,
 				BEF748372AF02AB000E8FB8B /* Assets.xcassets */,
 			);
@@ -321,7 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				BEA1C1212AF0436D00BFF1A4 /* ResultView.swift */,
-				376D3E6C2AFAA3E6006A7A4A /* DetailVideoView.swift */,
+				18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -434,7 +437,6 @@
 		BEF748272AF02AAF00E8FB8B = {
 			isa = PBXGroup;
 			children = (
-				BE975BFA2AFCC39F00C802CF /* Video */,
 				371240D22AF1628F009C8021 /* CoreData */,
 				BEA1C1492AF0436D00BFF1A4 /* Utility */,
 				BEA1C11A2AF0436D00BFF1A4 /* Views */,
@@ -619,7 +621,7 @@
 				BEA1C15F2AF0436D00BFF1A4 /* TrajectoryView.swift in Sources */,
 				188062F32AF9537E00310F93 /* ActionEnum.swift in Sources */,
 				188062F12AF9536400310F93 /* SFSymbol.swift in Sources */,
-				376D3E6D2AFAA3E6006A7A4A /* DetailVideoView.swift in Sources */,
+				376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */,
 				BEA1C15C2AF0436D00BFF1A4 /* RecordView.swift in Sources */,
 				184E02EE2AF1745C0004C569 /* DataContoller.swift in Sources */,
 				18CD6E132AF953C40087B24D /* NavbarBack.swift in Sources */,
@@ -638,6 +640,7 @@
 				183B337C2AFA92CC004E023D /* TechniqueLevelView.swift in Sources */,
 				18CD6E192AF953EA0087B24D /* Lottie.swift in Sources */,
 				BEA1C16E2AF0436D00BFF1A4 /* HomeViewModel.swift in Sources */,
+				18922FF62AFD2EBC001B68EF /* DetailVideoView.swift in Sources */,
 				BEA1C1662AF0436D00BFF1A4 /* CameraFeedView.swift in Sources */,
 				184E02EB2AF174480004C569 /* View+Ext.swift in Sources */,
 				BEA1C1712AF0436D00BFF1A4 /* MainView.swift in Sources */,
