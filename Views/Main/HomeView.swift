@@ -12,6 +12,8 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.id)
     ]) var list: FetchedResults<Data>
+    @State var isMove: Bool = false
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         NavigationStack(path: $vm.path) {
@@ -20,14 +22,23 @@ struct HomeView: View {
                     VStack {
                         List {
                             ForEach(list) { item in
-//                                if let urlStr = item.url {
-//                                    VideoThumbnailView(
-//                                        url: URL(string: urlStr)
-//                                    )
-//                                }
-                                ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                NavigationLink(destination: DetailVideoView(item: item)) {
+                                    ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                }
+                            }
+                            .onDelete { i in
+                                let itemToDelete = i.map { list[$0] }
+                                for item in itemToDelete {
+                                    moc.delete(item)
+                                }
+                                do {
+                                    try moc.save()
+                                } catch  {
+                                    print(error.localizedDescription)
+                                }
                             }
                         }
+                    
                         .listStyle(.plain)
                         .padding(.bottom, getSafeArea().bottom)
                     }

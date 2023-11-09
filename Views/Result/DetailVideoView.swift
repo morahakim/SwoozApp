@@ -6,24 +6,35 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct DetailVideoView: View {
+    var item: FetchedResults<Data>.Element
+    @State var isPlay: Bool = false
+    @State var player: AVPlayer?
+    
     var body: some View {
         ZStack {
             Color.greenMain.ignoresSafeArea(.container, edges: .top)
             VStack(spacing: 15) {
                 ZStack(alignment: .bottomTrailing) {
-                    Rectangle()
+                    if let url = item.url {
+                        VideoPlayer(player: player) {
+                            if !isPlay {
+                                Image(systemName: "play.circle.fill")
+                                    .foregroundColor(.greenMain)
+                                    .font(.system(size: 60))
+                                    .padding()
+                                    .onTapGesture {
+                                        player?.play()
+                                        isPlay.toggle()
+                                    }
+                            }
+                        }
                         .frame(width: 358, height: 173)
-                        .cornerRadius(8)
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(systemName: "play.circle.fill")
-                            .foregroundColor(.greenMain)
-                            .font(.system(size: 60))
-                            .padding()
-                    })
+                    }
+                    
+       
                 }
                 ZStack {
                     Rectangle()
@@ -38,11 +49,13 @@ struct DetailVideoView: View {
                                 topTrailingRadius: 20
                             )
                         )
+
+                    
                     
                     VStack {
                         HStack {
                             VStack {
-                                Text("Low Serve 1")
+                                Text(item.name ?? "Low Serve")
                                     .font(Font.custom("SF Pro", size: 22))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .foregroundColor(.neutralBlack)
@@ -51,7 +64,7 @@ struct DetailVideoView: View {
                                     .cornerRadius(20)
                                     .frame(width: 97, height: 24)
                                     .overlay {
-                                        Text("Intermediate")
+                                        Text(item.level ?? "-")
                                             .font(Font.custom("SF Pro", size: 12))
                                             .foregroundStyle(Color.white)
                                             
@@ -59,7 +72,7 @@ struct DetailVideoView: View {
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
                             
-                            Text("21/12/2023")
+                            Text(item.datetime ?? "")
                                 .font(Font.custom("SF Pro", size: 12))
                                 .foregroundStyle(Color.grayStroke6)
                                 .padding(.bottom, 30)
@@ -69,7 +82,7 @@ struct DetailVideoView: View {
                         VStack(spacing: 25) {
                             HStack {
                                 VStack(spacing: 8) {
-                                    Text("20")
+                                    Text("\(item.hitTarget )")
                                         .font(Font.custom("SF Pro", size: 34))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
@@ -79,7 +92,7 @@ struct DetailVideoView: View {
                                         .foregroundColor(.neutralBlack)
                                 }
                                 VStack(spacing: 8) {
-                                    Text("20")
+                                    Text("\(item.hitTotal )")
                                         .font(Font.custom("SF Pro", size: 34))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
@@ -93,7 +106,7 @@ struct DetailVideoView: View {
                             
                             HStack {
                                 VStack(spacing: 8) {
-                                    Text("15")
+                                    Text("\(item.hitSuccess)")
                                         .font(Font.custom("SF Pro", size: 34))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
@@ -103,7 +116,7 @@ struct DetailVideoView: View {
                                         .foregroundColor(.neutralBlack)
                                 }
                                 VStack(spacing: 8) {
-                                    Text("5")
+                                    Text("\(item.hitFail)")
                                         .font(Font.custom("SF Pro", size: 34))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
@@ -116,7 +129,7 @@ struct DetailVideoView: View {
                             .padding(.trailing, 90)
                             
                             VStack(spacing: 8) {
-                                Text("15:06")
+                                Text(item.duration ?? "00:00")
                                     .font(Font.custom("SF Pro", size: 34))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .foregroundColor(.neutralBlack)
@@ -138,6 +151,16 @@ struct DetailVideoView: View {
             }
             .padding(.top, getSafeArea().top + 26)
         }
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.greenMain, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .onAppear {
+            if let url = item.url {
+                player = AVPlayer(url: URL(string: url)!)
+            }
+        }
     }
 }
 
@@ -152,6 +175,6 @@ struct ThickDivider: View {
     }
 }
 
-#Preview {
-    DetailVideoView()
-}
+//#Preview {
+//    DetailVideoView(item: <#FetchedResults<Data>.Element#>)
+//}
