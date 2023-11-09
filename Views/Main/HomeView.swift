@@ -65,8 +65,6 @@ struct HomeView: View {
                     forKey: "orientation"
                 )
                 AppDelegate.orientationLock = .portrait
-            }.onDisappear {
-                AppDelegate.orientationLock = .portrait
             }
         }
         .environmentObject(vm)

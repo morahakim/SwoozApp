@@ -5,7 +5,6 @@
 //  Created by Agung Saputra on 22/10/23.
 //
 
-import Foundation
 import SwiftUI
 
 enum ViewPath {
@@ -15,6 +14,7 @@ enum ViewPath {
     case LoadingRecord
     case RotateToPotrait
     case Technique
+    case TechniqueLevel
     case TechniqueDetail
 }
 
@@ -36,6 +36,8 @@ class HomeViewModel: ObservableObject {
             RotateToPotraitView()
         case .Technique:
             TechniqueView()
+        case .TechniqueLevel:
+            TechniqueLevelView()
         case .TechniqueDetail:
             TechniqueDetailView()
         }

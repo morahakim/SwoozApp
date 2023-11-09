@@ -9,23 +9,26 @@ import SwiftUI
 
 struct RotateToLandscapeView: View {
     @EnvironmentObject var vm: HomeViewModel
+    @AppStorage("isOnRecord") var isOnRecord = true
     
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
             LottieView(name: "Iphone Rotate")
-//                .frame(width: 300)
                 .scaledToFill()
                 .padding(32)
-//                .scaleEffect(x: -1, y: 1)
-//            Text("Rotate your iPhone for landscape view.")
-//                .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
-//                .frame(width: 358, alignment: .top)
         }
         .padding(16)
         .navigationBarBackButtonHidden(true)
         .onAppear {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.landscapeRight.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .landscapeRight
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation {
+                    isOnRecord = true
                     vm.path.append(.CameraGuide)
                 }
             }

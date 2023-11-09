@@ -15,15 +15,23 @@ struct ascentttApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear {
+                    UIDevice.current.setValue(
+                        UIInterfaceOrientation.portrait.rawValue,
+                        forKey: "orientation"
+                    )
+                    AppDelegate.orientationLock = .portrait
+                }
+                .preferredColorScheme(.light)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-        
+    
     static var orientationLock = UIInterfaceOrientationMask.all //By default you want all your views to rotate freely
-
+    
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return AppDelegate.orientationLock
     }

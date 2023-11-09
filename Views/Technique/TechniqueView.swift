@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private struct TechniqueData: Hashable {
+struct TechniqueData: Hashable {
     let name: String
     let img: String
     let isLock: Bool
@@ -26,64 +26,70 @@ struct TechniqueView: View {
     ]
     
     var body: some View {
-        ZStack {
-            Color.greenMain.ignoresSafeArea(.all)
-            
-            ScrollView {
-                ForEach(data, id: \.self) { d in
-                    CardView(action: {
-                        if !d.isLock {
-                            vm.path.append(.TechniqueDetail)
-                        }
-                    }, content: {
-                        VStack {
-                            Image(d.img)
-                                .resizable()
-                                .scaledToFit()
-                                .padding(.horizontal, 16)
-                                .padding(.top, 16)
-                            HStack {
-                                Spacer()
-                                Text(d.name)
-                                    .font(Font.custom("Urbanist", size: 20).weight(.medium))
-                                    .foregroundColor(.neutralBlack)
-                                Spacer()
+        ForceOrientation(.portrait) {
+            ZStack {
+                Color.greenMain.ignoresSafeArea(.all)
+                
+                ScrollView {
+                    ForEach(data, id: \.self) { d in
+                        CardView(action: {
+                            if !d.isLock {
+                                vm.path.append(.TechniqueLevel)
                             }
-                        }
-                        .padding(.bottom, 16)
-                        .overlay {
-                            if d.isLock {
-                                VStack {
-                                    HStack {
-                                        Image(systemName: "lock.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 24)
-                                            .foregroundStyle(.grayStroke6)
-                                        Spacer()
-                                    }
+                        }, content: {
+                            VStack {
+                                Image(d.img)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 100)
+                                    .padding(.horizontal, 16)
+                                    .padding(.top, 16)
+                                HStack {
+                                    Spacer()
+                                    Text(d.name)
+                                        .font(Font.custom("Urbanist", size: 20).weight(.medium))
+                                        .foregroundStyle(.neutralBlack)
                                     Spacer()
                                 }
-                                .padding(.leading, 4)
-                                .padding(.top, 2)
                             }
-                        }
-                    })
-                    .overlay {
-                        if d.isLock {
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.grayStroke3)
-                                .opacity(0.4)
+                            .padding(.bottom, 16)
+                            .overlay {
+                                if d.isLock {
+                                    VStack {
+                                        HStack {
+                                            Image(systemName: "lock.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 24)
+                                                .foregroundStyle(.grayStroke6)
+                                            Text("Cooming Soon")
+                                                .foregroundStyle(.neutralBlack)
+                                                .font(Font.custom("SF Pro", size: 17))
+                                            Spacer()
+                                        }
+                                        Spacer()
+                                    }
+                                    .padding(.leading, 4)
+                                    .padding(.top, 2)
+                                }
+                            }
+                        })
+                        .overlay {
+                            if d.isLock {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color.grayStroke3)
+                                    .opacity(0.4)
+                            }
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
-            .scrollIndicators(.hidden)
+            .navigationTitle("Choose Technique")
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.greenMain, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
-        .navigationTitle("Choose Technique")
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbarBackground(.greenMain, for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 

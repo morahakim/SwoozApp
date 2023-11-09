@@ -17,17 +17,14 @@ struct RecordView: View {
     var body: some View {
         VStack {
             if isOnRecord {
-                HomeViewRepresentable()
+                HomeViewRepresentable(moc: moc)
             } else {
                 LoadingRecordView()
-                    .onAppear {
-                        save(url: dataUrl)
-//                        hitTarget = 0
-                    }
             }
         }
         .ignoresSafeArea(.all)
         .navigationBarBackButtonHidden(true)
+        
     }
     
     @AppStorage("hitFailApp") var hitFailApp = 0
@@ -37,7 +34,7 @@ struct RecordView: View {
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
     @AppStorage("durationApp") var durationApp = ""
     
-    private func save(url: String) {
+    func saveRecordData(url: String) {
         let data = Data(context: moc)
         data.id = UUID()
         data.url = url

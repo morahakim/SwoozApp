@@ -21,11 +21,11 @@ struct MainView: View {
         if isSplashScreen {
             SplashView(isShow: $isSplashScreen)
         } else {
-//            if isOnBoarding {
-//                OnBoardingView()
-//            } else {
-//                HomeView()
-//            }
+            //            if isOnBoarding {
+            //                OnBoardingView()
+            //            } else {
+            //                HomeView()
+            //            }
             HomeView()
         }
     }

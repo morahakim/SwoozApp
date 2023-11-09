@@ -51,13 +51,14 @@ class CameraViewController: UIViewController {
     func setupAVSession() throws {
         
         // Create a device discovery session.
-        let wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
+        let wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [wideAngle],
                                                                 mediaType: .video,
                                                                 position: .back)
         
         // Select a video device and make an input.
         guard let videoDevice = discoverySession.devices.first else {
+            print("Bisa wide")
             throw AppError.captureSessionSetup(reason: "Couldn't find a wide angle camera device.")
         }
         

@@ -33,7 +33,7 @@ struct SplashView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 isShow = false
             }
-        }
+        } 
     }
 }
 
