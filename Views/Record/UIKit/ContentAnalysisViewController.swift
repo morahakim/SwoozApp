@@ -353,7 +353,7 @@ class ContentAnalysisViewController: UIViewController,
         boxScore.layer.cornerRadius = 4
         
         
-        text1.text = String(format: "%02d", hitSuccess)
+        text1.text = String(format: "%02d", hitTotal)
         text1.font = UIFont.systemFont(ofSize: 34)
         text1.textColor = UIColor.white
         text1.textAlignment = .center
@@ -365,14 +365,14 @@ class ContentAnalysisViewController: UIViewController,
         text2.textAlignment = .center
         text2.frame = CGRect(x: ((boxScore.frame.width - 20) / 2), y: 10, width: 20, height: 30)
         
-        text3.text = String(format: "%02d", hitTotal)
+        text3.text = String(format: "%02d", hitTargetApp)
         text3.font = UIFont.systemFont(ofSize: 34)
         text3.textColor = UIColor.white
         text3.textAlignment = .center
         text3.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
         
         let text4 = UILabel()
-        text4.text = "Clear"
+        text4.text = "Attemp"
         text4.font = UIFont.systemFont(ofSize: 15)
         text4.textColor = UIColor.white
         text4.textAlignment = .center
@@ -380,7 +380,7 @@ class ContentAnalysisViewController: UIViewController,
         
         
         let text5 = UILabel()
-        text5.text = "Attempt"
+        text5.text = "Target"
         text5.font = UIFont.systemFont(ofSize: 15)
         text5.textColor = UIColor.white
         text5.textAlignment = .center

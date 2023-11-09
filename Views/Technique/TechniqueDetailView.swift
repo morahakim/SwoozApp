@@ -179,6 +179,13 @@ private struct RepetitionSheet: View {
             }
             .padding(.horizontal, 16)
         }
+        .onAppear {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.portrait.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .portrait
+        }
     }
 }
 

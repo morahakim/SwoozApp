@@ -15,6 +15,7 @@ struct ascentttApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .preferredColorScheme(.light)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }

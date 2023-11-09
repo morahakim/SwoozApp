@@ -28,7 +28,7 @@ struct ForceOrientation<Content: View>: View {
             AppDelegate.orientationLock = orientation
         }
         .onDisappear {
-            AppDelegate.orientationLock = orientation
+            AppDelegate.orientationLock = .all
         }
         .preferredColorScheme(.light)
     }

@@ -20,14 +20,11 @@ struct RecordView: View {
                 HomeViewRepresentable(moc: moc)
             } else {
                 LoadingRecordView()
-                    .onAppear {
-//                        saveRecordData(url: dataUrl)
-//                        hitTarget = 0
-                    }
             }
         }
         .ignoresSafeArea(.all)
         .navigationBarBackButtonHidden(true)
+        
     }
     
     @AppStorage("hitFailApp") var hitFailApp = 0

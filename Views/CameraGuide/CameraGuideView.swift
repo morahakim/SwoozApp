@@ -14,40 +14,45 @@ struct CameraGuideView: View {
     @State var step = 0
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                VStack {
-                    TabView(selection: $step) {
-                        if step == 0 {
-                            WarningView()
-                        } else if step == 1 {
-                            LottieView(name: "CameraPlacementDistance")
-                        } else if step == 2 {
-                            LottieView(name: "CameraPlacementHeight")
-                        }
+        ZStack {
+            VStack {
+                TabView(selection: $step) {
+                    if step == 0 {
+                        WarningView()
+                    } else if step == 1 {
+                        LottieView(name: "CameraPlacementDistance")
+                    } else if step == 2 {
+                        LottieView(name: "CameraPlacementHeight")
                     }
-//                    .offset(y: -70)
-//                    .rotationEffect(Angle(degrees: 90))
-                    .animation(.easeInOut, value: step)
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    
-                    BtnPrimary(text: "Continue") {
-                        //                            if step < 2 {
-                        //                                step += 1
-                        //                            } else {
-                        //                                isOnRecord = true
-                        //                                vm.path.append(.Record)
-                        //                            }
-                        print("DBUG: kalo ini jalan")
-                        isOnRecord = true
-                        vm.path.append(.Record)
-                    }
-                    .frame(width: 300)
                 }
+                .animation(.easeInOut, value: step)
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
+                BtnPrimary(text: "Continue") {
+//                    if step < 2 {
+//                        step += 1
+//                    } else {
+//                        isOnRecord = true
+//                        vm.path.append(.Record)
+//                    }
+                    isOnRecord = true
+                    vm.path.append(.Record)
+                }
+                .frame(width: 300)
             }
-            .padding(8)
         }
+        .padding(8)
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.landscapeRight.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .landscapeRight
+        }
+        .onDisappear {
+            AppDelegate.orientationLock = .landscapeRight
+        }
     }
 }
 

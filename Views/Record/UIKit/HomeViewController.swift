@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         boxNet.layer.cornerRadius = 4
         
         let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        if let image = UIImage(named: "Net") {
+        if let image = UIImage(named: "NetLevel3") {
             imageNetView.image = image
         }
         boxNet.addSubview(imageNetView)
@@ -161,6 +161,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         do {
             try cameraViewController.setupAVSession()
+            print("DBUG : ABC")
         } catch {
             AppError.display(error, inViewController: self)
         }
@@ -247,6 +248,7 @@ extension HomeViewController: CameraViewControllerOutputDelegate {
     func cameraViewController(_ controller: CameraViewController,
                               didReceiveBuffer buffer: CMSampleBuffer,
                               orientation: CGImagePropertyOrientation) {
+        print("DBUG : 123")
     
     }
     
