@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  WatchConnectivityPrototype
+//  SwoozWatch Watch App
 //
-//  Created by Chris Gaafary on 4/14/21.
+//  Created by mora hakim on 30/10/23.
 //
 
 import SwiftUI
@@ -175,6 +175,8 @@ struct ContentView: View {
                                     """)
                                    .multilineTextAlignment(.center)
                                    .foregroundColor(.white)
+                                   .font(.system(size: 12))
+                                   
                                }
                               
                            }
