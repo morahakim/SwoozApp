@@ -23,6 +23,8 @@ class ContentAnalysisViewController: UIViewController,
     @AppStorage("isOnRecord") var isOnRecord = true
     @AppStorage("dataUrl") var dataUrl: String = ""
     
+    @AppStorage("arrResult") var arrResult: String = ""
+    
     // TODO: variable delegate untuk panggil function delegate
     var contentAnalysisDelegate: ContentAnalysisDelegate?
     
@@ -77,6 +79,14 @@ class ContentAnalysisViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hitFailApp = 0
+        hitTotalApp = 0
+        hitSuccessApp = 0
+        hitPerfectApp = 0
+        durationApp = "00:00"
+        arrResult = ""
+        
         configureView()
         setupView()
         startCountdown()
@@ -130,7 +140,7 @@ class ContentAnalysisViewController: UIViewController,
 //        HitStatistics(hitNumber: "19", hitStatus: "Success"),
 //        HitStatistics(hitNumber: "20", hitStatus: "Success")
     ]
-    struct HitStatistics: Identifiable {
+    struct HitStatistics: Identifiable, Hashable {
         var id = UUID()
         var hitNumber: String
         var hitStatus: String
@@ -412,6 +422,24 @@ class ContentAnalysisViewController: UIViewController,
         stopRecording()
         urlVideoSource = nil
         detectTrajectoryRequest = nil
+        
+        hitFailApp = hitFail
+        hitTotalApp = hitTotal
+        hitTargetApp = hitTargetApp
+        hitSuccessApp = hitSuccessApp
+        hitPerfectApp = hitPerfect
+        
+        var arr: String = ""
+        for val in arrHitStatistics {
+            arr += "\(val.hitNumber):\(val.hitStatus),"
+        }
+        // Remove the trailing comma, if any
+        if(arrHitStatistics.count > 0){
+            arr.removeLast()
+        }
+        print("DBUGG : "+arr)
+        arrResult = arr
+        
         dismiss(animated: true, completion: nil)
         counter.menuStateSend(menuState: "result")
         setupResultView()
@@ -770,8 +798,8 @@ class ContentAnalysisViewController: UIViewController,
     @AppStorage("hitTargetApp") var hitTargetApp = 0
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
-    @AppStorage("menuStateApp") var menuStateApp = ""
     @AppStorage("duration") var durationApp = ""
+    @AppStorage("menuStateApp") var menuStateApp = ""
     
     var response : [String:Double] = [:]
     
@@ -885,15 +913,14 @@ class ContentAnalysisViewController: UIViewController,
                     let seconds = durationTime % 60
                     let duration = String(format: "%02d:%02d", minutes, seconds)
                     
-                    durationApp = duration
-                    
-                    
                     counter.hitTotalSend(hitTotal: hitTotal)
                     counter.hitTargetSend(hitTarget: hitTarget)
                     counter.hitSuccessSend(hitSuccess: hitSuccess)
                     counter.hitPerfectSend(hitPerfect: hitPerfect)
                     counter.hitFailSend(hitFail: hitFail)
                     counter.durationSend(duration: duration)
+                    
+                    durationApp = duration
                     
                     var menuState = "result"
                     

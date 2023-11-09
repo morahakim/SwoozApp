@@ -68,7 +68,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCamera()
+//        setupCamera()
         setupView()
         contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
 //        menuStateApp = "placement"
@@ -132,12 +132,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             playerViewController.view.frame = container.bounds
             container.addSubview(playerViewController.view)
 
-         
-            thumbnailImageView.image = UIImage(named: "PlayButton") // Your thumbnail image here
+            thumbnailImageView.image = UIImage(named: "PlayButton")
             thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
             container.addSubview(thumbnailImageView)
 
-            // Add Auto Layout constraints to center the thumbnailImageView
             thumbnailImageView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
             thumbnailImageView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
             thumbnailImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
