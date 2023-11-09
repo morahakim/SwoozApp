@@ -885,6 +885,8 @@ class ContentAnalysisViewController: UIViewController,
                     let seconds = durationTime % 60
                     let duration = String(format: "%02d:%02d", minutes, seconds)
                     
+                    durationApp = duration
+                    
                     
                     counter.hitTotalSend(hitTotal: hitTotal)
                     counter.hitTargetSend(hitTarget: hitTarget)

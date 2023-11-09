@@ -18,6 +18,21 @@ protocol HomeDelegate: AnyObject {
 
 class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
+    
+    let setupViewParent = UIView()
+    let setupViewChild = UIView()
+    var textClear = UILabel()
+    var text1 = UILabel()
+    var text2 = UILabel()
+    var text3 = UILabel()
+    var textCountdown = UILabel()
+    var boxCourtArea = UIView()
+    var countdown = 0
+    let boxCountdown = UIView()
+    let boxScore = UIView()
+    
+    let playerViewController = AVPlayerViewController()
+    
     func saveRecord(url: URL) {
         homeDelegate?.saveRecord(url: url)
     }
@@ -53,7 +68,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupCamera()
+        setupCamera()
         setupView()
         contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
 //        menuStateApp = "placement"
@@ -61,19 +76,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         contentAnalysisViewController.contentAnalysisDelegate = self
     }
     
-    let setupViewParent = UIView()
-    let setupViewChild = UIView()
-    var textClear = UILabel()
-    var text1 = UILabel()
-    var text2 = UILabel()
-    var text3 = UILabel()
-    var textCountdown = UILabel()
-    var boxCourtArea = UIView()
-    var countdown = 0
-    let boxCountdown = UIView()
-    let boxScore = UIView()
-    
-    let playerViewController = AVPlayerViewController()
     
     @objc func setupSetUp(){
         
