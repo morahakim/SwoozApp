@@ -33,6 +33,7 @@
 		18CD6E1F2AF955580087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
+		376D3E6D2AFAA3E6006A7A4A /* DetailVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D3E6C2AFAA3E6006A7A4A /* DetailVideoView.swift */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
@@ -122,6 +123,7 @@
 		18CD6E1A2AF953FC0087B24D /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		18CD6E1C2AF955250087B24D /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		18CD6E1E2AF955580087B24D /* SessionDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegator.swift; sourceTree = "<group>"; };
+		376D3E6C2AFAA3E6006A7A4A /* DetailVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVideoView.swift; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
 		BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToPotraitView.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				BEA1C1212AF0436D00BFF1A4 /* ResultView.swift */,
+				376D3E6C2AFAA3E6006A7A4A /* DetailVideoView.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				BEA1C15F2AF0436D00BFF1A4 /* TrajectoryView.swift in Sources */,
 				188062F32AF9537E00310F93 /* ActionEnum.swift in Sources */,
 				188062F12AF9536400310F93 /* SFSymbol.swift in Sources */,
+				376D3E6D2AFAA3E6006A7A4A /* DetailVideoView.swift in Sources */,
 				BEA1C15C2AF0436D00BFF1A4 /* RecordView.swift in Sources */,
 				184E02EE2AF1745C0004C569 /* DataContoller.swift in Sources */,
 				18CD6E132AF953C40087B24D /* NavbarBack.swift in Sources */,
@@ -788,7 +792,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -817,7 +821,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -848,7 +852,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
@@ -885,7 +889,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;

@@ -1,8 +1,8 @@
 //
 //  ComplicationController.swift
-//  SwiftUIWatchConnectivity WatchKit Extension
+//  SwoozWatch Watch App
 //
-//  Created by Chris Gaafary on 4/19/21.
+//  Created by mora hakim on 30/10/23.
 //
 
 import ClockKit
