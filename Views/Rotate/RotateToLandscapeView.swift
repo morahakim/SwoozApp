@@ -29,7 +29,7 @@ struct RotateToLandscapeView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation {
                     isOnRecord = true
-                    vm.path.append(.CameraGuide)
+                    vm.path.append(.Record)
                 }
             }
         }

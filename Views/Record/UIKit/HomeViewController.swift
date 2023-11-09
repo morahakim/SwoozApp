@@ -13,7 +13,15 @@ import SwiftUI
 import AVKit
 
 protocol HomeDelegate: AnyObject {
-    func saveRecord(url: URL)
+    func saveRecord(url: URL,
+                    duration: String,
+                    hitFail: Int,
+                    hitPerfect: Int,
+                    hitSuccess: Int,
+                    hitTarget: Int,
+                    hitTotal: Int,
+                    level: String,
+                    result: String)
 }
 
 class HomeViewController: UIViewController, ContentAnalysisDelegate {
@@ -33,8 +41,24 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     let playerViewController = AVPlayerViewController()
     
-    func saveRecord(url: URL) {
-        homeDelegate?.saveRecord(url: url)
+    func saveRecord(url: URL,
+                    duration: String,
+                    hitFail: Int,
+                    hitPerfect: Int,
+                    hitSuccess: Int,
+                    hitTarget: Int,
+                    hitTotal: Int,
+                    level: String,
+                    result: String) {
+        homeDelegate?.saveRecord(url: url,
+                                 duration: duration,
+                                 hitFail: hitFail,
+                                 hitPerfect: hitPerfect,
+                                 hitSuccess: hitSuccess,
+                                 hitTarget: hitTarget,
+                                 hitTotal: hitTotal,
+                                 level: level,
+                                 result: result)
     }
     
     var homeDelegate: HomeDelegate?

@@ -9,18 +9,12 @@ import SwiftUI
 
 struct RotateToPotraitView: View {
     var body: some View {
-        ZStack {
-            VStack {
-                LottieView(name: "Iphone Rotate")
-//                    .frame(width: 300)
-                    .scaledToFit()
-//                    .padding(.horizontal, 32)
-//                Text("Rotate your iPhone for a portrait view.")
-//                    .font(Font.custom("SF Pro", size: 15))
-//                    .multilineTextAlignment(.center)
-//                    .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
-            }
+        VStack(alignment: .center, spacing: 32) {
+            LottieView(name: "Iphone Rotate")
+                .scaledToFill()
+                .padding(32)
         }
+        .padding(16)
         .navigationBarBackButtonHidden(true)
     }
 }

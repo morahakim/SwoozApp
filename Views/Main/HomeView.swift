@@ -20,13 +20,15 @@ struct HomeView: View {
                     VStack {
                         List {
                             ForEach(list) { item in
-                                if let urlStr = item.url {
-                                    VideoThumbnailView(
-                                        url: URL(string: urlStr)
-                                    )
-                                }
+//                                if let urlStr = item.url {
+//                                    VideoThumbnailView(
+//                                        url: URL(string: urlStr)
+//                                    )
+//                                }
+                                ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
                             }
                         }
+                        .listStyle(.plain)
                         .padding(.bottom, getSafeArea().bottom)
                     }
                 } else {

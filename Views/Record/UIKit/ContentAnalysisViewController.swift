@@ -13,7 +13,15 @@ import ReplayKit
 
 // TODO: buat delegate function save
 protocol ContentAnalysisDelegate: AnyObject {
-    func saveRecord(url: URL)
+    func saveRecord(url: URL,
+                    duration: String,
+                    hitFail: Int,
+                    hitPerfect: Int,
+                    hitSuccess: Int,
+                    hitTarget: Int,
+                    hitTotal: Int,
+                    level: String,
+                    result: String)
 }
 
 class ContentAnalysisViewController: UIViewController,
@@ -47,8 +55,24 @@ class ContentAnalysisViewController: UIViewController,
         return url
     }
     
-    func save(url: URL) {
-        contentAnalysisDelegate?.saveRecord(url: url)
+    func save(url: URL,
+              duration: String,
+              hitFail: Int,
+              hitPerfect: Int,
+              hitSuccess: Int,
+              hitTarget: Int,
+              hitTotal: Int,
+              level: String,
+              result: String) {
+        contentAnalysisDelegate?.saveRecord(url: url,
+                                            duration: duration,
+                                            hitFail: hitFail,
+                                            hitPerfect: hitPerfect,
+                                            hitSuccess: hitSuccess,
+                                            hitTarget: hitTarget,
+                                            hitTotal: hitTotal,
+                                            level: level,
+                                            result: result)
     }
     
     // MARK: - Static Properties
@@ -379,7 +403,15 @@ class ContentAnalysisViewController: UIViewController,
         Task {
             do {
                 let url = try await stopRecordScreen()
-                save(url: url)
+                save(url: url, 
+                     duration: durationApp,
+                     hitFail: hitFailApp,
+                     hitPerfect: hitPerfectApp,
+                     hitSuccess: hitSuccessApp,
+                     hitTarget: hitTargetApp,
+                     hitTotal: hitTotalApp,
+                     level: name,
+                     result: arrResult)
             } catch {
                 print(error.localizedDescription)
             }

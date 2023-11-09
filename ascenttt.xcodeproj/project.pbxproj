@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B33792AFA8B59004E023D /* ForceOrientation.swift */; };
 		183B337C2AFA92CC004E023D /* TechniqueLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */; };
+		183C87902AFD39E100C210AB /* ItemVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C878F2AFD39E100C210AB /* ItemVideoView.swift */; };
 		184E02EA2AF174480004C569 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E02E72AF174480004C569 /* Font+Ext.swift */; };
 		184E02EB2AF174480004C569 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E02E82AF174480004C569 /* View+Ext.swift */; };
 		184E02EC2AF174480004C569 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E02E92AF174480004C569 /* Date+Ext.swift */; };
@@ -106,6 +107,7 @@
 /* Begin PBXFileReference section */
 		183B33792AFA8B59004E023D /* ForceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceOrientation.swift; sourceTree = "<group>"; };
 		183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechniqueLevelView.swift; sourceTree = "<group>"; };
+		183C878F2AFD39E100C210AB /* ItemVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVideoView.swift; sourceTree = "<group>"; };
 		184E02E72AF174480004C569 /* Font+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		184E02E82AF174480004C569 /* View+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		184E02E92AF174480004C569 /* Date+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				BEA1C13D2AF0436D00BFF1A4 /* HomeViewModel.swift */,
 				BEA1C13E2AF0436D00BFF1A4 /* HomeView.swift */,
 				BEA1C1402AF0436D00BFF1A4 /* MainView.swift */,
+				183C878F2AFD39E100C210AB /* ItemVideoView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				18CD6E1F2AF955580087B24D /* SessionDelegator.swift in Sources */,
 				BEA1C1612AF0436D00BFF1A4 /* HomeViewController.swift in Sources */,
 				18CD6E112AF953B70087B24D /* ImageHero.swift in Sources */,
+				183C87902AFD39E100C210AB /* ItemVideoView.swift in Sources */,
 				BEA1C1682AF0436D00BFF1A4 /* LoadingRecordView.swift in Sources */,
 				18CD6E172AF953E20087B24D /* SheetShare.swift in Sources */,
 				183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */,
@@ -818,7 +822,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -847,7 +851,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -878,7 +882,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
@@ -914,7 +918,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;

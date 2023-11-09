@@ -34,18 +34,35 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
     class Coordinator: NSObject, HomeDelegate {   
         var moc: NSManagedObjectContext
         
-        func saveRecord(url: URL) {
-            let data = Data(context: moc)
-            data.id = UUID()
-            data.url = url.absoluteString
-            
+        func saveRecord(
+            url: URL,
+            duration: String,
+            hitFail: Int,
+            hitPerfect: Int,
+            hitSuccess: Int,
+            hitTarget: Int,
+            hitTotal: Int,
+            level: String,
+            result: String
+        ) {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "Y-MM-dd HH:mm:ss"
             let currentDateTime = Date()
             let formattedDate = dateFormatter.string(from: currentDateTime)
-            data.datetime = String(formattedDate)
             
+            let data = Data(context: moc)
+            data.datetime = String(formattedDate)
+            data.duration = duration
+            data.hitFail = Int16(hitFail)
+            data.hitPerfect = Int16(hitPerfect)
+            data.hitSuccess = Int16(hitSuccess)
+            data.hitTarget = Int16(hitTarget)
+            data.hitTotal = Int16(hitTotal)
+            data.id = UUID()
+            data.level = level
+            data.result = result
             data.type = "Low Serve"
+            data.url = url.absoluteString
             try? moc.save()
         }
         
