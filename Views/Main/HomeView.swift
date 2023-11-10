@@ -55,7 +55,7 @@ struct HomeView: View {
                 VStack {
                     Spacer()
                     VStack(alignment: .center, spacing: 4) {
-                        BtnPrimary(text: "Choose your technique") {
+                        BtnPrimary(text: "Start Recording") {
                             vm.path.append(.Technique)
                         }
                     }

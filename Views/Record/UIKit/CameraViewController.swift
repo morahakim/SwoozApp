@@ -6,6 +6,7 @@ The app's live-capture view controller.
 */
 
 import UIKit
+import SwiftUI
 import AVFoundation
 
 protocol CameraViewControllerOutputDelegate: AnyObject {
@@ -46,12 +47,24 @@ class CameraViewController: UIViewController {
         
     }
     
+    @AppStorage("name") var name: String = "Intermediate"
+    @AppStorage("type") var type: String = "Low Serve"
+    
+    
     // MARK: - Public Methods
     
     func setupAVSession() throws {
         
         // Create a device discovery session.
-        let wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
+        var wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
+        
+        if(name == "Intermediate"){
+             wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
+        }else if(name == "Experienced"){
+             wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
+        }else if(name == "Advanced"){
+             wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
+        }
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [wideAngle],
                                                                 mediaType: .video,
                                                                 position: .back)
@@ -232,3 +245,4 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
 }
+

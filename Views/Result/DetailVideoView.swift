@@ -33,7 +33,7 @@ struct DetailVideoView: View {
                             }
                         }
                         .frame(width: 358, height: 173)
-                        .cornerRadius(0.5)
+                        .cornerRadius(10)
                     }
                     
                 

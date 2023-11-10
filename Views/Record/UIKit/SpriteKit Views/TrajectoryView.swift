@@ -8,9 +8,12 @@ A scene that displays a trajectory.
 import UIKit
 import SpriteKit
 import Vision
+import SwiftUI
 
 class TrajectoryView: SKView, AnimatedTransitioning {
     
+    @AppStorage("type") var type: String = "Low Serve"
+    @AppStorage("name") var name: String = "Intermediate"
     
     // MARK: - Public Properties
     var glowingBallScene: BallScene?
@@ -35,6 +38,9 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         setupLayer()
     }
     
+    var yFirst:CGFloat = 0
+    var yLast:CGFloat = 0
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         allowsTransparency = true
@@ -42,6 +48,8 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         setupLayer()
         glowingBallScene = BallScene(size: CGSize(width: frame.size.width, height: frame.size.height))
         presentScene(glowingBallScene!)
+        setupLayer()
+        
     }
 
     // MARK: - Public Methods
@@ -51,11 +59,14 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         pathLayer.path = trajectory.cgPath
         shadowLayer.path = trajectory.cgPath
         glowingBallScene?.removeAllChildren()
+        
     }
 
     // MARK: - Private Methods
     
     private func setupLayer() {
+         
+        
         
     }
 
@@ -64,100 +75,152 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         var selectedPoint = VNPoint(x: 0.0, y: 0.0) // Initialize with a default value
         var highestY = 0.0
         for point in points {
-//            print("\(point.x) - \(point.y)")
             if point.y > highestY {
                 highestY = point.y
                 selectedPoint = point
             }
-            
-//            let x = point.x * bounds.maxX
-//            let y = point.y * bounds.maxY
-//            let circlePoint = CALayer()
-//            circlePoint.frame = CGRect(x: x, y: y, width: 10, height: 10)
-//            circlePoint.backgroundColor = UIColor.yellow.cgColor
-//            circlePoint.opacity = 1.0
-//            circlePoint.cornerRadius = 5.0
-//            circlePoint.masksToBounds = true
-//            layer.addSublayer(circlePoint)
-            
         }
+        var distance:Double = 0.0
+        if(name == "Intermediate"){
+            yFirst = 0.43 * bounds.height
+            yLast = 0.45 * bounds.height
+            
+            
+            let box = UIView()
+            box.frame = CGRect(x: 0, y: 0, width: bounds.width,height: bounds.height)
+    //        box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.3)
+    //        box.layer.cornerRadius = 4
+            
+            let transformBox = CATransform3DMakeScale(1, -1, 1)
+            box.layer.transform = transformBox
+            
+            addSubview(box)
+            
+            let circlePointFirst = CALayer()
+            circlePointFirst.frame = CGRect(x: 0, y: yFirst, width: 8, height: 8)
+            circlePointFirst.backgroundColor = UIColor.green.cgColor
+            circlePointFirst.opacity = 1
+            circlePointFirst.cornerRadius = 5.0
+            circlePointFirst.masksToBounds = true
+            box.layer.addSublayer(circlePointFirst)
+            
+            let circlePointLast = CALayer()
+            circlePointLast.frame = CGRect(x: bounds.width, y:yLast, width: 8, height: 8)
+            circlePointLast.backgroundColor = UIColor.green.cgColor
+            circlePointLast.opacity = 1
+            circlePointLast.cornerRadius = 5.0
+            circlePointLast.masksToBounds = true
+            box.layer.addSublayer(circlePointLast)
+            
+            let xFirst: CGFloat = 0
+            let xLast: CGFloat = bounds.width
 
-        let box = UIView()
-        box.frame = CGRect(x: 0, y: 0, width: bounds.width,height: bounds.height)
-//        box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.4)
-        box.layer.cornerRadius = 4
-        
-        let transformBox = CATransform3DMakeScale(1, -1, 1)
-        box.layer.transform = transformBox
-        
-        addSubview(box)
-        
-        let yFirst = 0.34 * box.frame.height
-        let circlePointFirst = CALayer()
-        circlePointFirst.frame = CGRect(x: 0, y: yFirst, width: 8, height: 8)
-        circlePointFirst.backgroundColor = UIColor.green.cgColor
-        circlePointFirst.opacity = 1
-        circlePointFirst.cornerRadius = 5.0
-        circlePointFirst.masksToBounds = true
-        box.layer.addSublayer(circlePointFirst)
-        
-        let yLast = 0.36 * box.frame.height
-        let circlePointLast = CALayer()
-        circlePointLast.frame = CGRect(x: bounds.width, y:yLast, width: 8, height: 8)
-        circlePointLast.backgroundColor = UIColor.green.cgColor
-        circlePointLast.opacity = 1
-        circlePointLast.cornerRadius = 5.0
-        circlePointLast.masksToBounds = true
-        box.layer.addSublayer(circlePointLast)
+            let xNet: CGFloat = selectedPoint.x
 
-        let xFirst: CGFloat = 0
-//        let yFirst: CGFloat = yFirst
-        let xLast: CGFloat = bounds.width
-//        let yLast: CGFloat = yLast
+            // Calculate the y-coordinate using linear interpolation
+            let yNet: CGFloat = yFirst + (xNet - xFirst) * (yLast - yFirst) / (xLast - xFirst)
+            
+            let circlePointNet = CALayer()
+            circlePointNet.frame = CGRect(x: selectedPoint.x * bounds.maxX, y: yNet, width: 8, height: 8)
+           
+            circlePointNet.opacity = 0.3
+            circlePointNet.cornerRadius = 5.0
+            circlePointNet.masksToBounds = true
+            
+            let x = selectedPoint.x * bounds.maxX
+            let y = (1 - selectedPoint.y) * bounds.maxY
+            let circlePoint = CALayer()
+            circlePoint.frame = CGRect(x: x, y: y-3, width: 8, height: 8)
+            
+            circlePoint.opacity = 0.3
+            circlePoint.cornerRadius = 5.0
+            circlePoint.masksToBounds = true
+            
+            let yBall = (selectedPoint.y) * bounds.maxY
+            distance = yBall - yNet
+            if(distance < 3){
+                circlePoint.backgroundColor = UIColor.red.cgColor
+                circlePointNet.backgroundColor = UIColor.red.cgColor
+            }else if(distance < 20){
+                circlePoint.backgroundColor = UIColor.green.cgColor
+                circlePointNet.backgroundColor = UIColor.green.cgColor
+            }else{
+                circlePoint.backgroundColor = UIColor.yellow.cgColor
+                circlePointNet.backgroundColor = UIColor.yellow.cgColor
+            }
+            print("\(yBall) - \(yNet) = \(yBall - yNet)")
 
-        let xNet: CGFloat = selectedPoint.x
+            // Apply a vertical flip transformation
+            let transform = CATransform3DMakeScale(1, -1, 1)
+            circlePoint.transform = transform
 
-        // Calculate the y-coordinate using linear interpolation
-        let yNet: CGFloat = yFirst + (xNet - xFirst) * (yLast - yFirst) / (xLast - xFirst)
+            layer.addSublayer(circlePoint)
+        }else if(name == "Experienced"){
+            yLast = 0.55 * bounds.height
+            
+            
+            let box = UIView()
+            box.frame = CGRect(x: 0, y: 0, width: bounds.width,height: bounds.height)
+//            box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.3)
+//            box.layer.cornerRadius = 4
+            
+            let transformBox = CATransform3DMakeScale(1, -1, 1)
+            box.layer.transform = transformBox
+            
+            addSubview(box)
+            
+            let circlePointLast = CALayer()
+            circlePointLast.frame = CGRect(x: bounds.width/2.7, y:yLast, width: 8, height: 8)
+            circlePointLast.backgroundColor = UIColor.green.cgColor
+            circlePointLast.opacity = 1
+            circlePointLast.cornerRadius = 5.0
+            circlePointLast.masksToBounds = true
+            box.layer.addSublayer(circlePointLast)
+
+            let yNet: CGFloat = yLast
+            
+            let circlePointNet = CALayer()
+            circlePointNet.frame = CGRect(x: selectedPoint.x * bounds.maxX, y: yNet, width: 8, height: 8)
+           
+            circlePointNet.opacity = 0.3
+            circlePointNet.cornerRadius = 5.0
+            circlePointNet.masksToBounds = true
+            
+            let x = selectedPoint.x * bounds.maxX
+            let y = (1 - selectedPoint.y) * bounds.maxY
+            let circlePoint = CALayer()
+            circlePoint.frame = CGRect(x: x, y: y-3, width: 8, height: 8)
+            
+            circlePoint.opacity = 0.3
+            circlePoint.cornerRadius = 5.0
+            circlePoint.masksToBounds = true
+            
+            let yBall = (selectedPoint.y) * bounds.maxY
+            distance = yBall - yNet
+            if(distance < 3){
+                circlePoint.backgroundColor = UIColor.red.cgColor
+                circlePointNet.backgroundColor = UIColor.red.cgColor
+            }else if(distance < 30){
+                circlePoint.backgroundColor = UIColor.green.cgColor
+                circlePointNet.backgroundColor = UIColor.green.cgColor
+            }else if(distance < 50){
+                circlePoint.backgroundColor = UIColor.yellow.cgColor
+                circlePointNet.backgroundColor = UIColor.yellow.cgColor
+            }else{
+                circlePoint.backgroundColor = UIColor.red.cgColor
+                circlePointNet.backgroundColor = UIColor.red.cgColor
+            }
+
+            // Apply a vertical flip transformation
+            let transform = CATransform3DMakeScale(1, -1, 1)
+            circlePoint.transform = transform
+
+            layer.addSublayer(circlePoint)
+        }else if(name == "Advanced"){
+           
+        }
         
-        let circlePointNet = CALayer()
-        circlePointNet.frame = CGRect(x: selectedPoint.x * bounds.maxX, y: yNet, width: 8, height: 8)
        
-        circlePointNet.opacity = 0.3
-        circlePointNet.cornerRadius = 5.0
-        circlePointNet.masksToBounds = true
-//        box.layer.addSublayer(circlePointNet)
-        
-        
-        
-        let x = selectedPoint.x * bounds.maxX
-        let y = (1 - selectedPoint.y) * bounds.maxY // Flip vertically
-        let circlePoint = CALayer()
-        circlePoint.frame = CGRect(x: x, y: y-3, width: 8, height: 8)
-        
-        circlePoint.opacity = 0.3
-        circlePoint.cornerRadius = 5.0
-        circlePoint.masksToBounds = true
-        
-        let yBall = (selectedPoint.y) * bounds.maxY
-        let distance = yBall - yNet
-        if(distance < 3){
-            circlePoint.backgroundColor = UIColor.red.cgColor
-            circlePointNet.backgroundColor = UIColor.red.cgColor
-        }else if(distance < 20){
-            circlePoint.backgroundColor = UIColor.green.cgColor
-            circlePointNet.backgroundColor = UIColor.green.cgColor
-        }else{
-            circlePoint.backgroundColor = UIColor.yellow.cgColor
-            circlePointNet.backgroundColor = UIColor.yellow.cgColor
-        }
-        print("\(yBall) - \(yNet) = \(yBall - yNet)")
-
-        // Apply a vertical flip transformation
-        let transform = CATransform3DMakeScale(1, -1, 1)
-        circlePoint.transform = transform
-
-        layer.addSublayer(circlePoint)
         
         return distance
     }
@@ -192,13 +255,30 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         let pathLayer = CAShapeLayer()
         pathLayer.lineWidth = 2.5
         pathLayer.fillColor = UIColor.clear.cgColor
-        if(distance < 3){
-            pathLayer.strokeColor = UIColor.red.cgColor
-        }else if(distance < 20){
-            pathLayer.strokeColor = UIColor.green.cgColor
-        }else{
-            pathLayer.strokeColor = UIColor.yellow.cgColor
+        
+        
+        if(name == "Intermediate"){
+            if(distance < 3){
+                pathLayer.strokeColor = UIColor.red.cgColor
+            }else if(distance < 20){
+                pathLayer.strokeColor = UIColor.green.cgColor
+            }else{
+                pathLayer.strokeColor = UIColor.yellow.cgColor
+            }
+        }else if(name == "Experienced"){
+            if(distance < 3){
+                pathLayer.strokeColor = UIColor.red.cgColor
+            }else if(distance < 30){
+                pathLayer.strokeColor = UIColor.green.cgColor
+            }else if(distance < 50){
+                pathLayer.strokeColor = UIColor.yellow.cgColor
+            }else{
+                pathLayer.strokeColor = UIColor.red.cgColor
+            }
+        }else if(name == "Advanced"){
+            
         }
+        
         pathLayer.opacity = 0.3
         layer.addSublayer(pathLayer)
         

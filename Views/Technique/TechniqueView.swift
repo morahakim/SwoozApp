@@ -15,6 +15,7 @@ struct TechniqueData: Hashable {
 
 struct TechniqueView: View {
     @EnvironmentObject var vm: HomeViewModel
+    @AppStorage("type") var type: String = ""
     
     private let data = [
         TechniqueData(name: "Low Serve", img: "LowServe", isLock: false),
@@ -34,6 +35,7 @@ struct TechniqueView: View {
                     ForEach(data, id: \.self) { d in
                         CardView(action: {
                             if !d.isLock {
+                                type = d.name
                                 vm.path.append(.TechniqueLevel)
                             }
                         }, content: {
