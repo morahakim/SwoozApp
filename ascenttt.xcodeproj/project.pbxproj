@@ -38,10 +38,15 @@
 		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		37D9039D2AFE94A3007C8F50 /* CPTLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37D9039C2AFE94A2007C8F50 /* CPTLevel1.mp4 */; };
+		37D903A02AFE985F007C8F50 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */; };
+		37D903A12AFE985F007C8F50 /* CPTLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37D9039F2AFE985F007C8F50 /* CPTLevel2.mp4 */; };
+		37D903A32AFE9D25007C8F50 /* Level 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A22AFE9D25007C8F50 /* Level 3.mov */; };
+		37D903A82AFEA3C2007C8F50 /* LowServeAdvanced.json in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A52AFEA3C2007C8F50 /* LowServeAdvanced.json */; };
+		37D903A92AFEA3C2007C8F50 /* LowServeExperienced.json in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A62AFEA3C2007C8F50 /* LowServeExperienced.json */; };
+		37D903AA2AFEA3C2007C8F50 /* LowServeIntermediate.json in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A72AFEA3C2007C8F50 /* LowServeIntermediate.json */; };
+		37D903AC2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json in Resources */ = {isa = PBXBuildFile; fileRef = 37D903AB2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
-		BE975BFE2AFCC40A00C802CF /* SetUpLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE975BFB2AFCC40A00C802CF /* SetUpLevel3.mp4 */; };
-		BE975BFF2AFCC40A00C802CF /* SetUpLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE975BFC2AFCC40A00C802CF /* SetUpLevel1.mp4 */; };
-		BE975C002AFCC40A00C802CF /* SetUpLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE975BFD2AFCC40A00C802CF /* SetUpLevel2.mp4 */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
 		BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */; };
@@ -133,9 +138,15 @@
 		18CD6E1A2AF953FC0087B24D /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		18CD6E1C2AF955250087B24D /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		18CD6E1E2AF955580087B24D /* SessionDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegator.swift; sourceTree = "<group>"; };
-		BE975BFB2AFCC40A00C802CF /* SetUpLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel3.mp4; sourceTree = "<group>"; };
-		BE975BFC2AFCC40A00C802CF /* SetUpLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel1.mp4; sourceTree = "<group>"; };
-		BE975BFD2AFCC40A00C802CF /* SetUpLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel2.mp4; sourceTree = "<group>"; };
+		37D9039C2AFE94A2007C8F50 /* CPTLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel1.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel1.mp4; sourceTree = "<absolute>"; };
+		37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel3.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel3.mp4; sourceTree = "<absolute>"; };
+		37D9039F2AFE985F007C8F50 /* CPTLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel2.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel2.mp4; sourceTree = "<absolute>"; };
+		37D903A22AFE9D25007C8F50 /* Level 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 3.mov"; path = "../../../../../Downloads/Level 3.mov"; sourceTree = "<group>"; };
+		37D903A52AFEA3C2007C8F50 /* LowServeAdvanced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LowServeAdvanced.json; path = ../../../../../../Downloads/LowServeAdvanced.json; sourceTree = "<group>"; };
+		37D903A62AFEA3C2007C8F50 /* LowServeExperienced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LowServeExperienced.json; path = ../../../../../../Downloads/LowServeExperienced.json; sourceTree = "<group>"; };
+		37D903A72AFEA3C2007C8F50 /* LowServeIntermediate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LowServeIntermediate.json; path = ../../../../../../Downloads/LowServeIntermediate.json; sourceTree = "<group>"; };
+		37D903AB2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "iPhone Landscape to Portrait.json"; path = "../../../../../../Downloads/iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
+		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
 		BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToPotraitView.swift; sourceTree = "<group>"; };
@@ -207,6 +218,8 @@
 		184E02EF2AF192E00004C569 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				37D903A42AFEA3AC007C8F50 /* LowServe */,
+				37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */,
 				184E02F32AF192F60004C569 /* Clear Shot.json */,
 				184E02F22AF192F60004C569 /* Drive Shot.json */,
 				184E02F02AF192F60004C569 /* Drop Shot.json */,
@@ -262,6 +275,17 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		37D903A42AFEA3AC007C8F50 /* LowServe */ = {
+			isa = PBXGroup;
+			children = (
+				37D903AB2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json */,
+				37D903A52AFEA3C2007C8F50 /* LowServeAdvanced.json */,
+				37D903A62AFEA3C2007C8F50 /* LowServeExperienced.json */,
+				37D903A72AFEA3C2007C8F50 /* LowServeIntermediate.json */,
+			);
+			path = LowServe;
+			sourceTree = "<group>";
+		};
 		BE8F8DF12AF044A900616288 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,9 +296,10 @@
 		BE975BFA2AFCC39F00C802CF /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				BE975BFC2AFCC40A00C802CF /* SetUpLevel1.mp4 */,
-				BE975BFD2AFCC40A00C802CF /* SetUpLevel2.mp4 */,
-				BE975BFB2AFCC40A00C802CF /* SetUpLevel3.mp4 */,
+				37D903A22AFE9D25007C8F50 /* Level 3.mov */,
+				37D9039F2AFE985F007C8F50 /* CPTLevel2.mp4 */,
+				37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */,
+				37D9039C2AFE94A2007C8F50 /* CPTLevel1.mp4 */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -590,15 +615,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				184E02F82AF192F60004C569 /* Iphone Rotate.json in Resources */,
+				37D903A92AFEA3C2007C8F50 /* LowServeExperienced.json in Resources */,
+				37D903A32AFE9D25007C8F50 /* Level 3.mov in Resources */,
+				37D903AA2AFEA3C2007C8F50 /* LowServeIntermediate.json in Resources */,
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
+				37D903A82AFEA3C2007C8F50 /* LowServeAdvanced.json in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
-				BE975C002AFCC40A00C802CF /* SetUpLevel2.mp4 in Resources */,
+				37D903AC2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json in Resources */,
+				37D903A12AFE985F007C8F50 /* CPTLevel2.mp4 in Resources */,
+				37D9039D2AFE94A3007C8F50 /* CPTLevel1.mp4 in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
-				BE975BFF2AFCC40A00C802CF /* SetUpLevel1.mp4 in Resources */,
+				37D903A02AFE985F007C8F50 /* CPTLevel3.mp4 in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
-				BE975BFE2AFCC40A00C802CF /* SetUpLevel3.mp4 in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
 			);

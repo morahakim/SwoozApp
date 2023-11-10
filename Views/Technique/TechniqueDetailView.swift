@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct TechniqueDetailView: View {
     @EnvironmentObject var vm: HomeViewModel
     
     @State var showRepetitionSheet = false
     @State var selectedRepetition = 0
+    @State var player: AVPlayer?
     
     @AppStorage("name") var name: String = "Intermediate"
     @AppStorage("desc") var desc: String = ""
+    @AppStorage("video") var video: String = ""
+    @AppStorage("isLock") var isLock: Bool = true
+    
+    let playerViewController = AVPlayerViewController()
     
     var body: some View {
         ForceOrientation(.portrait) {
@@ -24,28 +30,28 @@ struct TechniqueDetailView: View {
                 VStack {
                     /** Card animation */
                     CardView(action: {}, content: {
-                        VStack {
-                            Image(name)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 100)
-                        }
-                        HStack {
-                            Spacer()
-                            Text(name)
-                                .font(Font.custom("Urbanist", size: 20).weight(.medium))
-                                .foregroundColor(.neutralBlack)
-                            Spacer()
+                        ZStack {
+                            LottieView(name: "LowServe\(name)")
+                                .frame(height: 150)
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    Spacer()
+                                    Text(name)
+                                        .font(Font.custom("Urbanist", size: 20).weight(.medium))
+                                        .foregroundColor(.neutralBlack)
+                                    Spacer()
+                                }
+                            }
                         }
                     })
-                    .frame(height: 100)
-                    .padding(.bottom, 32)
+                    .frame(height: 150)
+                    .padding(.bottom, 16)
                     
                     /** Card description */
                     ZStack {
                         Rectangle()
                             .foregroundColor(.clear)
-                            .frame(width: .infinity)
                             .background(.white)
                             .clipShape(
                                 .rect(
@@ -56,47 +62,62 @@ struct TechniqueDetailView: View {
                                 )
                             )
                         VStack(spacing: 12) {
-                            Rectangle()
+                            VideoPlayer(player: player)
                                 .frame(width: 358, height: 173)
-                                .background(Color.neutralBlack)
                                 .cornerRadius(12)
                             
-                            TextAlignLeading(desc)
-                                .foregroundStyle(.neutralBlack)
-                            Divider()
-                            VStack(spacing: 2) {
-                                HStack {
-                                    TextAlignLeading("Clear")
-                                    Spacer()
-                                    TextAlignLeading("Attempt")
-                                }
-                                .foregroundStyle(.neutralBlack)
-                                HStack {
-                                    TextAlignLeading("Successful hits")
-                                    Spacer()
-                                    TextAlignLeading("Total hit attempts")
-                                }
-                                .foregroundStyle(.grayStroke6)
-                            }
-                            VStack(spacing: 2) {
-                                HStack {
-                                    Circle()
-                                        .frame(width: 12)
-                                        .foregroundStyle(.success)
-                                    Spacer()
-                                }
-                                TextAlignLeading("The shuttlecock passes over the net")
+                            if !isLock {
+                                TextAlignLeading(desc)
+                                    .foregroundStyle(.neutralBlack)
+                                Divider()
+                                VStack(spacing: 2) {
+                                    HStack {
+                                        TextAlignLeading("Clear")
+                                        Spacer()
+                                        TextAlignLeading("Attempt")
+                                    }
+                                    .foregroundStyle(.neutralBlack)
+                                    HStack {
+                                        TextAlignLeading("Successful hits")
+                                        Spacer()
+                                        TextAlignLeading("Total hit attempts")
+                                    }
                                     .foregroundStyle(.grayStroke6)
-                            }
-                            VStack(spacing: 2) {
-                                HStack {
-                                    Circle()
-                                        .frame(width: 12)
-                                        .foregroundStyle(.danger)
-                                    Spacer()
                                 }
-                                TextAlignLeading("The shuttlecock hits the net")
-                                    .foregroundStyle(.grayStroke6)
+                                VStack(spacing: 2) {
+                                    HStack {
+                                        Circle()
+                                            .frame(width: 12)
+                                            .foregroundStyle(.success)
+                                        Spacer()
+                                    }
+                                    TextAlignLeading("The shuttlecock passes over the net")
+                                        .foregroundStyle(.grayStroke6)
+                                }
+                                VStack(spacing: 2) {
+                                    HStack {
+                                        Circle()
+                                            .frame(width: 12)
+                                            .foregroundStyle(.danger)
+                                        Spacer()
+                                    }
+                                    TextAlignLeading("The shuttlecock hits the net")
+                                        .foregroundStyle(.grayStroke6)
+                                }
+                            } else {
+                                VStack(spacing: 20) {
+                                    Image("Forehand Exercise")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 144, height: 152)
+                                    
+                                    Text("\"Unlock this with over 50% success in the intermediate level”")
+                                        .font(Font.custom("SF Pro", size: 15))
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
+                                        .frame(width: 253, alignment: .top)
+                                }
+                                .padding(.top, 12)
                             }
                             Spacer()
                         }
@@ -105,14 +126,32 @@ struct TechniqueDetailView: View {
                         
                     }
                 }
-                .padding(.top, getSafeArea().top)
+                .padding(.top, getSafeArea().top - 24)
                 
                 /** Button record */
                 VStack {
                     Spacer()
                     VStack(alignment: .center) {
-                        BtnPrimary(text: "Start Recording") {
-                            showRepetitionSheet.toggle()
+                        if !isLock {
+                            BtnPrimary(text: "Start Recording") {
+                                showRepetitionSheet.toggle()
+                            }
+                        } else {
+                            HStack(alignment: .center, spacing: 8) {
+                                Image(systemName: "lock.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 24)
+                                    .foregroundStyle(.grayStroke6.opacity(0.3))
+                                Text("Locked")
+                                    .font(Font.custom("SF Pro", size: 17))
+                                    .foregroundColor(Color(red: 0.24, green: 0.24, blue: 0.26).opacity(0.3))
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 14)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .background(Color(red: 0.46, green: 0.46, blue: 0.5).opacity(0.12))
+                            .cornerRadius(12)
                         }
                     }
                     .padding(.horizontal, 16)
@@ -140,7 +179,17 @@ struct TechniqueDetailView: View {
                     selectedRepetition: $selectedRepetition
                 )
                 .presentationDetents([.fraction(0.4)])
+                
             }
+            .onAppear {
+                
+                if let url = Bundle.main.url(forResource: video, withExtension: "mov") {
+                    player = AVPlayer(url: url)
+                    player?.play()
+                }
+            }
+            
+            
         }
         .onDisappear {
             UIDevice.current.setValue(
@@ -151,6 +200,7 @@ struct TechniqueDetailView: View {
         }
         
     }
+    
 }
 
 private struct RepetitionSheet: View {

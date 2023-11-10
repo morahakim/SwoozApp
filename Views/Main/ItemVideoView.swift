@@ -83,7 +83,7 @@ struct ItemVideoView: View {
                 .padding(.horizontal, 6)
                 .padding(.vertical, 4)
                 .frame(width: 74, alignment: .center)
-                .background(Color(red: 0.13, green: 0.53, blue: 0.75).opacity(0.8))
+                .background(Color.background(for: level))
                 .cornerRadius(12)
             }
             .padding(0)
@@ -95,3 +95,20 @@ struct ItemVideoView: View {
         .frame(width: 358, alignment: .leading)
     }
 }
+
+
+extension Color {
+    static func background(for level: String?) -> Color {
+        switch level {
+                case "Intermediate":
+                    return Color.redMain
+                case "Experienced":
+                    return Color.greenMain
+                case "Advanced":
+            return Color.information
+                default:
+                    return Color.gray
+                }
+            }
+    }
+

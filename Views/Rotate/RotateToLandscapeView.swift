@@ -14,7 +14,6 @@ struct RotateToLandscapeView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
             LottieView(name: "Iphone Rotate")
-                .scaledToFill()
                 .padding(32)
         }
         .padding(16)

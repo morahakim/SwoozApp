@@ -38,7 +38,7 @@ struct VideoThumbnailView: View {
             if let thumbnailImage = thumbnailImage {
                 Image(uiImage: thumbnailImage)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
             } else {
                 Text("Loading thumbnail...")
             }

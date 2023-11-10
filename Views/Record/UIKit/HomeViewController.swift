@@ -92,7 +92,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupCamera()
+        setupCamera()
         setupView()
         contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
 //        menuStateApp = "placement"
@@ -129,13 +129,13 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         setupView1.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         
-        var setupName = "SetUpLevel1"
+        var setupName = "CPTLevel1"
         if(name == "Intermediate"){
-            setupName = "SetUpLevel1"
+            setupName = "CPTLevel1"
         }else if(name == "Experienced"){
-            setupName = "SetUpLevel2"
+            setupName = "CPTLevel2"
         }else if(name == "Advanced"){
-            setupName = "SetUpLevel3"
+            setupName = "CPTLevel3"
         }
         
         // Create a video player
@@ -184,6 +184,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         resetButton.setTitleColor(UIColor.white, for: .normal)
         resetButton.frame = CGRect(x: 0, y: setupView1.frame.maxY + 5, width: setupViewChild.frame.width, height: 40)
         resetButton.addTarget(self, action: #selector(skipVideo), for: .touchUpInside)
+        resetButton.addTarget(self, action: #selector(skipVideo), for: .touchUpInside)
+
         setupViewChild.addSubview(resetButton)
         
         let textLevel = UILabel()
@@ -207,8 +209,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     @objc func skipVideo() {
         print("skipVideo")
+        playerViewController.player?.pause()
         setupViewParent.removeFromSuperview()
         setupViewChild.removeFromSuperview()
+        
     }
     
     @objc func updateStateMenu(){

@@ -10,8 +10,7 @@ import SwiftUI
 struct RotateToPotraitView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            LottieView(name: "Iphone Rotate")
-                .scaledToFill()
+            LottieView(name: "Iphone Landscape to Potrait")
                 .padding(32)
         }
         .padding(16)

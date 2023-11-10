@@ -41,6 +41,11 @@ struct HomeView: View {
                     
                         .listStyle(.plain)
                         .padding(.bottom, getSafeArea().bottom)
+                        .toolbar {
+                                                   ToolbarItem(placement: .navigationBarLeading) {
+                                                       EditButton()
+                                                   }
+                                               }
                     }
                 } else {
                     VStack {
