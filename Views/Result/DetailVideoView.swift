@@ -12,13 +12,14 @@ struct DetailVideoView: View {
     var item: FetchedResults<Data>.Element
     @State var isPlay: Bool = false
     @State var player: AVPlayer?
+    @State private var isPresenting = false
     
     var body: some View {
         ZStack {
             Color.greenMain.ignoresSafeArea(.container, edges: .top)
             VStack(spacing: 15) {
-                ZStack(alignment: .bottomTrailing) {
-                    if let url = item.url {
+               
+                    if item.url != nil {
                         VideoPlayer(player: player) {
                             if !isPlay {
                                 Image(systemName: "play.circle.fill")
@@ -32,10 +33,12 @@ struct DetailVideoView: View {
                             }
                         }
                         .frame(width: 358, height: 173)
+                        .cornerRadius(0.5)
                     }
                     
-       
-                }
+                
+                
+                
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
@@ -49,7 +52,7 @@ struct DetailVideoView: View {
                                 topTrailingRadius: 20
                             )
                         )
-
+                    
                     
                     
                     VStack {
@@ -67,12 +70,12 @@ struct DetailVideoView: View {
                                         Text(item.level ?? "-")
                                             .font(Font.custom("SF Pro", size: 12))
                                             .foregroundStyle(Color.white)
-                                            
+                                        
                                     }
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
                             
-                            Text(item.datetime ?? "")
+                            Text(item.datetime ?? "-/-/-")
                                 .font(Font.custom("SF Pro", size: 12))
                                 .foregroundStyle(Color.grayStroke6)
                                 .padding(.bottom, 30)
@@ -162,12 +165,12 @@ struct DetailVideoView: View {
             }
         }
     }
-}
 
+}
 struct ThickDivider: View {
     var thickness: CGFloat
     var color: Color
-
+    
     var body: some View {
         Rectangle()
             .fill(color)
@@ -175,6 +178,6 @@ struct ThickDivider: View {
     }
 }
 
-//#Preview {
-//    DetailVideoView(item: <#FetchedResults<Data>.Element#>)
-//}
+
+
+
