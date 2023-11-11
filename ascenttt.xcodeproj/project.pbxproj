@@ -37,6 +37,8 @@
 		18CD6E1F2AF955580087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
+		370F771A2AFF36F300BB2194 /* Level 2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 370F77192AFF36F300BB2194 /* Level 2.mov */; };
+		370F771C2AFF373200BB2194 /* Level 1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 370F771B2AFF373200BB2194 /* Level 1.mov */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		37D9039D2AFE94A3007C8F50 /* CPTLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37D9039C2AFE94A2007C8F50 /* CPTLevel1.mp4 */; };
 		37D903A02AFE985F007C8F50 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */; };
@@ -138,6 +140,8 @@
 		18CD6E1A2AF953FC0087B24D /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		18CD6E1C2AF955250087B24D /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		18CD6E1E2AF955580087B24D /* SessionDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegator.swift; sourceTree = "<group>"; };
+		370F77192AFF36F300BB2194 /* Level 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 2.mov"; path = "../../../../../Downloads/Level 2.mov"; sourceTree = "<group>"; };
+		370F771B2AFF373200BB2194 /* Level 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 1.mov"; path = "../../../../../Downloads/Level 1.mov"; sourceTree = "<group>"; };
 		37D9039C2AFE94A2007C8F50 /* CPTLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel1.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel1.mp4; sourceTree = "<absolute>"; };
 		37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel3.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel3.mp4; sourceTree = "<absolute>"; };
 		37D9039F2AFE985F007C8F50 /* CPTLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel2.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel2.mp4; sourceTree = "<absolute>"; };
@@ -296,6 +300,8 @@
 		BE975BFA2AFCC39F00C802CF /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				370F771B2AFF373200BB2194 /* Level 1.mov */,
+				370F77192AFF36F300BB2194 /* Level 2.mov */,
 				37D903A22AFE9D25007C8F50 /* Level 3.mov */,
 				37D9039F2AFE985F007C8F50 /* CPTLevel2.mp4 */,
 				37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */,
@@ -623,9 +629,11 @@
 				37D903A82AFEA3C2007C8F50 /* LowServeAdvanced.json in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
 				37D903AC2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json in Resources */,
+				370F771A2AFF36F300BB2194 /* Level 2.mov in Resources */,
 				37D903A12AFE985F007C8F50 /* CPTLevel2.mp4 in Resources */,
 				37D9039D2AFE94A3007C8F50 /* CPTLevel1.mp4 in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
+				370F771C2AFF373200BB2194 /* Level 1.mov in Resources */,
 				37D903A02AFE985F007C8F50 /* CPTLevel3.mp4 in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,

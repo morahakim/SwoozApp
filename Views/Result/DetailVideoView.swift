@@ -57,9 +57,10 @@ struct DetailVideoView: View {
                 if item.url != nil {
                     VideoPlayer(player: player) {
                         if !isPlay {
-                            Image(systemName: "play.circle.fill")
+                            Image("PlayButton")
+                                .resizable()
+                                .frame(width: 60, height: 60)
                                 .foregroundColor(.greenMain)
-                                .font(.system(size: 60))
                                 .padding()
                                 .onTapGesture {
                                     player?.play()
@@ -69,7 +70,9 @@ struct DetailVideoView: View {
                     }
                     .frame(width: 358, height: 173)
                     .cornerRadius(10)
+                    .padding(.top, 50)
                 }
+                    
                 
                 ZStack {
                     Rectangle()
@@ -97,7 +100,7 @@ struct DetailVideoView: View {
                                 .font(Font.custom("Urbanist", size: 22))
                                 .foregroundColor(.neutralBlack)
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
-                                .padding(.bottom)
+//                                .padding(.bottom)
                             } else {
                                 VStack {
                                     Text(item.name ?? "Low Serve")
@@ -126,7 +129,8 @@ struct DetailVideoView: View {
                                 .foregroundStyle(Color.grayStroke6)
                                 .padding(.bottom, 30)
                         }
-                        .padding(.bottom)
+//                        .padding(.bottom)
+                        .padding()
                         
                         VStack(spacing: 25) {
                             HStack {
@@ -200,12 +204,12 @@ struct DetailVideoView: View {
                                 Spacer()
                             }
                         }
-                        .padding(.top)
+//                        .padding(.top)
                         .padding()
                     }
                     
                 }
-                .padding(.top, getSafeArea().top + 26)
+//                .padding(.top, getSafeArea().top + 20)
             }
             
             .navigationTitle("")

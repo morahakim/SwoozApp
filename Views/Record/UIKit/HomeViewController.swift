@@ -13,6 +13,8 @@ import SwiftUI
 import AVKit
 
 protocol HomeDelegate: AnyObject {
+    func back()
+    
     func saveRecord(url: URL,
                     duration: String,
                     hitFail: Int,
@@ -320,8 +322,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         view.addSubview(contentAnalysisViewController.view)
     }
+    
     @objc func back() {
-        print("Back!")
+        homeDelegate?.back()
     }
     
     

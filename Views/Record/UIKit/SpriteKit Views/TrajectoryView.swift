@@ -145,8 +145,8 @@ class TrajectoryView: SKView, AnimatedTransitioning {
                 circlePoint.backgroundColor = UIColor.green.cgColor
                 circlePointNet.backgroundColor = UIColor.green.cgColor
             }else{
-                circlePoint.backgroundColor = UIColor.yellow.cgColor
-                circlePointNet.backgroundColor = UIColor.yellow.cgColor
+                circlePoint.backgroundColor = UIColor.green.cgColor
+                circlePointNet.backgroundColor = UIColor.green.cgColor
             }
             print("\(yBall) - \(yNet) = \(yBall - yNet)")
 
@@ -263,7 +263,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             }else if(distance < 20){
                 pathLayer.strokeColor = UIColor.green.cgColor
             }else{
-                pathLayer.strokeColor = UIColor.yellow.cgColor
+                pathLayer.strokeColor = UIColor.green.cgColor
             }
         }else if(name == "Experienced"){
             if(distance < 3){
