@@ -11,9 +11,6 @@
 		18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */; };
 		18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */; };
 		18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3B2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json */; };
-		18361F432AFF897100CBD1D8 /* CPTLevel2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 18361F402AFF897000CBD1D8 /* CPTLevel2.mov */; };
-		18361F442AFF897100CBD1D8 /* CPTLevel1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 18361F412AFF897000CBD1D8 /* CPTLevel1.mov */; };
-		18361F452AFF897100CBD1D8 /* CPTLevel3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 18361F422AFF897100CBD1D8 /* CPTLevel3.mov */; };
 		183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B33792AFA8B59004E023D /* ForceOrientation.swift */; };
 		183B337C2AFA92CC004E023D /* TechniqueLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */; };
 		183C87902AFD39E100C210AB /* ItemVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C878F2AFD39E100C210AB /* ItemVideoView.swift */; };
@@ -28,6 +25,12 @@
 		184E02FB2AF192F60004C569 /* Low Serve.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F42AF192F60004C569 /* Low Serve.json */; };
 		184E02FC2AF192F60004C569 /* High Serve.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F52AF192F60004C569 /* High Serve.json */; };
 		184E02FD2AF192F60004C569 /* Smash.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F62AF192F60004C569 /* Smash.json */; };
+		1878C43A2AFFC8AF0037D610 /* CPTLevel2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4342AFFC8AE0037D610 /* CPTLevel2.mov */; };
+		1878C43B2AFFC8AF0037D610 /* Level 2.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4352AFFC8AF0037D610 /* Level 2.MOV */; };
+		1878C43C2AFFC8AF0037D610 /* Level 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4362AFFC8AF0037D610 /* Level 3.mov */; };
+		1878C43D2AFFC8AF0037D610 /* CPTLevel3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4372AFFC8AF0037D610 /* CPTLevel3.mov */; };
+		1878C43E2AFFC8AF0037D610 /* CPTLevel1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4382AFFC8AF0037D610 /* CPTLevel1.mov */; };
+		1878C43F2AFFC8AF0037D610 /* Level 1.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4392AFFC8AF0037D610 /* Level 1.MOV */; };
 		188062F12AF9536400310F93 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F02AF9536400310F93 /* SFSymbol.swift */; };
 		188062F32AF9537E00310F93 /* ActionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F22AF9537E00310F93 /* ActionEnum.swift */; };
 		18922FF62AFD2EBC001B68EF /* DetailVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */; };
@@ -44,10 +47,7 @@
 		18CD6E1F2AF955580087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
-		370F771A2AFF36F300BB2194 /* Level 2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 370F77192AFF36F300BB2194 /* Level 2.mov */; };
-		370F771C2AFF373200BB2194 /* Level 1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 370F771B2AFF373200BB2194 /* Level 1.mov */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		37D903A32AFE9D25007C8F50 /* Level 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A22AFE9D25007C8F50 /* Level 3.mov */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
@@ -116,9 +116,6 @@
 		18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeIntermediate.json; sourceTree = "<group>"; };
 		18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeExperienced.json; sourceTree = "<group>"; };
 		18361F3B2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
-		18361F402AFF897000CBD1D8 /* CPTLevel2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = CPTLevel2.mov; sourceTree = "<group>"; };
-		18361F412AFF897000CBD1D8 /* CPTLevel1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = CPTLevel1.mov; sourceTree = "<group>"; };
-		18361F422AFF897100CBD1D8 /* CPTLevel3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = CPTLevel3.mov; sourceTree = "<group>"; };
 		183B33792AFA8B59004E023D /* ForceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceOrientation.swift; sourceTree = "<group>"; };
 		183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechniqueLevelView.swift; sourceTree = "<group>"; };
 		183C878F2AFD39E100C210AB /* ItemVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVideoView.swift; sourceTree = "<group>"; };
@@ -133,6 +130,12 @@
 		184E02F42AF192F60004C569 /* Low Serve.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Low Serve.json"; sourceTree = "<group>"; };
 		184E02F52AF192F60004C569 /* High Serve.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "High Serve.json"; sourceTree = "<group>"; };
 		184E02F62AF192F60004C569 /* Smash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Smash.json; sourceTree = "<group>"; };
+		1878C4342AFFC8AE0037D610 /* CPTLevel2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = CPTLevel2.mov; path = ../../../../CPTLevel2.mov; sourceTree = "<group>"; };
+		1878C4352AFFC8AF0037D610 /* Level 2.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 2.MOV"; sourceTree = "<group>"; };
+		1878C4362AFFC8AF0037D610 /* Level 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 3.mov"; sourceTree = "<group>"; };
+		1878C4372AFFC8AF0037D610 /* CPTLevel3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = CPTLevel3.mov; path = ../../../../CPTLevel3.mov; sourceTree = "<group>"; };
+		1878C4382AFFC8AF0037D610 /* CPTLevel1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = CPTLevel1.mov; path = ../../../../CPTLevel1.mov; sourceTree = "<group>"; };
+		1878C4392AFFC8AF0037D610 /* Level 1.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 1.MOV"; sourceTree = "<group>"; };
 		188062F02AF9536400310F93 /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		188062F22AF9537E00310F93 /* ActionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionEnum.swift; sourceTree = "<group>"; };
 		18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVideoView.swift; sourceTree = "<group>"; };
@@ -147,9 +150,6 @@
 		18CD6E1A2AF953FC0087B24D /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		18CD6E1C2AF955250087B24D /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		18CD6E1E2AF955580087B24D /* SessionDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegator.swift; sourceTree = "<group>"; };
-		370F77192AFF36F300BB2194 /* Level 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 2.mov"; path = "../../../../../Downloads/Level 2.mov"; sourceTree = "<group>"; };
-		370F771B2AFF373200BB2194 /* Level 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 1.mov"; path = "../../../../../Downloads/Level 1.mov"; sourceTree = "<group>"; };
-		37D903A22AFE9D25007C8F50 /* Level 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 3.mov"; path = "../../../../../Downloads/Level 3.mov"; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
@@ -300,12 +300,12 @@
 		BE975BFA2AFCC39F00C802CF /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				18361F412AFF897000CBD1D8 /* CPTLevel1.mov */,
-				18361F402AFF897000CBD1D8 /* CPTLevel2.mov */,
-				18361F422AFF897100CBD1D8 /* CPTLevel3.mov */,
-				370F771B2AFF373200BB2194 /* Level 1.mov */,
-				370F77192AFF36F300BB2194 /* Level 2.mov */,
-				37D903A22AFE9D25007C8F50 /* Level 3.mov */,
+				1878C4382AFFC8AF0037D610 /* CPTLevel1.mov */,
+				1878C4342AFFC8AE0037D610 /* CPTLevel2.mov */,
+				1878C4372AFFC8AF0037D610 /* CPTLevel3.mov */,
+				1878C4392AFFC8AF0037D610 /* Level 1.MOV */,
+				1878C4352AFFC8AF0037D610 /* Level 2.MOV */,
+				1878C4362AFFC8AF0037D610 /* Level 3.mov */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -620,22 +620,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18361F432AFF897100CBD1D8 /* CPTLevel2.mov in Resources */,
-				18361F442AFF897100CBD1D8 /* CPTLevel1.mov in Resources */,
 				184E02F82AF192F60004C569 /* Iphone Rotate.json in Resources */,
-				37D903A32AFE9D25007C8F50 /* Level 3.mov in Resources */,
+				1878C43E2AFFC8AF0037D610 /* CPTLevel1.mov in Resources */,
+				1878C43D2AFFC8AF0037D610 /* CPTLevel3.mov in Resources */,
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
+				1878C43B2AFFC8AF0037D610 /* Level 2.MOV in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
-				370F771A2AFF36F300BB2194 /* Level 2.mov in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
-				370F771C2AFF373200BB2194 /* Level 1.mov in Resources */,
+				1878C43C2AFFC8AF0037D610 /* Level 3.mov in Resources */,
 				18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */,
+				1878C43F2AFFC8AF0037D610 /* Level 1.MOV in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
 				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
-				18361F452AFF897100CBD1D8 /* CPTLevel3.mov in Resources */,
+				1878C43A2AFFC8AF0037D610 /* CPTLevel2.mov in Resources */,
 				18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
 				18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */,
