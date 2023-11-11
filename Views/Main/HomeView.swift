@@ -44,6 +44,7 @@ struct HomeView: View {
                         .toolbar {
                                                    ToolbarItem(placement: .navigationBarLeading) {
                                                        EditButton()
+                                                           .accentColor(.greenMain)
                                                    }
                                                }
                     }

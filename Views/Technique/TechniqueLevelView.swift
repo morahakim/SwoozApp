@@ -14,6 +14,8 @@ struct TechniqueLevelData: Hashable {
     let img: String
     let isLock: Bool
     let video: String
+    let greenPoint: String
+    let redPoint: String
 }
 
 struct TechniqueLevelView: View {
@@ -21,14 +23,16 @@ struct TechniqueLevelView: View {
     @AppStorage("name") var name: String = ""
     @AppStorage("desc") var desc: String = ""
     @AppStorage("video") var video: String = ""
+    @AppStorage("greenPoint") var greenPoint: String = ""
+    @AppStorage("redPoint") var redPoint: String = ""
     @AppStorage("userLowServeLevel") var userLowServeLevel: String = "Intermediate"
     @AppStorage("isLock") var isLock: Bool = true
     
     
     private let data = [
-        TechniqueLevelData(name: "Intermediate", desc: "SWOOZ will calculate the success of the shuttlecock passing the net. You can also see the consistency of your shot with the visual of the shuttlecock trajectory that SWOOZ provides.", img: "Intermediate", isLock: false, video: "Level 1"),
-        TechniqueLevelData(name: "Experienced", desc: "A good shuttlecock trajectory on a low serve is when the peak is before crossing the net. SWOOZ helps you visualize it and calculate your success in doing it.", img: "Experienced", isLock: false, video: "Level 2"),
-        TechniqueLevelData(name: "Advanced", desc: "A good shuttlecock placement on a low serve is when the shuttlecock is close to the line and there are variations in placement. Swooz helps you mark the shuttlecock's fall with precision.", img: "Advanced", isLock: false, video: "Level 3")
+        TechniqueLevelData(name: "Intermediate", desc: "SWOOZ will calculate the success of the shuttlecock passing the net. You can also see the consistency of your shot with the visual of the shuttlecock trajectory that SWOOZ provides.", img: "Intermediate", isLock: false, video: "Level 1", greenPoint: "The shuttlecock passes over the net", redPoint: "The shuttlecock hits the net"),
+        TechniqueLevelData(name: "Experienced", desc: "A good shuttlecock trajectory on a low serve is when the peak is before crossing the net. SWOOZ helps you visualize it and calculate your success in doing it.", img: "Experienced", isLock: false, video: "Level 2", greenPoint: "The peak of the shuttlecock's trajectory before crossing the net", redPoint: "The peak occurs after the net"),
+        TechniqueLevelData(name: "Advanced", desc: "A good shuttlecock placement on a low serve is when the shuttlecock is close to the line and there are variations in placement. Swooz helps you mark the shuttlecock's fall with precision.", img: "Advanced", isLock: false, video: "Level 3", greenPoint: "The shuttlecock falls close to the front line of the opponent's area", redPoint: "The shuttlecock fell too far")
     ]
     
     var body: some View {
@@ -43,6 +47,8 @@ struct TechniqueLevelView: View {
                                 name = d.name
                                 desc = d.desc
                                 video = d.video
+                                greenPoint = d.greenPoint
+                                redPoint = d.redPoint
 //                                if userLowServeLevel == "Intermediate" && d.name == "Intermediate" {
 //                                    isLock = false
 //                                } else if userLowServeLevel == "Experienced" && (d.name == "Intermediate" || d.name == "Experienced") {

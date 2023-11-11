@@ -195,12 +195,13 @@ struct DetailVideoView: View {
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
                                 
-                                HStack(alignment: .top, spacing: 4) {
+                                HStack(alignment: .top, spacing: 10) {
                                     ForEach(attempData) { i in
                                         Text(i.hitNumber)
-                                            .fontWeight(i.hitStatus == "Success" ? .bold : .medium)
+                                            .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
                                     }
                                 }
+                                .padding()
                                 Spacer()
                             }
                         }

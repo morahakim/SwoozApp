@@ -19,6 +19,8 @@ struct TechniqueDetailView: View {
     @AppStorage("desc") var desc: String = ""
     @AppStorage("video") var video: String = ""
     @AppStorage("isLock") var isLock: Bool = true
+    @AppStorage("greenPoint") var greenPoint: String = ""
+    @AppStorage("redPoint") var redPoint: String = ""
     
     let playerViewController = AVPlayerViewController()
     
@@ -91,7 +93,7 @@ struct TechniqueDetailView: View {
                                             .foregroundStyle(.success)
                                         Spacer()
                                     }
-                                    TextAlignLeading("The shuttlecock passes over the net")
+                                    TextAlignLeading(greenPoint)
                                         .foregroundStyle(.grayStroke6)
                                 }
                                 VStack(spacing: 2) {
@@ -101,7 +103,7 @@ struct TechniqueDetailView: View {
                                             .foregroundStyle(.danger)
                                         Spacer()
                                     }
-                                    TextAlignLeading("The shuttlecock hits the net")
+                                    TextAlignLeading(redPoint)
                                         .foregroundStyle(.grayStroke6)
                                 }
                             } else {
