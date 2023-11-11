@@ -102,7 +102,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             circlePointFirst.opacity = 1
             circlePointFirst.cornerRadius = 5.0
             circlePointFirst.masksToBounds = true
-            box.layer.addSublayer(circlePointFirst)
+//            box.layer.addSublayer(circlePointFirst)
             
             let circlePointLast = CALayer()
             circlePointLast.frame = CGRect(x: bounds.width, y:yLast, width: 8, height: 8)
@@ -110,7 +110,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             circlePointLast.opacity = 1
             circlePointLast.cornerRadius = 5.0
             circlePointLast.masksToBounds = true
-            box.layer.addSublayer(circlePointLast)
+//            box.layer.addSublayer(circlePointLast)
             
             let xFirst: CGFloat = 0
             let xLast: CGFloat = bounds.width
@@ -175,7 +175,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             circlePointLast.opacity = 1
             circlePointLast.cornerRadius = 5.0
             circlePointLast.masksToBounds = true
-            box.layer.addSublayer(circlePointLast)
+//            box.layer.addSublayer(circlePointLast)
 
             let yNet: CGFloat = yLast
             

@@ -23,6 +23,10 @@ final class Counter: ObservableObject {
     let durationSubject = PassthroughSubject<String, Never>()
     let menuSubject = PassthroughSubject<String, Never>()
     
+    let videoUrlSubject = PassthroughSubject<String, Never>()
+    let typeSubject = PassthroughSubject<String, Never>()
+    let levelSubject = PassthroughSubject<String, Never>()
+    
     @Published private(set) var count: Int = 0
     @Published private(set) var hitTotal: Int = 0
     @Published private(set) var hitSuccess: Int = 0
@@ -31,12 +35,15 @@ final class Counter: ObservableObject {
     @Published private(set) var duration: String = ""
     @Published private(set) var menuState: String = ""
     
+    @AppStorage("videoUrlApp") var videoUrlApp = ""
+    @AppStorage("typeApp") var typeApp = ""
+    @AppStorage("levelApp") var levelApp = ""
     
     @AppStorage("menuStateApp") var menuStateApp = ""
     
     init(session: WCSession = .default) {
         print("DBUG : RECEIVED INIT C")
-        self.delegate = SessionDelegater(countSubject: subject, hitTotalSubject: totalSubject,  hitTargetSubject: targetSubject, hitSuccessSubject: successSubject, hitPerfectSubject: perfectSubject,hitFailSubject: failSubject, durationSubject: durationSubject, menuStateSubject: menuSubject)
+        self.delegate = SessionDelegater(countSubject: subject, hitTotalSubject: totalSubject,  hitTargetSubject: targetSubject, hitSuccessSubject: successSubject, hitPerfectSubject: perfectSubject,hitFailSubject: failSubject, durationSubject: durationSubject, menuStateSubject: menuSubject, videoUrlSubject: videoUrlSubject, typeSubject: typeSubject, levelSubject: levelSubject)
         self.session = session
         self.session.delegate = self.delegate
         self.session.activate()
@@ -89,6 +96,28 @@ final class Counter: ObservableObject {
     func menuStateSend(menuState: String) {
         menuStateApp = menuState
         session.sendMessage(["menuState": menuState], replyHandler: nil) { error in
+            print(error.localizedDescription)
+        }
+    }
+    
+    
+    func videoUrlSend(videoUrl: String) {
+        videoUrlApp = videoUrl
+        session.sendMessage(["videoUrl": videoUrl], replyHandler: nil) { error in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func typeSend(type: String) {
+        typeApp = type
+        session.sendMessage(["type": type], replyHandler: nil) { error in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func levelSend(level: String) {
+        levelApp = level
+        session.sendMessage(["level": level], replyHandler: nil) { error in
             print(error.localizedDescription)
         }
     }

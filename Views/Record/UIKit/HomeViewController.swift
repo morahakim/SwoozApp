@@ -141,7 +141,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         }
         
         // Create a video player
-        if let videoURL = Bundle.main.url(forResource: setupName, withExtension: "mp4") {
+        if let videoURL = Bundle.main.url(forResource: setupName, withExtension: "mov") {
             let player = AVPlayer(url: videoURL)
 
             // Create a player view controller

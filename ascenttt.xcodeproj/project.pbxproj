@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */; };
+		18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */; };
+		18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */; };
+		18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3B2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json */; };
+		18361F432AFF897100CBD1D8 /* CPTLevel2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 18361F402AFF897000CBD1D8 /* CPTLevel2.mov */; };
+		18361F442AFF897100CBD1D8 /* CPTLevel1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 18361F412AFF897000CBD1D8 /* CPTLevel1.mov */; };
+		18361F452AFF897100CBD1D8 /* CPTLevel3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 18361F422AFF897100CBD1D8 /* CPTLevel3.mov */; };
 		183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B33792AFA8B59004E023D /* ForceOrientation.swift */; };
 		183B337C2AFA92CC004E023D /* TechniqueLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */; };
 		183C87902AFD39E100C210AB /* ItemVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C878F2AFD39E100C210AB /* ItemVideoView.swift */; };
@@ -40,14 +47,7 @@
 		370F771A2AFF36F300BB2194 /* Level 2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 370F77192AFF36F300BB2194 /* Level 2.mov */; };
 		370F771C2AFF373200BB2194 /* Level 1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 370F771B2AFF373200BB2194 /* Level 1.mov */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		37D9039D2AFE94A3007C8F50 /* CPTLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37D9039C2AFE94A2007C8F50 /* CPTLevel1.mp4 */; };
-		37D903A02AFE985F007C8F50 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */; };
-		37D903A12AFE985F007C8F50 /* CPTLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37D9039F2AFE985F007C8F50 /* CPTLevel2.mp4 */; };
 		37D903A32AFE9D25007C8F50 /* Level 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A22AFE9D25007C8F50 /* Level 3.mov */; };
-		37D903A82AFEA3C2007C8F50 /* LowServeAdvanced.json in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A52AFEA3C2007C8F50 /* LowServeAdvanced.json */; };
-		37D903A92AFEA3C2007C8F50 /* LowServeExperienced.json in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A62AFEA3C2007C8F50 /* LowServeExperienced.json */; };
-		37D903AA2AFEA3C2007C8F50 /* LowServeIntermediate.json in Resources */ = {isa = PBXBuildFile; fileRef = 37D903A72AFEA3C2007C8F50 /* LowServeIntermediate.json */; };
-		37D903AC2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json in Resources */ = {isa = PBXBuildFile; fileRef = 37D903AB2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
@@ -112,6 +112,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeAdvanced.json; sourceTree = "<group>"; };
+		18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeIntermediate.json; sourceTree = "<group>"; };
+		18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeExperienced.json; sourceTree = "<group>"; };
+		18361F3B2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
+		18361F402AFF897000CBD1D8 /* CPTLevel2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = CPTLevel2.mov; sourceTree = "<group>"; };
+		18361F412AFF897000CBD1D8 /* CPTLevel1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = CPTLevel1.mov; sourceTree = "<group>"; };
+		18361F422AFF897100CBD1D8 /* CPTLevel3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = CPTLevel3.mov; sourceTree = "<group>"; };
 		183B33792AFA8B59004E023D /* ForceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceOrientation.swift; sourceTree = "<group>"; };
 		183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechniqueLevelView.swift; sourceTree = "<group>"; };
 		183C878F2AFD39E100C210AB /* ItemVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVideoView.swift; sourceTree = "<group>"; };
@@ -142,14 +149,7 @@
 		18CD6E1E2AF955580087B24D /* SessionDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegator.swift; sourceTree = "<group>"; };
 		370F77192AFF36F300BB2194 /* Level 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 2.mov"; path = "../../../../../Downloads/Level 2.mov"; sourceTree = "<group>"; };
 		370F771B2AFF373200BB2194 /* Level 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 1.mov"; path = "../../../../../Downloads/Level 1.mov"; sourceTree = "<group>"; };
-		37D9039C2AFE94A2007C8F50 /* CPTLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel1.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel1.mp4; sourceTree = "<absolute>"; };
-		37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel3.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel3.mp4; sourceTree = "<absolute>"; };
-		37D9039F2AFE985F007C8F50 /* CPTLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = CPTLevel2.mp4; path = /Users/morahakim/Documents/SwoozApp/ascenttt/Assets/Video/../../../../../Downloads/CPTLevel2.mp4; sourceTree = "<absolute>"; };
 		37D903A22AFE9D25007C8F50 /* Level 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Level 3.mov"; path = "../../../../../Downloads/Level 3.mov"; sourceTree = "<group>"; };
-		37D903A52AFEA3C2007C8F50 /* LowServeAdvanced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LowServeAdvanced.json; path = ../../../../../../Downloads/LowServeAdvanced.json; sourceTree = "<group>"; };
-		37D903A62AFEA3C2007C8F50 /* LowServeExperienced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LowServeExperienced.json; path = ../../../../../../Downloads/LowServeExperienced.json; sourceTree = "<group>"; };
-		37D903A72AFEA3C2007C8F50 /* LowServeIntermediate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LowServeIntermediate.json; path = ../../../../../../Downloads/LowServeIntermediate.json; sourceTree = "<group>"; };
-		37D903AB2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "iPhone Landscape to Portrait.json"; path = "../../../../../../Downloads/iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
@@ -209,6 +209,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18361F372AFF877000CBD1D8 /* LowServe */ = {
+			isa = PBXGroup;
+			children = (
+				18361F3B2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json */,
+				18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */,
+				18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */,
+				18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */,
+			);
+			path = LowServe;
+			sourceTree = "<group>";
+		};
 		184E02E62AF1743A0004C569 /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +233,7 @@
 		184E02EF2AF192E00004C569 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				37D903A42AFEA3AC007C8F50 /* LowServe */,
+				18361F372AFF877000CBD1D8 /* LowServe */,
 				37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */,
 				184E02F32AF192F60004C569 /* Clear Shot.json */,
 				184E02F22AF192F60004C569 /* Drive Shot.json */,
@@ -279,17 +290,6 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		37D903A42AFEA3AC007C8F50 /* LowServe */ = {
-			isa = PBXGroup;
-			children = (
-				37D903AB2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json */,
-				37D903A52AFEA3C2007C8F50 /* LowServeAdvanced.json */,
-				37D903A62AFEA3C2007C8F50 /* LowServeExperienced.json */,
-				37D903A72AFEA3C2007C8F50 /* LowServeIntermediate.json */,
-			);
-			path = LowServe;
-			sourceTree = "<group>";
-		};
 		BE8F8DF12AF044A900616288 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,12 +300,12 @@
 		BE975BFA2AFCC39F00C802CF /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				18361F412AFF897000CBD1D8 /* CPTLevel1.mov */,
+				18361F402AFF897000CBD1D8 /* CPTLevel2.mov */,
+				18361F422AFF897100CBD1D8 /* CPTLevel3.mov */,
 				370F771B2AFF373200BB2194 /* Level 1.mov */,
 				370F77192AFF36F300BB2194 /* Level 2.mov */,
 				37D903A22AFE9D25007C8F50 /* Level 3.mov */,
-				37D9039F2AFE985F007C8F50 /* CPTLevel2.mp4 */,
-				37D9039E2AFE985F007C8F50 /* CPTLevel3.mp4 */,
-				37D9039C2AFE94A2007C8F50 /* CPTLevel1.mp4 */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -620,25 +620,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18361F432AFF897100CBD1D8 /* CPTLevel2.mov in Resources */,
+				18361F442AFF897100CBD1D8 /* CPTLevel1.mov in Resources */,
 				184E02F82AF192F60004C569 /* Iphone Rotate.json in Resources */,
-				37D903A92AFEA3C2007C8F50 /* LowServeExperienced.json in Resources */,
 				37D903A32AFE9D25007C8F50 /* Level 3.mov in Resources */,
-				37D903AA2AFEA3C2007C8F50 /* LowServeIntermediate.json in Resources */,
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
-				37D903A82AFEA3C2007C8F50 /* LowServeAdvanced.json in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
-				37D903AC2AFEA81A007C8F50 /* iPhone Landscape to Portrait.json in Resources */,
 				370F771A2AFF36F300BB2194 /* Level 2.mov in Resources */,
-				37D903A12AFE985F007C8F50 /* CPTLevel2.mp4 in Resources */,
-				37D9039D2AFE94A3007C8F50 /* CPTLevel1.mp4 in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
 				370F771C2AFF373200BB2194 /* Level 1.mov in Resources */,
-				37D903A02AFE985F007C8F50 /* CPTLevel3.mp4 in Resources */,
+				18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
+				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
+				18361F452AFF897100CBD1D8 /* CPTLevel3.mov in Resources */,
+				18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
+				18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,7 +860,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -889,7 +889,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -920,7 +920,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
@@ -956,7 +956,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;

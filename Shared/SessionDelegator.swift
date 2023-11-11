@@ -19,6 +19,10 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     let durationSubject: PassthroughSubject<String, Never>
     let menuStateSubject: PassthroughSubject<String, Never>
     
+    let videoUrlSubject: PassthroughSubject<String, Never>
+    let typeSubject: PassthroughSubject<String, Never>
+    let levelSubject: PassthroughSubject<String, Never>
+    
     
     @AppStorage("hitTotalApp") var hitTotalApp = 0
     @AppStorage("hitTargetApp") var hitTargetApp = 0
@@ -28,9 +32,13 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     @AppStorage("durationApp") var durationApp = ""
     @AppStorage("menuStateApp") var menuStateApp = ""
     
+    @AppStorage("videoUrlApp") var videoUrlApp = ""
+    @AppStorage("typeApp") var typeApp = ""
+    @AppStorage("levelApp") var levelApp = ""
+    
     @AppStorage("progressApp") var progressApp:Double = 0.0
     
-    init(countSubject: PassthroughSubject<Int, Never>, hitTotalSubject: PassthroughSubject<Int, Never>,  hitTargetSubject: PassthroughSubject<Int, Never>,  hitSuccessSubject: PassthroughSubject<Int, Never>, hitPerfectSubject: PassthroughSubject<Int, Never>,  hitFailSubject: PassthroughSubject<Int, Never>, durationSubject: PassthroughSubject<String, Never>,  menuStateSubject: PassthroughSubject<String, Never>) {
+    init(countSubject: PassthroughSubject<Int, Never>, hitTotalSubject: PassthroughSubject<Int, Never>,  hitTargetSubject: PassthroughSubject<Int, Never>,  hitSuccessSubject: PassthroughSubject<Int, Never>, hitPerfectSubject: PassthroughSubject<Int, Never>,  hitFailSubject: PassthroughSubject<Int, Never>, durationSubject: PassthroughSubject<String, Never>,  menuStateSubject: PassthroughSubject<String, Never>,  videoUrlSubject: PassthroughSubject<String, Never>,  typeSubject: PassthroughSubject<String, Never>,  levelSubject: PassthroughSubject<String, Never>) {
         print("DBUG : RECEIVED INIT 1")
         self.countSubject = countSubject
         self.hitTotalSubject = hitTotalSubject
@@ -40,6 +48,11 @@ class SessionDelegater: NSObject, WCSessionDelegate {
         self.hitFailSubject = hitFailSubject
         self.durationSubject = durationSubject
         self.menuStateSubject = menuStateSubject
+        
+        self.videoUrlSubject = videoUrlSubject
+        self.typeSubject = typeSubject
+        self.levelSubject = levelSubject
+        
         super.init()
     }
     
@@ -84,37 +97,37 @@ class SessionDelegater: NSObject, WCSessionDelegate {
             }
             
             if let hitPerfect = message["hitPerfect"] as? Int {
-               self.hitPerfectSubject.send(hitPerfect)
-               print("DBUG : RECEIVED")
-               self.hitPerfectApp = hitPerfect
-           } else {
-               print("There was an error")
-           }
+                self.hitPerfectSubject.send(hitPerfect)
+                print("DBUG : RECEIVED")
+                self.hitPerfectApp = hitPerfect
+            } else {
+                print("There was an error")
+            }
             
             if let hitFail = message["hitFail"] as? Int {
-               self.hitFailSubject.send(hitFail)
-               print("DBUG : RECEIVED")
-               self.hitFailApp = hitFail
-           } else {
-               print("There was an error")
-           }
+                self.hitFailSubject.send(hitFail)
+                print("DBUG : RECEIVED")
+                self.hitFailApp = hitFail
+            } else {
+                print("There was an error")
+            }
             
             if let duration = message["duration"] as? String {
-               self.durationSubject.send(duration)
-               print("DBUG : RECEIVED")
-               self.durationApp = duration
-           } else {
-               print("There was an error")
-           }
+                self.durationSubject.send(duration)
+                print("DBUG : RECEIVED")
+                self.durationApp = duration
+            } else {
+                print("There was an error")
+            }
             
             if let menuHitState = message["menuState"] as? String {
                 self.menuStateSubject.send(menuHitState)
                 print("DBUG : RECEIVED", menuHitState)
                 self.menuStateApp = menuHitState
-                if(menuHitState == "done"){
-//                    self.hitTotalApp = 0
-//                    self.hitTargetApp = 0
-//                    self.hitSuccessApp = 0
+                if(menuHitState == "result"){
+                    //                    self.hitTotalApp = 0
+                    //                    self.hitTargetApp = 0
+                    //                    self.hitSuccessApp = 0
                     //                    self.hitPerfectApp = 0
                     //                    self.hitFailApp = 0
                 }
@@ -131,13 +144,34 @@ class SessionDelegater: NSObject, WCSessionDelegate {
             // print(self.hitTargetApp)
             // print(self.progressApp)
             
+            if let videoUrl = message["videoUrl"] as? String {
+                self.videoUrlSubject.send(videoUrl)
+                print("DBUG : RECEIVED")
+                self.videoUrlApp = videoUrl
+            } else {
+                print("There was an error")
+            }
+            if let type = message["type"] as? String {
+                self.typeSubject.send(type)
+                print("DBUG : RECEIVED")
+                self.typeApp = type
+            } else {
+                print("There was an error")
+            }
+            if let level = message["level"] as? String {
+                self.levelSubject.send(level)
+                print("DBUG : RECEIVED")
+                self.levelApp = level
+            } else {
+                print("There was an error")
+            }
             
         }
     }
     
     // iOS Protocol comformance
     // Not needed for this demo otherwise
-    #if os(iOS)
+#if os(iOS)
     func sessionDidBecomeInactive(_ session: WCSession) {
         print("DBUG : RECEIVED INIT 4")
         print("\(#function): activationState = \(session.activationState.rawValue)")
@@ -153,7 +187,7 @@ class SessionDelegater: NSObject, WCSessionDelegate {
         print("DBUG : RECEIVED INIT 6")
         print("\(#function): activationState = \(session.activationState.rawValue)")
     }
-    #endif
+#endif
     
 }
 

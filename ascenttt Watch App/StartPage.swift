@@ -43,3 +43,4 @@ struct CountingPageView: View {
 #Preview {
     StartPage()
 }
+

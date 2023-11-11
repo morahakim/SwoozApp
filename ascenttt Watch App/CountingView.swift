@@ -62,10 +62,18 @@ struct ActivityRingView: View {
                                     )
                                     .rotationEffect(.degrees(-90)) // Rotate the circle counterclockwise by -90 degrees
                 VStack(spacing: 5) {
-                    Text("\(Int(hitTotalApp))/\(Int(hitTargetApp))")
-                        .foregroundColor(Color.greenMain)
-                        .font(.system(size: 28))
-                        .fontWeight(.semibold)
+                    if(1 == 1){
+                        Text("\(Int(hitTotalApp))/\(Int(hitTargetApp))")
+                            .foregroundColor(Color.greenMain)
+                            .font(.system(size: 28))
+                            .fontWeight(.semibold)
+                    }else{
+                        Text("\(Int(hitTotalApp))/∞")
+                            .foregroundColor(Color.greenMain)
+                            .font(.system(size: 28))
+                            .fontWeight(.semibold)
+                    }
+                   
                     Text("Attempt")
                         .font(.system(size: 16))
                         .foregroundColor(Color.greenMain)
@@ -104,11 +112,11 @@ struct PauseEndView: View {
                 }
 //                VStack {
 //                    Button(action: {
-//                       
+//
 //                    }, label: {
 //                        Image(systemName: "pause")
 //                            .font(.system(size: 19))
-//                        
+//
 //                    })
 //                    .frame(width: 60)
 //                    .buttonStyle(.bordered)
@@ -142,7 +150,7 @@ struct SheetAlert: View {
             Text("Are you sure?")
                 .foregroundColor(Color.greenMain)
             Button(action: {
-                counter.menuStateSend(menuState: "done")
+                counter.menuStateSend(menuState: "result")
                 showingAlert = false
             }, label: {
                 Text("End Drill")

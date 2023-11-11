@@ -501,7 +501,12 @@ class ContentAnalysisViewController: UIViewController,
         
         var netName = "NetLevel1"
         if(name == "Intermediate"){
-            netName = "NetLevel1BU"
+            netName = "NetLevel1BU2"
+            if let image = UIImage(named: netName) {
+                imageNetView.image = image
+            }
+            boxNet.addSubview(imageNetView)
+            view.addSubview(boxNet)
         }else if(name == "Experienced"){
             netName = "NetLevel2"
             if let image = UIImage(named: netName) {
@@ -511,9 +516,12 @@ class ContentAnalysisViewController: UIViewController,
             view.addSubview(boxNet)
         }else if(name == "Advanced"){
             netName = "NetLevel3"
+            if let image = UIImage(named: netName) {
+                imageNetView.image = image
+            }
+            boxNet.addSubview(imageNetView)
+            view.addSubview(boxNet)
         }
-        
-        
         
         let duration = "00:00"
 //        print("DBUG : ",String(hitTarget))
