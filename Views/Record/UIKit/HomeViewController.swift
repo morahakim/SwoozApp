@@ -100,6 +100,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 //        menuStateApp = "placement"
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateStateMenu), userInfo: nil, repeats: true)
         contentAnalysisViewController.contentAnalysisDelegate = self
+        setupSetUp()
+        playVideo()
     }
     
     

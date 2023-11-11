@@ -195,13 +195,14 @@ struct DetailVideoView: View {
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
                                 
-                                VStack(spacing: 20) {
+                                VStack(spacing: 25) {
                                            if attempData.count > 0 {
                                                ForEach(0..<((attempData.count + 9) / 10)) { row in
                                                    LazyHGrid(rows: [GridItem(.flexible())], spacing: 20) {
                                                        ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
                                                            Text(i.hitNumber)
                                                                .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
+                                                               .font(.system(size: 20))
                                                        }
                                                    }
                                                }
