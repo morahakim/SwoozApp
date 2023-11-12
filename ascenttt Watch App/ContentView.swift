@@ -61,7 +61,7 @@ struct ContentView: View {
         countdownValue = 3
         remainingTime = 20 * 60 + 1
         
-        if videoUrlApp != nil {
+        if videoUrlApp == "exist" {
             // Start reading the video.
             countdownValue = 0
             labelCountdown = String("")
@@ -169,7 +169,7 @@ struct ContentView: View {
                                 //                                       print("DBUG : ",menuStateApp," DBUG")
                             } label: {
                                 Text("Start")
-                                    .font(.system(size: 30))
+                                    .font(.system(size: 24))
                             }
                             .buttonStyle(.plain)
                         }else{
@@ -184,7 +184,12 @@ struct ContentView: View {
                     }
                     if(typeApp != "" && levelApp != ""){
                         Text(typeApp+" "+levelApp)
-                            .font(.system(size: 16))
+                            .font(.system(size: 12))
+                            .padding(.bottom, 25)
+                            .foregroundColor(Color.greenMain)
+                    }else{
+                        Text("Please choose a technique first!")
+                            .font(.system(size: 12))
                             .padding(.bottom, 25)
                             .foregroundColor(Color.greenMain)
                     }
@@ -193,7 +198,7 @@ struct ContentView: View {
                 .navigationTitle("SWOOZ").navigationBarTitleDisplayMode(.inline).onAppear{
                     
                 }
-            }else if(menuStateApp == "stillPlay" || menuStateApp == "restart"){
+            }else if((menuStateApp == "stillPlay" || menuStateApp == "restart") && videoUrlApp != ""){
                 VStack(){
                     if(labelCountdown == "3" || labelCountdown == "2" || labelCountdown == "1" || labelCountdown == "GO"){
                         VStack(){
@@ -288,8 +293,8 @@ struct ContentView: View {
                             //                                       Text("Done")
                             //                                   }
                             Button {
-                                menuStateApp = ""
                                 counter.menuStateSend(menuState: "")
+                                menuStateApp = ""
                                 videoUrlApp = ""
                                 levelApp = ""
                                 levelApp = ""

@@ -70,6 +70,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("menuStateApp") var menuStateApp = ""
     @AppStorage("name") var name: String = ""
+    @AppStorage("type") var type: String = ""
     
     let contentAnalysisViewController = ContentAnalysisViewController()
     
@@ -100,6 +101,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 //        menuStateApp = "placement"
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateStateMenu), userInfo: nil, repeats: true)
         contentAnalysisViewController.contentAnalysisDelegate = self
+        
+        contentAnalysisViewController.counter.typeSend(type: type)
+        contentAnalysisViewController.counter.levelSend(level: name)
+        
     }
     
     
@@ -191,7 +196,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         setupViewChild.addSubview(resetButton)
         
         let textLevel = UILabel()
-        textLevel.text = "Set Up Tutorial "+name
+        textLevel.text = "Set Up Tutorial "+type+" "+name
         textLevel.font = UIFont.systemFont(ofSize: 17)
         textLevel.textColor = UIColor.white
         textLevel.textAlignment = .center
@@ -218,14 +223,13 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     }
     
     @objc func updateStateMenu(){
-        print("DBUG : Timer")
+//        print("DBUG : Timer")
         print("DBUG : ",menuStateApp)
-        if(menuStateApp == "stillPlay" || menuStateApp == "result"){
+        if(menuStateApp == "stillPlay"){
             liveCamera()
-        } else if(menuStateApp == "done"){
+        } else if(menuStateApp == "result"){
+            print("DBUG : RESULT")
             contentAnalysisViewController.stop()
-        } else if(menuStateApp == "restart"){
-            contentAnalysisViewController.restart()
         }
         
     }
@@ -324,6 +328,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     }
     
     @objc func back() {
+        contentAnalysisViewController.counter.menuStateSend(menuState: "")
+        contentAnalysisViewController.counter.typeSend(type: "")
+        contentAnalysisViewController.counter.levelSend(level: "")
         homeDelegate?.back()
     }
     

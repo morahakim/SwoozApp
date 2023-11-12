@@ -104,7 +104,7 @@ class ContentAnalysisViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .blue
         hitFailApp = 0
         hitTotalApp = 0
         hitSuccessApp = 0
@@ -138,8 +138,8 @@ class ContentAnalysisViewController: UIViewController,
     
     @objc func back(){
         print("Back!")
-        let menuState = "done"
-        counter.menuStateSend(menuState:menuState)
+//        let menuState = "result"
+//        counter.menuStateSend(menuState:menuState)
         isOnRecord = false
     }
     
@@ -455,24 +455,18 @@ class ContentAnalysisViewController: UIViewController,
         stopRecording()
         urlVideoSource = nil
         detectTrajectoryRequest = nil
-        
         hitFailApp = hitFail
         hitTotalApp = hitTotal
-//        hitTargetApp = hitTargetApp
         hitSuccessApp = hitSuccess
         hitPerfectApp = hitPerfect
-        
         var arr: String = ""
         for val in arrHitStatistics {
             arr += "\(val.hitNumber):\(val.hitStatus),"
         }
-        // Remove the trailing comma, if any
         if(arrHitStatistics.count > 0){
             arr.removeLast()
         }
-//        print("DBUGG : "+arr)
         arrResult = arr
-        
         dismiss(animated: true, completion: nil)
         counter.menuStateSend(menuState: "result")
         setupResultView()
@@ -526,7 +520,7 @@ class ContentAnalysisViewController: UIViewController,
         let duration = "00:00"
 //        print("DBUG : ",String(hitTarget))
         counter.hitTotalSend(hitTotal: hitTotal)
-        counter.hitTargetSend(hitTarget: hitTarget)
+        counter.hitTargetSend(hitTarget: hitTargetApp)
         counter.hitSuccessSend(hitSuccess: hitSuccess)
         counter.hitPerfectSend(hitPerfect: hitPerfect)
         counter.hitFailSend(hitFail: hitFail)
@@ -534,16 +528,20 @@ class ContentAnalysisViewController: UIViewController,
         
         var menuState = "result"
        
-        if(hitTotal > 0){
-            if(hitTotal >= hitTarget){
-                counter.menuStateSend(menuState:menuState)
-            }else{
-                menuState = "stillPlay"
-                counter.menuStateSend(menuState:menuState)
-            }
-        }
+        if(hitTargetApp > 0){
+               if(hitTotal >= hitTargetApp){
+                   counter.menuStateSend(menuState:menuState)
+                   stop()
+               }else{
+                   menuState = "stillPlay"
+                   counter.menuStateSend(menuState:menuState)
+               }
+           }else{
+               menuState = "stillPlay"
+               counter.menuStateSend(menuState:menuState)
+           }
         
-//        menuStateApp = menuState
+        menuStateApp = menuState
         
         //        let buttonClose = UIButton(type: .custom)
         //        buttonClose.frame = CGRect(x: view.frame.width - 20, y: 10, width: 40, height: 40)
@@ -567,10 +565,9 @@ class ContentAnalysisViewController: UIViewController,
         labelCountdown.translatesAutoresizingMaskIntoConstraints = false
         labelCountdown.font = UIFont(name: "Urbanist-Medium", size: 120)
         labelCountdown.font = UIFont.systemFont(ofSize: 120)
-        view.addSubview(labelCountdown)
+        boxNet.insertSubview(labelCountdown, at: 2)
         labelCountdown.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelCountdown.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
         
         let boxWidth: CGFloat = 82
         let boxHeight: CGFloat = 36
@@ -872,11 +869,21 @@ class ContentAnalysisViewController: UIViewController,
     var summaryPerfect:[Int] = []
     var summaryFail:[Int] = []
     
-    
+    var latestState = ""
     
     private func processTrajectoryObservation(results: [VNTrajectoryObservation]) {
         
-       
+        
+        print(menuStateApp)
+        
+        if menuStateApp == "result" {
+            print("STOP")
+            stop()
+        }else{
+            print("PLAY")
+        }
+        print("Length of menuStateApp: \(menuStateApp) \(menuStateApp.count)")
+        
         
         // Clear and reset the trajectory view if there are no trajectories.
         guard !results.isEmpty else {
@@ -1008,7 +1015,7 @@ class ContentAnalysisViewController: UIViewController,
                     let duration = String(format: "%02d:%02d", minutes, seconds)
                     
                     counter.hitTotalSend(hitTotal: hitTotal)
-                    counter.hitTargetSend(hitTarget: hitTarget)
+                    counter.hitTargetSend(hitTarget: hitTargetApp)
                     counter.hitSuccessSend(hitSuccess: hitSuccess)
                     counter.hitPerfectSend(hitPerfect: hitPerfect)
                     counter.hitFailSend(hitFail: hitFail)
@@ -1026,6 +1033,9 @@ class ContentAnalysisViewController: UIViewController,
                             menuState = "stillPlay"
                             counter.menuStateSend(menuState:menuState)
                         }
+                    }else{
+                        menuState = "stillPlay"
+                        counter.menuStateSend(menuState:menuState)
                     }
                     
                     menuStateApp = menuState
@@ -1133,9 +1143,12 @@ class ContentAnalysisViewController: UIViewController,
     func updateVideoSource(){
         if(urlVideo != nil){
             urlVideoSource = AVAsset(url: urlVideo!)
+            counter.videoUrlSend(videoUrl: "exist")
         }else{
             urlVideoSource = nil
+            counter.videoUrlSend(videoUrl: "not exist")
         }
+        
     }
     
     private func configureView() {
