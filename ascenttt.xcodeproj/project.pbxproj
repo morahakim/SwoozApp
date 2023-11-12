@@ -45,10 +45,16 @@
 		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		BE8DD05F2AFFCA8A00B34D0C /* Level 1.MOV in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD05C2AFFCA8A00B34D0C /* Level 1.MOV */; };
-		BE8DD0602AFFCA8A00B34D0C /* Level 2.MOV in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD05D2AFFCA8A00B34D0C /* Level 2.MOV */; };
-		BE8DD0612AFFCA8A00B34D0C /* Level 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD05E2AFFCA8A00B34D0C /* Level 3.mov */; };
 		BE8DD0642AFFCD7E00B34D0C /* Urbanist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0632AFFCD7E00B34D0C /* Urbanist.ttf */; };
+		BE8DD0682AFFED1900B34D0C /* SetUpLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0652AFFED1900B34D0C /* SetUpLevel2.mp4 */; };
+		BE8DD0692AFFED1900B34D0C /* SetUpLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0662AFFED1900B34D0C /* SetUpLevel1.mp4 */; };
+		BE8DD06A2AFFED1900B34D0C /* SetUpLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0672AFFED1900B34D0C /* SetUpLevel3.mp4 */; };
+		BE8DD0742AFFEDEF00B34D0C /* Level 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0712AFFEDEF00B34D0C /* Level 3.mov */; };
+		BE8DD0752AFFEDEF00B34D0C /* Level 2.mov in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0722AFFEDEF00B34D0C /* Level 2.mov */; };
+		BE8DD0762AFFEDEF00B34D0C /* Level 1.mov in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0732AFFEDEF00B34D0C /* Level 1.mov */; };
+		BE8DD07A2AFFFB9100B34D0C /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0792AFFFB9100B34D0C /* Urbanist-Medium.ttf */; };
+		BE8DD07B2AFFFB9100B34D0C /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0792AFFFB9100B34D0C /* Urbanist-Medium.ttf */; };
+		BE8DD07C2AFFFB9600B34D0C /* Urbanist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE8DD0632AFFCD7E00B34D0C /* Urbanist.ttf */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
@@ -149,10 +155,16 @@
 		18CD6E1C2AF955250087B24D /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		18CD6E1E2AF955580087B24D /* SessionDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegator.swift; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
-		BE8DD05C2AFFCA8A00B34D0C /* Level 1.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 1.MOV"; sourceTree = "<group>"; };
-		BE8DD05D2AFFCA8A00B34D0C /* Level 2.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 2.MOV"; sourceTree = "<group>"; };
-		BE8DD05E2AFFCA8A00B34D0C /* Level 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 3.mov"; sourceTree = "<group>"; };
 		BE8DD0632AFFCD7E00B34D0C /* Urbanist.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Urbanist.ttf; sourceTree = "<group>"; };
+		BE8DD0652AFFED1900B34D0C /* SetUpLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel2.mp4; sourceTree = "<group>"; };
+		BE8DD0662AFFED1900B34D0C /* SetUpLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel1.mp4; sourceTree = "<group>"; };
+		BE8DD0672AFFED1900B34D0C /* SetUpLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SetUpLevel3.mp4; sourceTree = "<group>"; };
+		BE8DD0712AFFEDEF00B34D0C /* Level 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 3.mov"; sourceTree = "<group>"; };
+		BE8DD0722AFFEDEF00B34D0C /* Level 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 2.mov"; sourceTree = "<group>"; };
+		BE8DD0732AFFEDEF00B34D0C /* Level 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 1.mov"; sourceTree = "<group>"; };
+		BE8DD0772AFFF88F00B34D0C /* ascenttt-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ascenttt-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BE8DD0782AFFF8D800B34D0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BE8DD0792AFFFB9100B34D0C /* Urbanist-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Medium.ttf"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
 		BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToPotraitView.swift; sourceTree = "<group>"; };
@@ -297,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				BE8DD0632AFFCD7E00B34D0C /* Urbanist.ttf */,
+				BE8DD0792AFFFB9100B34D0C /* Urbanist-Medium.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -314,9 +327,12 @@
 				18361F412AFF897000CBD1D8 /* CPTLevel1.mov */,
 				18361F402AFF897000CBD1D8 /* CPTLevel2.mov */,
 				18361F422AFF897100CBD1D8 /* CPTLevel3.mov */,
-				BE8DD05C2AFFCA8A00B34D0C /* Level 1.MOV */,
-				BE8DD05D2AFFCA8A00B34D0C /* Level 2.MOV */,
-				BE8DD05E2AFFCA8A00B34D0C /* Level 3.mov */,
+				BE8DD0662AFFED1900B34D0C /* SetUpLevel1.mp4 */,
+				BE8DD0652AFFED1900B34D0C /* SetUpLevel2.mp4 */,
+				BE8DD0672AFFED1900B34D0C /* SetUpLevel3.mp4 */,
+				BE8DD0732AFFEDEF00B34D0C /* Level 1.mov */,
+				BE8DD0722AFFEDEF00B34D0C /* Level 2.mov */,
+				BE8DD0712AFFEDEF00B34D0C /* Level 3.mov */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -505,6 +521,7 @@
 		BEF748322AF02AAF00E8FB8B /* ascenttt */ = {
 			isa = PBXGroup;
 			children = (
+				BE8DD0782AFFF8D800B34D0C /* Info.plist */,
 				BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */,
 				18CD6E222AF957DA0087B24D /* Assets */,
 				BEF748392AF02AB000E8FB8B /* Preview Content */,
@@ -523,6 +540,7 @@
 		BEF748442AF02AB000E8FB8B /* ascenttt Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				BE8DD0772AFFF88F00B34D0C /* ascenttt-Watch-App-Info.plist */,
 				BEF748452AF02AB000E8FB8B /* ascentttApp.swift */,
 				BEF748472AF02AB000E8FB8B /* ContentView.swift */,
 				BEAAB9A02AF0476C00277B45 /* StartPage.swift */,
@@ -632,23 +650,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				18361F432AFF897100CBD1D8 /* CPTLevel2.mov in Resources */,
-				BE8DD05F2AFFCA8A00B34D0C /* Level 1.MOV in Resources */,
 				18361F442AFF897100CBD1D8 /* CPTLevel1.mov in Resources */,
 				184E02F82AF192F60004C569 /* Iphone Rotate.json in Resources */,
+				BE8DD0762AFFEDEF00B34D0C /* Level 1.mov in Resources */,
 				BE8DD0642AFFCD7E00B34D0C /* Urbanist.ttf in Resources */,
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
+				BE8DD0742AFFEDEF00B34D0C /* Level 3.mov in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
+				BE8DD0692AFFED1900B34D0C /* SetUpLevel1.mp4 in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
 				18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */,
+				BE8DD0682AFFED1900B34D0C /* SetUpLevel2.mp4 in Resources */,
+				BE8DD07A2AFFFB9100B34D0C /* Urbanist-Medium.ttf in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
 				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
+				BE8DD06A2AFFED1900B34D0C /* SetUpLevel3.mp4 in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
 				18361F452AFF897100CBD1D8 /* CPTLevel3.mov in Resources */,
 				18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */,
-				BE8DD0612AFFCA8A00B34D0C /* Level 3.mov in Resources */,
-				BE8DD0602AFFCA8A00B34D0C /* Level 2.MOV in Resources */,
+				BE8DD0752AFFEDEF00B34D0C /* Level 2.mov in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
 				18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */,
 			);
@@ -658,7 +680,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE8DD07C2AFFFB9600B34D0C /* Urbanist.ttf in Resources */,
 				BEF7484D2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
+				BE8DD07B2AFFFB9100B34D0C /* Urbanist-Medium.ttf in Resources */,
 				BEF7484A2AF02AB000E8FB8B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -875,6 +899,7 @@
 				DEVELOPMENT_TEAM = CVW5T9L476;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.agungsptr.ascenttt;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -904,6 +929,7 @@
 				DEVELOPMENT_TEAM = CVW5T9L476;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.agungsptr.ascenttt;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -935,6 +961,7 @@
 				DEVELOPMENT_TEAM = CVW5T9L476;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ascenttt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This will let you take photos and record video";
@@ -971,6 +998,7 @@
 				DEVELOPMENT_TEAM = CVW5T9L476;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ascenttt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This will let you take photos and record video";

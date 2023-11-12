@@ -12,10 +12,15 @@ struct ascentttApp: App {
     private let dataController = DataController.shared
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    let contentAnalysisViewController = ContentAnalysisViewController()
+    
     var body: some Scene {
         WindowGroup {
             MainView()
                 .onAppear {
+                    contentAnalysisViewController.counter.menuStateSend(menuState: "")
+                    contentAnalysisViewController.counter.typeSend(type: "")
+                    contentAnalysisViewController.counter.levelSend(level: "")
                     UIDevice.current.setValue(
                         UIInterfaceOrientation.portrait.rawValue,
                         forKey: "orientation"

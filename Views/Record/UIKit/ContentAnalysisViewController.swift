@@ -207,7 +207,7 @@ class ContentAnalysisViewController: UIViewController,
         
         let textLevel = UILabel()
         textLevel.text = type+" "+name
-        textLevel.font = UIFont.systemFont(ofSize: 17)
+        textLevel.font = UIFont(name: "Urbanist", size: 17)
         textLevel.textColor = UIColor.white
         textLevel.textAlignment = .center
         textLevel.frame = CGRect(x: 0, y: 0, width: setupView1.frame.width, height: 20)
@@ -218,13 +218,13 @@ class ContentAnalysisViewController: UIViewController,
         setupView1.addSubview(box1)
         
         text1a.text = String(format: "%02d",hitTargetApp)
-        text1a.font = UIFont.systemFont(ofSize: 34)
+        text1a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text1a.textColor = UIColor.white
         text1a.textAlignment = .center
         text1a.frame = CGRect(x: 0, y: 5, width: box1.frame.width, height: 30)
         
         text1b.text = "Target Shot"
-        text1b.font = UIFont.systemFont(ofSize: 17)
+        text1b.font = UIFont(name: "Urbanist", size: 17)
         text1b.textColor = UIColor.white
         text1b.textAlignment = .center
         text1b.frame = CGRect(x: 0, y: box1.frame.height-20, width: box1.frame.width, height: 20)
@@ -238,13 +238,13 @@ class ContentAnalysisViewController: UIViewController,
         setupView1.addSubview(box2)
         
         text2a.text = String(format: "%02d", hitTotal)
-        text2a.font = UIFont.systemFont(ofSize: 34)
+        text2a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text2a.textColor = UIColor.white
         text2a.textAlignment = .center
         text2a.frame = CGRect(x: 0, y: 5, width: box2.frame.width, height: 30)
         
         text2b.text = "Total Shot"
-        text2b.font = UIFont.systemFont(ofSize: 17)
+        text2b.font = UIFont(name: "Urbanist", size: 17)
         text2b.textColor = UIColor.white
         text2b.textAlignment = .center
         text2b.frame = CGRect(x: 0, y: box2.frame.height-20, width: box2.frame.width, height: 20)
@@ -257,13 +257,13 @@ class ContentAnalysisViewController: UIViewController,
         setupView1.addSubview(box3)
         
         text3a.text = String(format: "%02d", hitSuccess)
-        text3a.font = UIFont.systemFont(ofSize: 34)
+        text3a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text3a.textColor = UIColor.white
         text3a.textAlignment = .center
         text3a.frame = CGRect(x: 0, y: 5, width: box3.frame.width, height: 30)
         
         text3b.text = "Success"
-        text3b.font = UIFont.systemFont(ofSize: 17)
+        text3b.font = UIFont(name: "Urbanist", size: 17)
         text3b.textColor = UIColor.white
         text3b.textAlignment = .center
         text3b.frame = CGRect(x: 0, y: box3.frame.height-20, width: box3.frame.width, height: 20)
@@ -277,13 +277,13 @@ class ContentAnalysisViewController: UIViewController,
         setupView1.addSubview(box4)
         
         text4a.text = String(format: "%02d", hitFail)
-        text4a.font = UIFont.systemFont(ofSize: 34)
+        text4a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text4a.textColor = UIColor.white
         text4a.textAlignment = .center
         text4a.frame = CGRect(x: 0, y: 5, width: box4.frame.width, height: 30)
         
         text4b.text = "Fail"
-        text4b.font = UIFont.systemFont(ofSize: 17)
+        text4b.font = UIFont(name: "Urbanist", size: 17)
         text4b.textColor = UIColor.white
         text4b.textAlignment = .center
         text4b.frame = CGRect(x: 0, y: box4.frame.height-20, width: box4.frame.width, height: 20)
@@ -293,7 +293,7 @@ class ContentAnalysisViewController: UIViewController,
         
         let textYour = UILabel()
         textYour.text = "Your shot is successful on attempts to:"
-        textYour.font = UIFont.systemFont(ofSize: 17)
+        textYour.font = UIFont(name: "Urbanist", size: 17)
         textYour.textColor = UIColor.white
         textYour.textAlignment = .center
         textYour.frame = CGRect(x: 0, y: box4.frame.height+85, width: setupView1.frame.width, height: 20)
@@ -328,7 +328,7 @@ class ContentAnalysisViewController: UIViewController,
                 let hitStat = arrHitStatistics[index]
                 let textHit = UILabel()
                 textHit.text = hitStat.hitNumber
-                textHit.font = UIFont.systemFont(ofSize: 20)
+                textHit.font = UIFont(name: "Urbanist-Medium", size: 20)
                 if(hitStat.hitStatus == "Success"){
                     textHit.textColor = UIColor.white
                 }else{
@@ -348,6 +348,12 @@ class ContentAnalysisViewController: UIViewController,
         buttonWhite.removeFromSuperview()
         boxCountdown.removeFromSuperview()
         boxScore.removeFromSuperview()
+        
+       
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.stopRecording()
+        }
     }
     
     var textClear = UILabel()
@@ -404,7 +410,7 @@ class ContentAnalysisViewController: UIViewController,
         Task {
             do {
                 let url = try await stopRecordScreen()
-                save(url: url, 
+                save(url: url,
                      duration: durationApp,
                      hitFail: hitFailApp,
                      hitPerfect: hitPerfectApp,
@@ -452,9 +458,10 @@ class ContentAnalysisViewController: UIViewController,
     }
 
     @objc func stop(){
-        stopRecording()
+        
         urlVideoSource = nil
         detectTrajectoryRequest = nil
+        
         hitFailApp = hitFail
         hitTotalApp = hitTotal
         hitSuccessApp = hitSuccess
@@ -493,23 +500,23 @@ class ContentAnalysisViewController: UIViewController,
         
         let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         
-        var netName = "NetLevel1"
+        var netName = "NetLevel1B"
         if(name == "Intermediate"){
-            netName = "NetLevel1BU2"
+            netName = "NetLevel1B"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
             boxNet.addSubview(imageNetView)
             view.addSubview(boxNet)
         }else if(name == "Experienced"){
-            netName = "NetLevel2"
+            netName = "NetLevel2B"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
             boxNet.addSubview(imageNetView)
             view.addSubview(boxNet)
         }else if(name == "Advanced"){
-            netName = "NetLevel3"
+            netName = "NetLevel3B"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
@@ -564,7 +571,7 @@ class ContentAnalysisViewController: UIViewController,
         labelCountdown.textAlignment = .center
         labelCountdown.translatesAutoresizingMaskIntoConstraints = false
         labelCountdown.font = UIFont(name: "Urbanist-Medium", size: 120)
-        labelCountdown.font = UIFont.systemFont(ofSize: 120)
+        labelCountdown.font = UIFont(name: "Urbanist", size: 120)
         boxNet.insertSubview(labelCountdown, at: 2)
         labelCountdown.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelCountdown.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -578,7 +585,7 @@ class ContentAnalysisViewController: UIViewController,
         boxNet.addSubview(boxCountdown)
         
         textCountdown.text = ""
-        textCountdown.font = UIFont.systemFont(ofSize: 20)
+        textCountdown.font = UIFont(name: "Urbanist", size: 20)
         textCountdown.textColor = UIColor.white
         textCountdown.textAlignment = .center
         textCountdown.frame = CGRect(x: 0, y: 0, width: boxCountdown.frame.width, height: boxCountdown.frame.height)
@@ -662,7 +669,7 @@ class ContentAnalysisViewController: UIViewController,
 //
 //        let textNet = UILabel()
 //        textNet.text = "NET"
-//        textNet.font = UIFont.systemFont(ofSize: 15)
+//        textNet.font = UIFont(name: "Urbanist", size: 15)
 //        textNet.textColor = UIColor(red: 0.86, green: 0.79, blue: 0.15, alpha: 1)
 //        textNet.textAlignment = .center
 //        textNet.frame = CGRect(x: 0, y: 114, width: boxCourt.frame.width, height: 20)
@@ -681,26 +688,26 @@ class ContentAnalysisViewController: UIViewController,
 //
 //
 //        text1.text = String(format: "%02d", hitTotal)
-//        text1.font = UIFont.systemFont(ofSize: 34)
+//        text1.font = UIFont(name: "Urbanist", size: 34)
 //        text1.textColor = UIColor.white
 //        text1.textAlignment = .center
 //        text1.frame = CGRect(x: 0, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
 //
 //        text2.text = "/"
-//        text2.font = UIFont.systemFont(ofSize: 34)
+//        text2.font = UIFont(name: "Urbanist", size: 34)
 //        text2.textColor = UIColor.white
 //        text2.textAlignment = .center
 //        text2.frame = CGRect(x: ((boxScore.frame.width - 20) / 2), y: 10, width: 20, height: 30)
 //
 //        text3.text = String(format: "%02d", hitTargetApp)
-//        text3.font = UIFont.systemFont(ofSize: 34)
+//        text3.font = UIFont(name: "Urbanist", size: 34)
 //        text3.textColor = UIColor.white
 //        text3.textAlignment = .center
 //        text3.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
 //
 //        let text4 = UILabel()
 //        text4.text = "Attemp"
-//        text4.font = UIFont.systemFont(ofSize: 15)
+//        text4.font = UIFont(name: "Urbanist", size: 15)
 //        text4.textColor = UIColor.white
 //        text4.textAlignment = .center
 //        text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width - 20) / 2, height: 30)
@@ -708,7 +715,7 @@ class ContentAnalysisViewController: UIViewController,
 //
 //        let text5 = UILabel()
 //        text5.text = "Target"
-//        text5.font = UIFont.systemFont(ofSize: 15)
+//        text5.font = UIFont(name: "Urbanist", size: 15)
 //        text5.textColor = UIColor.white
 //        text5.textAlignment = .center
 //        text5.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 40, width: (boxScore.frame.width - 20) / 2, height: 30)
@@ -734,32 +741,32 @@ class ContentAnalysisViewController: UIViewController,
         boxScore.layer.cornerRadius = 4
         
         textClear.text = String(format: "%02d", hitSuccess)
-        textClear.font = UIFont.systemFont(ofSize: 34)
+        textClear.font = UIFont(name: "Urbanist-Medium", size: 34)
         textClear.textColor = UIColor.white
         textClear.textAlignment = .center
         textClear.frame = CGRect(x: 0, y: 10, width: (boxScore.frame.width/3), height: 30)
         
         text1.text = String(format: "%02d", hitTotal)
-        text1.font = UIFont.systemFont(ofSize: 34)
+        text1.font = UIFont(name: "Urbanist-Medium", size: 34)
         text1.textColor = UIColor.white
         text1.textAlignment = .center
         text1.frame = CGRect(x: (boxScore.frame.width/3), y: 10, width: (boxScore.frame.width/3), height: 30)
         
         text2.text = "/"
-        text2.font = UIFont.systemFont(ofSize: 34)
+        text2.font = UIFont(name: "Urbanist-Medium", size: 34)
         text2.textColor = UIColor.white
         text2.textAlignment = .center
         text2.frame = CGRect(x: (boxScore.frame.width/3) * 1.85, y: 10, width: 20, height: 30)
         
         text3.text = String(format: "%02d", hitTargetApp)
-        text3.font = UIFont.systemFont(ofSize: 34)
+        text3.font = UIFont(name: "Urbanist-Medium", size: 34)
         text3.textColor = UIColor.white
         text3.textAlignment = .center
         text3.frame = CGRect(x: (boxScore.frame.width/3) * 2, y: 10, width: (boxScore.frame.width/3), height: 30)
         
         let text4 = UILabel()
         text4.text = "Clear"
-        text4.font = UIFont.systemFont(ofSize: 15)
+        text4.font = UIFont(name: "Urbanist", size: 15)
         text4.textColor = UIColor.white
         text4.textAlignment = .center
         text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width/3) * 1, height: 30)
@@ -767,7 +774,7 @@ class ContentAnalysisViewController: UIViewController,
         
         let text5 = UILabel()
         text5.text = "Target"
-        text5.font = UIFont.systemFont(ofSize: 15)
+        text5.font = UIFont(name: "Urbanist", size: 15)
         text5.textColor = UIColor.white
         text5.textAlignment = .center
         text5.frame = CGRect(x: (boxScore.frame.width/3), y: 40, width: (boxScore.frame.width/3) * 2, height: 30)
@@ -873,6 +880,9 @@ class ContentAnalysisViewController: UIViewController,
     
     private func processTrajectoryObservation(results: [VNTrajectoryObservation]) {
         
+        if(!isRecording){
+            return
+        }
         
         print(menuStateApp)
         

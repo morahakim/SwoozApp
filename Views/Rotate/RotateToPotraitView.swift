@@ -10,11 +10,17 @@ import SwiftUI
 struct RotateToPotraitView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            LottieView(name: "Iphone Landscape to Potrait")
+            LottieView(name: "iPhone Landscape to Portrait").frame(width:600,height:300)
                 .padding(32)
         }
         .padding(16)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true).onAppear{
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.portrait.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .portrait
+        }
     }
 }
 

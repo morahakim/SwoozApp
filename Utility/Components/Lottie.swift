@@ -30,3 +30,28 @@ struct LottieView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
+
+
+
+struct LottieViewRotate: UIViewRepresentable {
+    let name: String
+    
+    func makeUIView(context: UIViewRepresentableContext<LottieViewRotate>) -> UIView {
+        let view = UIView(frame: .zero)
+        let animationView = LottieAnimationView(name: name)
+        animationView.loopMode = .loop
+        animationView.contentMode = .scaleAspectFill
+        animationView.play()
+        view.addSubview(animationView)
+        
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            animationView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+        
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}

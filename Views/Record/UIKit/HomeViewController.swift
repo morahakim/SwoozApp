@@ -187,7 +187,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 
         let resetButton = UIButton()
         resetButton.setTitle("SKIP", for: .normal)
-        resetButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        resetButton.titleLabel?.font = UIFont(name: "Urbanist", size: 17)
         resetButton.setTitleColor(UIColor.white, for: .normal)
         resetButton.frame = CGRect(x: 0, y: setupView1.frame.maxY + 5, width: setupViewChild.frame.width, height: 40)
         resetButton.addTarget(self, action: #selector(skipVideo), for: .touchUpInside)
@@ -197,7 +197,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         let textLevel = UILabel()
         textLevel.text = "Set Up Tutorial "+type+" "+name
-        textLevel.font = UIFont.systemFont(ofSize: 17)
+        textLevel.font = UIFont(name: "Urbanist", size: 17)
         textLevel.textColor = UIColor.white
         textLevel.textAlignment = .center
         textLevel.frame = CGRect(x: 0, y: setupView1.frame.minY - 50, width: setupViewChild.frame.width, height: 40)
@@ -243,7 +243,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         var netName = "NetLevel1"
         if(name == "Intermediate"){
-            netName = "NetLevel1BU"
+            netName = "NetLevel1"
         }else if(name == "Experienced"){
             netName = "NetLevel2"
         }else if(name == "Advanced"){

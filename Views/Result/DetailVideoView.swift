@@ -15,6 +15,9 @@ struct DetailVideoView: View {
     @State var player: AVPlayer?
     @State private var isPresenting = false
     
+    @State private var itemWidth:Double = 0
+    @State private var screenWith = UIScreen.main.bounds.width
+    
     @State private var isEditing = false
     @State private var editedName = ""
     
@@ -195,12 +198,23 @@ struct DetailVideoView: View {
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
                                 
-                                HStack(alignment: .top, spacing: 4) {
-                                    ForEach(attempData) { i in
-                                        Text(i.hitNumber)
-                                            .fontWeight(i.hitStatus == "Success" ? .bold : .medium)
-                                    }
-                                }
+                                VStack(spacing: 15) {
+                                           if attempData.count > 0 {
+                                               ForEach(0..<((attempData.count + 9) / 10)) { row in
+                                                   HStack(){
+                                                       ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
+                                                           Text(i.hitNumber)
+                                                               .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
+                                                               .font(Font.custom(i.hitStatus == "Success" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                                       }
+                                                   }
+                                               }
+                                           } else {
+                                               Text("No data available")
+                                           }
+                                       }
+                                
+                                .padding()
                                 Spacer()
                             }
                         }
@@ -224,6 +238,7 @@ struct DetailVideoView: View {
                 if let url = item.url {
                     player = AVPlayer(url: URL(string: url)!)
                 }
+                itemWidth = screenWith / 10
             }
             .toolbar {
                 ToolbarItem {
@@ -272,11 +287,11 @@ extension Color {
     static func backgroundColor(for level: String?) -> Color {
         switch level {
         case "Intermediate":
-            return Color.redMain
+            return Color.redMain.opacity(0.8)
         case "Experienced":
-            return Color.greenMain
+            return Color.greenMain.opacity(0.8)
         case "Advanced":
-            return Color.information
+            return Color.information.opacity(0.8)
         default:
             return Color.gray
         }

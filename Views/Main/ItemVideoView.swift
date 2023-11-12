@@ -101,11 +101,11 @@ extension Color {
     static func background(for level: String?) -> Color {
         switch level {
                 case "Intermediate":
-                    return Color.redMain
+            return Color.redMain.opacity(0.8)
                 case "Experienced":
-                    return Color.greenMain
+                    return Color.greenMain.opacity(0.8)
                 case "Advanced":
-            return Color.information
+            return Color.information.opacity(0.8)
                 default:
                     return Color.gray
                 }
