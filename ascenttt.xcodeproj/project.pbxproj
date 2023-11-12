@@ -25,11 +25,8 @@
 		184E02FB2AF192F60004C569 /* Low Serve.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F42AF192F60004C569 /* Low Serve.json */; };
 		184E02FC2AF192F60004C569 /* High Serve.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F52AF192F60004C569 /* High Serve.json */; };
 		184E02FD2AF192F60004C569 /* Smash.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F62AF192F60004C569 /* Smash.json */; };
-		1878C43A2AFFC8AF0037D610 /* CPTLevel2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4342AFFC8AE0037D610 /* CPTLevel2.mov */; };
 		1878C43B2AFFC8AF0037D610 /* Level 2.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4352AFFC8AF0037D610 /* Level 2.MOV */; };
 		1878C43C2AFFC8AF0037D610 /* Level 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4362AFFC8AF0037D610 /* Level 3.mov */; };
-		1878C43D2AFFC8AF0037D610 /* CPTLevel3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4372AFFC8AF0037D610 /* CPTLevel3.mov */; };
-		1878C43E2AFFC8AF0037D610 /* CPTLevel1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4382AFFC8AF0037D610 /* CPTLevel1.mov */; };
 		1878C43F2AFFC8AF0037D610 /* Level 1.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4392AFFC8AF0037D610 /* Level 1.MOV */; };
 		188062F12AF9536400310F93 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F02AF9536400310F93 /* SFSymbol.swift */; };
 		188062F32AF9537E00310F93 /* ActionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F22AF9537E00310F93 /* ActionEnum.swift */; };
@@ -47,6 +44,9 @@
 		18CD6E1F2AF955580087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
+		370F771E2B00922200BB2194 /* CPTLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771D2B00922200BB2194 /* CPTLevel1.mp4 */; };
+		370F77212B00924E00BB2194 /* CPTLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */; };
+		370F77222B00924E00BB2194 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F77202B00924E00BB2194 /* CPTLevel3.mp4 */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
@@ -130,11 +130,8 @@
 		184E02F42AF192F60004C569 /* Low Serve.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Low Serve.json"; sourceTree = "<group>"; };
 		184E02F52AF192F60004C569 /* High Serve.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "High Serve.json"; sourceTree = "<group>"; };
 		184E02F62AF192F60004C569 /* Smash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Smash.json; sourceTree = "<group>"; };
-		1878C4342AFFC8AE0037D610 /* CPTLevel2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = CPTLevel2.mov; path = ../../../../CPTLevel2.mov; sourceTree = "<group>"; };
 		1878C4352AFFC8AF0037D610 /* Level 2.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 2.MOV"; sourceTree = "<group>"; };
 		1878C4362AFFC8AF0037D610 /* Level 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 3.mov"; sourceTree = "<group>"; };
-		1878C4372AFFC8AF0037D610 /* CPTLevel3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = CPTLevel3.mov; path = ../../../../CPTLevel3.mov; sourceTree = "<group>"; };
-		1878C4382AFFC8AF0037D610 /* CPTLevel1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = CPTLevel1.mov; path = ../../../../CPTLevel1.mov; sourceTree = "<group>"; };
 		1878C4392AFFC8AF0037D610 /* Level 1.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 1.MOV"; sourceTree = "<group>"; };
 		188062F02AF9536400310F93 /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		188062F22AF9537E00310F93 /* ActionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionEnum.swift; sourceTree = "<group>"; };
@@ -150,6 +147,9 @@
 		18CD6E1A2AF953FC0087B24D /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		18CD6E1C2AF955250087B24D /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		18CD6E1E2AF955580087B24D /* SessionDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegator.swift; sourceTree = "<group>"; };
+		370F771D2B00922200BB2194 /* CPTLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel1.mp4; sourceTree = "<group>"; };
+		370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel2.mp4; sourceTree = "<group>"; };
+		370F77202B00924E00BB2194 /* CPTLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel3.mp4; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
@@ -300,9 +300,9 @@
 		BE975BFA2AFCC39F00C802CF /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				1878C4382AFFC8AF0037D610 /* CPTLevel1.mov */,
-				1878C4342AFFC8AE0037D610 /* CPTLevel2.mov */,
-				1878C4372AFFC8AF0037D610 /* CPTLevel3.mov */,
+				370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */,
+				370F77202B00924E00BB2194 /* CPTLevel3.mp4 */,
+				370F771D2B00922200BB2194 /* CPTLevel1.mp4 */,
 				1878C4392AFFC8AF0037D610 /* Level 1.MOV */,
 				1878C4352AFFC8AF0037D610 /* Level 2.MOV */,
 				1878C4362AFFC8AF0037D610 /* Level 3.mov */,
@@ -620,9 +620,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370F77222B00924E00BB2194 /* CPTLevel3.mp4 in Resources */,
 				184E02F82AF192F60004C569 /* Iphone Rotate.json in Resources */,
-				1878C43E2AFFC8AF0037D610 /* CPTLevel1.mov in Resources */,
-				1878C43D2AFFC8AF0037D610 /* CPTLevel3.mov in Resources */,
+				370F77212B00924E00BB2194 /* CPTLevel2.mp4 in Resources */,
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
 				1878C43B2AFFC8AF0037D610 /* Level 2.MOV in Resources */,
@@ -635,7 +635,7 @@
 				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
-				1878C43A2AFFC8AF0037D610 /* CPTLevel2.mov in Resources */,
+				370F771E2B00922200BB2194 /* CPTLevel1.mp4 in Resources */,
 				18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
 				18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */,
