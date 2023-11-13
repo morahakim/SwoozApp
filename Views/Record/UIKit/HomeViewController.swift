@@ -243,7 +243,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         var netName = "NetLevel1"
         if(name == "Intermediate"){
-            netName = "NetLevel1"
+            netName = "NetLevel2"
         }else if(name == "Experienced"){
             netName = "NetLevel2"
         }else if(name == "Advanced"){

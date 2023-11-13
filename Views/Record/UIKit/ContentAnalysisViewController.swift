@@ -502,7 +502,7 @@ class ContentAnalysisViewController: UIViewController,
         
         var netName = "NetLevel1B"
         if(name == "Intermediate"){
-            netName = "NetLevel1B"
+            netName = "NetLevel2B"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
@@ -943,38 +943,27 @@ class ContentAnalysisViewController: UIViewController,
                 if(name == "Intermediate"){
                     hitTotal += 1
                     var status = "Success"
-                    if(response["highestY"]! > 0.3 && firstX < response["highestY"]!){
-                        if(response["distance"]! < 3){
-                            hitFail += 1
-                            status = "Fail"
-                        }else{
-                            hitSuccess += 1
-                            if(response["distance"]! < 20){
-                                hitPerfect += 1
-                            }
-                        }
-                        let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
-                        arrHitStatistics.append(newData)
+                    if(response.0 == "Success"){
+                         status = "Success"
+                        hitSuccess += 1
+                    }else if(response.0 == "Fail"){
+                         status = "Fail"
+                        hitFail += 1
                     }
+                    let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                    arrHitStatistics.append(newData)
                 }else if(name == "Experienced"){
                     hitTotal += 1
                     var status = "Success"
-                    if(firstX < response["highestY"]!){
-                        if(response["distance"]! < 3){
-                            hitFail += 1
-                            status = "Fail"
-                        }else if(response["distance"]! < 30){
-                            hitSuccess += 1
-                            hitPerfect += 1
-                        }else if(response["distance"]! < 50){
-                            hitSuccess += 1
-                        }else{
-                            hitFail += 1
-                            status = "Fail"
-                        }
-                        let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
-                        arrHitStatistics.append(newData)
+                    if(response.0 == "Success"){
+                         status = "Success"
+                        hitSuccess += 1
+                    }else if(response.0 == "Fail"){
+                         status = "Fail"
+                        hitFail += 1
                     }
+                    let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                    arrHitStatistics.append(newData)
                 }else if(name == "Advanced"){
                    
                 }
