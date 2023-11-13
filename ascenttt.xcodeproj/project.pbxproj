@@ -47,6 +47,7 @@
 		370F771E2B00922200BB2194 /* CPTLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771D2B00922200BB2194 /* CPTLevel1.mp4 */; };
 		370F77212B00924E00BB2194 /* CPTLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */; };
 		370F77222B00924E00BB2194 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F77202B00924E00BB2194 /* CPTLevel3.mp4 */; };
+		370F77252B0213CC00BB2194 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
@@ -150,6 +151,8 @@
 		370F771D2B00922200BB2194 /* CPTLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel1.mp4; sourceTree = "<group>"; };
 		370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel2.mp4; sourceTree = "<group>"; };
 		370F77202B00924E00BB2194 /* CPTLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel3.mp4; sourceTree = "<group>"; };
+		370F77262B0213CC00BB2194 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		370F77282B0213CD00BB2194 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
@@ -267,6 +270,7 @@
 			children = (
 				188062F02AF9536400310F93 /* SFSymbol.swift */,
 				188062F22AF9537E00310F93 /* ActionEnum.swift */,
+				370F77272B0213CC00BB2194 /* Localizable.strings */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -600,6 +604,7 @@
 			knownRegions = (
 				en,
 				Base,
+				id,
 			);
 			mainGroup = BEF748272AF02AAF00E8FB8B;
 			packageReferences = (
@@ -635,6 +640,7 @@
 				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
+				370F77252B0213CC00BB2194 /* Localizable.strings in Resources */,
 				370F771E2B00922200BB2194 /* CPTLevel1.mp4 in Resources */,
 				18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
@@ -732,6 +738,18 @@
 			targetProxy = BEF748422AF02AB000E8FB8B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		370F77272B0213CC00BB2194 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				370F77262B0213CC00BB2194 /* en */,
+				370F77282B0213CD00BB2194 /* id */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BEF7484E2AF02AB000E8FB8B /* Debug */ = {
