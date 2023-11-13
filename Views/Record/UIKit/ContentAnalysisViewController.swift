@@ -938,7 +938,11 @@ class ContentAnalysisViewController: UIViewController,
                 trajectoryView.points = currentPoints
                 let response = trajectoryView.updatePathLayer()
                 print(response)
-                existingTrajectory.remove(at: index)
+                if existingTrajectory.indices.contains(index) {
+                    existingTrajectory.remove(at: index)
+                } else {
+                    print("Index out of bounds")
+                }
                 if(name == "Intermediate"){
                     hitTotal += 1
                     var status = "Success"
