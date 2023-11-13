@@ -931,9 +931,7 @@ class ContentAnalysisViewController: UIViewController,
     }
     
     private func getResult(results: [String]) async throws{
-        var index = -1
-        for val in existingTrajectory {
-            index += 1
+        for (index, val) in existingTrajectory.enumerated() {
             if(!results.contains(val)){
                 currentPoints = trajectoryDictionary[val]!
                 let firstX = currentPoints.first?.x ?? 0.0
@@ -942,7 +940,6 @@ class ContentAnalysisViewController: UIViewController,
                 let response = trajectoryView.updatePathLayer()
                 print(response)
                 existingTrajectory.remove(at: index)
-                
                 if(name == "Intermediate"){
                     hitTotal += 1
                     var status = "Success"
@@ -1025,9 +1022,9 @@ class ContentAnalysisViewController: UIViewController,
                 
             }
         }
-        if(results.count < 1){
-            existingTrajectory.removeAll()
-        }
+//        if(results.count < 1){
+//            existingTrajectory.removeAll()
+//        }
     }
     
     private func processTrajectoryObservation2(results: [VNTrajectoryObservation]) {
