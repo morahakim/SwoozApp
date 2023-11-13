@@ -15,6 +15,9 @@ struct DetailVideoView: View {
     @State var player: AVPlayer?
     @State private var isPresenting = false
     
+    @State private var itemWidth:Double = 0
+    @State private var screenWith = UIScreen.main.bounds.width
+    
     @State private var isEditing = false
     @State private var editedName = ""
     
@@ -72,7 +75,7 @@ struct DetailVideoView: View {
                     .cornerRadius(10)
                     .padding(.top, 50)
                 }
-                    
+                
                 
                 ZStack {
                     Rectangle()
@@ -100,11 +103,11 @@ struct DetailVideoView: View {
                                 .font(Font.custom("Urbanist", size: 22))
                                 .foregroundColor(.neutralBlack)
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
-//                                .padding(.bottom)
+                                //                                .padding(.bottom)
                             } else {
                                 VStack {
                                     Text(item.name ?? "Low Serve")
-                                        .font(Font.custom("Urbanist", size: 22))
+                                        .font(Font.custom("Urbanist-Medium", size: 22))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
                                         .onTapGesture {
@@ -129,7 +132,7 @@ struct DetailVideoView: View {
                                 .foregroundStyle(Color.grayStroke6)
                                 .padding(.bottom, 30)
                         }
-//                        .padding(.bottom)
+                        //                        .padding(.bottom)
                         .padding()
                         
                         VStack(spacing: 25) {
@@ -195,32 +198,32 @@ struct DetailVideoView: View {
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
                                 
-                                VStack(spacing: 25) {
-                                           if attempData.count > 0 {
-                                               ForEach(0..<((attempData.count + 9) / 10)) { row in
-                                                   LazyHGrid(rows: [GridItem(.flexible())], spacing: 20) {
-                                                       ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
-                                                           Text(i.hitNumber)
-                                                               .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
-                                                               .font(.system(size: 20))
-                                                       }
-                                                   }
-                                               }
-                                           } else {
-                                               Text("No data available")
-                                           }
-                                       }
+                                VStack(spacing: 15) {
+                                    if attempData.count > 0 {
+                                        ForEach(0..<((attempData.count + 9) / 10)) { row in
+                                            HStack(){
+                                                ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
+                                                    Text(i.hitNumber)
+                                                        .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
+                                                        .font(Font.custom(i.hitStatus == "Success" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        Text("No data available")
+                                    }
+                                }
                                 
                                 .padding()
                                 Spacer()
                             }
                         }
-//                        .padding(.top)
+                        //                        .padding(.top)
                         .padding()
                     }
                     
                 }
-//                .padding(.top, getSafeArea().top + 20)
+                //                .padding(.top, getSafeArea().top + 20)
             }
             
             .navigationTitle("")
@@ -235,6 +238,7 @@ struct DetailVideoView: View {
                 if let url = item.url {
                     player = AVPlayer(url: URL(string: url)!)
                 }
+                itemWidth = screenWith / 10
             }
             .toolbar {
                 ToolbarItem {
@@ -283,11 +287,11 @@ extension Color {
     static func backgroundColor(for level: String?) -> Color {
         switch level {
         case "Intermediate":
-            return Color.redMain
+            return Color.redMain.opacity(0.8)
         case "Experienced":
-            return Color.greenMain
+            return Color.greenMain.opacity(0.8)
         case "Advanced":
-            return Color.information
+            return Color.information.opacity(0.8)
         default:
             return Color.gray
         }

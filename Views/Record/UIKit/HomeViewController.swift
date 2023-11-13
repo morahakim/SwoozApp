@@ -70,6 +70,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("menuStateApp") var menuStateApp = ""
     @AppStorage("name") var name: String = ""
+    @AppStorage("type") var type: String = ""
     
     let contentAnalysisViewController = ContentAnalysisViewController()
     
@@ -100,6 +101,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 //        menuStateApp = "placement"
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateStateMenu), userInfo: nil, repeats: true)
         contentAnalysisViewController.contentAnalysisDelegate = self
+        
+        contentAnalysisViewController.counter.typeSend(type: type)
+        contentAnalysisViewController.counter.levelSend(level: name)
+        
         setupSetUp()
         playVideo()
     }
@@ -143,7 +148,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         }
         
         // Create a video player
-        if let videoURL = Bundle.main.url(forResource: setupName, withExtension: "mov") {
+        if let videoURL = Bundle.main.url(forResource: setupName, withExtension: "mp4") {
             let player = AVPlayer(url: videoURL)
 
             // Create a player view controller
@@ -184,7 +189,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 
         let resetButton = UIButton()
         resetButton.setTitle("SKIP", for: .normal)
-        resetButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        resetButton.titleLabel?.font = UIFont(name: "Urbanist", size: 17)
         resetButton.setTitleColor(UIColor.white, for: .normal)
         resetButton.frame = CGRect(x: 0, y: setupView1.frame.maxY + 5, width: setupViewChild.frame.width, height: 40)
         resetButton.addTarget(self, action: #selector(skipVideo), for: .touchUpInside)
@@ -193,8 +198,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         setupViewChild.addSubview(resetButton)
         
         let textLevel = UILabel()
-        textLevel.text = "Set Up Tutorial "+name
-        textLevel.font = UIFont.systemFont(ofSize: 17)
+        textLevel.text = "Set Up Tutorial "+type+" "+name
+        textLevel.font = UIFont(name: "Urbanist", size: 17)
         textLevel.textColor = UIColor.white
         textLevel.textAlignment = .center
         textLevel.frame = CGRect(x: 0, y: setupView1.frame.minY - 50, width: setupViewChild.frame.width, height: 40)
@@ -220,14 +225,13 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     }
     
     @objc func updateStateMenu(){
-        print("DBUG : Timer")
-        print("DBUG : ",menuStateApp)
-        if(menuStateApp == "stillPlay" || menuStateApp == "result"){
+//        print("DBUG : Timer")
+//        print("DBUG : ",menuStateApp)
+        if(menuStateApp == "stillPlay"){
             liveCamera()
-        } else if(menuStateApp == "done"){
+        } else if(menuStateApp == "result"){
+//            print("DBUG : RESULT")
             contentAnalysisViewController.stop()
-        } else if(menuStateApp == "restart"){
-            contentAnalysisViewController.restart()
         }
         
     }
@@ -241,7 +245,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         var netName = "NetLevel1"
         if(name == "Intermediate"){
-            netName = "NetLevel1BU"
+            netName = "NetLevel2"
         }else if(name == "Experienced"){
             netName = "NetLevel2"
         }else if(name == "Advanced"){
@@ -305,7 +309,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     }
     
     @objc func openDir() {
-        print("Open Dir!")
+//        print("Open Dir!")
         let docPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.movie,
                                                                                 UTType.video], asCopy: true)
         docPicker.delegate = self
@@ -326,6 +330,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     }
     
     @objc func back() {
+        contentAnalysisViewController.counter.menuStateSend(menuState: "")
+        contentAnalysisViewController.counter.typeSend(type: "")
+        contentAnalysisViewController.counter.levelSend(level: "")
         homeDelegate?.back()
     }
     
@@ -353,7 +360,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 //        cameraViewController.outputDelegate = self
         
 //        let captureSession = AVCaptureSession()
-//            
+//
 //            if let captureDevice = AVCaptureDevice.default(for: .video) {
 //                do {
 //                    let input = try AVCaptureDeviceInput(device: captureDevice)

@@ -28,11 +28,11 @@ struct ItemVideoView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 8) {
                     Text(name ?? "Low Serve")
-                        .font(Font.custom("SF Pro", size: 22))
+                        .font(Font.custom("Urbanist-Medium", size: 22))
                         .foregroundColor(Color(red: 0.15, green: 0.15, blue: 0.15))
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                     Text(date ?? "-/-/-")
-                        .font(Font.custom("SF Pro", size: 12))
+                        .font(Font.custom("Urbanist-Medium", size: 12))
                         .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
                 }
                 .padding(0)
@@ -100,15 +100,15 @@ struct ItemVideoView: View {
 extension Color {
     static func background(for level: String?) -> Color {
         switch level {
-                case "Intermediate":
-                    return Color.redMain
-                case "Experienced":
-                    return Color.greenMain
-                case "Advanced":
-            return Color.information
-                default:
-                    return Color.gray
-                }
-            }
+        case "Intermediate":
+            return Color.redMain.opacity(0.8)
+        case "Experienced":
+            return Color.greenMain.opacity(0.8)
+        case "Advanced":
+            return Color.information.opacity(0.8)
+        default:
+            return Color.gray
+        }
     }
+}
 

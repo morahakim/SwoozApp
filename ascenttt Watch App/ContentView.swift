@@ -61,7 +61,7 @@ struct ContentView: View {
         countdownValue = 3
         remainingTime = 20 * 60 + 1
         
-        if videoUrlApp != nil {
+        if videoUrlApp == "exist" {
             // Start reading the video.
             countdownValue = 0
             labelCountdown = String("")
@@ -142,25 +142,25 @@ struct ContentView: View {
         VStack(){
             if(menuStateApp == "placement" || menuStateApp == ""){
                 //                StartPage()
-                VStack {
+                VStack(spacing:0) {
                     ZStack {
                         Circle()
-                            .frame(width: 160, height: 160)
+                            .frame(width: 140, height: 140)
                             .foregroundColor(Color.greenMain.opacity(0.1))
-                            .padding()
-                        Circle()
-                            .frame(width: 150, height: 150)
-                            .foregroundColor(Color.greenMain.opacity(0.4))
-                            .padding()
+                            .padding(5)
                         Circle()
                             .frame(width: 130, height: 130)
+                            .foregroundColor(Color.greenMain.opacity(0.4))
+                            .padding(5)
+                        Circle()
+                            .frame(width: 110, height: 110)
                             .foregroundColor(Color.greenMain.opacity(0.3))
                         
                         Circle()
-                            .frame(width: 110, height: 110)
+                            .frame(width: 90, height: 90)
                             .foregroundColor(Color.greenMain.opacity(0.5))
                         Circle()
-                            .frame(width: 90, height: 90)
+                            .frame(width: 70, height: 70)
                             .foregroundColor(Color.greenMain.opacity(0.7))
                         if menuStateApp == "placement" && typeApp != "" && levelApp != ""{
                             Button {
@@ -169,7 +169,7 @@ struct ContentView: View {
                                 //                                       print("DBUG : ",menuStateApp," DBUG")
                             } label: {
                                 Text("Start")
-                                    .font(.system(size: 30))
+                                    .font(.system(size: 24))
                             }
                             .buttonStyle(.plain)
                         }else{
@@ -183,9 +183,22 @@ struct ContentView: View {
                         
                     }
                     if(typeApp != "" && levelApp != ""){
-                        Text(typeApp+" "+levelApp)
-                            .font(.system(size: 16))
-                            .padding(.bottom, 25)
+                        Text(typeApp)
+                            .font(.system(size: 12)).lineLimit(nil)
+                            .padding(.bottom, 0)
+                            .foregroundColor(Color.greenMain)
+                        Text(levelApp)
+                            .font(.system(size: 12)).lineLimit(nil)
+                            .padding(.bottom, 0)
+                            .foregroundColor(Color.greenMain)
+                    }else{
+                        Text("Please choose")
+                            .font(.system(size: 12)).lineLimit(nil)
+                            .padding(.bottom, 0)
+                            .foregroundColor(Color.greenMain)
+                        Text("a technique & level first!")
+                            .font(.system(size: 12)).lineLimit(nil)
+                            .padding(.bottom, 0)
                             .foregroundColor(Color.greenMain)
                     }
                 }
@@ -193,7 +206,7 @@ struct ContentView: View {
                 .navigationTitle("SWOOZ").navigationBarTitleDisplayMode(.inline).onAppear{
                     
                 }
-            }else if(menuStateApp == "stillPlay" || menuStateApp == "restart"){
+            }else if((menuStateApp == "stillPlay" || menuStateApp == "restart") && videoUrlApp != ""){
                 VStack(){
                     if(labelCountdown == "3" || labelCountdown == "2" || labelCountdown == "1" || labelCountdown == "GO"){
                         VStack(){
@@ -288,8 +301,8 @@ struct ContentView: View {
                             //                                       Text("Done")
                             //                                   }
                             Button {
-                                menuStateApp = ""
                                 counter.menuStateSend(menuState: "")
+                                menuStateApp = ""
                                 videoUrlApp = ""
                                 levelApp = ""
                                 levelApp = ""

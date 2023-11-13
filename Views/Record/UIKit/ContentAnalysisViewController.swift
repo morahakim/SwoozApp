@@ -104,7 +104,7 @@ class ContentAnalysisViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .blue
         hitFailApp = 0
         hitTotalApp = 0
         hitSuccessApp = 0
@@ -138,8 +138,8 @@ class ContentAnalysisViewController: UIViewController,
     
     @objc func back(){
         print("Back!")
-        let menuState = "done"
-        counter.menuStateSend(menuState:menuState)
+//        let menuState = "result"
+//        counter.menuStateSend(menuState:menuState)
         isOnRecord = false
     }
     
@@ -207,7 +207,7 @@ class ContentAnalysisViewController: UIViewController,
         
         let textLevel = UILabel()
         textLevel.text = type+" "+name
-        textLevel.font = UIFont.systemFont(ofSize: 17)
+        textLevel.font = UIFont(name: "Urbanist", size: 17)
         textLevel.textColor = UIColor.white
         textLevel.textAlignment = .center
         textLevel.frame = CGRect(x: 0, y: 0, width: setupView1.frame.width, height: 20)
@@ -218,13 +218,13 @@ class ContentAnalysisViewController: UIViewController,
         setupView1.addSubview(box1)
         
         text1a.text = String(format: "%02d",hitTargetApp)
-        text1a.font = UIFont.systemFont(ofSize: 34)
+        text1a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text1a.textColor = UIColor.white
         text1a.textAlignment = .center
         text1a.frame = CGRect(x: 0, y: 5, width: box1.frame.width, height: 30)
         
         text1b.text = "Target Shot"
-        text1b.font = UIFont.systemFont(ofSize: 17)
+        text1b.font = UIFont(name: "Urbanist", size: 17)
         text1b.textColor = UIColor.white
         text1b.textAlignment = .center
         text1b.frame = CGRect(x: 0, y: box1.frame.height-20, width: box1.frame.width, height: 20)
@@ -238,13 +238,13 @@ class ContentAnalysisViewController: UIViewController,
         setupView1.addSubview(box2)
         
         text2a.text = String(format: "%02d", hitTotal)
-        text2a.font = UIFont.systemFont(ofSize: 34)
+        text2a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text2a.textColor = UIColor.white
         text2a.textAlignment = .center
         text2a.frame = CGRect(x: 0, y: 5, width: box2.frame.width, height: 30)
         
         text2b.text = "Total Shot"
-        text2b.font = UIFont.systemFont(ofSize: 17)
+        text2b.font = UIFont(name: "Urbanist", size: 17)
         text2b.textColor = UIColor.white
         text2b.textAlignment = .center
         text2b.frame = CGRect(x: 0, y: box2.frame.height-20, width: box2.frame.width, height: 20)
@@ -257,13 +257,13 @@ class ContentAnalysisViewController: UIViewController,
         setupView1.addSubview(box3)
         
         text3a.text = String(format: "%02d", hitSuccess)
-        text3a.font = UIFont.systemFont(ofSize: 34)
+        text3a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text3a.textColor = UIColor.white
         text3a.textAlignment = .center
         text3a.frame = CGRect(x: 0, y: 5, width: box3.frame.width, height: 30)
         
         text3b.text = "Success"
-        text3b.font = UIFont.systemFont(ofSize: 17)
+        text3b.font = UIFont(name: "Urbanist", size: 17)
         text3b.textColor = UIColor.white
         text3b.textAlignment = .center
         text3b.frame = CGRect(x: 0, y: box3.frame.height-20, width: box3.frame.width, height: 20)
@@ -277,13 +277,13 @@ class ContentAnalysisViewController: UIViewController,
         setupView1.addSubview(box4)
         
         text4a.text = String(format: "%02d", hitFail)
-        text4a.font = UIFont.systemFont(ofSize: 34)
+        text4a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text4a.textColor = UIColor.white
         text4a.textAlignment = .center
         text4a.frame = CGRect(x: 0, y: 5, width: box4.frame.width, height: 30)
         
         text4b.text = "Fail"
-        text4b.font = UIFont.systemFont(ofSize: 17)
+        text4b.font = UIFont(name: "Urbanist", size: 17)
         text4b.textColor = UIColor.white
         text4b.textAlignment = .center
         text4b.frame = CGRect(x: 0, y: box4.frame.height-20, width: box4.frame.width, height: 20)
@@ -293,7 +293,7 @@ class ContentAnalysisViewController: UIViewController,
         
         let textYour = UILabel()
         textYour.text = "Your shot is successful on attempts to:"
-        textYour.font = UIFont.systemFont(ofSize: 17)
+        textYour.font = UIFont(name: "Urbanist", size: 17)
         textYour.textColor = UIColor.white
         textYour.textAlignment = .center
         textYour.frame = CGRect(x: 0, y: box4.frame.height+85, width: setupView1.frame.width, height: 20)
@@ -328,7 +328,7 @@ class ContentAnalysisViewController: UIViewController,
                 let hitStat = arrHitStatistics[index]
                 let textHit = UILabel()
                 textHit.text = hitStat.hitNumber
-                textHit.font = UIFont.systemFont(ofSize: 20)
+                textHit.font = UIFont(name: "Urbanist-Medium", size: 20)
                 if(hitStat.hitStatus == "Success"){
                     textHit.textColor = UIColor.white
                 }else{
@@ -348,6 +348,12 @@ class ContentAnalysisViewController: UIViewController,
         buttonWhite.removeFromSuperview()
         boxCountdown.removeFromSuperview()
         boxScore.removeFromSuperview()
+        
+       
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.stopRecording()
+        }
     }
     
     var textClear = UILabel()
@@ -404,7 +410,7 @@ class ContentAnalysisViewController: UIViewController,
         Task {
             do {
                 let url = try await stopRecordScreen()
-                save(url: url, 
+                save(url: url,
                      duration: durationApp,
                      hitFail: hitFailApp,
                      hitPerfect: hitPerfectApp,
@@ -452,27 +458,22 @@ class ContentAnalysisViewController: UIViewController,
     }
 
     @objc func stop(){
-        stopRecording()
+        
         urlVideoSource = nil
         detectTrajectoryRequest = nil
         
         hitFailApp = hitFail
         hitTotalApp = hitTotal
-//        hitTargetApp = hitTargetApp
         hitSuccessApp = hitSuccess
         hitPerfectApp = hitPerfect
-        
         var arr: String = ""
         for val in arrHitStatistics {
             arr += "\(val.hitNumber):\(val.hitStatus),"
         }
-        // Remove the trailing comma, if any
         if(arrHitStatistics.count > 0){
             arr.removeLast()
         }
-//        print("DBUGG : "+arr)
         arrResult = arr
-        
         dismiss(animated: true, completion: nil)
         counter.menuStateSend(menuState: "result")
         setupResultView()
@@ -499,23 +500,23 @@ class ContentAnalysisViewController: UIViewController,
         
         let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         
-        var netName = "NetLevel1"
+        var netName = "NetLevel1B"
         if(name == "Intermediate"){
-            netName = "NetLevel1BU2"
+            netName = "NetLevel2B"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
             boxNet.addSubview(imageNetView)
             view.addSubview(boxNet)
         }else if(name == "Experienced"){
-            netName = "NetLevel2"
+            netName = "NetLevel2B"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
             boxNet.addSubview(imageNetView)
             view.addSubview(boxNet)
         }else if(name == "Advanced"){
-            netName = "NetLevel3"
+            netName = "NetLevel3B"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
@@ -524,9 +525,8 @@ class ContentAnalysisViewController: UIViewController,
         }
         
         let duration = "00:00"
-//        print("DBUG : ",String(hitTarget))
         counter.hitTotalSend(hitTotal: hitTotal)
-        counter.hitTargetSend(hitTarget: hitTarget)
+        counter.hitTargetSend(hitTarget: hitTargetApp)
         counter.hitSuccessSend(hitSuccess: hitSuccess)
         counter.hitPerfectSend(hitPerfect: hitPerfect)
         counter.hitFailSend(hitFail: hitFail)
@@ -534,16 +534,20 @@ class ContentAnalysisViewController: UIViewController,
         
         var menuState = "result"
        
-        if(hitTotal > 0){
-            if(hitTotal >= hitTarget){
-                counter.menuStateSend(menuState:menuState)
-            }else{
-                menuState = "stillPlay"
-                counter.menuStateSend(menuState:menuState)
-            }
-        }
+        if(hitTargetApp > 0){
+               if(hitTotal >= hitTargetApp){
+                   counter.menuStateSend(menuState:menuState)
+                   stop()
+               }else{
+                   menuState = "stillPlay"
+                   counter.menuStateSend(menuState:menuState)
+               }
+           }else{
+               menuState = "stillPlay"
+               counter.menuStateSend(menuState:menuState)
+           }
         
-//        menuStateApp = menuState
+        menuStateApp = menuState
         
         //        let buttonClose = UIButton(type: .custom)
         //        buttonClose.frame = CGRect(x: view.frame.width - 20, y: 10, width: 40, height: 40)
@@ -566,11 +570,10 @@ class ContentAnalysisViewController: UIViewController,
         labelCountdown.textAlignment = .center
         labelCountdown.translatesAutoresizingMaskIntoConstraints = false
         labelCountdown.font = UIFont(name: "Urbanist-Medium", size: 120)
-        labelCountdown.font = UIFont.systemFont(ofSize: 120)
-        view.addSubview(labelCountdown)
+        labelCountdown.font = UIFont(name: "Urbanist", size: 120)
+        boxNet.insertSubview(labelCountdown, at: 2)
         labelCountdown.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelCountdown.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
         
         let boxWidth: CGFloat = 82
         let boxHeight: CGFloat = 36
@@ -581,7 +584,7 @@ class ContentAnalysisViewController: UIViewController,
         boxNet.addSubview(boxCountdown)
         
         textCountdown.text = ""
-        textCountdown.font = UIFont.systemFont(ofSize: 20)
+        textCountdown.font = UIFont(name: "Urbanist", size: 20)
         textCountdown.textColor = UIColor.white
         textCountdown.textAlignment = .center
         textCountdown.frame = CGRect(x: 0, y: 0, width: boxCountdown.frame.width, height: boxCountdown.frame.height)
@@ -665,7 +668,7 @@ class ContentAnalysisViewController: UIViewController,
 //
 //        let textNet = UILabel()
 //        textNet.text = "NET"
-//        textNet.font = UIFont.systemFont(ofSize: 15)
+//        textNet.font = UIFont(name: "Urbanist", size: 15)
 //        textNet.textColor = UIColor(red: 0.86, green: 0.79, blue: 0.15, alpha: 1)
 //        textNet.textAlignment = .center
 //        textNet.frame = CGRect(x: 0, y: 114, width: boxCourt.frame.width, height: 20)
@@ -684,26 +687,26 @@ class ContentAnalysisViewController: UIViewController,
 //
 //
 //        text1.text = String(format: "%02d", hitTotal)
-//        text1.font = UIFont.systemFont(ofSize: 34)
+//        text1.font = UIFont(name: "Urbanist", size: 34)
 //        text1.textColor = UIColor.white
 //        text1.textAlignment = .center
 //        text1.frame = CGRect(x: 0, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
 //
 //        text2.text = "/"
-//        text2.font = UIFont.systemFont(ofSize: 34)
+//        text2.font = UIFont(name: "Urbanist", size: 34)
 //        text2.textColor = UIColor.white
 //        text2.textAlignment = .center
 //        text2.frame = CGRect(x: ((boxScore.frame.width - 20) / 2), y: 10, width: 20, height: 30)
 //
 //        text3.text = String(format: "%02d", hitTargetApp)
-//        text3.font = UIFont.systemFont(ofSize: 34)
+//        text3.font = UIFont(name: "Urbanist", size: 34)
 //        text3.textColor = UIColor.white
 //        text3.textAlignment = .center
 //        text3.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
 //
 //        let text4 = UILabel()
 //        text4.text = "Attemp"
-//        text4.font = UIFont.systemFont(ofSize: 15)
+//        text4.font = UIFont(name: "Urbanist", size: 15)
 //        text4.textColor = UIColor.white
 //        text4.textAlignment = .center
 //        text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width - 20) / 2, height: 30)
@@ -711,7 +714,7 @@ class ContentAnalysisViewController: UIViewController,
 //
 //        let text5 = UILabel()
 //        text5.text = "Target"
-//        text5.font = UIFont.systemFont(ofSize: 15)
+//        text5.font = UIFont(name: "Urbanist", size: 15)
 //        text5.textColor = UIColor.white
 //        text5.textAlignment = .center
 //        text5.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 40, width: (boxScore.frame.width - 20) / 2, height: 30)
@@ -737,32 +740,32 @@ class ContentAnalysisViewController: UIViewController,
         boxScore.layer.cornerRadius = 4
         
         textClear.text = String(format: "%02d", hitSuccess)
-        textClear.font = UIFont.systemFont(ofSize: 34)
+        textClear.font = UIFont(name: "Urbanist-Medium", size: 34)
         textClear.textColor = UIColor.white
         textClear.textAlignment = .center
         textClear.frame = CGRect(x: 0, y: 10, width: (boxScore.frame.width/3), height: 30)
         
         text1.text = String(format: "%02d", hitTotal)
-        text1.font = UIFont.systemFont(ofSize: 34)
+        text1.font = UIFont(name: "Urbanist-Medium", size: 34)
         text1.textColor = UIColor.white
         text1.textAlignment = .center
         text1.frame = CGRect(x: (boxScore.frame.width/3), y: 10, width: (boxScore.frame.width/3), height: 30)
         
         text2.text = "/"
-        text2.font = UIFont.systemFont(ofSize: 34)
+        text2.font = UIFont(name: "Urbanist-Medium", size: 34)
         text2.textColor = UIColor.white
         text2.textAlignment = .center
         text2.frame = CGRect(x: (boxScore.frame.width/3) * 1.85, y: 10, width: 20, height: 30)
         
         text3.text = String(format: "%02d", hitTargetApp)
-        text3.font = UIFont.systemFont(ofSize: 34)
+        text3.font = UIFont(name: "Urbanist-Medium", size: 34)
         text3.textColor = UIColor.white
         text3.textAlignment = .center
         text3.frame = CGRect(x: (boxScore.frame.width/3) * 2, y: 10, width: (boxScore.frame.width/3), height: 30)
         
         let text4 = UILabel()
         text4.text = "Clear"
-        text4.font = UIFont.systemFont(ofSize: 15)
+        text4.font = UIFont(name: "Urbanist", size: 15)
         text4.textColor = UIColor.white
         text4.textAlignment = .center
         text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width/3) * 1, height: 30)
@@ -770,7 +773,7 @@ class ContentAnalysisViewController: UIViewController,
         
         let text5 = UILabel()
         text5.text = "Target"
-        text5.font = UIFont.systemFont(ofSize: 15)
+        text5.font = UIFont(name: "Urbanist", size: 15)
         text5.textColor = UIColor.white
         text5.textAlignment = .center
         text5.frame = CGRect(x: (boxScore.frame.width/3), y: 40, width: (boxScore.frame.width/3) * 2, height: 30)
@@ -872,11 +875,160 @@ class ContentAnalysisViewController: UIViewController,
     var summaryPerfect:[Int] = []
     var summaryFail:[Int] = []
     
+    var latestState = ""
     
+    
+    var existingTrajectory:[String] = []
+    var arrTrajectory: [String: [VNPoint]] = [:]
+    
+    var lastTrajectory = VNTrajectoryObservation()
     
     private func processTrajectoryObservation(results: [VNTrajectoryObservation]) {
         
+        if(!isRecording){
+            return
+        }
+        
+        if menuStateApp == "result" {
+            stop()
+        }
+        
+//        guard !results.isEmpty else {
+//            existingTrajectory.removeAll()
+//            trajectoryView.resetPath()
+//            return
+//        }
+        
+        var arrResult:[String] = []
+        for trajectory in results {
+            arrResult.append(trajectory.uuid.uuidString)
+            if filterParabola(trajectory: trajectory) {
+                currentPoints = correctTrajectoryPath(trajectoryToCorrect: trajectory)
+                let firstX = currentPoints.first?.x ?? 0.0
+                let lastX = currentPoints.last?.x ?? 0.0
+                let trajectoryLength = lastX - firstX
+                print("***")
+                print(trajectoryLength)
+                print(firstX)
+                if(!existingTrajectory.contains(trajectory.uuid.uuidString) && trajectoryLength > 0.3 && firstX < 0.1){
+                    existingTrajectory.append(trajectory.uuid.uuidString)
+                }
+            }else{
+              
+            }
+        }
+        
+        Task {
+            do {
+                try await getResult(results:arrResult)
+            } catch {
+                print("Error: \(error)")
+            }
+        }
        
+        
+    }
+    
+    private func getResult(results: [String]) async throws{
+        for (index, val) in existingTrajectory.enumerated() {
+            if(!results.contains(val)){
+                currentPoints = trajectoryDictionary[val]!
+                let firstX = currentPoints.first?.x ?? 0.0
+                trajectoryView.performTransition(.fadeIn, duration: 0.05)
+                trajectoryView.points = currentPoints
+                let response = trajectoryView.updatePathLayer()
+                print(response)
+                existingTrajectory.remove(at: index)
+                if(name == "Intermediate"){
+                    hitTotal += 1
+                    var status = "Success"
+                    if(response.0 == "Success"){
+                         status = "Success"
+                        hitSuccess += 1
+                    }else if(response.0 == "Fail"){
+                         status = "Fail"
+                        hitFail += 1
+                    }
+                    let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                    arrHitStatistics.append(newData)
+                }else if(name == "Experienced"){
+                    hitTotal += 1
+                    var status = "Success"
+                    if(response.0 == "Success"){
+                         status = "Success"
+                        hitSuccess += 1
+                    }else if(response.0 == "Fail"){
+                         status = "Fail"
+                        hitFail += 1
+                    }
+                    let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                    arrHitStatistics.append(newData)
+                }else if(name == "Advanced"){
+                   
+                }
+                
+                
+                
+                print("HIT : \(hitTotal) SUCCESS : \(hitSuccess) FAIL : \(hitFail)")
+                
+                
+                text1.text = String(format: "%02d", hitTotal)
+                textClear.text = String(format: "%02d", hitSuccess)
+                text3.text = String(format: "%02d", hitTargetApp)
+                
+                
+                let durationTime = remainingTimeFix - remainingTime
+                let minutes = durationTime / 60
+                let seconds = durationTime % 60
+                let duration = String(format: "%02d:%02d", minutes, seconds)
+                
+                counter.hitTotalSend(hitTotal: hitTotal)
+                counter.hitTargetSend(hitTarget: hitTargetApp)
+                counter.hitSuccessSend(hitSuccess: hitSuccess)
+                counter.hitPerfectSend(hitPerfect: hitPerfect)
+                counter.hitFailSend(hitFail: hitFail)
+                counter.durationSend(duration: duration)
+                
+                durationApp = duration
+                
+                var menuState = "result"
+                
+                if(hitTargetApp > 0){
+                    if(hitTotal >= hitTargetApp){
+                        counter.menuStateSend(menuState:menuState)
+                        stop()
+                    }else{
+                        menuState = "stillPlay"
+                        counter.menuStateSend(menuState:menuState)
+                    }
+                }else{
+                    menuState = "stillPlay"
+                    counter.menuStateSend(menuState:menuState)
+                }
+                
+                menuStateApp = menuState
+                
+            }
+        }
+//        if(results.count < 1){
+//            existingTrajectory.removeAll()
+//        }
+    }
+    
+    private func processTrajectoryObservation2(results: [VNTrajectoryObservation]) {
+        
+        if(!isRecording){
+            return
+        }
+
+        if menuStateApp == "result" {
+//            print("STOP")
+            stop()
+        }else{
+//            print("PLAY")
+        }
+//        print("Length of menuStateApp: \(menuStateApp) \(menuStateApp.count)")
+        
         
         // Clear and reset the trajectory view if there are no trajectories.
         guard !results.isEmpty else {
@@ -893,16 +1045,45 @@ class ContentAnalysisViewController: UIViewController,
                 currentPoints = correctTrajectoryPath(trajectoryToCorrect: trajectory)
                 correctPoints = currentPoints
                 delayCorrect += 1
+                lastTrajectory = trajectory
+                
+                
+                if(!existingTrajectory.contains(trajectory.uuid.uuidString)){
+                    existingTrajectory.append(trajectory.uuid.uuidString)
+                }
+                
+                
+                
+                trajectoryView.performTransition(.fadeIn, duration: 0.05)
+                trajectoryView.points = correctPoints
+                let response = trajectoryView.updatePathLayer()
+                print(response)
+                
+                
+                
             } else {
                 delayIncorrect += 1
             }
+        
+
+            
         }
+       
+        
+        
+        return
         
         correctPath.append(delayCorrect)
         incorrectPath.append(delayIncorrect)
         
         if(correctPath.count > 1){
-            if(correctPath[correctPath.count-2] > 0 && correctPath[correctPath.count-1] == 0 && incorrectPath[incorrectPath.count-2] > 0){
+//            if(correctPath[correctPath.count-2] > 0 && correctPath[correctPath.count-1] == 0 && incorrectPath[incorrectPath.count-2] > 0){
+            if(correctPath[correctPath.count-2] > 0
+               && correctPath[correctPath.count-1] == 0
+               && !existingTrajectory.contains(lastTrajectory.uuid.uuidString)){
+                
+                existingTrajectory.append(lastTrajectory.uuid.uuidString)
+                
                 let firstX = correctPoints.first?.x ?? 0.0
                 let lastX = correctPoints.last?.x ?? 0.0
                 let firstY = correctPoints.first?.y ?? 0.0
@@ -911,7 +1092,7 @@ class ContentAnalysisViewController: UIViewController,
                 
                 var isTrue = false
                 
-                if(trajectoryLength >= 0.3 && firstX <= 0.5){
+                if(trajectoryLength >= 0.2 && firstX <= 0.4){
                     isTrue = true
                 }
                 
@@ -921,10 +1102,6 @@ class ContentAnalysisViewController: UIViewController,
                     let response = trajectoryView.updatePathLayer()
                     print(response)
                     trajectoryCount += 1
-                    //                    print("DBUG: \(trajectoryCount)")
-                    //
-                    //                    print(trajectoryLength)
-                    //                    print(highestPoint)
                     correctPath.removeAll()
                     incorrectPath.removeAll()
                     
@@ -940,95 +1117,7 @@ class ContentAnalysisViewController: UIViewController,
                     
                     //                    y = Double.random(in: (boxCourtArea.frame.width*0.5)...(boxCourtArea.frame.width * 0.75))
                     
-                    hitTotal += 1
                     
-                    
-                    var status = "Success"
-                    
-                    if(name == "Intermediate"){
-                        if(response["distance"]! < 3){
-                            circle.backgroundColor = UIColor(displayP3Red: 255, green: 0, blue: 0, alpha: 0.3)
-                            circle.frame = CGRect(x: x, y: boxCourtArea.frame.height - 15, width: 8, height: 8)
-                            summaryFail.append(hitTotal)
-                            hitFail += 1
-                            status = "Fail"
-                        }else{
-                            hitSuccess += 1
-                            if(response["distance"]! < 20){
-                                circle.backgroundColor = UIColor(displayP3Red: 0, green: 255, blue: 0, alpha: 0.3)
-                                hitPerfect += 1
-                                y = Double.random(in: (boxCourtArea.frame.height*0.5)...(boxCourtArea.frame.height * 0.65))
-                                x = Double.random(in: (boxCourtArea.frame.width*0.5)...(boxCourtArea.frame.width * 0.65))
-                                summaryPerfect.append(hitTotal)
-                            }else{
-                                circle.backgroundColor = UIColor(displayP3Red: 1.0, green: 1.0, blue: 0.0, alpha: 0.3)
-                                y = Double.random(in: (boxCourtArea.frame.height*0.4)...(boxCourtArea.frame.height * 0.5))
-                                x = Double.random(in: (boxCourtArea.frame.width*0.5)...(boxCourtArea.frame.width * 0.75))
-                                summaryClear.append(hitTotal)
-                            }
-                            circle.frame = CGRect(x: x, y: y, width: 8, height: 8)
-                        }
-                    }else if(name == "Experienced"){
-                        if(response["distance"]! < 3){
-                            hitFail += 1
-                            status = "Fail"
-                        }else if(response["distance"]! < 30){
-                            hitSuccess += 1
-                            hitPerfect += 1
-                        }else if(response["distance"]! < 50){
-                            hitSuccess += 1
-                        }else{
-                            hitFail += 1
-                            status = "Fail"
-                        }
-                    }else if(name == "Advanced"){
-                       
-                    }
-                    
-                    
-                    
-                    print("HIT : \(hitTotal) SUCCESS : \(hitSuccess) FAIL : \(hitFail)")
-                    
-                    let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
-                    arrHitStatistics.append(newData)
-                
-                    text1.text = String(format: "%02d", hitTotal)
-                    textClear.text = String(format: "%02d", hitSuccess)
-                    text3.text = String(format: "%02d", hitTargetApp)
-                    
-                   
-                    
-                    circle.layer.cornerRadius = circle.frame.size.width / 2
-                    circle.clipsToBounds = true
-                    self.boxCourtArea.addSubview(circle)
-                    
-                    let durationTime = remainingTimeFix - remainingTime
-                    let minutes = durationTime / 60
-                    let seconds = durationTime % 60
-                    let duration = String(format: "%02d:%02d", minutes, seconds)
-                    
-                    counter.hitTotalSend(hitTotal: hitTotal)
-                    counter.hitTargetSend(hitTarget: hitTarget)
-                    counter.hitSuccessSend(hitSuccess: hitSuccess)
-                    counter.hitPerfectSend(hitPerfect: hitPerfect)
-                    counter.hitFailSend(hitFail: hitFail)
-                    counter.durationSend(duration: duration)
-                    
-                    durationApp = duration
-                    
-                    var menuState = "result"
-                    
-                    if(hitTargetApp > 0){
-                        if(hitTotal >= hitTargetApp){
-                            counter.menuStateSend(menuState:menuState)
-                            stop()
-                        }else{
-                            menuState = "stillPlay"
-                            counter.menuStateSend(menuState:menuState)
-                        }
-                    }
-                    
-                    menuStateApp = menuState
                     
                 }
             }
@@ -1133,9 +1222,12 @@ class ContentAnalysisViewController: UIViewController,
     func updateVideoSource(){
         if(urlVideo != nil){
             urlVideoSource = AVAsset(url: urlVideo!)
+            counter.videoUrlSend(videoUrl: "exist")
         }else{
             urlVideoSource = nil
+            counter.videoUrlSend(videoUrl: "not exist")
         }
+        
     }
     
     private func configureView() {
@@ -1185,7 +1277,7 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
        
         var normalizedFrame = CGRect()
         if(name == "Intermediate"){
-            normalizedFrame = CGRect(x: 0.21, y: 0.25, width: 0.77, height: 0.75)
+            normalizedFrame = CGRect(x: 0.21, y: 0.0, width: 0.77, height: 0.95)
         }else if(name == "Experienced"){
             normalizedFrame = CGRect(x: 0.21, y: 0.0, width: 0.77, height: 0.95)
         }else if(name == "Advanced"){
@@ -1214,8 +1306,8 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
         do {
             // Following optional bounds by checking for the moving average radius
             // of the trajectories the app is looking for.
-            detectTrajectoryRequest.objectMinimumNormalizedRadius = 5.0 / Float(1920.0)
-            detectTrajectoryRequest.objectMaximumNormalizedRadius = 30.0 / Float(1920.0)
+            detectTrajectoryRequest.objectMinimumNormalizedRadius = 10.0 / Float(1920.0)
+            detectTrajectoryRequest.objectMaximumNormalizedRadius = 50.0 / Float(1920.0)
             
             // Help manage the real-time use case to improve the precision versus delay tradeoff.
             detectTrajectoryRequest.targetFrameTime = CMTimeMake(value: 1, timescale: 60)

@@ -13,7 +13,7 @@ struct RotateToLandscapeView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            LottieView(name: "Iphone Rotate")
+            LottieView(name: "Iphone Rotate").frame(width:600,height:300)
                 .padding(32)
         }
         .padding(16)
@@ -25,7 +25,7 @@ struct RotateToLandscapeView: View {
             )
             AppDelegate.orientationLock = .landscapeRight
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 withAnimation {
                     isOnRecord = true
                     vm.path.append(.Record)

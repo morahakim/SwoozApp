@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var vm = HomeViewModel()
     @FetchRequest(sortDescriptors: [
-        SortDescriptor(\.id)
+        NSSortDescriptor(key: "datetime", ascending: false)
     ]) var list: FetchedResults<Data>
     @State var isMove: Bool = false
     @Environment(\.managedObjectContext) var moc
@@ -38,15 +38,15 @@ struct HomeView: View {
                                 }
                             }
                         }
-                    
+                        .scrollIndicators(.hidden)
                         .listStyle(.plain)
-                        .padding(.bottom, getSafeArea().bottom)
+                        .padding(.bottom, getSafeArea().bottom + 24)
                         .toolbar {
-                                                   ToolbarItem(placement: .navigationBarLeading) {
-                                                       EditButton()
-                                                           .accentColor(.greenMain)
-                                                   }
-                                               }
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                EditButton()
+                                    .accentColor(.greenMain)
+                            }
+                        }
                     }
                 } else {
                     VStack {
