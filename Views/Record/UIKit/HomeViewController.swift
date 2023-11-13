@@ -224,11 +224,11 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     @objc func updateStateMenu(){
 //        print("DBUG : Timer")
-        print("DBUG : ",menuStateApp)
+//        print("DBUG : ",menuStateApp)
         if(menuStateApp == "stillPlay"){
             liveCamera()
         } else if(menuStateApp == "result"){
-            print("DBUG : RESULT")
+//            print("DBUG : RESULT")
             contentAnalysisViewController.stop()
         }
         

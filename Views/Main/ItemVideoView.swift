@@ -28,11 +28,11 @@ struct ItemVideoView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 8) {
                     Text(name ?? "Low Serve")
-                        .font(Font.custom("SF Pro", size: 22))
+                        .font(Font.custom("Urbanist-Medium", size: 22))
                         .foregroundColor(Color(red: 0.15, green: 0.15, blue: 0.15))
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                     Text(date ?? "-/-/-")
-                        .font(Font.custom("SF Pro", size: 12))
+                        .font(Font.custom("Urbanist", size: 12))
                         .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
                 }
                 .padding(0)

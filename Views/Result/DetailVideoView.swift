@@ -107,7 +107,7 @@ struct DetailVideoView: View {
                             } else {
                                 VStack {
                                     Text(item.name ?? "Low Serve")
-                                        .font(Font.custom("Urbanist", size: 22))
+                                        .font(Font.custom("Urbanist-Medium", size: 22))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
                                         .onTapGesture {

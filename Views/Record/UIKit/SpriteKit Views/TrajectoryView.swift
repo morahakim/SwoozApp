@@ -71,7 +71,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
     }
 
     
-    func getHighestPoint(points: [VNPoint], bounds: CGRect) -> Double {
+    func getHighestPoint(points: [VNPoint], bounds: CGRect) -> (Double,Double) {
         var selectedPoint = VNPoint(x: 0.0, y: 0.0) // Initialize with a default value
         var highestY = 0.0
         for point in points {
@@ -88,7 +88,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             
             let box = UIView()
             box.frame = CGRect(x: 0, y: 0, width: bounds.width,height: bounds.height)
-    //        box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.3)
+//            box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.3)
     //        box.layer.cornerRadius = 4
             
             let transformBox = CATransform3DMakeScale(1, -1, 1)
@@ -220,9 +220,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
            
         }
         
-       
-        
-        return distance
+        return (distance,highestY)
     }
     
     func updatePathLayer() -> [String: Double] {
@@ -231,7 +229,9 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         let lastX = points.last?.x ?? 0.0
         let trajectoryLength = lastX - firstX
        
-        let distance = getHighestPoint(points: points, bounds: bounds)
+        let result = getHighestPoint(points: points, bounds: bounds)
+        let distance = result.0
+        let highestY = result.1
         
         let trajectory = UIBezierPath()
 //        guard let startingPoint = points.first else {
@@ -258,15 +258,17 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         
         
         if(name == "Intermediate"){
-            if(distance < 3){
-                pathLayer.strokeColor = UIColor.red.cgColor
-            }else if(distance < 20){
-                pathLayer.strokeColor = UIColor.green.cgColor
-            }else{
-                pathLayer.strokeColor = UIColor.green.cgColor
+            if(highestY > 0.3){
+                if(distance < 3){
+                    pathLayer.strokeColor = UIColor.red.cgColor
+                }else if(distance < 20){
+                    pathLayer.strokeColor = UIColor.green.cgColor
+                }else{
+                    pathLayer.strokeColor = UIColor.green.cgColor
+                }
             }
         }else if(name == "Experienced"){
-            if(distance < 3){
+            if(distance < 3 && firstX < highestY){
                 pathLayer.strokeColor = UIColor.red.cgColor
             }else if(distance < 30){
                 pathLayer.strokeColor = UIColor.green.cgColor
@@ -303,7 +305,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
 //        if scaledPoints.last != nil {
 //            glowingBallScene!.flyBall(points: scaledPoints)
 //        }
-        return ["distance": distance, "length": trajectoryLength]
+        return ["distance": distance, "highestY": highestY, "length": trajectoryLength]
     }
     
 }

@@ -40,7 +40,8 @@ struct VideoThumbnailView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             } else {
-                Text("Loading thumbnail...")
+//                Text("Loading thumbnail...")
+                Text("")
             }
         }
         .onAppear {

@@ -878,21 +878,173 @@ class ContentAnalysisViewController: UIViewController,
     
     var latestState = ""
     
+    
+    var existingTrajectory:[String] = []
+    var arrTrajectory: [String: [VNPoint]] = [:]
+    
+    var lastTrajectory = VNTrajectoryObservation()
+    
     private func processTrajectoryObservation(results: [VNTrajectoryObservation]) {
         
         if(!isRecording){
             return
         }
         
-        print(menuStateApp)
+        if menuStateApp == "result" {
+            stop()
+        }
+        
+//        guard !results.isEmpty else {
+//            existingTrajectory.removeAll()
+//            trajectoryView.resetPath()
+//            return
+//        }
+        
+        var arrResult:[String] = []
+        for trajectory in results {
+            arrResult.append(trajectory.uuid.uuidString)
+            if filterParabola(trajectory: trajectory) {
+                currentPoints = correctTrajectoryPath(trajectoryToCorrect: trajectory)
+                let firstX = currentPoints.first?.x ?? 0.0
+                let lastX = currentPoints.last?.x ?? 0.0
+                let trajectoryLength = lastX - firstX
+                print("***")
+                print(trajectoryLength)
+                print(firstX)
+                if(!existingTrajectory.contains(trajectory.uuid.uuidString) && trajectoryLength > 0.3 && firstX < 0.1){
+                    existingTrajectory.append(trajectory.uuid.uuidString)
+                }
+            }else{
+              
+            }
+        }
+        
+        Task {
+            do {
+                try await getResult(results:arrResult)
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+       
+        
+    }
+    
+    private func getResult(results: [String]) async throws{
+        var index = -1
+        for val in existingTrajectory {
+            index += 1
+            if(!results.contains(val)){
+                currentPoints = trajectoryDictionary[val]!
+                let firstX = currentPoints.first?.x ?? 0.0
+                trajectoryView.performTransition(.fadeIn, duration: 0.05)
+                trajectoryView.points = currentPoints
+                let response = trajectoryView.updatePathLayer()
+                print(response)
+                existingTrajectory.remove(at: index)
+                
+                if(name == "Intermediate"){
+                    hitTotal += 1
+                    var status = "Success"
+                    if(response["highestY"]! > 0.3 && firstX < response["highestY"]!){
+                        if(response["distance"]! < 3){
+                            hitFail += 1
+                            status = "Fail"
+                        }else{
+                            hitSuccess += 1
+                            if(response["distance"]! < 20){
+                                hitPerfect += 1
+                            }
+                        }
+                        let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                        arrHitStatistics.append(newData)
+                    }
+                }else if(name == "Experienced"){
+                    hitTotal += 1
+                    var status = "Success"
+                    if(firstX < response["highestY"]!){
+                        if(response["distance"]! < 3){
+                            hitFail += 1
+                            status = "Fail"
+                        }else if(response["distance"]! < 30){
+                            hitSuccess += 1
+                            hitPerfect += 1
+                        }else if(response["distance"]! < 50){
+                            hitSuccess += 1
+                        }else{
+                            hitFail += 1
+                            status = "Fail"
+                        }
+                        let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                        arrHitStatistics.append(newData)
+                    }
+                }else if(name == "Advanced"){
+                   
+                }
+                
+                
+                
+                print("HIT : \(hitTotal) SUCCESS : \(hitSuccess) FAIL : \(hitFail)")
+                
+                
+                text1.text = String(format: "%02d", hitTotal)
+                textClear.text = String(format: "%02d", hitSuccess)
+                text3.text = String(format: "%02d", hitTargetApp)
+                
+                
+                let durationTime = remainingTimeFix - remainingTime
+                let minutes = durationTime / 60
+                let seconds = durationTime % 60
+                let duration = String(format: "%02d:%02d", minutes, seconds)
+                
+                counter.hitTotalSend(hitTotal: hitTotal)
+                counter.hitTargetSend(hitTarget: hitTargetApp)
+                counter.hitSuccessSend(hitSuccess: hitSuccess)
+                counter.hitPerfectSend(hitPerfect: hitPerfect)
+                counter.hitFailSend(hitFail: hitFail)
+                counter.durationSend(duration: duration)
+                
+                durationApp = duration
+                
+                var menuState = "result"
+                
+                if(hitTargetApp > 0){
+                    if(hitTotal >= hitTargetApp){
+                        counter.menuStateSend(menuState:menuState)
+                        stop()
+                    }else{
+                        menuState = "stillPlay"
+                        counter.menuStateSend(menuState:menuState)
+                    }
+                }else{
+                    menuState = "stillPlay"
+                    counter.menuStateSend(menuState:menuState)
+                }
+                
+                menuStateApp = menuState
+                
+            }
+        }
+        if(results.count < 1){
+            existingTrajectory.removeAll()
+        }
+    }
+    
+    private func processTrajectoryObservation2(results: [VNTrajectoryObservation]) {
+        
+        if(!isRecording){
+            return
+        }
+        
+//        print(menuStateApp)
         
         if menuStateApp == "result" {
-            print("STOP")
+//            print("STOP")
             stop()
         }else{
-            print("PLAY")
+//            print("PLAY")
         }
-        print("Length of menuStateApp: \(menuStateApp) \(menuStateApp.count)")
+//        print("Length of menuStateApp: \(menuStateApp) \(menuStateApp.count)")
         
         
         // Clear and reset the trajectory view if there are no trajectories.
@@ -910,16 +1062,45 @@ class ContentAnalysisViewController: UIViewController,
                 currentPoints = correctTrajectoryPath(trajectoryToCorrect: trajectory)
                 correctPoints = currentPoints
                 delayCorrect += 1
+                lastTrajectory = trajectory
+                
+                
+                if(!existingTrajectory.contains(trajectory.uuid.uuidString)){
+                    existingTrajectory.append(trajectory.uuid.uuidString)
+                }
+                
+                
+                
+                trajectoryView.performTransition(.fadeIn, duration: 0.05)
+                trajectoryView.points = correctPoints
+                let response = trajectoryView.updatePathLayer()
+                print(response)
+                
+                
+                
             } else {
                 delayIncorrect += 1
             }
+        
+
+            
         }
+       
+        
+        
+        return
         
         correctPath.append(delayCorrect)
         incorrectPath.append(delayIncorrect)
         
         if(correctPath.count > 1){
-            if(correctPath[correctPath.count-2] > 0 && correctPath[correctPath.count-1] == 0 && incorrectPath[incorrectPath.count-2] > 0){
+//            if(correctPath[correctPath.count-2] > 0 && correctPath[correctPath.count-1] == 0 && incorrectPath[incorrectPath.count-2] > 0){
+            if(correctPath[correctPath.count-2] > 0
+               && correctPath[correctPath.count-1] == 0
+               && !existingTrajectory.contains(lastTrajectory.uuid.uuidString)){
+                
+                existingTrajectory.append(lastTrajectory.uuid.uuidString)
+                
                 let firstX = correctPoints.first?.x ?? 0.0
                 let lastX = correctPoints.last?.x ?? 0.0
                 let firstY = correctPoints.first?.y ?? 0.0
@@ -928,7 +1109,7 @@ class ContentAnalysisViewController: UIViewController,
                 
                 var isTrue = false
                 
-                if(trajectoryLength >= 0.3 && firstX <= 0.5){
+                if(trajectoryLength >= 0.2 && firstX <= 0.4){
                     isTrue = true
                 }
                 
@@ -938,10 +1119,6 @@ class ContentAnalysisViewController: UIViewController,
                     let response = trajectoryView.updatePathLayer()
                     print(response)
                     trajectoryCount += 1
-                    //                    print("DBUG: \(trajectoryCount)")
-                    //
-                    //                    print(trajectoryLength)
-                    //                    print(highestPoint)
                     correctPath.removeAll()
                     incorrectPath.removeAll()
                     
@@ -957,98 +1134,7 @@ class ContentAnalysisViewController: UIViewController,
                     
                     //                    y = Double.random(in: (boxCourtArea.frame.width*0.5)...(boxCourtArea.frame.width * 0.75))
                     
-                    hitTotal += 1
                     
-                    
-                    var status = "Success"
-                    
-                    if(name == "Intermediate"){
-                        if(response["distance"]! < 3){
-                            circle.backgroundColor = UIColor(displayP3Red: 255, green: 0, blue: 0, alpha: 0.3)
-                            circle.frame = CGRect(x: x, y: boxCourtArea.frame.height - 15, width: 8, height: 8)
-                            summaryFail.append(hitTotal)
-                            hitFail += 1
-                            status = "Fail"
-                        }else{
-                            hitSuccess += 1
-                            if(response["distance"]! < 20){
-                                circle.backgroundColor = UIColor(displayP3Red: 0, green: 255, blue: 0, alpha: 0.3)
-                                hitPerfect += 1
-                                y = Double.random(in: (boxCourtArea.frame.height*0.5)...(boxCourtArea.frame.height * 0.65))
-                                x = Double.random(in: (boxCourtArea.frame.width*0.5)...(boxCourtArea.frame.width * 0.65))
-                                summaryPerfect.append(hitTotal)
-                            }else{
-                                circle.backgroundColor = UIColor(displayP3Red: 1.0, green: 1.0, blue: 0.0, alpha: 0.3)
-                                y = Double.random(in: (boxCourtArea.frame.height*0.4)...(boxCourtArea.frame.height * 0.5))
-                                x = Double.random(in: (boxCourtArea.frame.width*0.5)...(boxCourtArea.frame.width * 0.75))
-                                summaryClear.append(hitTotal)
-                            }
-                            circle.frame = CGRect(x: x, y: y, width: 8, height: 8)
-                        }
-                    }else if(name == "Experienced"){
-                        if(response["distance"]! < 3){
-                            hitFail += 1
-                            status = "Fail"
-                        }else if(response["distance"]! < 30){
-                            hitSuccess += 1
-                            hitPerfect += 1
-                        }else if(response["distance"]! < 50){
-                            hitSuccess += 1
-                        }else{
-                            hitFail += 1
-                            status = "Fail"
-                        }
-                    }else if(name == "Advanced"){
-                       
-                    }
-                    
-                    
-                    
-                    print("HIT : \(hitTotal) SUCCESS : \(hitSuccess) FAIL : \(hitFail)")
-                    
-                    let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
-                    arrHitStatistics.append(newData)
-                
-                    text1.text = String(format: "%02d", hitTotal)
-                    textClear.text = String(format: "%02d", hitSuccess)
-                    text3.text = String(format: "%02d", hitTargetApp)
-                    
-                   
-                    
-                    circle.layer.cornerRadius = circle.frame.size.width / 2
-                    circle.clipsToBounds = true
-                    self.boxCourtArea.addSubview(circle)
-                    
-                    let durationTime = remainingTimeFix - remainingTime
-                    let minutes = durationTime / 60
-                    let seconds = durationTime % 60
-                    let duration = String(format: "%02d:%02d", minutes, seconds)
-                    
-                    counter.hitTotalSend(hitTotal: hitTotal)
-                    counter.hitTargetSend(hitTarget: hitTargetApp)
-                    counter.hitSuccessSend(hitSuccess: hitSuccess)
-                    counter.hitPerfectSend(hitPerfect: hitPerfect)
-                    counter.hitFailSend(hitFail: hitFail)
-                    counter.durationSend(duration: duration)
-                    
-                    durationApp = duration
-                    
-                    var menuState = "result"
-                    
-                    if(hitTargetApp > 0){
-                        if(hitTotal >= hitTargetApp){
-                            counter.menuStateSend(menuState:menuState)
-                            stop()
-                        }else{
-                            menuState = "stillPlay"
-                            counter.menuStateSend(menuState:menuState)
-                        }
-                    }else{
-                        menuState = "stillPlay"
-                        counter.menuStateSend(menuState:menuState)
-                    }
-                    
-                    menuStateApp = menuState
                     
                 }
             }
@@ -1237,8 +1323,8 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
         do {
             // Following optional bounds by checking for the moving average radius
             // of the trajectories the app is looking for.
-            detectTrajectoryRequest.objectMinimumNormalizedRadius = 5.0 / Float(1920.0)
-            detectTrajectoryRequest.objectMaximumNormalizedRadius = 30.0 / Float(1920.0)
+            detectTrajectoryRequest.objectMinimumNormalizedRadius = 10.0 / Float(1920.0)
+            detectTrajectoryRequest.objectMaximumNormalizedRadius = 50.0 / Float(1920.0)
             
             // Help manage the real-time use case to improve the precision versus delay tradeoff.
             detectTrajectoryRequest.targetFrameTime = CMTimeMake(value: 1, timescale: 60)
