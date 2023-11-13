@@ -805,6 +805,7 @@ class ContentAnalysisViewController: UIViewController,
     
     // MARK: - Public Methods
     
+    
     // The sample app calls this when the camera view delegate begins reading
     // frames of a video buffer.
     func setUpDetectTrajectoriesRequestWithMaxDimension() {
@@ -827,7 +828,11 @@ class ContentAnalysisViewController: UIViewController,
             }
             
             DispatchQueue.main.async {
-                self?.processTrajectoryObservation(results: results)
+                if(self!.name == "Intermediate" || self!.name == "Experienced"){
+                    self?.processTrajectoryObservation(results: results)
+                }else if(self!.name == "Advanced"){
+                    self?.processTrajectoryObservationLevel3(results: results)
+                }
             }
             
         }
@@ -933,7 +938,6 @@ class ContentAnalysisViewController: UIViewController,
         for (index, val) in existingTrajectory.enumerated() {
             if(!results.contains(val)){
                 currentPoints = trajectoryDictionary[val]!
-                let firstX = currentPoints.first?.x ?? 0.0
                 trajectoryView.performTransition(.fadeIn, duration: 0.05)
                 trajectoryView.points = currentPoints
                 let response = trajectoryView.updatePathLayer()
@@ -967,8 +971,133 @@ class ContentAnalysisViewController: UIViewController,
                     }
                     let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
                     arrHitStatistics.append(newData)
-                }else if(name == "Advanced"){
-                   
+                }
+                
+                
+                print("HIT : \(hitTotal) SUCCESS : \(hitSuccess) FAIL : \(hitFail)")
+                
+                
+                text1.text = String(format: "%02d", hitTotal)
+                textClear.text = String(format: "%02d", hitSuccess)
+                text3.text = String(format: "%02d", hitTargetApp)
+                
+                
+                let durationTime = remainingTimeFix - remainingTime
+                let minutes = durationTime / 60
+                let seconds = durationTime % 60
+                let duration = String(format: "%02d:%02d", minutes, seconds)
+                
+                counter.hitTotalSend(hitTotal: hitTotal)
+                counter.hitTargetSend(hitTarget: hitTargetApp)
+                counter.hitSuccessSend(hitSuccess: hitSuccess)
+                counter.hitPerfectSend(hitPerfect: hitPerfect)
+                counter.hitFailSend(hitFail: hitFail)
+                counter.durationSend(duration: duration)
+                
+                durationApp = duration
+                
+                var menuState = "result"
+                
+                if(hitTargetApp > 0){
+                    if(hitTotal >= hitTargetApp){
+                        counter.menuStateSend(menuState:menuState)
+                        stop()
+                    }else{
+                        menuState = "stillPlay"
+                        counter.menuStateSend(menuState:menuState)
+                    }
+                }else{
+                    menuState = "stillPlay"
+                    counter.menuStateSend(menuState:menuState)
+                }
+                
+                menuStateApp = menuState
+                
+            }
+        }
+//        if(results.count < 1){
+//            existingTrajectory.removeAll()
+//        }
+    }
+    
+    
+    private func processTrajectoryObservationLevel3(results: [VNTrajectoryObservation]) {
+
+        if(!isRecording){
+            return
+        }
+        
+        if menuStateApp == "result" {
+            stop()
+        }
+        
+//        guard !results.isEmpty else {
+//            existingTrajectory.removeAll()
+//            trajectoryView.resetPath()
+//            return
+//        }
+        
+        var arrResult:[String] = []
+        for trajectory in results {
+            arrResult.append(trajectory.uuid.uuidString)
+            
+            if filterParabolaLevel3(trajectory: trajectory) {
+                currentPoints = trajectoryDictionary[trajectory.uuid.uuidString]!
+                let firstX = currentPoints.first?.x ?? 0.0
+                let lastX = currentPoints.last?.x ?? 0.0
+                let firstY = currentPoints.first?.y ?? 0.0
+                let lastY = currentPoints.last?.y ?? 0.0
+                let trajectoryLength = lastX - firstX
+                let trajectoryHeight = firstY - lastY
+                
+                print("DBUG : \(trajectoryLength) - \(trajectoryHeight)")
+                
+                if(!existingTrajectory.contains(trajectory.uuid.uuidString)
+                   && (trajectoryHeight > 0.05 || trajectoryLength > 0.05)
+                ){
+                    existingTrajectory.append(trajectory.uuid.uuidString)
+                }
+            }else{
+              
+            }
+        }
+        
+        Task {
+            do {
+                try await getResultLevel3(results:arrResult)
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+       
+        
+    }
+    
+    private func getResultLevel3(results: [String]) async throws{
+        for (index, val) in existingTrajectory.enumerated() {
+            if(!results.contains(val)){
+                currentPoints = trajectoryDictionary[val]!
+                trajectoryView.performTransition(.fadeIn, duration: 0.05)
+                trajectoryView.points = currentPoints
+                let response = trajectoryView.updatePathLayer()
+                print(response)
+                if existingTrajectory.indices.contains(index) {
+                    existingTrajectory.remove(at: index)
+                } else {
+                    print("Index out of bounds")
+                }
+                if(name == "Advanced"){
+                    hitTotal += 1
+                    var status = "Success"
+                    if(response.0 == "Success"){
+                         status = "Success"
+                        hitSuccess += 1
+                    }else if(response.0 == "Fail"){
+                         status = "Fail"
+                        hitFail += 1
+                    }
+                    let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                    arrHitStatistics.append(newData)
                 }
                 
                 
@@ -1018,120 +1147,7 @@ class ContentAnalysisViewController: UIViewController,
 //            existingTrajectory.removeAll()
 //        }
     }
-    
-    private func processTrajectoryObservation2(results: [VNTrajectoryObservation]) {
-        
-        if(!isRecording){
-            return
-        }
-
-        if menuStateApp == "result" {
-//            print("STOP")
-            stop()
-        }else{
-//            print("PLAY")
-        }
-//        print("Length of menuStateApp: \(menuStateApp) \(menuStateApp.count)")
-        
-        
-        // Clear and reset the trajectory view if there are no trajectories.
-        guard !results.isEmpty else {
-            trajectoryView.resetPath()
-            return
-        }
-        
-        delayCorrect = 0
-        delayIncorrect = 0
-        
-        for trajectory in results {
-            // Filter the trajectory.
-            if filterParabola(trajectory: trajectory) {
-                currentPoints = correctTrajectoryPath(trajectoryToCorrect: trajectory)
-                correctPoints = currentPoints
-                delayCorrect += 1
-                lastTrajectory = trajectory
-                
-                
-                if(!existingTrajectory.contains(trajectory.uuid.uuidString)){
-                    existingTrajectory.append(trajectory.uuid.uuidString)
-                }
-                
-                
-                
-                trajectoryView.performTransition(.fadeIn, duration: 0.05)
-                trajectoryView.points = correctPoints
-                let response = trajectoryView.updatePathLayer()
-                print(response)
-                
-                
-                
-            } else {
-                delayIncorrect += 1
-            }
-        
-
-            
-        }
-       
-        
-        
-        return
-        
-        correctPath.append(delayCorrect)
-        incorrectPath.append(delayIncorrect)
-        
-        if(correctPath.count > 1){
-//            if(correctPath[correctPath.count-2] > 0 && correctPath[correctPath.count-1] == 0 && incorrectPath[incorrectPath.count-2] > 0){
-            if(correctPath[correctPath.count-2] > 0
-               && correctPath[correctPath.count-1] == 0
-               && !existingTrajectory.contains(lastTrajectory.uuid.uuidString)){
-                
-                existingTrajectory.append(lastTrajectory.uuid.uuidString)
-                
-                let firstX = correctPoints.first?.x ?? 0.0
-                let lastX = correctPoints.last?.x ?? 0.0
-                let firstY = correctPoints.first?.y ?? 0.0
-                let lastY = correctPoints.last?.y ?? 0.0
-                let trajectoryLength = lastX - firstX
-                
-                var isTrue = false
-                
-                if(trajectoryLength >= 0.2 && firstX <= 0.4){
-                    isTrue = true
-                }
-                
-                if(isTrue){
-                    trajectoryView.performTransition(.fadeIn, duration: 0.05)
-                    trajectoryView.points = correctPoints
-                    let response = trajectoryView.updatePathLayer()
-                    print(response)
-                    trajectoryCount += 1
-                    correctPath.removeAll()
-                    incorrectPath.removeAll()
-                    
-                    
-                    
-                    
-                    var x = boxCourtArea.bounds.maxX * correctPoints.last!.x
-                    var y = boxCourtArea.bounds.maxY * correctPoints.last!.y
-                    if(y < 20){
-                        y = boxCourtArea.bounds.maxY / abs(y)
-                    }
-                    let circle = UIView()
-                    
-                    //                    y = Double.random(in: (boxCourtArea.frame.width*0.5)...(boxCourtArea.frame.width * 0.75))
-                    
-                    
-                    
-                }
-            }
-        }
-//        print("SUMMARY")
-//        print(summaryFail)
-//        print(summaryClear)
-//        print(summaryPerfect)
-    }
-    
+   
     
     private var hitSummary: [String: [Int]] = [:]
     
@@ -1150,17 +1166,6 @@ class ContentAnalysisViewController: UIViewController,
             }
         }
         
-        /**
-         Filter the trajectory with the following conditions:
-         - The trajectory moves from left to right.
-         - The trajectory starts in the first half of the region of interest.
-         - The trajectory length increases to 8.
-         - The trajectory contains a parabolic equation constant a, less than or equal to 0, and implies there
-         are either straight lines or downward-facing lines.
-         - The trajectory confidence is greater than 0.9.
-         
-         Add additional filters based on trajectory speed, location, and properties.
-         */
         if trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < trajectoryDictionary[trajectory.uuid.uuidString]!.last!.x
             && trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < 0.5
             && trajectoryDictionary[trajectory.uuid.uuidString]!.count >= 8
@@ -1180,11 +1185,6 @@ class ContentAnalysisViewController: UIViewController,
             return []
         }
         
-        /**
-         This is inside region-of-interest space where both x and y range between 0.0 and 1.0.
-         If a left-to-right moving trajectory begins too far from a fixed region, extrapolate it back
-         to that region using the available quadratic equation coefficients.
-         */
         if basePointX > 0.1 {
             
             // Compute the initial trajectory location points based on the average
@@ -1208,7 +1208,63 @@ class ContentAnalysisViewController: UIViewController,
                 }
                 basePointX = nextXValue
             }
-            // Update the dictionary with the corrected path.
+            trajectoryDictionary[trajectoryToCorrect.uuid.uuidString] = basePoints
+            
+        }
+        return basePoints
+        
+    }
+    
+    private func filterParabolaLevel3(trajectory: VNTrajectoryObservation) -> Bool {
+        
+        if trajectoryDictionary[trajectory.uuid.uuidString] == nil {
+            trajectoryDictionary[trajectory.uuid.uuidString] = trajectory.projectedPoints
+        } else {
+            trajectoryDictionary[trajectory.uuid.uuidString] = trajectory.projectedPoints
+        }
+        
+       
+        if trajectoryDictionary[trajectory.uuid.uuidString]!.first!.y > trajectoryDictionary[trajectory.uuid.uuidString]!.last!.y
+            && trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < trajectoryDictionary[trajectory.uuid.uuidString]!.last!.x
+            && trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < 0.5
+        {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
+    private func correctTrajectoryPathLevel3(trajectoryToCorrect: VNTrajectoryObservation) -> [VNPoint] {
+        
+        guard var basePoints = trajectoryDictionary[trajectoryToCorrect.uuid.uuidString],
+              var basePointX = basePoints.first?.x else {
+            return []
+        }
+        
+        if basePointX > 0.1 {
+            
+            // Compute the initial trajectory location points based on the average
+            // change in the x direction of the first five points.
+            var sum = 0.0
+            for i in 0..<5 {
+                sum = sum + basePoints[i + 1].x - basePoints[i].x
+            }
+            let averageDifferenceInX = sum / 5.0
+            
+            while basePointX > 0.1 {
+                let nextXValue = basePointX - averageDifferenceInX
+                let aXX = Double(trajectoryToCorrect.equationCoefficients[0]) * nextXValue * nextXValue
+                let bX = Double(trajectoryToCorrect.equationCoefficients[1]) * nextXValue
+                let c = Double(trajectoryToCorrect.equationCoefficients[2])
+                
+                let nextYValue = aXX + bX + c
+                if nextYValue > 0 {
+                    // Insert values into the trajectory path present in the positive Cartesian space.
+                    basePoints.insert(VNPoint(x: nextXValue, y: nextYValue), at: 0)
+                }
+                basePointX = nextXValue
+            }
             trajectoryDictionary[trajectoryToCorrect.uuid.uuidString] = basePoints
             
         }
@@ -1285,7 +1341,7 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
         }else if(name == "Experienced"){
             normalizedFrame = CGRect(x: 0.21, y: 0.0, width: 0.77, height: 0.95)
         }else if(name == "Advanced"){
-            normalizedFrame = CGRect(x: 0.21, y: 0.25, width: 0.77, height: 0.75)
+            normalizedFrame = CGRect(x: 0.0, y: 0.0, width:1, height: 1)
         }
         
         
