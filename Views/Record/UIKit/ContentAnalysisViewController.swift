@@ -348,6 +348,7 @@ class ContentAnalysisViewController: UIViewController,
         buttonWhite.removeFromSuperview()
         boxCountdown.removeFromSuperview()
         boxScore.removeFromSuperview()
+        boxNet.removeFromSuperview()
         
        
         
@@ -491,39 +492,40 @@ class ContentAnalysisViewController: UIViewController,
     }
     
     
+    let boxNet = UIView()
+    
     func setupView(){
         
-        let boxNet = UIView()
         boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         //        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
         boxNet.layer.cornerRadius = 4
         
-        let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+//        let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         
-        var netName = "NetLevel1B"
-        if(name == "Intermediate"){
-            netName = "NetLevel2B"
-            if let image = UIImage(named: netName) {
-                imageNetView.image = image
-            }
-            boxNet.addSubview(imageNetView)
-            view.addSubview(boxNet)
-        }else if(name == "Experienced"){
-            netName = "NetLevel2B"
-            if let image = UIImage(named: netName) {
-                imageNetView.image = image
-            }
-            boxNet.addSubview(imageNetView)
-            view.addSubview(boxNet)
-        }else if(name == "Advanced"){
-            netName = "NetLevel3B"
-            if let image = UIImage(named: netName) {
-                imageNetView.image = image
-            }
-            boxNet.addSubview(imageNetView)
-            view.addSubview(boxNet)
-        }
-        
+//        var netName = "NetLevel1B"
+//        if(name == "Intermediate"){
+//            netName = "NetLevel2B"
+//            if let image = UIImage(named: netName) {
+//                imageNetView.image = image
+//            }
+//            boxNet.addSubview(imageNetView)
+//            view.addSubview(boxNet)
+//        }else if(name == "Experienced"){
+//            netName = "NetLevel2B"
+//            if let image = UIImage(named: netName) {
+//                imageNetView.image = image
+//            }
+//            boxNet.addSubview(imageNetView)
+//            view.addSubview(boxNet)
+//        }else if(name == "Advanced"){
+//            netName = "NetLevel3B"
+//            if let image = UIImage(named: netName) {
+//                imageNetView.image = image
+//            }
+//            boxNet.addSubview(imageNetView)
+//            view.addSubview(boxNet)
+//        }
+//        
         let duration = "00:00"
         counter.hitTotalSend(hitTotal: hitTotal)
         counter.hitTargetSend(hitTarget: hitTargetApp)
@@ -572,8 +574,9 @@ class ContentAnalysisViewController: UIViewController,
         labelCountdown.font = UIFont(name: "Urbanist-Medium", size: 120)
         labelCountdown.font = UIFont(name: "Urbanist", size: 120)
         boxNet.insertSubview(labelCountdown, at: 2)
-        labelCountdown.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        labelCountdown.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+
+        labelCountdown.centerXAnchor.constraint(equalTo: boxNet.centerXAnchor).isActive = true
+        labelCountdown.centerYAnchor.constraint(equalTo: boxNet.centerYAnchor).isActive = true
         
         let boxWidth: CGFloat = 82
         let boxHeight: CGFloat = 36
@@ -643,99 +646,40 @@ class ContentAnalysisViewController: UIViewController,
         
         
 //        let boxNet = UIView()
-        //        boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        ////        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
-        //        boxNet.layer.cornerRadius = 4
-        //
-        //        let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        //        if let image = UIImage(named: "Net") {
-        //            imageNetView.image = image
-        //        }
-        //        boxNet.addSubview(imageNetView)
+//                boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+//        //        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
+//                boxNet.layer.cornerRadius = 4
+//        
+//                let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+//                if let image = UIImage(named: "Net") {
+//                    imageNetView.image = image
+//                }
+//                boxNet.addSubview(imageNetView)
         
         
-        
-//        let boxCourt = UIView()
-//        boxCourt.frame = CGRect(x: 20, y: 20, width: 110, height: 135)
-//        boxCourt.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
-//        boxCourt.layer.cornerRadius = 4
-//
-//        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 100, height: 108))
-//        if let image = UIImage(named: "Court") {
-//            imageView.image = image
-//        }
-//        boxCourt.addSubview(imageView)
-//
-//        let textNet = UILabel()
-//        textNet.text = "NET"
-//        textNet.font = UIFont(name: "Urbanist", size: 15)
-//        textNet.textColor = UIColor(red: 0.86, green: 0.79, blue: 0.15, alpha: 1)
-//        textNet.textAlignment = .center
-//        textNet.frame = CGRect(x: 0, y: 114, width: boxCourt.frame.width, height: 20)
-//        boxCourt.addSubview(textNet)
-//
-//
-//        boxCourtArea.frame = CGRect(x: 0, y: 0, width: boxCourt.frame.width, height: boxCourt.frame.height-15)
-//        //        boxCourtArea.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.4)
-//        boxCourtArea.layer.cornerRadius = 4
-//        boxCourt.addSubview(boxCourtArea)
-//
-//        let boxScore = UIView()
-//        boxScore.frame = CGRect(x: boxCourt.frame.width + 30, y: 20, width: 150, height: 69)
-//        boxScore.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
-//        boxScore.layer.cornerRadius = 4
-//
-//
-//        text1.text = String(format: "%02d", hitTotal)
-//        text1.font = UIFont(name: "Urbanist", size: 34)
-//        text1.textColor = UIColor.white
-//        text1.textAlignment = .center
-//        text1.frame = CGRect(x: 0, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
-//
-//        text2.text = "/"
-//        text2.font = UIFont(name: "Urbanist", size: 34)
-//        text2.textColor = UIColor.white
-//        text2.textAlignment = .center
-//        text2.frame = CGRect(x: ((boxScore.frame.width - 20) / 2), y: 10, width: 20, height: 30)
-//
-//        text3.text = String(format: "%02d", hitTargetApp)
-//        text3.font = UIFont(name: "Urbanist", size: 34)
-//        text3.textColor = UIColor.white
-//        text3.textAlignment = .center
-//        text3.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
-//
-//        let text4 = UILabel()
-//        text4.text = "Attemp"
-//        text4.font = UIFont(name: "Urbanist", size: 15)
-//        text4.textColor = UIColor.white
-//        text4.textAlignment = .center
-//        text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width - 20) / 2, height: 30)
-//
-//
-//        let text5 = UILabel()
-//        text5.text = "Target"
-//        text5.font = UIFont(name: "Urbanist", size: 15)
-//        text5.textColor = UIColor.white
-//        text5.textAlignment = .center
-//        text5.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 40, width: (boxScore.frame.width - 20) / 2, height: 30)
-//
-//        // Add the labels to the boxScore
-//        boxScore.addSubview(text1)
-//        boxScore.addSubview(text2)
-//        boxScore.addSubview(text3)
-//        boxScore.addSubview(text4)
-//        boxScore.addSubview(text5)
-//
-//        self.view.addSubview(boxScore)
-//        self.view.addSubview(boxCourt)
-//        self.view.addSubview(boxNet)
-        
-//        let boxNet = UIView()
+        if(name == "Advanced"){
+            let boxCourtView = UIView()
+            boxCourtView.frame = CGRect(x: view.frame.width - 20 - 110 - 75, y: view.frame.height - 20 - 135, width: 110, height: 135)
+            boxCourtView.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
+            boxCourtView.layer.cornerRadius = 4
+
+            let imageCourtView = UIImageView(frame: CGRect(x: 5, y: 5, width: 100, height: 108))
+            if let image = UIImage(named: "CourtBox") {
+                imageCourtView.image = image
+            }
+            boxCourtView.addSubview(imageCourtView)
+            boxNet.addSubview(boxCourtView)
+            
+//            let rightArea = UIView()
+//            rightArea.
+//            boxCourtView.addSubview(rightArea)
+            
+        }
         
         let boxCourt = UIView()
         boxCourt.frame = CGRect(x: 20, y: 20, width: 0, height: 0)
         
-        boxScore.frame = CGRect(x: boxCourt.frame.width + 30, y: 20, width: 180, height: 69)
+        boxScore.frame = CGRect(x: boxCourt.frame.width + 30 + 70, y: 20, width: 180, height: 69)
         boxScore.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
         boxScore.layer.cornerRadius = 4
         
@@ -764,7 +708,7 @@ class ContentAnalysisViewController: UIViewController,
         text3.frame = CGRect(x: (boxScore.frame.width/3) * 2, y: 10, width: (boxScore.frame.width/3), height: 30)
         
         let text4 = UILabel()
-        text4.text = "Clear"
+        text4.text = "Success"
         text4.font = UIFont(name: "Urbanist", size: 15)
         text4.textColor = UIColor.white
         text4.textAlignment = .center
@@ -772,7 +716,7 @@ class ContentAnalysisViewController: UIViewController,
         
         
         let text5 = UILabel()
-        text5.text = "Target"
+        text5.text = "Attempt"
         text5.font = UIFont(name: "Urbanist", size: 15)
         text5.textColor = UIColor.white
         text5.textAlignment = .center
@@ -1050,7 +994,7 @@ class ContentAnalysisViewController: UIViewController,
                 let trajectoryLength = lastX - firstX
                 let trajectoryHeight = firstY - lastY
                 
-                print("DBUG : \(trajectoryLength) - \(trajectoryHeight)")
+                print("DBUG : \(trajectoryLength) - \(trajectoryHeight) - \(currentPoints.count)")
                 
                 if(!existingTrajectory.contains(trajectory.uuid.uuidString)
                    && (trajectoryHeight > 0.05 || trajectoryLength > 0.05)
@@ -1223,7 +1167,6 @@ class ContentAnalysisViewController: UIViewController,
             trajectoryDictionary[trajectory.uuid.uuidString] = trajectory.projectedPoints
         }
         
-       
         if trajectoryDictionary[trajectory.uuid.uuidString]!.first!.y > trajectoryDictionary[trajectory.uuid.uuidString]!.last!.y
             && trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < trajectoryDictionary[trajectory.uuid.uuidString]!.last!.x
             && trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < 0.5

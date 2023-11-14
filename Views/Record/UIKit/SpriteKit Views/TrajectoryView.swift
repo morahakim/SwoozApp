@@ -50,8 +50,9 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         super.init(frame: frame)
         allowsTransparency = true
         backgroundColor = UIColor.clear
+        glowingBallScene = BallScene(size: CGSize(width: frame.size.width, height: frame.size.height))
+        presentScene(glowingBallScene!)
         setupLayer()
-        
     }
 
     // MARK: - Public Methods
