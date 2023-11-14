@@ -199,6 +199,7 @@ struct TechniqueDetailView: View {
                 forKey: "orientation"
             )
             AppDelegate.orientationLock = .landscapeRight
+            player?.pause()
         }
         
     }

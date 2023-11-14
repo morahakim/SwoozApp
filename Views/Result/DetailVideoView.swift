@@ -20,6 +20,7 @@ struct DetailVideoView: View {
     
     @State private var isEditing = false
     @State private var editedName = ""
+    @State private var isShare: Bool = false
     
     @State private var attempData: [HitStatistics] = []
     
@@ -66,8 +67,8 @@ struct DetailVideoView: View {
                                 .foregroundColor(.greenMain)
                                 .padding()
                                 .onTapGesture {
-                                    player?.play()
                                     isPlay.toggle()
+                                    player?.seek(to: .zero)
                                 }
                         }
                     }
@@ -198,24 +199,27 @@ struct DetailVideoView: View {
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
                                 
-                                VStack(spacing: 15) {
-                                    if attempData.count > 0 {
-                                        ForEach(0..<((attempData.count + 9) / 10)) { row in
-                                            HStack(){
-                                                ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
-                                                    Text(i.hitNumber)
-                                                        .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
-                                                        .font(Font.custom(i.hitStatus == "Success" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                ScrollView {
+                                    VStack(spacing: 15) {
+                                        if attempData.count > 0 {
+                                            ForEach(0..<((attempData.count + 9) / 10)) { row in
+                                                HStack(){
+                                                    ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
+                                                        Text(i.hitNumber)
+                                                            .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
+                                                            .font(Font.custom(i.hitStatus == "Success" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                                    }
                                                 }
                                             }
+                                        } else {
+                                            Text("No data available")
                                         }
-                                    } else {
-                                        Text("No data available")
                                     }
+                                    
+                                    .padding()
+                                    Spacer()
+
                                 }
-                                
-                                .padding()
-                                Spacer()
                             }
                         }
                         //                        .padding(.top)
@@ -237,6 +241,7 @@ struct DetailVideoView: View {
                 }
                 if let url = item.url {
                     player = AVPlayer(url: URL(string: url)!)
+                    player?.play()
                 }
                 itemWidth = screenWith / 10
             }
@@ -248,11 +253,19 @@ struct DetailVideoView: View {
                     } label: {
                         Image(systemName: isEditing ? "checkmark" : "pencil")
                     }
+                }
+                ToolbarItem {
+                    Button {
+                        isShare.toggle()
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
                     
                 }
             }
             
         }
+        .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])
         
         
         
