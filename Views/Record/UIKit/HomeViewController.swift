@@ -97,7 +97,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         super.viewDidLoad()
         setupCamera()
         setupView()
-        contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
 //        menuStateApp = "placement"
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateStateMenu), userInfo: nil, repeats: true)
         contentAnalysisViewController.contentAnalysisDelegate = self
@@ -218,10 +217,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     @objc func skipVideo() {
         print("skipVideo")
+        contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
         playerViewController.player?.pause()
         setupViewParent.removeFromSuperview()
         setupViewChild.removeFromSuperview()
-        
     }
     
     @objc func updateStateMenu(){

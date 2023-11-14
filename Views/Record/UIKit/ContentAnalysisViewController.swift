@@ -348,6 +348,7 @@ class ContentAnalysisViewController: UIViewController,
         buttonWhite.removeFromSuperview()
         boxCountdown.removeFromSuperview()
         boxScore.removeFromSuperview()
+        boxNet.removeFromSuperview()
         
        
         
@@ -491,39 +492,40 @@ class ContentAnalysisViewController: UIViewController,
     }
     
     
+    let boxNet = UIView()
+    
     func setupView(){
         
-        let boxNet = UIView()
         boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         //        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
         boxNet.layer.cornerRadius = 4
         
-        let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+//        let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         
-        var netName = "NetLevel1B"
-        if(name == "Intermediate"){
-            netName = "NetLevel2B"
-            if let image = UIImage(named: netName) {
-                imageNetView.image = image
-            }
-            boxNet.addSubview(imageNetView)
-            view.addSubview(boxNet)
-        }else if(name == "Experienced"){
-            netName = "NetLevel2B"
-            if let image = UIImage(named: netName) {
-                imageNetView.image = image
-            }
-            boxNet.addSubview(imageNetView)
-            view.addSubview(boxNet)
-        }else if(name == "Advanced"){
-            netName = "NetLevel3B"
-            if let image = UIImage(named: netName) {
-                imageNetView.image = image
-            }
-            boxNet.addSubview(imageNetView)
-            view.addSubview(boxNet)
-        }
-        
+//        var netName = "NetLevel1B"
+//        if(name == "Intermediate"){
+//            netName = "NetLevel2B"
+//            if let image = UIImage(named: netName) {
+//                imageNetView.image = image
+//            }
+//            boxNet.addSubview(imageNetView)
+//            view.addSubview(boxNet)
+//        }else if(name == "Experienced"){
+//            netName = "NetLevel2B"
+//            if let image = UIImage(named: netName) {
+//                imageNetView.image = image
+//            }
+//            boxNet.addSubview(imageNetView)
+//            view.addSubview(boxNet)
+//        }else if(name == "Advanced"){
+//            netName = "NetLevel3B"
+//            if let image = UIImage(named: netName) {
+//                imageNetView.image = image
+//            }
+//            boxNet.addSubview(imageNetView)
+//            view.addSubview(boxNet)
+//        }
+//
         let duration = "00:00"
         counter.hitTotalSend(hitTotal: hitTotal)
         counter.hitTargetSend(hitTarget: hitTargetApp)
@@ -572,8 +574,9 @@ class ContentAnalysisViewController: UIViewController,
         labelCountdown.font = UIFont(name: "Urbanist-Medium", size: 120)
         labelCountdown.font = UIFont(name: "Urbanist", size: 120)
         boxNet.insertSubview(labelCountdown, at: 2)
-        labelCountdown.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        labelCountdown.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+
+        labelCountdown.centerXAnchor.constraint(equalTo: boxNet.centerXAnchor).isActive = true
+        labelCountdown.centerYAnchor.constraint(equalTo: boxNet.centerYAnchor).isActive = true
         
         let boxWidth: CGFloat = 82
         let boxHeight: CGFloat = 36
@@ -643,99 +646,40 @@ class ContentAnalysisViewController: UIViewController,
         
         
 //        let boxNet = UIView()
-        //        boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        ////        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
-        //        boxNet.layer.cornerRadius = 4
-        //
-        //        let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        //        if let image = UIImage(named: "Net") {
-        //            imageNetView.image = image
-        //        }
-        //        boxNet.addSubview(imageNetView)
+//                boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+//        //        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
+//                boxNet.layer.cornerRadius = 4
+//
+//                let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+//                if let image = UIImage(named: "Net") {
+//                    imageNetView.image = image
+//                }
+//                boxNet.addSubview(imageNetView)
         
         
-        
-//        let boxCourt = UIView()
-//        boxCourt.frame = CGRect(x: 20, y: 20, width: 110, height: 135)
-//        boxCourt.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
-//        boxCourt.layer.cornerRadius = 4
-//
-//        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 100, height: 108))
-//        if let image = UIImage(named: "Court") {
-//            imageView.image = image
-//        }
-//        boxCourt.addSubview(imageView)
-//
-//        let textNet = UILabel()
-//        textNet.text = "NET"
-//        textNet.font = UIFont(name: "Urbanist", size: 15)
-//        textNet.textColor = UIColor(red: 0.86, green: 0.79, blue: 0.15, alpha: 1)
-//        textNet.textAlignment = .center
-//        textNet.frame = CGRect(x: 0, y: 114, width: boxCourt.frame.width, height: 20)
-//        boxCourt.addSubview(textNet)
-//
-//
-//        boxCourtArea.frame = CGRect(x: 0, y: 0, width: boxCourt.frame.width, height: boxCourt.frame.height-15)
-//        //        boxCourtArea.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.4)
-//        boxCourtArea.layer.cornerRadius = 4
-//        boxCourt.addSubview(boxCourtArea)
-//
-//        let boxScore = UIView()
-//        boxScore.frame = CGRect(x: boxCourt.frame.width + 30, y: 20, width: 150, height: 69)
-//        boxScore.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
-//        boxScore.layer.cornerRadius = 4
-//
-//
-//        text1.text = String(format: "%02d", hitTotal)
-//        text1.font = UIFont(name: "Urbanist", size: 34)
-//        text1.textColor = UIColor.white
-//        text1.textAlignment = .center
-//        text1.frame = CGRect(x: 0, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
-//
-//        text2.text = "/"
-//        text2.font = UIFont(name: "Urbanist", size: 34)
-//        text2.textColor = UIColor.white
-//        text2.textAlignment = .center
-//        text2.frame = CGRect(x: ((boxScore.frame.width - 20) / 2), y: 10, width: 20, height: 30)
-//
-//        text3.text = String(format: "%02d", hitTargetApp)
-//        text3.font = UIFont(name: "Urbanist", size: 34)
-//        text3.textColor = UIColor.white
-//        text3.textAlignment = .center
-//        text3.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 10, width: (boxScore.frame.width - 20) / 2, height: 30)
-//
-//        let text4 = UILabel()
-//        text4.text = "Attemp"
-//        text4.font = UIFont(name: "Urbanist", size: 15)
-//        text4.textColor = UIColor.white
-//        text4.textAlignment = .center
-//        text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width - 20) / 2, height: 30)
-//
-//
-//        let text5 = UILabel()
-//        text5.text = "Target"
-//        text5.font = UIFont(name: "Urbanist", size: 15)
-//        text5.textColor = UIColor.white
-//        text5.textAlignment = .center
-//        text5.frame = CGRect(x: ((boxScore.frame.width - 20) / 2) + 20, y: 40, width: (boxScore.frame.width - 20) / 2, height: 30)
-//
-//        // Add the labels to the boxScore
-//        boxScore.addSubview(text1)
-//        boxScore.addSubview(text2)
-//        boxScore.addSubview(text3)
-//        boxScore.addSubview(text4)
-//        boxScore.addSubview(text5)
-//
-//        self.view.addSubview(boxScore)
-//        self.view.addSubview(boxCourt)
-//        self.view.addSubview(boxNet)
-        
-//        let boxNet = UIView()
+        if(name == "Advanced"){
+            let boxCourtView = UIView()
+            boxCourtView.frame = CGRect(x: view.frame.width - 20 - 110 - 75, y: view.frame.height - 20 - 135, width: 110, height: 135)
+            boxCourtView.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
+            boxCourtView.layer.cornerRadius = 4
+
+            let imageCourtView = UIImageView(frame: CGRect(x: 5, y: 5, width: 100, height: 108))
+            if let image = UIImage(named: "CourtBox") {
+                imageCourtView.image = image
+            }
+            boxCourtView.addSubview(imageCourtView)
+            boxNet.addSubview(boxCourtView)
+            
+//            let rightArea = UIView()
+//            rightArea.
+//            boxCourtView.addSubview(rightArea)
+            
+        }
         
         let boxCourt = UIView()
         boxCourt.frame = CGRect(x: 20, y: 20, width: 0, height: 0)
         
-        boxScore.frame = CGRect(x: boxCourt.frame.width + 30, y: 20, width: 180, height: 69)
+        boxScore.frame = CGRect(x: boxCourt.frame.width + 30 + 70, y: 20, width: 180, height: 69)
         boxScore.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
         boxScore.layer.cornerRadius = 4
         
@@ -764,7 +708,7 @@ class ContentAnalysisViewController: UIViewController,
         text3.frame = CGRect(x: (boxScore.frame.width/3) * 2, y: 10, width: (boxScore.frame.width/3), height: 30)
         
         let text4 = UILabel()
-        text4.text = "Clear"
+        text4.text = "Success"
         text4.font = UIFont(name: "Urbanist", size: 15)
         text4.textColor = UIColor.white
         text4.textAlignment = .center
@@ -772,7 +716,7 @@ class ContentAnalysisViewController: UIViewController,
         
         
         let text5 = UILabel()
-        text5.text = "Target"
+        text5.text = "Attempt"
         text5.font = UIFont(name: "Urbanist", size: 15)
         text5.textColor = UIColor.white
         text5.textAlignment = .center
@@ -805,6 +749,7 @@ class ContentAnalysisViewController: UIViewController,
     
     // MARK: - Public Methods
     
+    
     // The sample app calls this when the camera view delegate begins reading
     // frames of a video buffer.
     func setUpDetectTrajectoriesRequestWithMaxDimension() {
@@ -827,7 +772,11 @@ class ContentAnalysisViewController: UIViewController,
             }
             
             DispatchQueue.main.async {
-                self?.processTrajectoryObservation(results: results)
+                if(self!.name == "Intermediate" || self!.name == "Experienced"){
+                    self?.processTrajectoryObservation(results: results)
+                }else if(self!.name == "Advanced"){
+                    self?.processTrajectoryObservationLevel3(results: results)
+                }
             }
             
         }
@@ -933,12 +882,15 @@ class ContentAnalysisViewController: UIViewController,
         for (index, val) in existingTrajectory.enumerated() {
             if(!results.contains(val)){
                 currentPoints = trajectoryDictionary[val]!
-                let firstX = currentPoints.first?.x ?? 0.0
                 trajectoryView.performTransition(.fadeIn, duration: 0.05)
                 trajectoryView.points = currentPoints
                 let response = trajectoryView.updatePathLayer()
                 print(response)
-                existingTrajectory.remove(at: index)
+                if existingTrajectory.indices.contains(index) {
+                    existingTrajectory.remove(at: index)
+                } else {
+                    print("Index out of bounds")
+                }
                 if(name == "Intermediate"){
                     hitTotal += 1
                     var status = "Success"
@@ -963,8 +915,133 @@ class ContentAnalysisViewController: UIViewController,
                     }
                     let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
                     arrHitStatistics.append(newData)
-                }else if(name == "Advanced"){
-                   
+                }
+                
+                
+                print("HIT : \(hitTotal) SUCCESS : \(hitSuccess) FAIL : \(hitFail)")
+                
+                
+                text1.text = String(format: "%02d", hitTotal)
+                textClear.text = String(format: "%02d", hitSuccess)
+                text3.text = String(format: "%02d", hitTargetApp)
+                
+                
+                let durationTime = remainingTimeFix - remainingTime
+                let minutes = durationTime / 60
+                let seconds = durationTime % 60
+                let duration = String(format: "%02d:%02d", minutes, seconds)
+                
+                counter.hitTotalSend(hitTotal: hitTotal)
+                counter.hitTargetSend(hitTarget: hitTargetApp)
+                counter.hitSuccessSend(hitSuccess: hitSuccess)
+                counter.hitPerfectSend(hitPerfect: hitPerfect)
+                counter.hitFailSend(hitFail: hitFail)
+                counter.durationSend(duration: duration)
+                
+                durationApp = duration
+                
+                var menuState = "result"
+                
+                if(hitTargetApp > 0){
+                    if(hitTotal >= hitTargetApp){
+                        counter.menuStateSend(menuState:menuState)
+                        stop()
+                    }else{
+                        menuState = "stillPlay"
+                        counter.menuStateSend(menuState:menuState)
+                    }
+                }else{
+                    menuState = "stillPlay"
+                    counter.menuStateSend(menuState:menuState)
+                }
+                
+                menuStateApp = menuState
+                
+            }
+        }
+//        if(results.count < 1){
+//            existingTrajectory.removeAll()
+//        }
+    }
+    
+    
+    private func processTrajectoryObservationLevel3(results: [VNTrajectoryObservation]) {
+
+        if(!isRecording){
+            return
+        }
+        
+        if menuStateApp == "result" {
+            stop()
+        }
+        
+//        guard !results.isEmpty else {
+//            existingTrajectory.removeAll()
+//            trajectoryView.resetPath()
+//            return
+//        }
+        
+        var arrResult:[String] = []
+        for trajectory in results {
+            arrResult.append(trajectory.uuid.uuidString)
+            
+            if filterParabolaLevel3(trajectory: trajectory) {
+                currentPoints = trajectoryDictionary[trajectory.uuid.uuidString]!
+                let firstX = currentPoints.first?.x ?? 0.0
+                let lastX = currentPoints.last?.x ?? 0.0
+                let firstY = currentPoints.first?.y ?? 0.0
+                let lastY = currentPoints.last?.y ?? 0.0
+                let trajectoryLength = lastX - firstX
+                let trajectoryHeight = firstY - lastY
+                
+                print("DBUG : \(trajectoryLength) - \(trajectoryHeight) - \(currentPoints.count)")
+                
+                if(!existingTrajectory.contains(trajectory.uuid.uuidString)
+                   && (trajectoryHeight > 0.05 || trajectoryLength > 0.05)
+                ){
+                    existingTrajectory.append(trajectory.uuid.uuidString)
+                }
+            }else{
+              
+            }
+        }
+        
+        Task {
+            do {
+                try await getResultLevel3(results:arrResult)
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+       
+        
+    }
+    
+    private func getResultLevel3(results: [String]) async throws{
+        for (index, val) in existingTrajectory.enumerated() {
+            if(!results.contains(val)){
+                currentPoints = trajectoryDictionary[val]!
+                trajectoryView.performTransition(.fadeIn, duration: 0.05)
+                trajectoryView.points = currentPoints
+                let response = trajectoryView.updatePathLayer()
+                print(response)
+                if existingTrajectory.indices.contains(index) {
+                    existingTrajectory.remove(at: index)
+                } else {
+                    print("Index out of bounds")
+                }
+                if(name == "Advanced"){
+                    hitTotal += 1
+                    var status = "Success"
+                    if(response.0 == "Success"){
+                         status = "Success"
+                        hitSuccess += 1
+                    }else if(response.0 == "Fail"){
+                         status = "Fail"
+                        hitFail += 1
+                    }
+                    let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                    arrHitStatistics.append(newData)
                 }
                 
                 
@@ -1014,120 +1091,7 @@ class ContentAnalysisViewController: UIViewController,
 //            existingTrajectory.removeAll()
 //        }
     }
-    
-    private func processTrajectoryObservation2(results: [VNTrajectoryObservation]) {
-        
-        if(!isRecording){
-            return
-        }
-
-        if menuStateApp == "result" {
-//            print("STOP")
-            stop()
-        }else{
-//            print("PLAY")
-        }
-//        print("Length of menuStateApp: \(menuStateApp) \(menuStateApp.count)")
-        
-        
-        // Clear and reset the trajectory view if there are no trajectories.
-        guard !results.isEmpty else {
-            trajectoryView.resetPath()
-            return
-        }
-        
-        delayCorrect = 0
-        delayIncorrect = 0
-        
-        for trajectory in results {
-            // Filter the trajectory.
-            if filterParabola(trajectory: trajectory) {
-                currentPoints = correctTrajectoryPath(trajectoryToCorrect: trajectory)
-                correctPoints = currentPoints
-                delayCorrect += 1
-                lastTrajectory = trajectory
-                
-                
-                if(!existingTrajectory.contains(trajectory.uuid.uuidString)){
-                    existingTrajectory.append(trajectory.uuid.uuidString)
-                }
-                
-                
-                
-                trajectoryView.performTransition(.fadeIn, duration: 0.05)
-                trajectoryView.points = correctPoints
-                let response = trajectoryView.updatePathLayer()
-                print(response)
-                
-                
-                
-            } else {
-                delayIncorrect += 1
-            }
-        
-
-            
-        }
-       
-        
-        
-        return
-        
-        correctPath.append(delayCorrect)
-        incorrectPath.append(delayIncorrect)
-        
-        if(correctPath.count > 1){
-//            if(correctPath[correctPath.count-2] > 0 && correctPath[correctPath.count-1] == 0 && incorrectPath[incorrectPath.count-2] > 0){
-            if(correctPath[correctPath.count-2] > 0
-               && correctPath[correctPath.count-1] == 0
-               && !existingTrajectory.contains(lastTrajectory.uuid.uuidString)){
-                
-                existingTrajectory.append(lastTrajectory.uuid.uuidString)
-                
-                let firstX = correctPoints.first?.x ?? 0.0
-                let lastX = correctPoints.last?.x ?? 0.0
-                let firstY = correctPoints.first?.y ?? 0.0
-                let lastY = correctPoints.last?.y ?? 0.0
-                let trajectoryLength = lastX - firstX
-                
-                var isTrue = false
-                
-                if(trajectoryLength >= 0.2 && firstX <= 0.4){
-                    isTrue = true
-                }
-                
-                if(isTrue){
-                    trajectoryView.performTransition(.fadeIn, duration: 0.05)
-                    trajectoryView.points = correctPoints
-                    let response = trajectoryView.updatePathLayer()
-                    print(response)
-                    trajectoryCount += 1
-                    correctPath.removeAll()
-                    incorrectPath.removeAll()
-                    
-                    
-                    
-                    
-                    var x = boxCourtArea.bounds.maxX * correctPoints.last!.x
-                    var y = boxCourtArea.bounds.maxY * correctPoints.last!.y
-                    if(y < 20){
-                        y = boxCourtArea.bounds.maxY / abs(y)
-                    }
-                    let circle = UIView()
-                    
-                    //                    y = Double.random(in: (boxCourtArea.frame.width*0.5)...(boxCourtArea.frame.width * 0.75))
-                    
-                    
-                    
-                }
-            }
-        }
-//        print("SUMMARY")
-//        print(summaryFail)
-//        print(summaryClear)
-//        print(summaryPerfect)
-    }
-    
+   
     
     private var hitSummary: [String: [Int]] = [:]
     
@@ -1146,17 +1110,6 @@ class ContentAnalysisViewController: UIViewController,
             }
         }
         
-        /**
-         Filter the trajectory with the following conditions:
-         - The trajectory moves from left to right.
-         - The trajectory starts in the first half of the region of interest.
-         - The trajectory length increases to 8.
-         - The trajectory contains a parabolic equation constant a, less than or equal to 0, and implies there
-         are either straight lines or downward-facing lines.
-         - The trajectory confidence is greater than 0.9.
-         
-         Add additional filters based on trajectory speed, location, and properties.
-         */
         if trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < trajectoryDictionary[trajectory.uuid.uuidString]!.last!.x
             && trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < 0.5
             && trajectoryDictionary[trajectory.uuid.uuidString]!.count >= 8
@@ -1176,11 +1129,6 @@ class ContentAnalysisViewController: UIViewController,
             return []
         }
         
-        /**
-         This is inside region-of-interest space where both x and y range between 0.0 and 1.0.
-         If a left-to-right moving trajectory begins too far from a fixed region, extrapolate it back
-         to that region using the available quadratic equation coefficients.
-         */
         if basePointX > 0.1 {
             
             // Compute the initial trajectory location points based on the average
@@ -1204,7 +1152,62 @@ class ContentAnalysisViewController: UIViewController,
                 }
                 basePointX = nextXValue
             }
-            // Update the dictionary with the corrected path.
+            trajectoryDictionary[trajectoryToCorrect.uuid.uuidString] = basePoints
+            
+        }
+        return basePoints
+        
+    }
+    
+    private func filterParabolaLevel3(trajectory: VNTrajectoryObservation) -> Bool {
+        
+        if trajectoryDictionary[trajectory.uuid.uuidString] == nil {
+            trajectoryDictionary[trajectory.uuid.uuidString] = trajectory.projectedPoints
+        } else {
+            trajectoryDictionary[trajectory.uuid.uuidString] = trajectory.projectedPoints
+        }
+        
+        if trajectoryDictionary[trajectory.uuid.uuidString]!.first!.y > trajectoryDictionary[trajectory.uuid.uuidString]!.last!.y
+            && trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < trajectoryDictionary[trajectory.uuid.uuidString]!.last!.x
+            && trajectoryDictionary[trajectory.uuid.uuidString]!.first!.x < 0.5
+        {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
+    private func correctTrajectoryPathLevel3(trajectoryToCorrect: VNTrajectoryObservation) -> [VNPoint] {
+        
+        guard var basePoints = trajectoryDictionary[trajectoryToCorrect.uuid.uuidString],
+              var basePointX = basePoints.first?.x else {
+            return []
+        }
+        
+        if basePointX > 0.1 {
+            
+            // Compute the initial trajectory location points based on the average
+            // change in the x direction of the first five points.
+            var sum = 0.0
+            for i in 0..<5 {
+                sum = sum + basePoints[i + 1].x - basePoints[i].x
+            }
+            let averageDifferenceInX = sum / 5.0
+            
+            while basePointX > 0.1 {
+                let nextXValue = basePointX - averageDifferenceInX
+                let aXX = Double(trajectoryToCorrect.equationCoefficients[0]) * nextXValue * nextXValue
+                let bX = Double(trajectoryToCorrect.equationCoefficients[1]) * nextXValue
+                let c = Double(trajectoryToCorrect.equationCoefficients[2])
+                
+                let nextYValue = aXX + bX + c
+                if nextYValue > 0 {
+                    // Insert values into the trajectory path present in the positive Cartesian space.
+                    basePoints.insert(VNPoint(x: nextXValue, y: nextYValue), at: 0)
+                }
+                basePointX = nextXValue
+            }
             trajectoryDictionary[trajectoryToCorrect.uuid.uuidString] = basePoints
             
         }
@@ -1281,7 +1284,7 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
         }else if(name == "Experienced"){
             normalizedFrame = CGRect(x: 0.21, y: 0.0, width: 0.77, height: 0.95)
         }else if(name == "Advanced"){
-            normalizedFrame = CGRect(x: 0.21, y: 0.25, width: 0.77, height: 0.75)
+            normalizedFrame = CGRect(x: 0.0, y: 0.0, width:1, height: 1)
         }
         
         
