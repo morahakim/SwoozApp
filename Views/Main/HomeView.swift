@@ -50,24 +50,24 @@ struct HomeView: View {
                     }
                 } else {
                     VStack {
-                        ScrollView {
-                            ImgHero(
-                                name: "Onboarding0",
-                                desc: "Enhance Your Shot Consistency and \nShuttlecock Targeting Variation"
-                            )
-                        }
+                        ImgHero(
+                            name: "HeroImg",
+                            desc: "Optimize your training with challenges and objective assessments for better progress!"
+                        )
+                        .offset(y: -50)
                     }
                 }
+                
                 VStack {
                     Spacer()
                     VStack(alignment: .center, spacing: 4) {
-                        BtnPrimary(text: "Start Recording") {
+                        BtnPrimary(text: "Choose Your Drill") {
                             vm.path.append(.Technique)
                         }
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 12)
-                    .padding(.bottom, getSafeArea().bottom)
+                    .padding(.bottom, getSafeArea().bottom + 2)
                     .background(.white)
                     .cornerRadius(12)
                     .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
@@ -86,6 +86,7 @@ struct HomeView: View {
                 AppDelegate.orientationLock = .portrait
             }
         }
+        .preferredColorScheme(.light)
         .environmentObject(vm)
     }
 }
