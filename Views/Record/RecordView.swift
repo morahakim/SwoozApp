@@ -23,6 +23,13 @@ struct RecordView: View {
                 LoadingRecordView()
             }
         }
+        .onAppear {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.landscapeRight.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .landscapeRight
+        }
         .ignoresSafeArea(.all)
         .navigationBarBackButtonHidden(true)
     }

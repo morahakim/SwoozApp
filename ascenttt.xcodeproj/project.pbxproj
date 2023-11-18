@@ -12,7 +12,7 @@
 		18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */; };
 		18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3B2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json */; };
 		183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B33792AFA8B59004E023D /* ForceOrientation.swift */; };
-		183B337C2AFA92CC004E023D /* TechniqueLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */; };
+		183B337C2AFA92CC004E023D /* TechniqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B337B2AFA92CC004E023D /* TechniqueView.swift */; };
 		183C87902AFD39E100C210AB /* ItemVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C878F2AFD39E100C210AB /* ItemVideoView.swift */; };
 		184E02EA2AF174480004C569 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E02E72AF174480004C569 /* Font+Ext.swift */; };
 		184E02EB2AF174480004C569 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184E02E82AF174480004C569 /* View+Ext.swift */; };
@@ -46,6 +46,8 @@
 		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		18CEF7252B022ACA00952E16 /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CEF7232B022ACA00952E16 /* Urbanist-Medium.ttf */; };
 		18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CEF7242B022ACA00952E16 /* Urbanist.ttf */; };
+		18EE72C92B08797700DE7BE7 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72C82B08797700DE7BE7 /* LocalStorage.swift */; };
+		18EE72CB2B08D04F00DE7BE7 /* LowServePlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */; };
 		370F771E2B00922200BB2194 /* CPTLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771D2B00922200BB2194 /* CPTLevel1.mp4 */; };
 		370F77212B00924E00BB2194 /* CPTLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */; };
 		370F77222B00924E00BB2194 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F77202B00924E00BB2194 /* CPTLevel3.mp4 */; };
@@ -70,8 +72,7 @@
 		BEA1C1672AF0436D00BFF1A4 /* HomeViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1312AF0436D00BFF1A4 /* HomeViewRepresentable.swift */; };
 		BEA1C1682AF0436D00BFF1A4 /* LoadingRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1322AF0436D00BFF1A4 /* LoadingRecordView.swift */; };
 		BEA1C1692AF0436D00BFF1A4 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1342AF0436D00BFF1A4 /* ProgressView.swift */; };
-		BEA1C16A2AF0436D00BFF1A4 /* TechniqueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1362AF0436D00BFF1A4 /* TechniqueDetailView.swift */; };
-		BEA1C16B2AF0436D00BFF1A4 /* TechniqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1372AF0436D00BFF1A4 /* TechniqueView.swift */; };
+		BEA1C16A2AF0436D00BFF1A4 /* LowServeTrajectoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1362AF0436D00BFF1A4 /* LowServeTrajectoryView.swift */; };
 		BEA1C16C2AF0436D00BFF1A4 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1392AF0436D00BFF1A4 /* StatisticView.swift */; };
 		BEA1C16D2AF0436D00BFF1A4 /* CameraGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C13B2AF0436D00BFF1A4 /* CameraGuideView.swift */; };
 		BEA1C16E2AF0436D00BFF1A4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C13D2AF0436D00BFF1A4 /* HomeViewModel.swift */; };
@@ -120,7 +121,7 @@
 		18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeExperienced.json; sourceTree = "<group>"; };
 		18361F3B2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		183B33792AFA8B59004E023D /* ForceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceOrientation.swift; sourceTree = "<group>"; };
-		183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechniqueLevelView.swift; sourceTree = "<group>"; };
+		183B337B2AFA92CC004E023D /* TechniqueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechniqueView.swift; sourceTree = "<group>"; };
 		183C878F2AFD39E100C210AB /* ItemVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVideoView.swift; sourceTree = "<group>"; };
 		184E02E72AF174480004C569 /* Font+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		184E02E82AF174480004C569 /* View+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
@@ -153,6 +154,8 @@
 		18CEF7232B022ACA00952E16 /* Urbanist-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Medium.ttf"; sourceTree = "<group>"; };
 		18CEF7242B022ACA00952E16 /* Urbanist.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Urbanist.ttf; sourceTree = "<group>"; };
 		18CEF7292B02317E00952E16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		18EE72C82B08797700DE7BE7 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementView.swift; sourceTree = "<group>"; };
 		370F771D2B00922200BB2194 /* CPTLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel1.mp4; sourceTree = "<group>"; };
 		370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel2.mp4; sourceTree = "<group>"; };
 		370F77202B00924E00BB2194 /* CPTLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel3.mp4; sourceTree = "<group>"; };
@@ -177,8 +180,7 @@
 		BEA1C1312AF0436D00BFF1A4 /* HomeViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewRepresentable.swift; sourceTree = "<group>"; };
 		BEA1C1322AF0436D00BFF1A4 /* LoadingRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingRecordView.swift; sourceTree = "<group>"; };
 		BEA1C1342AF0436D00BFF1A4 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
-		BEA1C1362AF0436D00BFF1A4 /* TechniqueDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechniqueDetailView.swift; sourceTree = "<group>"; };
-		BEA1C1372AF0436D00BFF1A4 /* TechniqueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechniqueView.swift; sourceTree = "<group>"; };
+		BEA1C1362AF0436D00BFF1A4 /* LowServeTrajectoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowServeTrajectoryView.swift; sourceTree = "<group>"; };
 		BEA1C1392AF0436D00BFF1A4 /* StatisticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		BEA1C13B2AF0436D00BFF1A4 /* CameraGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraGuideView.swift; sourceTree = "<group>"; };
 		BEA1C13D2AF0436D00BFF1A4 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				BEA1C12B2AF0436D00BFF1A4 /* CameraViewController.swift */,
 				BEA1C12D2AF0436D00BFF1A4 /* ContentAnalysisViewController.swift */,
 				BEA1C1312AF0436D00BFF1A4 /* HomeViewRepresentable.swift */,
+				18EE72C82B08797700DE7BE7 /* LocalStorage.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -435,9 +438,9 @@
 		BEA1C1352AF0436D00BFF1A4 /* Technique */ = {
 			isa = PBXGroup;
 			children = (
-				BEA1C1372AF0436D00BFF1A4 /* TechniqueView.swift */,
-				183B337B2AFA92CC004E023D /* TechniqueLevelView.swift */,
-				BEA1C1362AF0436D00BFF1A4 /* TechniqueDetailView.swift */,
+				183B337B2AFA92CC004E023D /* TechniqueView.swift */,
+				BEA1C1362AF0436D00BFF1A4 /* LowServeTrajectoryView.swift */,
+				18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */,
 			);
 			path = Technique;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				BEA1C15F2AF0436D00BFF1A4 /* TrajectoryView.swift in Sources */,
 				188062F32AF9537E00310F93 /* ActionEnum.swift in Sources */,
 				188062F12AF9536400310F93 /* SFSymbol.swift in Sources */,
+				18EE72CB2B08D04F00DE7BE7 /* LowServePlacementView.swift in Sources */,
 				376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */,
 				BEA1C15C2AF0436D00BFF1A4 /* RecordView.swift in Sources */,
 				184E02EE2AF1745C0004C569 /* DataContoller.swift in Sources */,
@@ -703,7 +707,7 @@
 				183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */,
 				BEF748342AF02AAF00E8FB8B /* ascentttApp.swift in Sources */,
 				18CD6E152AF953D50087B24D /* Text.swift in Sources */,
-				183B337C2AFA92CC004E023D /* TechniqueLevelView.swift in Sources */,
+				183B337C2AFA92CC004E023D /* TechniqueView.swift in Sources */,
 				18CD6E192AF953EA0087B24D /* Lottie.swift in Sources */,
 				BEA1C16E2AF0436D00BFF1A4 /* HomeViewModel.swift in Sources */,
 				18922FF62AFD2EBC001B68EF /* DetailVideoView.swift in Sources */,
@@ -714,7 +718,7 @@
 				BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */,
 				18CD6E0F2AF953AC0087B24D /* Card.swift in Sources */,
 				BEA1C15B2AF0436D00BFF1A4 /* ResultView.swift in Sources */,
-				BEA1C16A2AF0436D00BFF1A4 /* TechniqueDetailView.swift in Sources */,
+				BEA1C16A2AF0436D00BFF1A4 /* LowServeTrajectoryView.swift in Sources */,
 				BEA1C1642AF0436D00BFF1A4 /* ContentAnalysisViewController.swift in Sources */,
 				BEA1C1722AF0436D00BFF1A4 /* OnboardingView.swift in Sources */,
 				BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */,
@@ -729,7 +733,7 @@
 				BEA1C16D2AF0436D00BFF1A4 /* CameraGuideView.swift in Sources */,
 				BEA1C15D2AF0436D00BFF1A4 /* BallScene.swift in Sources */,
 				BEA1C1692AF0436D00BFF1A4 /* ProgressView.swift in Sources */,
-				BEA1C16B2AF0436D00BFF1A4 /* TechniqueView.swift in Sources */,
+				18EE72C92B08797700DE7BE7 /* LocalStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

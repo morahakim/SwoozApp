@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-The app's live-capture view controller.
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ The app's live-capture view controller.
+ */
 
 import UIKit
 import SwiftUI
@@ -19,7 +19,7 @@ class CameraViewController: UIViewController {
     
     // MARK: - Public Properties
     weak var outputDelegate: CameraViewControllerOutputDelegate?
-
+    
     // MARK: - Private Properties
     private let videoDataOutputQueue = DispatchQueue(label: "CameraFeedDataOutput",
                                                      qos: .userInitiated,
@@ -59,11 +59,11 @@ class CameraViewController: UIViewController {
         var wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
         
         if(name == "Intermediate"){
-             wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
+            wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
         }else if(name == "Experienced"){
-             wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
+            wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
         }else if(name == "Advanced"){
-             wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
+            wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
         }
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [wideAngle],
                                                                 mediaType: .video,
@@ -126,8 +126,8 @@ class CameraViewController: UIViewController {
         } else {
             viewRect = videoRenderView.viewRectConverted(fromNormalizedContentsRect: flippedRect)
         }
-//        print("***")
-//        print(viewRect)
+        //        print("***")
+        //        print(viewRect)
         return viewRect
         
     }
@@ -196,7 +196,7 @@ class CameraViewController: UIViewController {
                             return
                         }
                         if let sample = output.copyNextSampleBuffer(),
-                            let buffer = CMSampleBufferGetImageBuffer(sample) {
+                           let buffer = CMSampleBufferGetImageBuffer(sample) {
                             
                             let frameTimestamp = CMSampleBufferGetPresentationTimeStamp(sample)
                             let delay = CMTimeGetSeconds(CMTimeSubtract(frameTimestamp, lastTimestamp))

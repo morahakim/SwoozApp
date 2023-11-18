@@ -27,7 +27,7 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
     }
     
     // TODO: create makeCoordinator
-        // TODO: create class coordinator, di kelas ini 
+    // TODO: create class coordinator, di kelas ini 
     func makeCoordinator() -> Coordinator {
         Coordinator(moc: moc, vm: vm)
     }
@@ -37,7 +37,7 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
         var vm: HomeViewModel
         
         func back() {
-            vm.popToPage(.TechniqueDetail)
+            vm.popToRoot()
         }
         
         func saveRecord(
