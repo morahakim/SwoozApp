@@ -153,7 +153,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             // Create a player view controller
             
             playerViewController.player = player
-
+            
+            
             // Create a container view with a border radius
             let container = UIView()
             container.frame = CGRect(x: 0, y: 0, width: setupView1.frame.width, height: setupView1.frame.height)
@@ -206,7 +207,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 
         
     }
-    
     
     let thumbnailImageView = UIImageView()
     
@@ -383,6 +383,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 //            captureSession.startRunning()
     }
 }
+
 
 extension HomeViewController: UIDocumentPickerDelegate {
     

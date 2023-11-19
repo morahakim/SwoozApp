@@ -266,26 +266,21 @@ struct ContentView: View {
                         VStack(alignment: .leading, spacing: 15) {
                             HStack(spacing: 20) {
                                 VStack(alignment: .leading) {
-                                    Text("\(hitTargetApp)")
-                                        .font(.system(size: 23))
-                                    Text("Target")
-                                }
-                                VStack(alignment: .leading) {
-                                    Text("\(hitTotalApp)")
-                                        .font(.system(size: 23))
-                                    Text("Attemp")
-                                }
-                            }
-                            HStack(spacing: 20) {
-                                VStack(alignment: .leading) {
-                                    Text("\(hitSuccessApp)")
+                                    Text("\(hitPerfectApp)")
                                         .font(.system(size: 23))
                                     Text("Success")
                                 }
                                 VStack(alignment: .leading) {
-                                    Text("\(hitFailApp)")
+                                    Text("\(hitSuccessApp)")
                                         .font(.system(size: 23))
                                     Text("Fail")
+                                }
+                            }
+                            HStack(spacing: 20) {
+                                VStack(alignment: .leading) {
+                                    Text("\(hitTotalApp)")
+                                        .font(.system(size: 23))
+                                    Text("Attempt")
                                 }
                             }
                             
@@ -307,7 +302,7 @@ struct ContentView: View {
                                 levelApp = ""
                                 levelApp = ""
                             } label: {
-                                Text("Back to Home")
+                                Text("Done")
                             }
                             
                         }

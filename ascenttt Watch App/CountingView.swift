@@ -80,7 +80,7 @@ struct ActivityRingView: View {
                 }
             }
 
-            Text("Clear:\((hitSuccessApp))")
+            Text("Good:\((hitSuccessApp))")
                 .foregroundColor(Color.greenMain)
                 .font(.system(size: 16))
                 .padding(.bottom, 20)
