@@ -21,9 +21,9 @@ struct TechniqueView: View {
     @AppStorage("techniqueName") var techniqueName: String = ""
     
     private let data = [
-        TechniqueLevelData(id: 0, name: chooseLevelTextOne, desc: "Assess the trajectory for consistency and quality, considering its peak.", img: "LowServe-Trajectory", isLock: false),
-        TechniqueLevelData(id: 1, name: chooseLevelTextTwo, desc: "Assess the placement for quality, considering variations and distance.", img: "Advanced", isLock: false),
-        TechniqueLevelData(id: 2, name: "High Serve - Trajectory", desc: "", img: "HighServe-Trajectory", isLock: true)
+        TechniqueLevelData(id: 0, name: chooseLevelTextOne, desc: chooseLevelDescOne, img: "LowServe-Trajectory", isLock: false),
+        TechniqueLevelData(id: 1, name: chooseLevelTextTwo, desc: chooseLevelDescTwo, img: "Advanced", isLock: false),
+        TechniqueLevelData(id: 2, name: chooseLevelTextThree, desc: "", img: "HighServe-Trajectory", isLock: true)
     ]
     
     var body: some View {

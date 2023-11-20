@@ -81,4 +81,18 @@ extension View {
         }
         return ""
     }
+    
+    // MARK: - Date formatter
+    func getStartMonth() -> Date {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        return calendar.dateInterval(of: .month, for: currentDate)?.start ?? currentDate
+    }
+    
+    func getLastMonth() -> Date {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        let startOfMonth = calendar.dateInterval(of: .month, for: currentDate)?.start ?? currentDate
+        return calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth) ?? currentDate
+    }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1834074E2B0BD50600A1F5F4 /* LowServe-Placement.json in Resources */ = {isa = PBXBuildFile; fileRef = 1834074C2B0BD50600A1F5F4 /* LowServe-Placement.json */; };
+		1834074F2B0BD50600A1F5F4 /* LowServe-Trajectory.json in Resources */ = {isa = PBXBuildFile; fileRef = 1834074D2B0BD50600A1F5F4 /* LowServe-Trajectory.json */; };
 		18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */; };
 		18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */; };
 		18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */; };
@@ -115,6 +117,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1834074C2B0BD50600A1F5F4 /* LowServe-Placement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Placement.json"; sourceTree = "<group>"; };
+		1834074D2B0BD50600A1F5F4 /* LowServe-Trajectory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Trajectory.json"; sourceTree = "<group>"; };
 		18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeAdvanced.json; sourceTree = "<group>"; };
 		18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeIntermediate.json; sourceTree = "<group>"; };
 		18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeExperienced.json; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 		184E02EF2AF192E00004C569 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				1834074D2B0BD50600A1F5F4 /* LowServe-Trajectory.json */,
+				1834074C2B0BD50600A1F5F4 /* LowServe-Placement.json */,
 				18361F372AFF877000CBD1D8 /* LowServe */,
 				37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */,
 				184E02F32AF192F60004C569 /* Clear Shot.json */,
@@ -652,10 +658,12 @@
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
 				1878C43C2AFFC8AF0037D610 /* Level 3.mov in Resources */,
+				1834074E2B0BD50600A1F5F4 /* LowServe-Placement.json in Resources */,
 				18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */,
 				18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */,
 				1878C43F2AFFC8AF0037D610 /* Level 1.mov in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
+				1834074F2B0BD50600A1F5F4 /* LowServe-Trajectory.json in Resources */,
 				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
@@ -898,7 +906,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -928,7 +936,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -960,7 +968,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -997,7 +1005,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;

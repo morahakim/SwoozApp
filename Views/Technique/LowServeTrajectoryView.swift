@@ -7,45 +7,25 @@
 
 import SwiftUI
 import AVKit
+import CoreData
 
 struct LowServeTrajectoryView: View {
     @EnvironmentObject var vm: HomeViewModel
+    @Environment(\.managedObjectContext) var moc
     
     @State var showRepetitionSheet = false
     @State var selectedRepetition = 0
     @State var player: AVPlayer?
     
-    @State var recordOfAllTime = 0
-    @State var recordOfTheMonth = 0
-    @State var latestDrill = 0
-    @State var averageOfThisMonth = 0
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)]
+    ) var recordOfAllTime: FetchedResults<Data>
     
-    @FetchRequest(sortDescriptors: [
-        NSSortDescriptor(key: "datetime", ascending: false)
-    ]) var dataAll: FetchedResults<Data>
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)]
+    ) var latestDrill: FetchedResults<Data>
     
-    var dataThisMonth: FetchRequest<Data>
-
-    init() {
-        let calendar = Calendar.current
-        let currentDate = Date()
-        let startOfMonth = calendar.dateInterval(of: .month, for: currentDate)?.start ?? currentDate
-        let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth) ?? currentDate
-        
-        self.dataThisMonth = FetchRequest<Data>(
-            entity: Data.entity(),
-            sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
-            predicate: NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", startOfMonth as NSDate, endOfMonth as NSDate)
-        )
-        
-        var bestAllTime: Int16 = 0
-        for data in dataAll {
-            if bestAllTime < data.hitSuccess {
-                bestAllTime = data.hitSuccess
-            }
-        }
-        self.recordOfAllTime = Int(bestAllTime)
-    }
+    @State var recordOfTheMonth: [Data] = []
     
     let playerViewController = AVPlayerViewController()
     
@@ -58,7 +38,7 @@ struct LowServeTrajectoryView: View {
                     /** Card animation */
                     CardView(action: {}, content: {
                         ZStack {
-                            LottieView(name: "LowServeIntermediate")
+                            LottieView(name: "LowServe-Trajectory")
                                 .frame(height: 150)
                             VStack {
                                 Spacer()
@@ -181,9 +161,9 @@ struct LowServeTrajectoryView: View {
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("\(recordOfAllTime == 0 ? "-" : "\(recordOfAllTime)")")
+                                                TextAlignLeading("\(recordOfAllTime[0].hitPerfect == 0 ? "-" : "\(recordOfAllTime[0].hitPerfect)")")
                                                 Spacer()
-                                                TextAlignLeading("-")
+                                                TextAlignLeading("\(recordOfTheMonth.count > 0 ? "\(recordOfTheMonth[0].hitPerfect)" : "-")")
                                             }
                                             .fontWeight(.medium)
                                             .font(Font.custom("Urbanist", size: 20))
@@ -198,9 +178,9 @@ struct LowServeTrajectoryView: View {
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("-")
+                                                TextAlignLeading("\(latestDrill[0].hitPerfect == 0 ? "-" : "\(latestDrill[0].hitPerfect)")")
                                                 Spacer()
-                                                TextAlignLeading("-")
+                                                TextAlignLeading("\(getAverate(recordOfTheMonth))")
                                             }
                                             .fontWeight(.medium)
                                             .font(Font.custom("Urbanist", size: 20))
@@ -283,6 +263,32 @@ struct LowServeTrajectoryView: View {
                 AppDelegate.orientationLock = .landscapeRight
                 player?.pause()
             }
+        }
+        .onAppear {
+            let request: NSFetchRequest<Data> = Data.fetchRequest()
+            let predicate = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
+            request.predicate = predicate
+            
+            do {
+                // Fetch the results using the managed object context
+                let fetchedResults = try moc.fetch(request)
+                recordOfTheMonth = fetchedResults // Assign fetched results to recordOfTheMonth
+            } catch {
+                print("Error fetching data: \(error)")
+            }
+        }
+    }
+    
+    func getAverate(_ data: [Data]) -> Double {
+        if data.count == 0 {
+            return 0
+        } else {
+            var total: Double = 0.0
+            for e in data {
+                total += Double(e.hitPerfect)
+            }
+            return Double(total/Double(data.count))
         }
     }
 }

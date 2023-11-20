@@ -26,7 +26,7 @@ struct LowServePlacementView: View {
                     /** Card animation */
                     CardView(action: {}, content: {
                         ZStack {
-                            LottieView(name: "LowServeAdvanced")
+                            LottieView(name: "LowServe-Placement")
                                 .frame(height: 150)
                             VStack {
                                 Spacer()
