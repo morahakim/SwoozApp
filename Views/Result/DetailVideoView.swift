@@ -108,7 +108,7 @@ struct DetailVideoView: View {
                                         }
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                     
-                                    Text(item.datetime ?? "-/-/-")
+                                    Text(dateFormat(item.datetime) == "" ? "-/-/-" : dateFormat(item.datetime))
                                         .font(Font.custom("Urbanist", size: 12))
                                         .foregroundStyle(Color.grayStroke6)
                                     //                                        .padding(.bottom, 30)

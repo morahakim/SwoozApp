@@ -10,7 +10,7 @@ import SwiftUI
 struct ItemVideoView: View {
     let url: String?
     let name: String?
-    let date: String?
+    let date: Date?
     let hitTarget: Int16?
     let hitSuccess: Int16?
     let hitFail: Int16?
@@ -31,7 +31,7 @@ struct ItemVideoView: View {
                         .font(Font.custom("Urbanist-Medium", size: 22))
                         .foregroundColor(Color(red: 0.15, green: 0.15, blue: 0.15))
                         .frame(maxWidth: .infinity, alignment: .topLeading)
-                    Text(date ?? "-/-/-")
+                    Text(dateFormat(date) == "" ? "-/-/-" : dateFormat(date))
                         .font(Font.custom("Urbanist-Medium", size: 12))
                         .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
                 }

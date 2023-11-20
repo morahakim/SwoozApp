@@ -1,29 +1,29 @@
 //
-//  TechniqueView.swift
-//  Swooz
+//  TechniqueLevelView.swift
+//  ascenttt
 //
-//  Created by Agung Saputra on 27/10/23.
+//  Created by Agung Saputra on 07/11/23.
 //
 
 import SwiftUI
 
-struct TechniqueData: Hashable {
+struct TechniqueLevelData: Hashable {
+    let id: Int
     let name: String
+    let desc: String
     let img: String
     let isLock: Bool
 }
 
 struct TechniqueView: View {
     @EnvironmentObject var vm: HomeViewModel
-    @AppStorage("type") var type: String = ""
+    @AppStorage("techniqueId") var techniqueId: Int = 0
+    @AppStorage("techniqueName") var techniqueName: String = ""
     
     private let data = [
-        TechniqueData(name: "Low Serve", img: "LowServe", isLock: false),
-        TechniqueData(name: "High Serve", img: "HighServe", isLock: true),
-        TechniqueData(name: "Drive", img: "Drive", isLock: true),
-        TechniqueData(name: "Clear Shot", img: "ClearShot", isLock: true),
-        TechniqueData(name: "Drop Shot", img: "DropShot", isLock: true),
-        TechniqueData(name: "Smash", img: "Smash", isLock: true)
+        TechniqueLevelData(id: 0, name: "Low Serve - Trajectory", desc: "Assess the trajectory for consistency and quality, considering its peak.", img: "LowServe-Trajectory", isLock: false),
+        TechniqueLevelData(id: 1, name: "Low Serve - Placement", desc: "Assess the placement for quality, considering variations and distance.", img: "Advanced", isLock: false),
+        TechniqueLevelData(id: 2, name: "High Serve - Trajectory", desc: "", img: "HighServe-Trajectory", isLock: true)
     ]
     
     var body: some View {
@@ -35,11 +35,16 @@ struct TechniqueView: View {
                     ForEach(data, id: \.self) { d in
                         CardView(action: {
                             if !d.isLock {
-                                type = d.name
-                                vm.path.append(.TechniqueLevel)
+                                if d.id == 0 {
+                                    vm.path.append(.LowServeTrajectory)
+                                } else if d.id == 1 {
+                                    vm.path.append(.LowServePlacement)
+                                }
+                                techniqueId = d.id
+                                techniqueName = d.name
                             }
                         }, content: {
-                            VStack {
+                            VStack(spacing: 6) {
                                 Image(d.img)
                                     .resizable()
                                     .scaledToFit()
@@ -47,47 +52,51 @@ struct TechniqueView: View {
                                     .padding(.horizontal, 16)
                                     .padding(.top, 16)
                                 HStack {
-                                    Spacer()
                                     Text(d.name)
                                         .font(Font.custom("Urbanist", size: 20).weight(.medium))
                                         .foregroundStyle(.neutralBlack)
                                     Spacer()
                                 }
-                            }
-                            .padding(.bottom, 16)
-                            .overlay {
+                                .padding(.horizontal, 16)
                                 if d.isLock {
-                                    VStack {
-                                        HStack {
-                                            Image(systemName: "lock.fill")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: 24)
-                                                .foregroundStyle(.grayStroke6)
-                                            Text("Cooming Soon")
-                                                .foregroundStyle(.neutralBlack)
-                                                .font(Font.custom("SF Pro", size: 17))
-                                            Spacer()
-                                        }
+                                    HStack {
+                                        Image(systemName: "lock.fill")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 16)
+                                            .foregroundStyle(.grayStroke6)
+                                        Text("Cooming Soon")
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .multilineTextAlignment(.leading)
+                                            .foregroundStyle(.grayStroke6)
                                         Spacer()
                                     }
-                                    .padding(.leading, 4)
-                                    .padding(.top, 2)
+                                    .padding(.horizontal, 16)
+                                } else {
+                                    HStack {
+                                        Text(d.desc)
+                                            .font(Font.custom("SF Pro", size: 15))
+                                            .multilineTextAlignment(.leading)
+                                            .foregroundStyle(.grayStroke6)
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal, 16)
                                 }
                             }
+                            .padding(.bottom, 16)
                         })
                         .overlay {
                             if d.isLock {
                                 RoundedRectangle(cornerRadius: 12)
                                     .fill(Color.grayStroke3)
-                                    .opacity(0.4)
+                                    .opacity(0.5)
                             }
                         }
                     }
                 }
                 .scrollIndicators(.hidden)
             }
-            .navigationTitle("Choose Technique")
+            .navigationTitle("Which drill now?")
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbarBackground(.greenMain, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)

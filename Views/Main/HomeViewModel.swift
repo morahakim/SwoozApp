@@ -14,8 +14,8 @@ enum ViewPath {
     case LoadingRecord
     case RotateToPotrait
     case Technique
-    case TechniqueLevel
-    case TechniqueDetail
+    case LowServeTrajectory
+    case LowServePlacement
 }
 
 class HomeViewModel: ObservableObject {
@@ -36,10 +36,10 @@ class HomeViewModel: ObservableObject {
             RotateToPotraitView()
         case .Technique:
             TechniqueView()
-        case .TechniqueLevel:
-            TechniqueLevelView()
-        case .TechniqueDetail:
-            TechniqueDetailView()
+        case .LowServeTrajectory:
+            LowServeTrajectoryView()
+        case .LowServePlacement:
+            LowServePlacementView()
         }
     }
     
