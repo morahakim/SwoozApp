@@ -100,9 +100,9 @@ struct ItemVideoView: View {
 extension Color {
     static func background(for level: String?) -> Color {
         switch level {
-        case "Intermediate":
+        case chooseLevelTextOne:
             return Color.redMain.opacity(0.8)
-        case "Experienced":
+        case chooseLevelTextTwo:
             return Color.greenMain.opacity(0.8)
         case "Advanced":
             return Color.information.opacity(0.8)

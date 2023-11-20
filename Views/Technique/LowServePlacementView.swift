@@ -32,7 +32,7 @@ struct LowServePlacementView: View {
                                 Spacer()
                                 HStack {
                                     Spacer()
-                                    Text("Low Serve - Placement")
+                                    Text(chooseLevelTextTwo)
                                         .font(Font.custom("Urbanist", size: 20).weight(.medium))
                                         .foregroundColor(.neutralBlack)
                                     Spacer()
@@ -67,14 +67,14 @@ struct LowServePlacementView: View {
                                     HStack {
                                         Circle()
                                             .frame(width: 12)
-                                        Text("Good")
+                                        Text(goodTextTrajectory)
                                             .font(Font.custom("SF Pro", size: 17))
                                         Spacer()
                                     }
                                     .foregroundStyle(.success)
-                                    TextAlignLeading("Placement near the front service line.")
+                                    TextAlignLeading(goalsGoodTextTrajectory)
                                         .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading("The closer to the front service line, the better.")
+                                    TextAlignLeading(descGoodTextTrajectory)
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundStyle(.grayStroke6)
                                         .padding(.bottom, 8)
@@ -86,14 +86,14 @@ struct LowServePlacementView: View {
                                     HStack {
                                         Circle()
                                             .frame(width: 12)
-                                        Text("Risky")
+                                        Text(riskyTextTrajectory)
                                             .font(Font.custom("SF Pro", size: 17))
                                         Spacer()
                                     }
                                     .foregroundStyle(.warning)
-                                    TextAlignLeading("Placement above average.")
+                                    TextAlignLeading(goalsRiskyTextTrajectory)
                                         .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading("Your service succeeds but is still easily countered.")
+                                    TextAlignLeading(descRiskyTextTrajectory)
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundStyle(.grayStroke6)
                                         .padding(.bottom, 8)
@@ -105,14 +105,14 @@ struct LowServePlacementView: View {
                                     HStack {
                                         Circle()
                                             .frame(width: 12)
-                                        Text("Missed")
+                                        Text(badTextTrajectory)
                                             .font(Font.custom("SF Pro", size: 17))
                                         Spacer()
                                     }
                                     .foregroundStyle(.danger)
-                                    TextAlignLeading("Placement outside the intended area.")
+                                    TextAlignLeading(goalsBadTextTrajectory)
                                         .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading("Your service fails.")
+                                    TextAlignLeading(descBadTextTrajectory)
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundStyle(.grayStroke6)
                                         .padding(.bottom, 8)
@@ -123,7 +123,7 @@ struct LowServePlacementView: View {
                                 VStack(alignment: .leading, spacing: 4) {
                                     HStack {
                                         HStack(alignment: .top, spacing: 4) {
-                                            Text("Tips")
+                                            Text(tipsText)
                                                 .font(Font.custom("SF Pro", size: 17))
                                                 .fontWeight(.semibold)
                                                 .foregroundColor(.white)
@@ -134,7 +134,7 @@ struct LowServePlacementView: View {
                                         .cornerRadius(12)
                                     }
                                     
-                                    Text("Diversify the shuttlecock target to make your serve unpredictable.")
+                                    Text(tipsTrajectoryPlacement)
                                       .font(Font.custom("SF Pro", size: 15))
                                       .foregroundStyle(.grayStroke6)
                                       .padding(.bottom, 8)
@@ -144,7 +144,7 @@ struct LowServePlacementView: View {
                                 
                                 CardView(action: {}, content: {
                                     VStack(alignment: .leading, spacing: 12) {
-                                        Text("Low Serve - Placement")
+                                        Text(chooseLevelTextTwo)
                                           .font(Font.custom("SF Pro", size: 16))
                                         
                                         VStack(spacing: 2) {
@@ -157,9 +157,9 @@ struct LowServePlacementView: View {
                                             .font(Font.custom("Urbanist", size: 20))
                                             
                                             HStack {
-                                                TextAlignLeading("Record of All Time")
+                                                TextAlignLeading(recordAllTimeText)
                                                 Spacer()
-                                                TextAlignLeading("Record of The Month")
+                                                TextAlignLeading(recordOfMonthText)
                                             }
                                             .font(Font.custom("SF Pro", size: 12))
                                         }
@@ -174,9 +174,9 @@ struct LowServePlacementView: View {
                                             .font(Font.custom("Urbanist", size: 20))
                                             
                                             HStack {
-                                                TextAlignLeading("Latest Drill")
+                                                TextAlignLeading(latestDrillText)
                                                 Spacer()
-                                                TextAlignLeading("Average of This Month")
+                                                TextAlignLeading(averageDrillText)
                                             }
                                             .font(Font.custom("SF Pro", size: 12))
                                         }
@@ -201,7 +201,7 @@ struct LowServePlacementView: View {
                 VStack {
                     Spacer()
                     VStack(alignment: .center, spacing: 4) {
-                        BtnPrimary(text: "Start Recording") {
+                        BtnPrimary(text: buttonRecordText) {
                             showRepetitionSheet.toggle()
                         }
                     }
@@ -264,14 +264,14 @@ private struct RepetitionSheet: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            TextAlignLeading("Set Repetition")
+            TextAlignLeading(repetitionText)
                 .font(Font.custom("SF Pro", size: 20).bold())
                 .foregroundColor(.neutralBlack)
                 .padding(.top, 18)
                 .padding(.horizontal, 16)
             
             Picker("", selection: $selectedRepetition) {
-                Text("Unlimited").tag(0)
+                Text(unlimitedText).tag(0)
                 Text("5").tag(5)
                 Text("10").tag(10)
                 Text("15").tag(15)
@@ -281,7 +281,7 @@ private struct RepetitionSheet: View {
             .padding(.horizontal, 16)
             
             Divider()
-            BtnPrimary(text: "Continue") {
+            BtnPrimary(text: continueText) {
                 hitTargetApp = selectedRepetition
                 isPresented.toggle()
                 vm.path.append(.RotateToLandscape)

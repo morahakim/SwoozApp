@@ -11,6 +11,7 @@ import Vision
 import SwiftUI
 import ReplayKit
 
+
 // TODO: buat delegate function save
 protocol ContentAnalysisDelegate: AnyObject {
     func saveRecord(url: URL,
@@ -27,6 +28,7 @@ protocol ContentAnalysisDelegate: AnyObject {
 class ContentAnalysisViewController: UIViewController,
                                      AVCaptureVideoDataOutputSampleBufferDelegate {
     let counter = Counter()
+    let localStorage = LocalStorage()
     @AppStorage("type") var type: String = "Low Serve"
     @AppStorage("techniqueName") var techniqueName: String = ""
     @AppStorage("techniqueId") var techniqueId: Int = 0
@@ -217,11 +219,17 @@ class ContentAnalysisViewController: UIViewController,
     let text3b = UILabel()
     var text4a = UILabel()
     let text4b = UILabel()
+    var text5a = UILabel()
+    let text5b = UILabel()
+    var text6a = UILabel()
+    let text6b = UILabel()
     let box0 = UIView()
     let box1 = UIView()
     let box2 = UIView()
     let box3 = UIView()
     let box4 = UIView()
+    let box5 = UIView()
+    let box6 = UIView()
     
     
     @objc func back(){
@@ -233,31 +241,12 @@ class ContentAnalysisViewController: UIViewController,
     }
     
     var arrHitStatistics : [HitStatistics] = [
-//        HitStatistics(hitNumber: "1", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "2", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "3", hitStatus: "Fail"),
-//        HitStatistics(hitNumber: "4", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "5", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "6", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "7", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "8", hitStatus: "Fail"),
-//        HitStatistics(hitNumber: "9", hitStatus: "Fail"),
-//        HitStatistics(hitNumber: "10", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "11", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "12", hitStatus: "Fail"),
-//        HitStatistics(hitNumber: "13", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "14", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "15", hitStatus: "Fail"),
-//        HitStatistics(hitNumber: "16", hitStatus: "Fail"),
-//        HitStatistics(hitNumber: "17", hitStatus: "Fail"),
-//        HitStatistics(hitNumber: "18", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "19", hitStatus: "Success"),
-//        HitStatistics(hitNumber: "20", hitStatus: "Success")
     ]
     struct HitStatistics: Identifiable, Hashable {
         var id = UUID()
         var hitNumber: String
         var hitStatus: String
+        var hitDistance: Double
     }
     
     
@@ -278,16 +267,16 @@ class ContentAnalysisViewController: UIViewController,
         
         let setupView1 = UIView()
         setupView1.backgroundColor = nil
-        setupView1.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.5, height: view.frame.height/2)
+        setupView1.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.5, height: view.frame.height/1.1)
         setupView1.center = view.center
         setupViewChild.addSubview(setupView1)
         
         setupView1.translatesAutoresizingMaskIntoConstraints = false
-        setupView1.heightAnchor.constraint(equalToConstant: view.frame.height/2).isActive = true
+        setupView1.heightAnchor.constraint(equalToConstant: view.frame.height/1.1).isActive = true
         setupView1.widthAnchor.constraint(equalToConstant: view.frame.width/1.5).isActive = true
         setupView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         setupView1.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
+//        techniqueName = "Servis Rendah - Lintasan"
         let textLevel = UILabel()
         textLevel.text = techniqueName
         textLevel.font = UIFont(name: "Urbanist", size: 17)
@@ -300,114 +289,175 @@ class ContentAnalysisViewController: UIViewController,
 //        box0.backgroundColor = UIColor.red
         setupView1.addSubview(box0)
         
-        var successRate = 0.0
-
-        if hitSuccess > 0 && hitTargetApp > 0 {
-            successRate = Double((hitSuccess * 100) / hitTargetApp)
-        }
-
-        text0a.text = String(format: "%02d", Int(successRate))+"%"
-        text0a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text0a.textColor = UIColor.white
-        text0a.textAlignment = .center
-        text0a.frame = CGRect(x: 0, y: 5, width: box0.frame.width, height: 30)
-        
-        text0b.text = "Success Rate"
-        text0b.font = UIFont(name: "Urbanist", size: 17)
-        text0b.textColor = UIColor.white
-        text0b.textAlignment = .center
-        text0b.frame = CGRect(x: 0, y: box0.frame.height-20, width: box0.frame.width, height: 20)
-        
-        box0.addSubview(text0a)
-        box0.addSubview(text0b)
-        
-        box1.frame = CGRect(x: (setupView1.frame.width/5)*1, y:  50, width: setupView1.frame.width/5, height: 65)
-//        box1.backgroundColor = UIColor.red
-        setupView1.addSubview(box1)
-        
-        text1a.text = String(format: "%02d",hitTargetApp)
-        text1a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text1a.textColor = UIColor.white
-        text1a.textAlignment = .center
-        text1a.frame = CGRect(x: 0, y: 5, width: box1.frame.width, height: 30)
-        
-        text1b.text = "Target Shot"
-        text1b.font = UIFont(name: "Urbanist", size: 17)
-        text1b.textColor = UIColor.white
-        text1b.textAlignment = .center
-        text1b.frame = CGRect(x: 0, y: box1.frame.height-20, width: box1.frame.width, height: 20)
-        
-        box1.addSubview(text1a)
-        box1.addSubview(text1b)
         
 
-        box2.frame = CGRect(x: (setupView1.frame.width/5)*2, y:  50, width: setupView1.frame.width/5, height: 65)
-//        box2.backgroundColor = UIColor.red
-        setupView1.addSubview(box2)
+//        text0a.text = String(format: "%02d", Int(successRate))+"%"
+//        text0a.font = UIFont(name: "Urbanist-Medium", size: 34)
+//        text0a.textColor = UIColor.white
+//        text0a.textAlignment = .center
+//        text0a.frame = CGRect(x: 0, y: 5, width: box0.frame.width, height: 30)
+//
+//        text0b.text = "Success Rate"
+//        text0b.font = UIFont(name: "Urbanist", size: 17)
+//        text0b.textColor = UIColor.white
+//        text0b.textAlignment = .center
+//        text0b.frame = CGRect(x: 0, y: box0.frame.height-20, width: box0.frame.width, height: 20)
+//
+//        box0.addSubview(text0a)
+//        box0.addSubview(text0b)
         
-        text2a.text = String(format: "%02d", hitTotal)
-        text2a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text2a.textColor = UIColor.white
-        text2a.textAlignment = .center
-        text2a.frame = CGRect(x: 0, y: 5, width: box2.frame.width, height: 30)
+              box1.frame = CGRect(x: (setupView1.frame.width/4)*0, y:  50, width: setupView1.frame.width/4, height: 65)
+      //        box1.backgroundColor = UIColor.red
+              setupView1.addSubview(box1)
+              
+              text1a.text = String(format: "%02d",hitTotal)
+              text1a.font = UIFont(name: "Urbanist-Medium", size: 34)
+              text1a.textColor = UIColor.white
+              text1a.textAlignment = .center
+              text1a.frame = CGRect(x: 0, y: 5, width: box1.frame.width, height: 30)
+              
+              text1b.text = tryingText
+              text1b.font = UIFont(name: "Urbanist", size: 17)
+              text1b.textColor = UIColor.white
+              text1b.textAlignment = .center
+              text1b.frame = CGRect(x: 0, y: box1.frame.height-20, width: box1.frame.width, height: 20)
+              
+              box1.addSubview(text1a)
+              box1.addSubview(text1b)
+              
+
+              box2.frame = CGRect(x: (setupView1.frame.width/4)*1, y:  50, width: setupView1.frame.width/4, height: 65)
+      //        box2.backgroundColor = UIColor.red
+              setupView1.addSubview(box2)
+              
+              text2a.text = String(format: "%02d", hitPerfect)
+              text2a.font = UIFont(name: "Urbanist-Medium", size: 34)
+              text2a.textColor = UIColor.white
+              text2a.textAlignment = .center
+              text2a.frame = CGRect(x: 0, y: 5, width: box2.frame.width, height: 30)
+              
+              text2b.text = goodTextTrajectory
+              text2b.font = UIFont(name: "Urbanist", size: 17)
+              text2b.textColor = UIColor.white
+              text2b.textAlignment = .center
+              text2b.frame = CGRect(x: 0, y: box2.frame.height-20, width: box2.frame.width, height: 20)
+              
+              box2.addSubview(text2a)
+              box2.addSubview(text2b)
+              
+              box3.frame = CGRect(x: (setupView1.frame.width/4)*2, y:  50, width: setupView1.frame.width/4, height: 65)
+      //        box3.backgroundColor = UIColor.red
+              setupView1.addSubview(box3)
+              
+              text3a.text = String(format: "%02d", hitSuccess)
+              text3a.font = UIFont(name: "Urbanist-Medium", size: 34)
+              text3a.textColor = UIColor.white
+              text3a.textAlignment = .center
+              text3a.frame = CGRect(x: 0, y: 5, width: box3.frame.width, height: 30)
+              
+              text3b.text = riskyTextTrajectory
+              text3b.font = UIFont(name: "Urbanist", size: 17)
+              text3b.textColor = UIColor.white
+              text3b.textAlignment = .center
+              text3b.frame = CGRect(x: 0, y: box3.frame.height-20, width: box3.frame.width, height: 20)
+              
+              box3.addSubview(text3a)
+              box3.addSubview(text3b)
+              
+              
+              box4.frame = CGRect(x: (setupView1.frame.width/4)*3, y:  50, width: setupView1.frame.width/4, height: 65)
+      //        box4.backgroundColor = UIColor.red
+              setupView1.addSubview(box4)
+              
+              text4a.text = String(format: "%02d", hitFail)
+              text4a.font = UIFont(name: "Urbanist-Medium", size: 34)
+              text4a.textColor = UIColor.white
+              text4a.textAlignment = .center
+              text4a.frame = CGRect(x: 0, y: 5, width: box4.frame.width, height: 30)
+              
+              text4b.text = badTextTrajectory
+              text4b.font = UIFont(name: "Urbanist", size: 17)
+              text4b.textColor = UIColor.white
+              text4b.textAlignment = .center
+              text4b.frame = CGRect(x: 0, y: box4.frame.height-20, width: box4.frame.width, height: 20)
+              
+              box4.addSubview(text4a)
+              box4.addSubview(text4b)
+             
         
-        text2b.text = "Total Shot"
-        text2b.font = UIFont(name: "Urbanist", size: 17)
-        text2b.textColor = UIColor.white
-        text2b.textAlignment = .center
-        text2b.frame = CGRect(x: 0, y: box2.frame.height-20, width: box2.frame.width, height: 20)
         
-        box2.addSubview(text2a)
-        box2.addSubview(text2b)
+        box5.frame = CGRect(x: (setupView1.frame.width/2)*0, y:  50+90, width: setupView1.frame.width/2, height: 65)
+//        box5.backgroundColor = UIColor.red
+        setupView1.addSubview(box5)
         
-        box3.frame = CGRect(x: (setupView1.frame.width/5)*3, y:  50, width: setupView1.frame.width/5, height: 65)
-//        box3.backgroundColor = UIColor.red
-        setupView1.addSubview(box3)
+        text5a.text = String(format: "%02d cm",hitTotal)
+        text5a.font = UIFont(name: "Urbanist-Medium", size: 34)
+        text5a.textColor = UIColor.white
+        text5a.textAlignment = .center
+        text5a.frame = CGRect(x: 0, y: 5, width: box5.frame.width, height: 30)
         
-        text3a.text = String(format: "%02d", hitSuccess)
-        text3a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text3a.textColor = UIColor.white
-        text3a.textAlignment = .center
-        text3a.frame = CGRect(x: 0, y: 5, width: box3.frame.width, height: 30)
+        text5b.text = lowestText
+        text5b.font = UIFont(name: "Urbanist", size: 17)
+        text5b.textColor = UIColor.white
+        text5b.textAlignment = .center
+        text5b.frame = CGRect(x: 0, y: box5.frame.height-20, width: box5.frame.width, height: 20)
         
-        text3b.text = "Success"
-        text3b.font = UIFont(name: "Urbanist", size: 17)
-        text3b.textColor = UIColor.white
-        text3b.textAlignment = .center
-        text3b.frame = CGRect(x: 0, y: box3.frame.height-20, width: box3.frame.width, height: 20)
+        let text5c = UILabel()
+        text5c.text = "kok di atas net"
+        text5c.font = UIFont(name: "Urbanist", size: 17)
+        text5c.textColor = UIColor.white
+        text5c.textAlignment = .center
+        text5c.frame = CGRect(x: 0, y: box5.frame.height+0, width: box5.frame.width, height: 20)
         
-        box3.addSubview(text3a)
-        box3.addSubview(text3b)
+        box5.addSubview(text5a)
+        box5.addSubview(text5b)
+//        box5.addSubview(text5c)
+        
+
+        box6.frame = CGRect(x: (setupView1.frame.width/2)*1, y:  50+90, width: setupView1.frame.width/2, height: 65)
+//        box6.backgroundColor = UIColor.red
+        setupView1.addSubview(box6)
+        
+        text6a.text = String(format: "%02d cm", hitPerfect)
+        text6a.font = UIFont(name: "Urbanist-Medium", size: 34)
+        text6a.textColor = UIColor.white
+        text6a.textAlignment = .center
+        text6a.frame = CGRect(x: 0, y: 5, width: box6.frame.width, height: 30)
+        
+        text6b.text = averageHeightText
+        text6b.font = UIFont(name: "Urbanist", size: 17)
+        text6b.textColor = UIColor.white
+        text6b.textAlignment = .center
+        text6b.frame = CGRect(x: 0, y: box6.frame.height-20, width: box6.frame.width, height: 20)
+        
+        let text6c = UILabel()
+        text6c.text = "kok di atas net"
+        text6c.font = UIFont(name: "Urbanist", size: 17)
+        text6c.textColor = UIColor.white
+        text6c.textAlignment = .center
+        text6c.frame = CGRect(x: 0, y: box6.frame.height+0, width: box6.frame.width, height: 20)
+        
+        box6.addSubview(text6a)
+        box6.addSubview(text6b)
+//        box6.addSubview(text6c)
         
         
-        box4.frame = CGRect(x: (setupView1.frame.width/5)*4, y:  50, width: setupView1.frame.width/5, height: 65)
-//        box4.backgroundColor = UIColor.red
-        setupView1.addSubview(box4)
         
-        text4a.text = String(format: "%02d", hitFail)
-        text4a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text4a.textColor = UIColor.white
-        text4a.textAlignment = .center
-        text4a.frame = CGRect(x: 0, y: 5, width: box4.frame.width, height: 30)
-        
-        text4b.text = "Fail"
-        text4b.font = UIFont(name: "Urbanist", size: 17)
-        text4b.textColor = UIColor.white
-        text4b.textAlignment = .center
-        text4b.frame = CGRect(x: 0, y: box4.frame.height-20, width: box4.frame.width, height: 20)
-        
-        box4.addSubview(text4a)
-        box4.addSubview(text4b)
-       
-        
-        
-//        let textYour = UILabel()
-//        textYour.text = "Your shot is successful on attempts to:"
-//        textYour.font = UIFont(name: "Urbanist", size: 17)
-//        textYour.textColor = UIColor.white
-//        textYour.textAlignment = .center
-//        textYour.frame = CGRect(x: 0, y: box4.frame.height+85, width: setupView1.frame.width, height: 20)
-//        setupView1.addSubview(textYour)
+//      let imageIconView = UIImageView(frame: CGRect(x: 0, y: box4.frame.height+85+75, width: 14.2227, height: 23.99989))
+//
+//       let imageName = "IconBadminton"
+//       if let image = UIImage(named: imageName) {
+//           imageIconView.image = image
+//       }
+//        setupView1.addSubview(imageIconView)
+
+        let textYour = UILabel()
+        textYour.text = completeChallengeText
+        textYour.font = UIFont(name: "Urbanist", size: 17)
+        textYour.textColor = UIColor.white
+        textYour.textAlignment = .center
+        textYour.frame = CGRect(x: 0, y: box4.frame.height+85+105, width: setupView1.frame.width, height: 20)
+        setupView1.addSubview(textYour)
 //
 //        let hitTotal = arrHitStatistics.count
 //        let itemWidth = setupView1.frame.width / 10
@@ -463,20 +513,35 @@ class ContentAnalysisViewController: UIViewController,
        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.stopRecording()
-            // Create a UIButton
-            let doneButton = UIButton(type: .system)
-            doneButton.setTitle("Done", for: .normal)
-            doneButton.setTitleColor(.white, for: .normal)
-            doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-            doneButton.backgroundColor = UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0)
-            doneButton.layer.cornerRadius = 12
-            doneButton.frame = CGRect(x: 0, y: 0, width: 350, height: 50)
-            doneButton.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 120)
-            doneButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
-            self.view.addSubview(doneButton)
+            
+            let view1 = UIView()
+            view1.frame = CGRect(x: 0, y: setupView1.frame.height-60, width: setupView1.frame.width/2, height: 50)
+            setupView1.addSubview(view1)
+            let view2 = UIView()
+            view2.frame = CGRect(x: setupView1.frame.width/2, y: setupView1.frame.height-60, width: setupView1.frame.width/2, height: 50)
+            setupView1.addSubview(view2)
+            self.doneButton.setTitle(doneText, for: .normal)
+            self.doneButton.setTitleColor(UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0), for: .normal)
+            self.doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+            self.doneButton.backgroundColor = .white
+            self.doneButton.layer.cornerRadius = 12
+            self.doneButton.frame = CGRect(x: 0, y: 0, width: view1.frame.width * 0.9, height: 50)
+            self.doneButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
+            view1.addSubview(self.doneButton)
+            self.detailButton.setTitle("Detail", for: .normal)
+            self.detailButton.setTitleColor(.white, for: .normal)
+            self.detailButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+            self.detailButton.backgroundColor = UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0)
+            self.detailButton.layer.cornerRadius = 12
+            self.detailButton.frame = CGRect(x: 0, y: 0, width: view1.frame.width * 0.9, height: 50)
+            self.detailButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
+            view2.addSubview(self.detailButton)
             
         }
     }
+    
+    let doneButton = UIButton(type: .system)
+    let detailButton = UIButton(type: .system)
     
     var textClear = UILabel()
     var text1 = UILabel()
@@ -580,6 +645,29 @@ class ContentAnalysisViewController: UIViewController,
         }
     }
 
+    @objc func stopManual(){
+        
+        urlVideoSource = nil
+        detectTrajectoryRequest = nil
+        
+        hitFailApp = hitFail
+        hitTotalApp = hitTotal
+        hitSuccessApp = hitSuccess
+        hitPerfectApp = hitPerfect
+        
+        var arr: String = ""
+        for val in arrHitStatistics {
+            arr += "\(val.hitNumber):\(val.hitStatus):\(val.hitDistance),"
+        }
+        if(arrHitStatistics.count > 0){
+            arr.removeLast()
+        }
+        arrResult = arr
+        dismiss(animated: true, completion: nil)
+        counter.menuStateSend(menuState: "result")
+        self.setupResultView()
+    }
+    
     @objc func stop(){
         
         urlVideoSource = nil
@@ -592,7 +680,7 @@ class ContentAnalysisViewController: UIViewController,
         
         var arr: String = ""
         for val in arrHitStatistics {
-            arr += "\(val.hitNumber):\(val.hitStatus),"
+            arr += "\(val.hitNumber):\(val.hitStatus):\(val.hitDistance),"
         }
         if(arrHitStatistics.count > 0){
             arr.removeLast()
@@ -619,6 +707,8 @@ class ContentAnalysisViewController: UIViewController,
     
     
     let boxNet = UIView()
+    
+    let rightArea = UIView()
     
     func setupView(){
         
@@ -728,7 +818,7 @@ class ContentAnalysisViewController: UIViewController,
         buttonWhite.clipsToBounds = true
         buttonWhite.layer.borderWidth = 0.0
         buttonWhite.layer.borderColor = UIColor.white.cgColor
-        buttonWhite.addTarget(self, action: #selector(stop), for: .touchUpInside)
+        buttonWhite.addTarget(self, action: #selector(stopManual), for: .touchUpInside)
         boxNet.addSubview(buttonWhite)
         
         button.frame = CGRect(x: 5, y: 5, width: 54, height: 54)
@@ -736,7 +826,7 @@ class ContentAnalysisViewController: UIViewController,
         button.backgroundColor = nil
         button.layer.cornerRadius = 27
         button.clipsToBounds = true
-        button.addTarget(self, action: #selector(stop), for: .touchUpInside)
+        button.addTarget(self, action: #selector(stopManual), for: .touchUpInside)
         
         buttonWhite.addSubview(button)
         
@@ -798,9 +888,12 @@ class ContentAnalysisViewController: UIViewController,
             boxCourtView.addSubview(imageCourtView)
             boxNet.addSubview(boxCourtView)
             
-//            let rightArea = UIView()
-//            rightArea.
-//            boxCourtView.addSubview(rightArea)
+            
+            rightArea.frame = CGRect(x:boxCourtView.frame.width * 0.49,y:10,width:boxCourtView.frame.width * 0.37,height:boxCourtView.frame.height * 0.63)
+            print("DBUGG : ",rightArea.frame)
+//            rightArea.backgroundColor = .blue
+//            rightArea.layer.opacity = 0.3
+            boxCourtView.addSubview(rightArea)
             
         }
         
@@ -844,14 +937,14 @@ class ContentAnalysisViewController: UIViewController,
               text3.frame = CGRect(x: (boxScore.frame.width/4) * 3, y: 10, width: (boxScore.frame.width/4), height: 30)
               
               let text4 = UILabel()
-              text4.text = "Good"
+              text4.text = goodTextTrajectory
               text4.font = UIFont(name: "Urbanist", size: 15)
               text4.textColor = UIColor.white
               text4.textAlignment = .center
               text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width/4) * 1, height: 30)
         
                 let text6 = UILabel()
-        text6.text = "Less"
+        text6.text = riskyTextTrajectory
         text6.font = UIFont(name: "Urbanist", size: 15)
         text6.textColor = UIColor.white
         text6.textAlignment = .center
@@ -859,7 +952,7 @@ class ContentAnalysisViewController: UIViewController,
               
               
         let text5 = UILabel()
-        text5.text = "Attempt"
+        text5.text = tryingText
         text5.font = UIFont(name: "Urbanist", size: 15)
         text5.textColor = UIColor.white
         text5.textAlignment = .center
@@ -997,7 +1090,7 @@ class ContentAnalysisViewController: UIViewController,
         }
         
         if menuStateApp == "result" {
-            stop()
+            stopManual()
         }
         
 //        guard !results.isEmpty else {
@@ -1052,19 +1145,14 @@ class ContentAnalysisViewController: UIViewController,
                 if(techniqueId == 0){
                     if(response.1){
                         hitTotal += 1
-                        print("DBUGG : ",response.0)
-                        var status = "Success"
                         if(response.0 == "Perfect"){
-                            status = "Perfect"
                             hitPerfect += 1
                         }else if(response.0 == "Success"){
-                            status = "Success"
                             hitSuccess += 1
                         }else if(response.0 == "Fail"){
-                            status = "Fail"
                             hitFail += 1
                         }
-                        let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                        let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: response.0, hitDistance: response.2)
                         arrHitStatistics.append(newData)
                     }
                 }
@@ -1123,7 +1211,7 @@ class ContentAnalysisViewController: UIViewController,
         }
         
         if menuStateApp == "result" {
-            stop()
+            stopManual()
         }
         
 //        guard !results.isEmpty else {
@@ -1183,26 +1271,39 @@ class ContentAnalysisViewController: UIViewController,
                 if(techniqueId == 1){
                     if(response.1){
                         hitTotal += 1
-                        var status = "Success"
                         if(response.0 == "Perfect"){
-                            status = "Perfect"
                             hitPerfect += 1
                         }else if(response.0 == "Success"){
-                            status = "Success"
                             hitSuccess += 1
                         }else if(response.0 == "Fail"){
-                            status = "Fail"
                             hitFail += 1
                         }
-                        let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status)
+                        let newData:HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: response.0, hitDistance: response.2)
                         arrHitStatistics.append(newData)
+                        
+                        let circleNet = CALayer()
+                        circleNet.frame = CGRect(x: response.3.x, y:response.3.y-8, width: 8, height: 8)
+                        if(response.0 == "Perfect"){
+                            circleNet.backgroundColor = localStorage.loadColor(forKey: "Green")?.cgColor
+                            print("DBUGG : \(String(describing: circleNet.backgroundColor))")
+                        }else if(response.0 == "Success"){
+                            circleNet.backgroundColor = localStorage.loadColor(forKey: "Yellow")?.cgColor
+                        }else if(response.0 == "Fail"){
+                            circleNet.backgroundColor = localStorage.loadColor(forKey: "Red")?.cgColor
+                        }
+                        circleNet.opacity = 1
+                        circleNet.cornerRadius = 5.0
+                        circleNet.masksToBounds = true
+                        rightArea.layer.addSublayer(circleNet)
+                        
                     }
                 }
                 
               
                 
                 text1.text = String(format: "%02d", hitTotal)
-                textClear.text = String(format: "%02d", hitSuccess)
+                textClear.text = String(format: "%02d", hitPerfect)
+                text7.text = String(format: "%02d", hitSuccess)
                 text3.text = String(format: "%02d", hitTargetApp)
                 
                 

@@ -10,6 +10,8 @@ import SpriteKit
 import Vision
 import SwiftUI
 
+import CoreGraphics
+
 class TrajectoryView: SKView, AnimatedTransitioning {
     
     let localStorage = LocalStorage()
@@ -38,6 +40,9 @@ class TrajectoryView: SKView, AnimatedTransitioning {
     private var yMaxLine:Double = 0.0
     private var xMinLine:Double = 0.0
     private var xMaxLine:Double = 0.0
+    
+    private var distance:Double = 0.0
+    private var cgpoint:CGPoint = CGPoint(x: 0, y: 0)
     
     // MARK: - Life Cycle
     
@@ -98,8 +103,24 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         
     }
 
+    let homographyMatrix: [[Double]] = [
+             [ 6.95183213e-02, -4.05481429e-02,  2.20571688e+00],
+             [-1.30246469e-17, -3.07548208e-01,  1.13063949e+02],
+             [-1.55584989e-19, -1.99253799e-03,  1.00000000e+00]
+        ]
+
+    func transformPoint(_ point: CGPoint, withHomographyMatrix matrix: [[Double]]) -> CGPoint {
+        let x = Double(point.x)
+        let y = Double(point.y)
+
+        let u = (matrix[0][0] * x + matrix[0][1] * y + matrix[0][2]) / (matrix[2][0] * x + matrix[2][1] * y + matrix[2][2])
+        let v = (matrix[1][0] * x + matrix[1][1] * y + matrix[1][2]) / (matrix[2][0] * x + matrix[2][1] * y + matrix[2][2])
+
+        return CGPoint(x: round(u * 100) / 100, y: round(v * 100) / 100)
+    }
     
-    func getHighestPoint(points: [VNPoint], bounds: CGRect) -> (String,Bool) {
+    
+    func getHighestPoint(points: [VNPoint], bounds: CGRect) -> (String,Bool,Double,CGPoint) {
         
         isTrajectory = false
         
@@ -151,11 +172,10 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             
             highestX = highestX * bounds.maxX
             highestY = highestY * bounds.maxY
-          
-          print("DBUGG yMax: \(bounds.height)")
-          
-          print("DBUGG yMax: \(bounds.maxY)")
-          print("DBUGG yNet: \(yNet)")
+        
+//            distance = (highestY - yNet)
+            distance = 185 * (highestY - yNet) / 195
+            print("DBUGG DISTANCE : \(distance)")
             
             if(points.last!.x * bounds.width > xNet && highestY > yNet){
                 if(highestX < xNet){
@@ -221,7 +241,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             
                 let box = UIView()
                 box.frame = CGRect(x: 0, y: 0, width: bounds.width,height: bounds.height)
-//                box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.3)
+                box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.3)
 //                box.layer.cornerRadius = 4
                 
                 let transformBox = CATransform3DMakeScale(1, -1, 1)
@@ -287,11 +307,6 @@ class TrajectoryView: SKView, AnimatedTransitioning {
 //                box.layer.addSublayer(shapeLayer)
 
            
-
-
-
-
-
             
                 status = "Fail"
             
@@ -321,6 +336,9 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             horizontalLineView.stroke()
             horizontalLayer.path = horizontalLineView.cgPath
             
+            cgpoint = transformPoint(CGPoint(x: xSelected, y: ySelected), withHomographyMatrix: homographyMatrix)
+            
+            print("DBUGG : \(transformPoint(CGPoint(x: xSelected, y: ySelected), withHomographyMatrix: homographyMatrix))")
             
             
                // Check if the selected point is inside the quadrilateral
@@ -343,13 +361,15 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             layer.addSublayer(circlePoint)
         }
         
-        return (status,isTrajectory)
+        return (status,isTrajectory,distance,cgpoint)
     }
     
-    func updatePathLayer() -> (String,Bool) {
+    func updatePathLayer() -> (String,Bool,Double,CGPoint) {
        
         let result = getHighestPoint(points: points, bounds: bounds)
         let status = result.0
+        let distance = result.2
+        let cgpoint = result.3
         
         let trajectory = UIBezierPath()
 //        guard let startingPoint = points.first else {
@@ -412,7 +432,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
 //        }
 //        return ["distance": distance, "highestX": highestX, "highestY": highestY, "length": trajectoryLength, "status": status]
         
-        return (status,isTrajectory)
+        return (status,isTrajectory,distance,cgpoint)
     }
     
 }

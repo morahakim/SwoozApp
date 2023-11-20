@@ -52,7 +52,7 @@ struct HomeView: View {
                     VStack {
                         ImgHero(
                             name: "HeroImg",
-                            desc: "Optimize your training with challenges and objective assessments for better progress!"
+                            desc: onBoardingDesc
                         )
                         .offset(y: -50)
                     }
@@ -61,7 +61,7 @@ struct HomeView: View {
                 VStack {
                     Spacer()
                     VStack(alignment: .center, spacing: 4) {
-                        BtnPrimary(text: "Choose Your Drill") {
+                        BtnPrimary(text: onBoardingButtonText) {
                             vm.path.append(.Technique)
                         }
                     }
@@ -74,7 +74,7 @@ struct HomeView: View {
                 }
                 .ignoresSafeArea(.container, edges: .bottom)
             }
-            .navigationTitle(list.count > 0 ? "Your Recording" : "Welcome")
+            .navigationTitle(list.count > 0 ? yourRecordingText : welcome)
             .navigationDestination(for: ViewPath.self) { path in
                 HomeViewModel.viewForDestination(path)
             }

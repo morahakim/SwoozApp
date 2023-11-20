@@ -98,7 +98,7 @@ struct DetailVideoView: View {
                             VStack {
                                 HStack {
                                     Rectangle()
-                                        .fill(Color.backgroundColor(for: item.level))
+                                        .fill(Color.backgrounds(for: item.level))
                                         .cornerRadius(20)
                                         .frame(width: 97, height: 24)
                                         .overlay {
@@ -117,7 +117,7 @@ struct DetailVideoView: View {
                                 }
                                 HStack {
                                     if isEditing {
-                                        TextField("Edit name", text: $editedName, onCommit: {
+                                        TextField(editName, text: $editedName, onCommit: {
                                             updateItemName()
                                         })
                                         .font(Font.custom("Urbanist", size: 22))
@@ -142,7 +142,7 @@ struct DetailVideoView: View {
 //                            .padding()
                             
                             VStack(spacing: 15) {
-                                TextAlignLeading("Your shot is successful on attempts to :")
+                                TextAlignLeading(goodServePerformText)
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
                                 
@@ -152,13 +152,13 @@ struct DetailVideoView: View {
                                             HStack(){
                                                 ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
                                                     Text(i.hitNumber)
-                                                        .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
-                                                        .font(Font.custom(i.hitStatus == "Success" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                                        .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
+                                                        .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
                                                 }
                                             }
                                         }
                                     } else {
-                                        Text("No data available")
+                                        Text(noDataText)
                                     }
                                 }
                                 
@@ -173,7 +173,7 @@ struct DetailVideoView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        Text("Target Servis")
+                                        Text(tryingText)
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -184,7 +184,7 @@ struct DetailVideoView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        Text("Duration")
+                                        Text(durationText)
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -202,7 +202,7 @@ struct DetailVideoView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        Text("Bagus")
+                                        Text(goodTextTrajectory)
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -212,7 +212,7 @@ struct DetailVideoView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        Text("Kurang")
+                                        Text(riskyTextTrajectory)
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -222,7 +222,7 @@ struct DetailVideoView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        Text("Fail")
+                                        Text(badTextTrajectory)
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -349,19 +349,19 @@ struct DetailVideoView: View {
     }
     
     
-    extension Color {
-        static func backgroundColor(for level: String?) -> Color {
-            switch level {
-            case "Intermediate":
-                return Color.redMain.opacity(0.8)
-            case "Experienced":
-                return Color.greenMain.opacity(0.8)
-            case "Advanced":
-                return Color.information.opacity(0.8)
-            default:
-                return Color.gray
-            }
+extension Color {
+    static func backgrounds(for level: String?) -> Color {
+        switch level {
+        case chooseLevelTextOne:
+            return Color.redMain.opacity(0.8)
+        case chooseLevelTextTwo:
+            return Color.greenMain.opacity(0.8)
+        case "Advanced":
+            return Color.information.opacity(0.8)
+        default:
+            return Color.gray
         }
     }
+}
     
     

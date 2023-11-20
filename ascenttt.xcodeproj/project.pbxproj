@@ -52,13 +52,13 @@
 		370F77212B00924E00BB2194 /* CPTLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */; };
 		370F77222B00924E00BB2194 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F77202B00924E00BB2194 /* CPTLevel3.mp4 */; };
 		370F77252B0213CC00BB2194 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
+		374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43572B0B8B30007A4F1A /* LocalizableText.swift */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
 		BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */; };
 		BEA1C15A2AF0436D00BFF1A4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11F2AF0436D00BFF1A4 /* SplashView.swift */; };
-		BEA1C15B2AF0436D00BFF1A4 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1212AF0436D00BFF1A4 /* ResultView.swift */; };
 		BEA1C15C2AF0436D00BFF1A4 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1232AF0436D00BFF1A4 /* RecordView.swift */; };
 		BEA1C15D2AF0436D00BFF1A4 /* BallScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1262AF0436D00BFF1A4 /* BallScene.swift */; };
 		BEA1C15E2AF0436D00BFF1A4 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1272AF0436D00BFF1A4 /* Animations.swift */; };
@@ -73,7 +73,6 @@
 		BEA1C1682AF0436D00BFF1A4 /* LoadingRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1322AF0436D00BFF1A4 /* LoadingRecordView.swift */; };
 		BEA1C1692AF0436D00BFF1A4 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1342AF0436D00BFF1A4 /* ProgressView.swift */; };
 		BEA1C16A2AF0436D00BFF1A4 /* LowServeTrajectoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1362AF0436D00BFF1A4 /* LowServeTrajectoryView.swift */; };
-		BEA1C16C2AF0436D00BFF1A4 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1392AF0436D00BFF1A4 /* StatisticView.swift */; };
 		BEA1C16D2AF0436D00BFF1A4 /* CameraGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C13B2AF0436D00BFF1A4 /* CameraGuideView.swift */; };
 		BEA1C16E2AF0436D00BFF1A4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C13D2AF0436D00BFF1A4 /* HomeViewModel.swift */; };
 		BEA1C16F2AF0436D00BFF1A4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C13E2AF0436D00BFF1A4 /* HomeView.swift */; };
@@ -161,13 +160,13 @@
 		370F77202B00924E00BB2194 /* CPTLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel3.mp4; sourceTree = "<group>"; };
 		370F77262B0213CC00BB2194 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		370F77282B0213CD00BB2194 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		374C43572B0B8B30007A4F1A /* LocalizableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableText.swift; sourceTree = "<group>"; };
 		3782C9512B074A4F00D0C4C5 /* ascenttt-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ascenttt-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
 		BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToPotraitView.swift; sourceTree = "<group>"; };
 		BEA1C11F2AF0436D00BFF1A4 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		BEA1C1212AF0436D00BFF1A4 /* ResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		BEA1C1232AF0436D00BFF1A4 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		BEA1C1262AF0436D00BFF1A4 /* BallScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallScene.swift; sourceTree = "<group>"; };
 		BEA1C1272AF0436D00BFF1A4 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
@@ -182,7 +181,6 @@
 		BEA1C1322AF0436D00BFF1A4 /* LoadingRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingRecordView.swift; sourceTree = "<group>"; };
 		BEA1C1342AF0436D00BFF1A4 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BEA1C1362AF0436D00BFF1A4 /* LowServeTrajectoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowServeTrajectoryView.swift; sourceTree = "<group>"; };
-		BEA1C1392AF0436D00BFF1A4 /* StatisticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		BEA1C13B2AF0436D00BFF1A4 /* CameraGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraGuideView.swift; sourceTree = "<group>"; };
 		BEA1C13D2AF0436D00BFF1A4 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BEA1C13E2AF0436D00BFF1A4 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 			children = (
 				188062F02AF9536400310F93 /* SFSymbol.swift */,
 				188062F22AF9537E00310F93 /* ActionEnum.swift */,
-				370F77272B0213CC00BB2194 /* Localizable.strings */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -310,6 +307,15 @@
 				18AD0C112AF95ADB0019DD60 /* Database.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		374C43562B0B8B0C007A4F1A /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				370F77272B0213CC00BB2194 /* Localizable.strings */,
+				374C43572B0B8B30007A4F1A /* LocalizableText.swift */,
+			);
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 		BE8F8DF12AF044A900616288 /* Frameworks */ = {
@@ -352,7 +358,6 @@
 				BEA1C1202AF0436D00BFF1A4 /* Result */,
 				BEA1C11B2AF0436D00BFF1A4 /* Rotate */,
 				BEA1C11E2AF0436D00BFF1A4 /* Splash */,
-				BEA1C1382AF0436D00BFF1A4 /* Statistic */,
 				BEA1C1352AF0436D00BFF1A4 /* Technique */,
 			);
 			path = Views;
@@ -378,7 +383,6 @@
 		BEA1C1202AF0436D00BFF1A4 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				BEA1C1212AF0436D00BFF1A4 /* ResultView.swift */,
 				18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */,
 			);
 			path = Result;
@@ -446,14 +450,6 @@
 			path = Technique;
 			sourceTree = "<group>";
 		};
-		BEA1C1382AF0436D00BFF1A4 /* Statistic */ = {
-			isa = PBXGroup;
-			children = (
-				BEA1C1392AF0436D00BFF1A4 /* StatisticView.swift */,
-			);
-			path = Statistic;
-			sourceTree = "<group>";
-		};
 		BEA1C13A2AF0436D00BFF1A4 /* CameraGuide */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				188062EF2AF9532300310F93 /* Constants */,
+				374C43562B0B8B0C007A4F1A /* Localizable */,
 				188062EE2AF9531900310F93 /* Components */,
 				184E02E62AF1743A0004C569 /* Extenstions */,
 			);
@@ -719,7 +716,6 @@
 				BEA1C1672AF0436D00BFF1A4 /* HomeViewRepresentable.swift in Sources */,
 				BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */,
 				18CD6E0F2AF953AC0087B24D /* Card.swift in Sources */,
-				BEA1C15B2AF0436D00BFF1A4 /* ResultView.swift in Sources */,
 				BEA1C16A2AF0436D00BFF1A4 /* LowServeTrajectoryView.swift in Sources */,
 				BEA1C1642AF0436D00BFF1A4 /* ContentAnalysisViewController.swift in Sources */,
 				BEA1C1722AF0436D00BFF1A4 /* OnboardingView.swift in Sources */,
@@ -728,8 +724,8 @@
 				BEA1C1652AF0436D00BFF1A4 /* VideoRenderView.swift in Sources */,
 				BEA1C15A2AF0436D00BFF1A4 /* SplashView.swift in Sources */,
 				BEA1C15E2AF0436D00BFF1A4 /* Animations.swift in Sources */,
-				BEA1C16C2AF0436D00BFF1A4 /* StatisticView.swift in Sources */,
 				18CD6E1D2AF955250087B24D /* Counter.swift in Sources */,
+				374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */,
 				18AD0C132AF95ADB0019DD60 /* Database.xcdatamodeld in Sources */,
 				184E02EC2AF174480004C569 /* Date+Ext.swift in Sources */,
 				BEA1C16D2AF0436D00BFF1A4 /* CameraGuideView.swift in Sources */,
@@ -902,7 +898,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -932,7 +928,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -964,7 +960,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1001,7 +997,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;

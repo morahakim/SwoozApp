@@ -62,10 +62,10 @@ private struct WarningView: View {
             HStack(alignment: .center, spacing: 20) {
                 Image("MaxImg")
                     .frame(width: 60, height: 60)
-                Text("Max 20 Minutes")
+                Text(maxText)
                     .font(Font.custom("SF Pro", size: 34))
             }
-            Text("Recording is limited to 20 minutes,\nand the video will automatically stop thereafter.")
+            Text(recordingDurationText)
                 .font(Font.custom("SF Pro", size: 15))
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(red: 0.99, green: 0.37, blue: 0.33))

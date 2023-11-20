@@ -6,11 +6,11 @@
   
 */
 
-"Welcome" = "Selamat Datang";
+"welcome" = "Selamat Datang";
 "on_boarding_desc" = "Optimalkan latihanmu dengan tantangan dan penilaian objektif demi kemajuan lebih baik!";
 "on_boarding_button_text" = "Pilih Latihanmu";
 "navigation_title_technique" = "Latihan apa sekarang?";
-"choose_level_text_one" = "Servis Rendah - Lintasan";
+"choose_level_text_one" = "Servis Rendah - Konsistensi";
 "choose_level_text_two" = "Servis Rendah - Penempatan";
 "choose_level_text_three" = "Servis Tinggi - Konsistensi";
 "choose_level_desc_one" = "Nilai konsistensi dan kualitas lintasan kok dengan memperhatikan puncaknya.";
@@ -48,3 +48,18 @@
 "progress_text" = "Progress";
 "previous_drill_text" = "Latihan Sebelumnya";
 "duration_text" = "Durasi";
+"recording_duration_text" = "Perekaman dibatasi hingga 20 menit,
+dan video akan otomatis berhenti.";
+"max_text" = "Maks 20 Menit";
+"your_recording_text" = "Rekaman Kamu";
+"skip_text" = "LEWATI";
+"setup_text" = "Peletakan Kamera";
+"done_text" = "Selesai";
+"lowest_text" = "Terendah dari Net";
+"average_height_text" = "Rata-rata Kerendahan";
+"edit_name" = "Edit Nama";
+"no_data_text" = "Data tidak tersedia";
+"repetition_text" = "Atur Repetisi";
+"unlimited_text" = "Tidak Terbatas";
+"continue_text" = "Lanjutkan";
+"tips_trajectory_placement" = "Variasikan bidikan kok agar servis kamu sulit ditebak.";

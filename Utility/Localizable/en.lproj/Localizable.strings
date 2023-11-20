@@ -6,7 +6,7 @@
   
 */
 
-"Welcome" = "Welcome";
+"welcome" = "Welcome";
 "on_boarding_desc" = "Optimize your training with challenges and objective assessments for better progress!";
 "on_boarding_button_text" = "Choose Your Drill";
 "navigation_title_technique" = "Which drill now?";
@@ -49,3 +49,18 @@
 "progress_text" = "Progress";
 "previous_drill_text" = "Previous Drill";
 "duration_text" = "Duration";
+"recording_duration_text" = "Recording is limited to 20 minutes,
+and the video will automatically stop.";
+"max_text" = "Max 20 Minutes";
+"your_recording_text" = "Your Recording";
+"skip_text" = "SKIP";
+"setup_text" = "Camera Placement";
+"done_text" = "Done";
+"lowest_text" = "Lowest Over The Net";
+"average_height_text" = "Average Height";
+"edit_name" = "Edit Name";
+"no_data_text" = "No data available";
+"repetition_text" = "Set Repetition";
+"unlimited_text" = "Unlimited";
+"continue_text" = "Continue";
+"tips_trajectory_placement" = "Diversify the shuttlecock target to make your serve unpredictable.";

@@ -119,12 +119,12 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         contentAnalysisViewController.contentAnalysisDelegate = self
         
         contentAnalysisViewController.counter.typeSend(type: type)
-        contentAnalysisViewController.counter.levelSend(level: name)
+        contentAnalysisViewController.counter.levelSend(level: techniqueName)
         
         // Assuming you are inside a UIViewController or another appropriate context
         let screenWidth = UIScreen.main.bounds.width
-
-        
+ 
+        techniqueId = 1
        
 //        setupSetUp()
         
@@ -248,7 +248,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
               //        box1.backgroundColor = .blue
                       
                       let text1 = UILabel()
-                      text1.text = "Good"
+                      text1.text = goodTextTrajectory
                       text1.font = UIFont(name: "Urbanist", size: 20)
                       text1.textColor = UIColor.white
                       text1.textAlignment = .right
@@ -278,7 +278,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                       box2.frame = CGRect(x: (boxPathColor.frame.width/3) * 1, y: 15, width: boxPathColor.frame.width/3, height: 34)
                       
                       let text2 = UILabel()
-                      text2.text = "Less"
+                      text2.text = riskyTextTrajectory
                       text2.font = UIFont(name: "Urbanist", size: 20)
                       text2.textColor = UIColor.white
                       text2.textAlignment = .right
@@ -307,7 +307,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             let box3 = UIView()
             box3.frame = CGRect(x: (boxPathColor.frame.width/3) * 2, y: 15, width: boxPathColor.frame.width/3, height: 34)
             let text3 = UILabel()
-                    text3.text = "Bad"
+                    text3.text = badTextTrajectory
                     text3.font = UIFont(name: "Urbanist", size: 20)
                     text3.textColor = UIColor.white
                     text3.textAlignment = .right
@@ -352,7 +352,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             
             
             let doneButton = UIButton(type: .system)
-            doneButton.setTitle("Save", for: .normal)
+            doneButton.setTitle(buttonSaveText, for: .normal)
             doneButton.setTitleColor(.white, for: .normal)
             doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
             doneButton.backgroundColor = UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0)
@@ -482,7 +482,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             
             playerViewController.player = player
 
-                        
             // Create a container view with a border radius
             let container = UIView()
             container.frame = CGRect(x: 0, y: 0, width: setupView1.frame.width, height: setupView1.frame.height)
@@ -516,7 +515,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         }
 
         let resetButton = UIButton()
-        resetButton.setTitle("SKIP", for: .normal)
+        resetButton.setTitle(skipText, for: .normal)
         resetButton.titleLabel?.font = UIFont(name: "Urbanist", size: 17)
         resetButton.setTitleColor(UIColor.white, for: .normal)
         resetButton.frame = CGRect(x: 0, y: setupView1.frame.maxY + 5, width: setupViewChild.frame.width, height: 40)
@@ -526,7 +525,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         setupViewChild.addSubview(resetButton)
         
         let textLevel = UILabel()
-        textLevel.text = "Set Up Tutorial "+type+" "+name
+        textLevel.text = "\(setupText) "+type+" "+name
         textLevel.font = UIFont(name: "Urbanist", size: 17)
         textLevel.textColor = UIColor.white
         textLevel.textAlignment = .center
@@ -535,6 +534,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 
         
     }
+    
     
     let thumbnailImageView = UIImageView()
     
@@ -663,7 +663,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
        
         if(techniqueId == 0){
-            netName = "Guide1"
+            netName = "NetLevel2"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
@@ -671,7 +671,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             view.addSubview(boxNet)
             
         }else if(techniqueId == 1){
-            netName = "Guide2"
+            netName = "NetLevel3"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
@@ -818,7 +818,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 //            captureSession.startRunning()
     }
 }
-
 
 extension HomeViewController: UIDocumentPickerDelegate {
     
