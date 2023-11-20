@@ -241,7 +241,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             
                 let box = UIView()
                 box.frame = CGRect(x: 0, y: 0, width: bounds.width,height: bounds.height)
-                box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.3)
+//                box.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 0.3)
 //                box.layer.cornerRadius = 4
                 
                 let transformBox = CATransform3DMakeScale(1, -1, 1)

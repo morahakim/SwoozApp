@@ -73,7 +73,7 @@ struct LowServeTrajectoryView: View {
                             VideoPlayer(player: player)
                                 .frame(width: 358, height: 173)
                                 .cornerRadius(12)
-
+                            
                             ScrollView {
                                 VStack(spacing: 4) {
                                     HStack {
@@ -147,57 +147,130 @@ struct LowServeTrajectoryView: View {
                                     }
                                     
                                     Text(trajectoryTipsText)
-                                      .font(Font.custom("SF Pro", size: 15))
-                                      .foregroundStyle(.grayStroke6)
-                                      .padding(.bottom, 8)
+                                        .font(Font.custom("SF Pro", size: 15))
+                                        .foregroundStyle(.grayStroke6)
+                                        .padding(.bottom, 8)
                                     Divider()
                                 }
                                 .padding(.top, 12)
                                 
                                 CardView(action: {}, content: {
                                     VStack(alignment: .leading, spacing: 12) {
-                                        Text(chooseLevelTextOne)
-                                          .font(Font.custom("SF Pro", size: 16))
+                                        VStack(alignment: .leading) {
+                                            Text(chooseLevelTextOne)
+                                                .font(Font.custom("SF Pro", size: 17))
+                                                .fontWeight(.semibold)
+                                            Text("Keep achieving.")
+                                                .font(Font.custom("SF Pro", size: 15))
+                                                .foregroundStyle(.grayStroke6)
+                                        }
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("\(recordOfAllTime[0].hitPerfect == 0 ? "-" : "\(recordOfAllTime[0].hitPerfect)")")
+                                                if recordOfAllTime.count > 0 {
+                                                    TextAlignLeading("\(recordOfAllTime[0].hitPerfect == 0 ? "-" : "\(recordOfAllTime[0].hitPerfect)")")
+                                                } else {
+                                                    TextAlignLeading("-")
+                                                }
                                                 Spacer()
                                                 TextAlignLeading("\(recordOfTheMonth.count > 0 ? "\(recordOfTheMonth[0].hitPerfect)" : "-")")
                                             }
-                                            .fontWeight(.medium)
-                                            .font(Font.custom("Urbanist", size: 20))
+                                            .font(Font.custom("Urbanist", size: 28))
+                                            .fontWeight(.semibold)
                                             
                                             HStack {
                                                 TextAlignLeading(recordAllTimeText)
                                                 Spacer()
                                                 TextAlignLeading(recordOfMonthText)
                                             }
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("SF Pro", size: 15))
                                         }
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("\(latestDrill[0].hitPerfect == 0 ? "-" : "\(latestDrill[0].hitPerfect)")")
+                                                if latestDrill.count > 0 {
+                                                    TextAlignLeading("\(latestDrill[0].hitPerfect == 0 ? "-" : "\(latestDrill[0].hitPerfect)")")
+                                                } else {
+                                                    TextAlignLeading("-")
+                                                }
                                                 Spacer()
-                                                TextAlignLeading("\(getAverate(recordOfTheMonth))")
+                                                TextAlignLeading("\(getAverate(recordOfTheMonth) == Double(0) ? "-" : "\(String(format: "%.2f", getAverate(recordOfTheMonth)))")")
                                             }
-                                            .fontWeight(.medium)
-                                            .font(Font.custom("Urbanist", size: 20))
+                                            .font(Font.custom("Urbanist", size: 28))
+                                            .fontWeight(.semibold)
                                             
                                             HStack {
                                                 TextAlignLeading(latestDrillText)
                                                 Spacer()
                                                 TextAlignLeading(averageDrillText)
                                             }
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("SF Pro", size: 15))
                                         }
                                     }
-                                    .foregroundStyle(.success)
+                                    .foregroundStyle(.neutralBlack)
                                     
                                 })
                                 .frame(height: 150)
                                 .padding(.bottom, 16)
+                                .padding(.top, 24)
+                                
+                                CardView(action: {}, content: {
+                                    VStack(alignment: .leading, spacing: 12) {
+                                        VStack(alignment: .leading) {
+                                            Text("Shuttlecock Height Over The Net")
+                                                .font(Font.custom("SF Pro", size: 17))
+                                                .fontWeight(.semibold)
+                                            Text("The lower, the better.")
+                                                .font(Font.custom("SF Pro", size: 15))
+                                                .foregroundStyle(.grayStroke6)
+                                        }
+                                        
+                                        VStack(spacing: 2) {
+                                            HStack {
+                                                TextAlignLeading("\(getLatestLowest(latestDrill) == Double(0) ? "-" : "\(String(format: "%.2f", getLatestLowest(latestDrill)))") cm")
+                                                Spacer()
+                                                TextAlignLeading("8.25 cm")
+                                            }
+                                            .font(Font.custom("Urbanist", size: 28))
+                                            .fontWeight(.semibold)
+                                            
+                                            HStack {
+                                                TextAlignLeading("Latest Lowest")
+                                                Spacer()
+                                                TextAlignLeading("Latest Average")
+                                            }
+                                            .font(Font.custom("SF Pro", size: 15))
+                                        }
+                                        
+                                        VStack(spacing: 2) {
+                                            HStack {
+                                                TextAlignLeading("2 cm")
+                                                Spacer()
+                                                TextAlignLeading("5.40 cm")
+                                            }
+                                            .font(Font.custom("Urbanist", size: 28))
+                                            .fontWeight(.semibold)
+                                            
+                                            HStack {
+                                                VStack{
+                                                    TextAlignLeading("Lowest")
+                                                    TextAlignLeading("This Month")
+                                                }
+                                                Spacer()
+                                                VStack {
+                                                    TextAlignLeading("Best Average")
+                                                    TextAlignLeading("This Month")
+                                                }
+                                            }
+                                            .font(Font.custom("SF Pro", size: 15))
+                                        }
+                                    }
+                                    .foregroundStyle(.neutralBlack)
+                                    
+                                })
+                                .frame(height: 150)
+                                .padding(.bottom, 24)
+                                .padding(.top, 24)
                             }
                             .scrollIndicators(.hidden)
                             .padding(.bottom, getSafeArea().bottom + 12)
@@ -280,6 +353,26 @@ struct LowServeTrajectoryView: View {
         }
     }
     
+    func getLatestLowest(_ data: FetchedResults<Data>) -> Double {
+        if data.count > 0 {
+            var lowest: Double = 100
+            for e in data {
+                if let res = e.result {
+                    let parsed = parseAttemp(res)
+                    for p in parsed {
+                        print("buggg: \(Double(p.netDistance))")
+                        if Double(p.netDistance) < lowest {
+                            lowest = Double(p.netDistance)
+                        }
+                    }
+                }
+            }
+            return lowest
+        } else {
+            return 0
+        }
+    }
+    
     func getAverate(_ data: [Data]) -> Double {
         if data.count == 0 {
             return 0
@@ -290,6 +383,34 @@ struct LowServeTrajectoryView: View {
             }
             return Double(total/Double(data.count))
         }
+    }
+    
+    private struct HitStatistics: Identifiable {
+        var id = UUID().uuidString
+        var hitNumber: String
+        var hitStatus: String
+        var netDistance: Double
+    }
+    
+    private func parseAttemp(_ data: String) -> [HitStatistics] {
+        var hitStatisticsArray: [HitStatistics] = []
+        
+        let components = data.components(separatedBy: ",")
+        for component in components {
+            // Split each component by colon
+            let keyValue = component.components(separatedBy: ":")
+            
+            // Check if there are exactly two components (key and value)
+            if keyValue.count == 3 {
+                let hitNumber = keyValue[0]
+                let hitStatus = keyValue[1]
+                let netDistance = Double(keyValue[2]) ?? 0.0
+                
+                let hitStat = HitStatistics(hitNumber: hitNumber, hitStatus: hitStatus, netDistance: netDistance)
+                hitStatisticsArray.append(hitStat)
+            }
+        }
+        return hitStatisticsArray
     }
 }
 

@@ -123,8 +123,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         // Assuming you are inside a UIViewController or another appropriate context
         let screenWidth = UIScreen.main.bounds.width
- 
-        techniqueId = 1
        
 //        setupSetUp()
         
