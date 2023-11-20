@@ -32,7 +32,7 @@
 		1878C43F2AFFC8AF0037D610 /* Level 1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4392AFFC8AF0037D610 /* Level 1.mov */; };
 		188062F12AF9536400310F93 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F02AF9536400310F93 /* SFSymbol.swift */; };
 		188062F32AF9537E00310F93 /* ActionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F22AF9537E00310F93 /* ActionEnum.swift */; };
-		18922FF62AFD2EBC001B68EF /* DetailVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */; };
+		18922FF62AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18922FF52AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift */; };
 		18AD0C132AF95ADB0019DD60 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18AD0C112AF95ADB0019DD60 /* Database.xcdatamodeld */; };
 		18CD6E0D2AF953A60087B24D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E0C2AF953A60087B24D /* Button.swift */; };
 		18CD6E0F2AF953AC0087B24D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E0E2AF953AC0087B24D /* Card.swift */; };
@@ -55,6 +55,9 @@
 		370F77222B00924E00BB2194 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F77202B00924E00BB2194 /* CPTLevel3.mp4 */; };
 		370F77252B0213CC00BB2194 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
 		374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43572B0B8B30007A4F1A /* LocalizableText.swift */; };
+		374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */; };
+		374C435B2B0BED86007A4F1A /* Localizable.strings in Sources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
+		374C435C2B0BED86007A4F1A /* LocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43572B0B8B30007A4F1A /* LocalizableText.swift */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
@@ -142,7 +145,7 @@
 		1878C4392AFFC8AF0037D610 /* Level 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 1.mov"; sourceTree = "<group>"; };
 		188062F02AF9536400310F93 /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		188062F22AF9537E00310F93 /* ActionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionEnum.swift; sourceTree = "<group>"; };
-		18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVideoView.swift; sourceTree = "<group>"; };
+		18922FF52AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectoryDetailView.swift; sourceTree = "<group>"; };
 		18AD0C122AF95ADB0019DD60 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		18CD6E0C2AF953A60087B24D /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		18CD6E0E2AF953AC0087B24D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 		370F77262B0213CC00BB2194 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		370F77282B0213CD00BB2194 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		374C43572B0B8B30007A4F1A /* LocalizableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableText.swift; sourceTree = "<group>"; };
+		374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementDetailView.swift; sourceTree = "<group>"; };
 		3782C9512B074A4F00D0C4C5 /* ascenttt-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ascenttt-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -389,7 +393,8 @@
 		BEA1C1202AF0436D00BFF1A4 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				18922FF52AFD2EBC001B68EF /* DetailVideoView.swift */,
+				18922FF52AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift */,
+				374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -714,10 +719,11 @@
 				183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */,
 				BEF748342AF02AAF00E8FB8B /* ascentttApp.swift in Sources */,
 				18CD6E152AF953D50087B24D /* Text.swift in Sources */,
+				374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */,
 				183B337C2AFA92CC004E023D /* TechniqueView.swift in Sources */,
 				18CD6E192AF953EA0087B24D /* Lottie.swift in Sources */,
 				BEA1C16E2AF0436D00BFF1A4 /* HomeViewModel.swift in Sources */,
-				18922FF62AFD2EBC001B68EF /* DetailVideoView.swift in Sources */,
+				18922FF62AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift in Sources */,
 				BEA1C1662AF0436D00BFF1A4 /* CameraFeedView.swift in Sources */,
 				184E02EB2AF174480004C569 /* View+Ext.swift in Sources */,
 				BEA1C1712AF0436D00BFF1A4 /* MainView.swift in Sources */,
@@ -747,6 +753,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				374C435B2B0BED86007A4F1A /* Localizable.strings in Sources */,
+				374C435C2B0BED86007A4F1A /* LocalizableText.swift in Sources */,
 				BEAAB9A12AF0476C00277B45 /* StartPage.swift in Sources */,
 				BEAAB9A32AF0477300277B45 /* ActivityRingView.swift in Sources */,
 				18CD6E202AF9571E0087B24D /* Counter.swift in Sources */,
@@ -906,7 +914,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -936,7 +944,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -968,7 +976,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1005,7 +1013,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;

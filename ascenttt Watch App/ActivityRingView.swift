@@ -55,13 +55,13 @@ struct ActivityRingView: View {
                             .fontWeight(.semibold)
                     }
                    
-                    Text("Attempt")
+                    Text(tryingText)
                         .font(.system(size: 16))
                         .foregroundColor(Color.greenMain)
                 }
             }
 
-            Text("Good:\((hitSuccessApp))")
+            Text("\(goodTextTrajectory):\((hitSuccessApp))")
                 .foregroundColor(Color.greenMain)
                 .font(.system(size: 16))
                 .padding(.bottom, 20)
@@ -88,7 +88,7 @@ struct PauseEndView: View {
                     })
                     .frame(width: 60)
                     .buttonStyle(.bordered)
-                    Text("End")
+                    Text(endText)
                         .foregroundColor(.red)
                 }
             }
@@ -116,13 +116,13 @@ struct SheetAlert: View {
     @ObservedObject var counter = Counter.shared
     var body: some View {
         VStack(spacing: 10) {
-            Text("Are you sure?")
+            Text(makeSureText)
                 .foregroundColor(Color.greenMain)
             Button(action: {
                 counter.menuStateSend(menuState: "result")
                 showingAlert = false
             }, label: {
-                Text("End Drill")
+                Text(endDrillText)
                     .font(.system(size: 17))
                     .foregroundColor(Color.redMain)
             })

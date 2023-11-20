@@ -22,7 +22,7 @@ struct HomeView: View {
                     VStack {
                         List {
                             ForEach(list) { item in
-                                NavigationLink(destination: DetailVideoView(item: item)) {
+                                NavigationLink(destination: LowServePlacementDetailView(item: item)) {
                                     ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
                                 }
                             }

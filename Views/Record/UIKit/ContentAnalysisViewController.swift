@@ -619,7 +619,7 @@ class ContentAnalysisViewController: UIViewController,
         if countdownValue > 0 {
             labelCountdown.text = String(countdownValue)
         } else if countdownValue == 0 {
-            labelCountdown.text = "GO"
+            labelCountdown.text = goText
         }else {
             if(isRecording == false){
                 startRecording()

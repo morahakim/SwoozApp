@@ -286,3 +286,108 @@ let tipsTrajectoryPlacement = NSLocalizedString(
     "tips_trajectory_placement",
     comment: ""
 )
+
+let lowServeText = NSLocalizedString(
+    "low_serve_text",
+    comment: ""
+)
+
+let trajectoryQualityText = NSLocalizedString(
+    "trajectory_quality_text",
+    comment: ""
+)
+
+let goodServeQualityText = NSLocalizedString(
+    "good_serve_text",
+    comment: ""
+)
+
+let shuttlecockOverNetText = NSLocalizedString(
+    "shuttlecock_over_net_text",
+    comment: ""
+)
+
+let lowestShotText = NSLocalizedString(
+    "lowest_shot_text",
+    comment: ""
+)
+
+let averageText = NSLocalizedString(
+    "average_text",
+    comment: ""
+)
+
+let averageProgressText = NSLocalizedString(
+    "average_progress_text",
+    comment: ""
+)
+
+let placementQuality = NSLocalizedString(
+    "placement_quality",
+    comment: ""
+)
+
+let shuttlecockDistanceLineText = NSLocalizedString(
+    "shuttlecock_distance_line_text",
+    comment: ""
+)
+
+let closestText = NSLocalizedString(
+    "closestText",
+    comment: ""
+)
+
+let placementType = NSLocalizedString(
+    "placement_type",
+    comment: ""
+)
+
+let quiteScattered = NSLocalizedString(
+    "quite_scattered",
+    comment: ""
+)
+
+let quiteCentralized = NSLocalizedString(
+    "quite_centralized",
+    comment: ""
+)
+
+let goText = NSLocalizedString(
+    "go_text",
+    comment: ""
+)
+
+let startText = NSLocalizedString(
+    "start_text",
+    comment: ""
+)
+
+let waitingText = NSLocalizedString(
+    "waiting_text",
+    comment: ""
+)
+
+let pleaseChooseText = NSLocalizedString(
+    "please_choose_text",
+    comment: ""
+)
+
+let technique = NSLocalizedString(
+    "technique",
+    comment: ""
+)
+
+let makeSureText = NSLocalizedString(
+    "make_sure_text",
+    comment: ""
+)
+
+let endDrillText = NSLocalizedString(
+    "end_drill_text",
+    comment: ""
+)
+
+let endText = NSLocalizedString(
+    "end_text",
+    comment: ""
+)

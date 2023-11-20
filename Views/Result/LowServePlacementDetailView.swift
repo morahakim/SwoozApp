@@ -9,7 +9,7 @@ import SwiftUI
 import AVKit
 import CoreData
 
-struct DetailVideoView: View {
+struct LowServePlacementDetailView: View {
     var item: FetchedResults<Data>.Element
     @State var isPlay: Bool = false
     @State var player: AVPlayer?
@@ -98,7 +98,7 @@ struct DetailVideoView: View {
                             VStack {
                                 HStack {
                                     Rectangle()
-                                        .fill(Color.backgrounds(for: item.level))
+                                        .fill(Color.backgroundColor(for: item.level))
                                         .cornerRadius(20)
                                         .frame(width: 97, height: 24)
                                         .overlay {
@@ -124,7 +124,7 @@ struct DetailVideoView: View {
                                         .foregroundColor(.neutralBlack)
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                     } else {
-                                        Text(item.name ?? "Low Serve")
+                                        Text(item.name ?? lowServeText)
                                             .font(Font.custom("Urbanist-Medium", size: 22))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -162,11 +162,16 @@ struct DetailVideoView: View {
                                     }
                                 }
                                 
-                                ThickDivider(thickness: 1, color: .gray)
+                                ThickDividers(thickness: 1, color: .gray)
                             }
                             .padding(.top)
                             
                             VStack(spacing: 25) {
+                                Text(placementQuality)
+                                    .font(Font.custom("SF Pro", size: 17))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                    .padding(.bottom)
                                 HStack {
                                     VStack(spacing: 8) {
                                         Text("\(item.hitTarget )")
@@ -230,8 +235,17 @@ struct DetailVideoView: View {
                                 }
                                 .padding(.trailing, 90)
                                 
+                                Text("-5")
+                                    .font(Font.custom("SF Pro", size: 17))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                Text(goodServeQualityText)
+                                    .font(Font.custom("SF Pro", size: 12))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
                                 
-                                ThickDivider(thickness: 1, color: .gray)
+                                
+                                ThickDividers(thickness: 1, color: .gray)
                                 
                                 //
                             }
@@ -239,51 +253,86 @@ struct DetailVideoView: View {
                             .padding(.top)
                             
                             
-                            VStack(spacing: 20) {
-                                
-                                Text(item.level ?? "")
-                                    .font(Font.custom("SF Pro", size: 16))
-                                    .foregroundStyle(Color.greenMain)
+                            VStack(spacing: 25) {
+                                Text(shuttlecockDistanceLineText)
+                                    .font(Font.custom("SF Pro", size: 17))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                    .padding(.bottom)
                                 HStack {
-                                    VStack {
-                                        Text("-5")
-                                            .font(Font.custom("SF Pro", size: 20))
-                                            .foregroundStyle(Color.greenMain)
+                                    VStack(spacing: 8) {
+                                        Text("4 cm")
+                                            .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        Text("Perkembangan")
-                                            .font(Font.custom("SF Pro", size: 12))
-                                            .foregroundStyle(Color.greenMain)
+                                            .foregroundColor(.neutralBlack)
+                                        Text(closestText)
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
                                     }
                                     
-                                    VStack {
-                                        Text("10")
-                                            .font(Font.custom("SF Pro", size: 20))
-                                            .foregroundStyle(Color.greenMain)
+                                    VStack(spacing: 8) {
+                                        Text("4,55 cm")
+                                            .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        Text("Latihan Sebelumnya")
-                                            .font(Font.custom("SF Pro", size: 12))
-                                            .foregroundStyle(Color.greenMain)
+                                            .foregroundColor(.neutralBlack)
+                                        Text(averageText)
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        
+                                        
+                                        
                                         
                                     }
                                 }
+                                .padding(.trailing, 90)
+                                
+                                        
+                                Text("-1")
+                                    .font(Font.custom("SF Pro", size: 17))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                Text(averageProgressText)
+                                    .font(Font.custom("SF Pro", size: 12))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
                                 
                                 
+                                ThickDividers(thickness: 1, color: .gray)
+                                
+                                //
+                                
+                                Text(placementType)
+                                    .font(Font.custom("SF Pro", size: 17))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                    .padding(.bottom)
+                                Text(quiteScattered)
+                                    .font(Font.custom("Urbanist-Medium", size: 28))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                Text(latestDrillText)
+                                    .font(Font.custom("Urbanist", size: 17))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                    .padding(.bottom)
+                                Text(quiteCentralized)
+                                    .font(Font.custom("Urbanist-Medium", size: 28))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                Text(previousDrillText)
+                                    .font(Font.custom("Urbanist", size: 17))
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .foregroundColor(.neutralBlack)
+                                    .padding(.bottom)
+                                    
                             }
-                            .padding()
-                            .padding(.bottom)
-                            .frame(width: 355, height: 109)
+                            //                        .padding(.top)
+                            .padding(.top)
+
+                         
 //                            .background(Color.greenBasicMain.opacity(0.2))
-                            
-                            
-                            .overlay {
-                                Rectangle()
-                                    .fill(Color.greenBasicMain.opacity(0.1))
-                                    .shadow(color: .greenBasicMain, radius: 5, x: 0, y: 2)
-                                    .cornerRadius(12)
-                            }
                         }
                     }
                     .padding()
@@ -337,7 +386,7 @@ struct DetailVideoView: View {
             }
         }
     }
-    struct ThickDivider: View {
+    struct ThickDividers: View {
         var thickness: CGFloat
         var color: Color
         
@@ -350,7 +399,7 @@ struct DetailVideoView: View {
     
     
 extension Color {
-    static func backgrounds(for level: String?) -> Color {
+    static func backgroundColor(for level: String?) -> Color {
         switch level {
         case chooseLevelTextOne:
             return Color.redMain.opacity(0.8)

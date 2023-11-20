@@ -81,7 +81,7 @@ struct ContentView: View {
         if countdownValue > 0 {
             labelCountdown = String(countdownValue)
         } else if countdownValue == 0 {
-            labelCountdown = "GO"
+            labelCountdown = goText
         }else {
             labelCountdown = ""
             remainingTime -= 1
@@ -135,13 +135,13 @@ struct ContentView: View {
                                 counter.menuStateSend(menuState: "stillPlay")
                                 //                                       print("DBUG : ",menuStateApp," DBUG")
                             } label: {
-                                Text("Start")
+                                Text(startText)
                                     .font(.system(size: 24))
                             }
                             .buttonStyle(.plain)
                         }else{
                             Text(
-                                "Waiting...")
+                                waitingText)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.white)
                             .font(.system(size: 12))
@@ -159,11 +159,11 @@ struct ContentView: View {
                             .padding(.bottom, 0)
                             .foregroundColor(Color.greenMain)
                     }else{
-                        Text("Please choose")
+                        Text(pleaseChooseText)
                             .font(.system(size: 12)).lineLimit(nil)
                             .padding(.bottom, 0)
                             .foregroundColor(Color.greenMain)
-                        Text("a technique & level first!")
+                        Text(technique)
                             .font(.system(size: 12)).lineLimit(nil)
                             .padding(.bottom, 0)
                             .foregroundColor(Color.greenMain)
@@ -175,7 +175,7 @@ struct ContentView: View {
                 }
             }else if((menuStateApp == "stillPlay" || menuStateApp == "restart") && videoUrlApp != ""){
                 VStack(){
-                    if(labelCountdown == "3" || labelCountdown == "2" || labelCountdown == "1" || labelCountdown == "GO"){
+                    if(labelCountdown == "3" || labelCountdown == "2" || labelCountdown == "1" || labelCountdown == goText){
                         VStack(){
                             Text(labelCountdown)
                                 .foregroundColor(Color.greenMain)
@@ -202,19 +202,19 @@ struct ContentView: View {
                                 VStack(alignment: .leading) {
                                     Text("\(hitPerfectApp)")
                                         .font(.system(size: 23))
-                                    Text("Success")
+                                    Text(goodTextTrajectory)
                                 }
                                 VStack(alignment: .leading) {
                                     Text("\(hitSuccessApp)")
                                         .font(.system(size: 23))
-                                    Text("Fail")
+                                    Text(riskyTextTrajectory)
                                 }
                             }
                             HStack(spacing: 20) {
                                 VStack(alignment: .leading) {
                                     Text("\(hitTotalApp)")
                                         .font(.system(size: 23))
-                                    Text("Attempt")
+                                    Text(tryingText)
                                 }
                             }
                             
@@ -222,7 +222,7 @@ struct ContentView: View {
                             VStack(alignment: .leading) {
                                 Text(durationApp)
                                     .font(.system(size: 23))
-                                Text("Duration")
+                                Text(durationText)
                                 
                             }
                             
@@ -233,7 +233,7 @@ struct ContentView: View {
                                 levelApp = ""
                                 levelApp = ""
                             } label: {
-                                Text("Done")
+                                Text(doneText)
                             }
                             
                         }
