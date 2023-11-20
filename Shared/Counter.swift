@@ -12,6 +12,7 @@ import AVFoundation
 import SwiftUI
 
 final class Counter: ObservableObject {
+    static let shared = Counter()
     var session: WCSession
     let delegate: WCSessionDelegate
     let subject = PassthroughSubject<Int, Never>()

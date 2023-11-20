@@ -79,7 +79,7 @@
 		BEA1C1712AF0436D00BFF1A4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1402AF0436D00BFF1A4 /* MainView.swift */; };
 		BEA1C1722AF0436D00BFF1A4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1422AF0436D00BFF1A4 /* OnboardingView.swift */; };
 		BEAAB9A12AF0476C00277B45 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAB9A02AF0476C00277B45 /* StartPage.swift */; };
-		BEAAB9A32AF0477300277B45 /* CountingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAB9A22AF0477300277B45 /* CountingView.swift */; };
+		BEAAB9A32AF0477300277B45 /* ActivityRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAB9A22AF0477300277B45 /* ActivityRingView.swift */; };
 		BEF748342AF02AAF00E8FB8B /* ascentttApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */; };
 		BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF748372AF02AB000E8FB8B /* Assets.xcassets */; };
 		BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF7483A2AF02AB000E8FB8B /* Preview Assets.xcassets */; };
@@ -187,7 +187,7 @@
 		BEA1C1402AF0436D00BFF1A4 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BEA1C1422AF0436D00BFF1A4 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		BEAAB9A02AF0476C00277B45 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
-		BEAAB9A22AF0477300277B45 /* CountingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingView.swift; sourceTree = "<group>"; };
+		BEAAB9A22AF0477300277B45 /* ActivityRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingView.swift; sourceTree = "<group>"; };
 		BEF748302AF02AAF00E8FB8B /* ascenttt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ascenttt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ascentttApp.swift; sourceTree = "<group>"; };
 		BEF748372AF02AB000E8FB8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -537,7 +537,7 @@
 				BEF748452AF02AB000E8FB8B /* ascentttApp.swift */,
 				BEF748472AF02AB000E8FB8B /* ContentView.swift */,
 				BEAAB9A02AF0476C00277B45 /* StartPage.swift */,
-				BEAAB9A22AF0477300277B45 /* CountingView.swift */,
+				BEAAB9A22AF0477300277B45 /* ActivityRingView.swift */,
 				BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */,
 				BEF748492AF02AB000E8FB8B /* Assets.xcassets */,
 				BEF7484B2AF02AB000E8FB8B /* Preview Content */,
@@ -740,7 +740,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEAAB9A12AF0476C00277B45 /* StartPage.swift in Sources */,
-				BEAAB9A32AF0477300277B45 /* CountingView.swift in Sources */,
+				BEAAB9A32AF0477300277B45 /* ActivityRingView.swift in Sources */,
 				18CD6E202AF9571E0087B24D /* Counter.swift in Sources */,
 				18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */,
 				BEF748482AF02AB000E8FB8B /* ContentView.swift in Sources */,

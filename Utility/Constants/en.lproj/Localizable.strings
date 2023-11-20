@@ -8,7 +8,7 @@
 
 "Welcome" = "Welcome";
 "on_boarding_desc" = "Optimize your training with challenges and objective assessments for better progress!";
-"on_boarding_button_text" = "Choose Your Drill"
+"on_boarding_button_text" = "Choose Your Drill";
 "navigation_title_technique" = "Which drill now?";
 "choose_level_text_one" = "Low Serve - Trajectory";
 "choose_level_text_two" = "Low Serve - Placement";
@@ -32,7 +32,7 @@
 "latest_drill_text" = "Latest Drill";
 "average_drill_text" = "Average of This Month";
 "button_record_text" = "Start Recording";
-"trajectory_tutorial_text_one" "Place the tripod next to the net post. Adjust the camera to the guide lines.";
+"trajectory_tutorial_text_one" = "Place the tripod next to the net post. Adjust the camera to the guide lines.";
 "trajectory_tutorial_text_two" = "Top of the net";
 "camera_placement_text" = "Camera Placement";
 "trajectory_color_text" = "Trajectory Color";

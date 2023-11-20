@@ -7,22 +7,7 @@
 
 import SwiftUI
 
-struct CountingView: View {
-    var colors: [Color] = [Color.greenMain, Color.greenBlur]
-//        @Binding var value: Int
-    
-//    @State private var progress: CGFloat = 0.5
-    
-    var body: some View {
-        VStack(){
-            
-        }
-    }
-}
-
 struct ActivityRingView: View {
-    
-    
     @AppStorage("hitTotalApp") var hitTotalApp = 0
     @AppStorage("hitTargetApp") var hitTargetApp = 0
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
@@ -35,10 +20,6 @@ struct ActivityRingView: View {
     @State private var maxHitSuccess: Int = 50
     var colorsMain: [Color] = [Color.greenMain, Color.greenMain]
     var colors: [Color] = [Color.greenBlur, Color.greenBlur]
-//    @Binding var progress: CGFloat
-//    private var progresss: CGFloat {
-//        return CGFloat(hitSuccess) / CGFloat(hitTotalApp)
-//    }
     
     var body: some View {
         VStack(spacing: 20) {
@@ -50,17 +31,17 @@ struct ActivityRingView: View {
                                     .frame(width: 110, height: 110)
                                     .rotationEffect(.degrees(0))
                 Circle()
-                                    .trim(from: 0, to: CGFloat(progressApp)) // Change this line to start from 0 and go up to your desired progress
+                                    .trim(from: 0, to: CGFloat(progressApp))
                                     .stroke(
                                         AngularGradient(
                                             gradient: Gradient(colors: colorsMain),
                                             center: .center,
-                                            startAngle: .degrees(0), // Change the startAngle to 0
-                                            endAngle: .degrees(360 * Double(progressApp)) // Adjust the endAngle to make it progress clockwise
+                                            startAngle: .degrees(0),
+                                            endAngle: .degrees(360 * Double(progressApp))
                                         ),
                                         style: StrokeStyle(lineWidth: 20, lineCap: .square)
                                     )
-                                    .rotationEffect(.degrees(-90)) // Rotate the circle counterclockwise by -90 degrees
+                                    .rotationEffect(.degrees(-90))
                 VStack(spacing: 5) {
                     if(1 == 1){
                         Text("\(Int(hitTotalApp))/\(Int(hitTargetApp))")
@@ -110,18 +91,6 @@ struct PauseEndView: View {
                     Text("End")
                         .foregroundColor(.red)
                 }
-//                VStack {
-//                    Button(action: {
-//
-//                    }, label: {
-//                        Image(systemName: "pause")
-//                            .font(.system(size: 19))
-//
-//                    })
-//                    .frame(width: 60)
-//                    .buttonStyle(.bordered)
-//                    Text("Pause")
-//                }
             }
             Text(textCountdown)
                 .foregroundColor(Color.greenMain)
@@ -144,7 +113,7 @@ struct SheetAlert: View {
     @AppStorage("menuStateApp") var menuStateApp = ""
     @State var showingAlert = false
     
-    let counter = Counter()
+    @ObservedObject var counter = Counter.shared
     var body: some View {
         VStack(spacing: 10) {
             Text("Are you sure?")
@@ -157,14 +126,6 @@ struct SheetAlert: View {
                     .font(.system(size: 17))
                     .foregroundColor(Color.redMain)
             })
-            
-//            Button(action: {
-//                counter.menuStateSend(menuState: "restart")
-//                showingAlert = false
-//            }, label: {
-//                Text("Restart")
-//                    .font(.system(size: 17))
-//            })
             
         }
     }
