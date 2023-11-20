@@ -519,15 +519,17 @@ class ContentAnalysisViewController: UIViewController,
         boxNet.removeFromSuperview()
         
         
-        let view1 = UIView()
-        view1.frame = CGRect(x: 0, y: setupView1.frame.height-60, width: setupView1.frame.width/2, height: 50)
-        setupView1.addSubview(view1)
-        let view2 = UIView()
-        view2.frame = CGRect(x: setupView1.frame.width/2, y: setupView1.frame.height-60, width: setupView1.frame.width/2, height: 50)
-        setupView1.addSubview(view2)
+       
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.stopRecording()
+            
+            let view1 = UIView()
+            view1.frame = CGRect(x: self.setupViewChild.frame.width * 0.19, y: setupView1.frame.height-40, width: setupView1.frame.width/2, height: 50)
+            self.setupViewChild.addSubview(view1)
+            let view2 = UIView()
+            view2.frame = CGRect(x: self.setupViewChild.frame.width * 0.51, y: setupView1.frame.height-40, width: setupView1.frame.width/2, height: 50)
+            self.setupViewChild.addSubview(view2)
             
             self.doneButton.setTitle(doneText, for: .normal)
             self.doneButton.setTitleColor(UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0), for: .normal)
