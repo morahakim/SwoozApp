@@ -33,6 +33,11 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     let motionManager = CMMotionManager()
     
+    var transformedYValuesAccepted :Double = 0.0
+    var minDistance :Double = 0.0
+    var averageOfDistance :Double = 0.0
+    var variance :String = ""
+    
     let setupViewParent = UIView()
     let setupViewChild = UIView()
     var textClear = UILabel()
@@ -171,7 +176,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             pathColorView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
             view.addSubview(pathColorView)
             
-            if(name == "Experienced"){
+            if(techniqueId == 1){
                 
                 pathGreen.move(to: CGPoint(x: pathColorView.frame.width/4, y: pathColorView.frame.height/1.7))
                           pathGreen.addQuadCurve(to: CGPoint(x: pathColorView.frame.width/1.5, y: pathColorView.frame.height/1.8),
@@ -669,12 +674,29 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             view.addSubview(boxNet)
             
         }else if(techniqueId == 1){
-            netName = "NetLevel3"
+            netName = "NetLevel2"
             if let image = UIImage(named: netName) {
                 imageNetView.image = image
             }
             boxNet.addSubview(imageNetView)
             view.addSubview(boxNet)
+            
+            var guideBox1 = UIView()
+            guideBox1.frame = CGRect(x: view.frame.width * 0.3, y: view.frame.height * 0.3, width: 188, height: 58)
+            guideBox1.alpha = 0.9
+            guideBox1.layer.backgroundColor = UIColor(red: 0.851, green: 0.851, blue: 0.851, alpha: 0.25).cgColor
+            guideBox1.layer.cornerRadius = 32
+            view.addSubview(guideBox1)
+            var guideText1 = UILabel()
+            guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
+            guideText1.text = "Area Penempatan Kok\n(Permainan Tunggal)"
+            guideText1.textColor = UIColor.white
+            guideText1.textAlignment = .center
+            guideText1.font = UIFont(name: "Urbanist", size: 17)
+            guideText1.numberOfLines = 2
+            guideText1.lineBreakMode = .byWordWrapping
+            guideBox1.addSubview(guideText1)
+            
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
@@ -685,7 +707,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         let image2 = UIImage(named: "CPButtonID")
         buttonSetUp.setImage(image2, for: .normal)
         buttonSetUp.imageView?.contentMode = .scaleAspectFit
-        buttonSetUp.frame = CGRect(x: view.frame.width - 130 - 70, y: 20, width: 130, height: 40)
+        buttonSetUp.frame = CGRect(x: view.frame.width - 130 - 90, y: 20, width: 130, height: 40)
         buttonSetUp.addTarget(self, action: #selector(setupSetUp), for: .touchUpInside)
         view.addSubview(buttonSetUp)
         
