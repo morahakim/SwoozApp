@@ -816,7 +816,7 @@ class ContentAnalysisViewController: UIViewController,
         boxCountdown.addSubview(textCountdown)
         
         
-        buttonWhite.frame = CGRect(x: view.frame.size.width - 68 + 20 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
+        buttonWhite.frame = CGRect(x: view.frame.size.width - 70 + 20 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
         buttonWhite.backgroundColor = nil
         buttonWhite.layer.cornerRadius = 32
         buttonWhite.clipsToBounds = true
