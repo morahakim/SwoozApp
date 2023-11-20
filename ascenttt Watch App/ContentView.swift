@@ -13,7 +13,7 @@ struct ContentView: View {
     
     @State var showingAlert = false
     
-    let counter = Counter()
+    @ObservedObject var counter = Counter.shared
     
     @AppStorage("hitFailApp") var hitFailApp = 0
     @AppStorage("hitTotalApp") var hitTotalApp = 0
@@ -106,39 +106,6 @@ struct ContentView: View {
     }
     
     var body: some View {
-        //        VStack {
-        //            Text("WATCHOS")
-        //            if(counter.count > 0){
-        //                Text(" > 0")
-        //            }else{
-        //                Text("0")
-        //            }
-        //            Text("\(counter.count)")
-        //                .font(.largeTitle)
-        //
-        //            HStack {
-        ////                Button(action: counter.decrement) {
-        ////                    Label("Decrement", systemImage: "minus.circle")
-        ////                }
-        ////                .padding()
-        //
-        //                Button {
-        //                    counter.decrement()
-        //                } label: {
-        //                    Label("Decrement", systemImage: "minus.circle")
-        //                }
-        //                .padding()
-        //
-        //
-        //                Button(action: {
-        //                    counter.increment()
-        //                }) {
-        //                    Label("Increment", systemImage: "plus.circle.fill")
-        //                }
-        //                .padding()
-        //            }
-        //            .font(.headline)
-        //        }
         VStack(){
             if(menuStateApp == "placement" || menuStateApp == ""){
                 //                StartPage()
@@ -227,65 +194,27 @@ struct ContentView: View {
                 }
                 
             }else if(menuStateApp == "result"){
-                //                Text("Statistic View").foregroundColor(.white).bold().padding(.bottom,10)
-                //                HStack(){
-                //                    Text("Target Total")
-                //                    Spacer()
-                //                    Text(String(hitTargetApp))
-                //                }
-                //                HStack(){
-                //                    Text("Hit Total")
-                //                    Spacer()
-                //                    Text(String(hitTotalApp))
-                //                }
-                //                HStack(){
-                //                    Text("Hit Clear")
-                //                    Spacer()
-                //                    Text(String(hitSuccessApp))
-                //                }
-                //                HStack(){
-                //                    Text("Hit Perfect")
-                //                    Spacer()
-                //                    Text(String(hitPerfectApp))
-                //                }
-                //                HStack(){
-                //                    Text("Hit Fail")
-                //                    Spacer()
-                //                    Text(String(hitFailApp))
-                //                }
-                //                Button {
-                //                    menuStateApp = ""
-                //                    counter.menuStateSend(menuState: "")
-                //                } label: {
-                //                    Text("Back to Home")
-                //                }
-                //                .buttonStyle(.plain).padding(.top,10)
-                
+
                 NavigationView(content: {
                     ScrollView(){
                         VStack(alignment: .leading, spacing: 15) {
                             HStack(spacing: 20) {
                                 VStack(alignment: .leading) {
-                                    Text("\(hitTargetApp)")
-                                        .font(.system(size: 23))
-                                    Text("Target")
-                                }
-                                VStack(alignment: .leading) {
-                                    Text("\(hitTotalApp)")
-                                        .font(.system(size: 23))
-                                    Text("Attemp")
-                                }
-                            }
-                            HStack(spacing: 20) {
-                                VStack(alignment: .leading) {
-                                    Text("\(hitSuccessApp)")
+                                    Text("\(hitPerfectApp)")
                                         .font(.system(size: 23))
                                     Text("Success")
                                 }
                                 VStack(alignment: .leading) {
-                                    Text("\(hitFailApp)")
+                                    Text("\(hitSuccessApp)")
                                         .font(.system(size: 23))
                                     Text("Fail")
+                                }
+                            }
+                            HStack(spacing: 20) {
+                                VStack(alignment: .leading) {
+                                    Text("\(hitTotalApp)")
+                                        .font(.system(size: 23))
+                                    Text("Attempt")
                                 }
                             }
                             
@@ -297,9 +226,6 @@ struct ContentView: View {
                                 
                             }
                             
-                            //                                NavigationLink(destination: StartPage()) {
-                            //                                       Text("Done")
-                            //                                   }
                             Button {
                                 counter.menuStateSend(menuState: "")
                                 menuStateApp = ""
@@ -307,7 +233,7 @@ struct ContentView: View {
                                 levelApp = ""
                                 levelApp = ""
                             } label: {
-                                Text("Back to Home")
+                                Text("Done")
                             }
                             
                         }

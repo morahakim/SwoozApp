@@ -93,28 +93,10 @@ struct DetailVideoView: View {
                         )
                     
                     
-                    
-                    VStack {
-                        HStack {
-                            if isEditing {
-                                TextField("Edit name", text: $editedName, onCommit: {
-                                    updateItemName()
-                                    isEditing = false
-                                })
-                                .font(Font.custom("Urbanist", size: 22))
-                                .foregroundColor(.neutralBlack)
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                                //                                .padding(.bottom)
-                            } else {
-                                VStack {
-                                    Text(item.name ?? "Low Serve")
-                                        .font(Font.custom("Urbanist-Medium", size: 22))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                        .onTapGesture {
-                                            editedName = item.name ?? ""
-                                            isEditing = true
-                                        }
+                    ScrollView {
+                        VStack {
+                            VStack {
+                                HStack {
                                     Rectangle()
                                         .fill(Color.backgroundColor(for: item.level))
                                         .cornerRadius(20)
@@ -125,190 +107,261 @@ struct DetailVideoView: View {
                                                 .foregroundStyle(Color.white)
                                         }
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    
+                                    Text(item.datetime ?? "-/-/-")
+                                        .font(Font.custom("Urbanist", size: 12))
+                                        .foregroundStyle(Color.grayStroke6)
+                                    //                                        .padding(.bottom, 30)
+                                    
+                                    
+                                }
+                                HStack {
+                                    if isEditing {
+                                        TextField("Edit name", text: $editedName, onCommit: {
+                                            updateItemName()
+                                        })
+                                        .font(Font.custom("Urbanist", size: 22))
+                                        .foregroundColor(.neutralBlack)
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    } else {
+                                        Text(item.name ?? "Low Serve")
+                                            .font(Font.custom("Urbanist-Medium", size: 22))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        
+                                        Button {
+                                            isEditing.toggle()
+                                            updateItemName()
+                                        } label: {
+                                            Image(systemName: isEditing ? "checkmark" : "pencil")
+                                                .foregroundStyle(Color.neutralBlack)
+                                        }
+                                    }
                                 }
                             }
+//                            .padding()
                             
-                            Text(item.datetime ?? "-/-/-")
-                                .font(Font.custom("Urbanist", size: 12))
-                                .foregroundStyle(Color.grayStroke6)
-                                .padding(.bottom, 30)
-                        }
-                        //                        .padding(.bottom)
-                        .padding()
-                        
-                        VStack(spacing: 25) {
-                            HStack {
-                                VStack(spacing: 8) {
-                                    Text("\(item.hitTarget )")
-                                        .font(Font.custom("Urbanist", size: 34))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                    Text("Target Shot")
-                                        .font(Font.custom("Urbanist", size: 17))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                }
-                                VStack(spacing: 8) {
-                                    Text("\(item.hitTotal )")
-                                        .font(Font.custom("Urbanist", size: 34))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                    Text("Total Shot")
-                                        .font(Font.custom("Urbanist", size: 17))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                }
-                            }
-                            .padding(.trailing, 90)
-                            
-                            HStack {
-                                VStack(spacing: 8) {
-                                    Text("\(item.hitSuccess)")
-                                        .font(Font.custom("Urbanist", size: 34))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                    Text("Success")
-                                        .font(Font.custom("Urbanist", size: 17))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                }
-                                VStack(spacing: 8) {
-                                    Text("\(item.hitFail)")
-                                        .font(Font.custom("Urbanist", size: 34))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                    Text("Fail")
-                                        .font(Font.custom("Urbanist", size: 17))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                }
-                            }
-                            .padding(.trailing, 90)
-                            
-                            VStack(spacing: 8) {
-                                Text(item.duration ?? "00:00")
-                                    .font(Font.custom("Urbanist", size: 34))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                Text("Duration")
-                                    .font(Font.custom("Urbanist", size: 17))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                ThickDivider(thickness: 1, color: .gray)
-                                TextAlignLeading("Your shot is successful on attempts to:")
+                            VStack(spacing: 15) {
+                                TextAlignLeading("Your shot is successful on attempts to :")
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
                                 
-                                ScrollView {
-                                    VStack(spacing: 15) {
-                                        if attempData.count > 0 {
-                                            ForEach(0..<((attempData.count + 9) / 10)) { row in
-                                                HStack(){
-                                                    ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
-                                                        Text(i.hitNumber)
-                                                            .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
-                                                            .font(Font.custom(i.hitStatus == "Success" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
-                                                    }
+                                VStack(spacing: 15) {
+                                    if attempData.count > 0 {
+                                        ForEach(0..<((attempData.count + 9) / 10)) { row in
+                                            HStack(){
+                                                ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
+                                                    Text(i.hitNumber)
+                                                        .foregroundStyle(i.hitStatus == "Success" ? Color.neutralBlack : Color.grayStroke6)
+                                                        .font(Font.custom(i.hitStatus == "Success" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
                                                 }
                                             }
-                                        } else {
-                                            Text("No data available")
                                         }
+                                    } else {
+                                        Text("No data available")
+                                    }
+                                }
+                                
+                                ThickDivider(thickness: 1, color: .gray)
+                            }
+                            .padding(.top)
+                            
+                            VStack(spacing: 25) {
+                                HStack {
+                                    VStack(spacing: 8) {
+                                        Text("\(item.hitTarget )")
+                                            .font(Font.custom("Urbanist-Medium", size: 34))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("Target Servis")
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
                                     }
                                     
-                                    .padding()
-                                    Spacer()
-
+                                    VStack(spacing: 8) {
+                                        Text(item.duration ?? "00:00")
+                                            .font(Font.custom("Urbanist-Medium", size: 34))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("Duration")
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        
+                                        
+                                        
+                                        
+                                    }
                                 }
+                                .padding(.trailing, 90)
+                                
+                                HStack {
+                                    VStack(spacing: 8) {
+                                        Text("\(item.hitPerfect)")
+                                            .font(Font.custom("Urbanist-Medium", size: 34))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("Bagus")
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    }
+                                    VStack(spacing: 8) {
+                                        Text("\(item.hitSuccess)")
+                                            .font(Font.custom("Urbanist-Medium", size: 34))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("Kurang")
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    }
+                                    VStack(spacing: 8) {
+                                        Text("\(item.hitFail)")
+                                            .font(Font.custom("Urbanist-Medium", size: 34))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("Fail")
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    }
+                                }
+                                .padding(.trailing, 90)
+                                
+                                
+                                ThickDivider(thickness: 1, color: .gray)
+                                
+                                //
+                            }
+                            //                        .padding(.top)
+                            .padding(.top)
+                            
+                            
+                            VStack(spacing: 20) {
+                                
+                                Text(item.level ?? "")
+                                    .font(Font.custom("SF Pro", size: 16))
+                                    .foregroundStyle(Color.greenMain)
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                HStack {
+                                    VStack {
+                                        Text("-5")
+                                            .font(Font.custom("SF Pro", size: 20))
+                                            .foregroundStyle(Color.greenMain)
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        Text("Perkembangan")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .foregroundStyle(Color.greenMain)
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    }
+                                    
+                                    VStack {
+                                        Text("10")
+                                            .font(Font.custom("SF Pro", size: 20))
+                                            .foregroundStyle(Color.greenMain)
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        Text("Latihan Sebelumnya")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .foregroundStyle(Color.greenMain)
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        
+                                    }
+                                }
+                                
+                                
+                            }
+                            .padding()
+                            .padding(.bottom)
+                            .frame(width: 355, height: 109)
+//                            .background(Color.greenBasicMain.opacity(0.2))
+                            
+                            
+                            .overlay {
+                                Rectangle()
+                                    .fill(Color.greenBasicMain.opacity(0.1))
+                                    .shadow(color: .greenBasicMain, radius: 5, x: 0, y: 2)
+                                    .cornerRadius(12)
                             }
                         }
-                        //                        .padding(.top)
-                        .padding()
                     }
-                    
+                    .padding()
+                    //                .padding(.top, getSafeArea().top + 20)
                 }
-                //                .padding(.top, getSafeArea().top + 20)
+                
+                .navigationTitle("")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbarColorScheme(.dark, for: .navigationBar)
+                .toolbarBackground(.greenMain, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .onAppear {
+                    if let result = item.result {
+                        attempData = parseAttemp(result)
+                    }
+                    if let url = item.url {
+                        player = AVPlayer(url: URL(string: url)!)
+                        player?.play()
+                    }
+                    itemWidth = screenWith / 10
+                }
+                .toolbar {
+                    ToolbarItem {
+                        Button {
+                            isShare.toggle()
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        
+                    }
+                }
+                
             }
+            .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])
             
-            .navigationTitle("")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.greenMain, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .onAppear {
-                if let result = item.result {
-                    attempData = parseAttemp(result)
-                }
-                if let url = item.url {
-                    player = AVPlayer(url: URL(string: url)!)
-                    player?.play()
-                }
-                itemWidth = screenWith / 10
-            }
-            .toolbar {
-                ToolbarItem {
-                    Button {
-                        isEditing.toggle()
-                        updateItemName()
-                    } label: {
-                        Image(systemName: isEditing ? "checkmark" : "pencil")
-                    }
-                }
-                ToolbarItem {
-                    Button {
-                        isShare.toggle()
-                    } label: {
-                        Image(systemName: "square.and.arrow.up")
-                    }
-                    
-                }
-            }
+            
+            
             
         }
-        .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])
-        
-        
-        
-        
     }
-    
-    func updateItemName() {
-        if let selectedItem = database.first(where: { $0 == item }) {
-            selectedItem.name = editedName
-            do {
-                try viewContext.save()
-                print("Changes saved successfully.")
-            } catch {
-                print("Error saving changes: \(error)")
+        
+        func updateItemName() {
+            if let selectedItem = database.first(where: { $0 == item }) {
+                selectedItem.name = editedName
+                do {
+                    try viewContext.save()
+                    print("Changes saved successfully.")
+                } catch {
+                    print("Error saving changes: \(error)")
+                }
             }
         }
     }
-}
-struct ThickDivider: View {
-    var thickness: CGFloat
-    var color: Color
-    
-    var body: some View {
-        Rectangle()
-            .fill(color)
-            .frame(height: thickness)
-    }
-}
-
-
-extension Color {
-    static func backgroundColor(for level: String?) -> Color {
-        switch level {
-        case "Intermediate":
-            return Color.redMain.opacity(0.8)
-        case "Experienced":
-            return Color.greenMain.opacity(0.8)
-        case "Advanced":
-            return Color.information.opacity(0.8)
-        default:
-            return Color.gray
+    struct ThickDivider: View {
+        var thickness: CGFloat
+        var color: Color
+        
+        var body: some View {
+            Rectangle()
+                .fill(color)
+                .frame(height: thickness)
         }
     }
-}
-
-
+    
+    
+    extension Color {
+        static func backgroundColor(for level: String?) -> Color {
+            switch level {
+            case "Intermediate":
+                return Color.redMain.opacity(0.8)
+            case "Experienced":
+                return Color.greenMain.opacity(0.8)
+            case "Advanced":
+                return Color.information.opacity(0.8)
+            default:
+                return Color.gray
+            }
+        }
+    }
+    
+    
