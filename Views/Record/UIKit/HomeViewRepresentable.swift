@@ -51,13 +51,8 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
             level: String,
             result: String
         ) {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "Y-MM-dd HH:mm:ss"
-            let currentDateTime = Date()
-            let formattedDate = dateFormatter.string(from: currentDateTime)
-            
             let data = Data(context: moc)
-            data.datetime = String(formattedDate)
+            data.datetime = Date()
             data.duration = duration
             data.hitFail = Int16(hitFail)
             data.hitPerfect = Int16(hitPerfect)

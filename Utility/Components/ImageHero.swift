@@ -19,7 +19,7 @@ struct ImgHero: View {
                 .frame(width: 314)
             
             Text(desc)
-                .font(Font.custom("SF Pro", size: 17))
+                .font(Font.custom("SF Pro", size: 16))
                 .fontWeight(.medium)
                 .opacity(0.7)
                 .multilineTextAlignment(.center)

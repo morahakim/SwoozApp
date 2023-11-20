@@ -70,4 +70,15 @@ extension View {
                 }
             }
     }
+    
+    // MARK: - Date formatter
+    func dateFormat(_ date: Date?) -> String {
+        if let date = date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "Y-MM-dd HH:mm:ss"
+            
+            return dateFormatter.string(from: date)
+        }
+        return ""
+    }
 }

@@ -18,11 +18,12 @@ struct TechniqueLevelData: Hashable {
 struct TechniqueView: View {
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("techniqueId") var techniqueId: Int = 0
+    @AppStorage("techniqueName") var techniqueName: String = ""
     
     private let data = [
         TechniqueLevelData(id: 0, name: "Low Serve - Trajectory", desc: "Assess the trajectory for consistency and quality, considering its peak.", img: "LowServe-Trajectory", isLock: false),
         TechniqueLevelData(id: 1, name: "Low Serve - Placement", desc: "Assess the placement for quality, considering variations and distance.", img: "Advanced", isLock: false),
-        TechniqueLevelData(id: 2, name: "High Serve - Trajectory", desc: "", img: "Advanced", isLock: true)
+        TechniqueLevelData(id: 2, name: "High Serve - Trajectory", desc: "", img: "HighServe-Trajectory", isLock: true)
     ]
     
     var body: some View {
@@ -40,6 +41,7 @@ struct TechniqueView: View {
                                     vm.path.append(.LowServePlacement)
                                 }
                                 techniqueId = d.id
+                                techniqueName = d.name
                             }
                         }, content: {
                             VStack(spacing: 6) {

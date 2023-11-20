@@ -15,6 +15,38 @@ struct LowServeTrajectoryView: View {
     @State var selectedRepetition = 0
     @State var player: AVPlayer?
     
+    @State var recordOfAllTime = 0
+    @State var recordOfTheMonth = 0
+    @State var latestDrill = 0
+    @State var averageOfThisMonth = 0
+    
+    @FetchRequest(sortDescriptors: [
+        NSSortDescriptor(key: "datetime", ascending: false)
+    ]) var dataAll: FetchedResults<Data>
+    
+    var dataThisMonth: FetchRequest<Data>
+
+    init() {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        let startOfMonth = calendar.dateInterval(of: .month, for: currentDate)?.start ?? currentDate
+        let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth) ?? currentDate
+        
+        self.dataThisMonth = FetchRequest<Data>(
+            entity: Data.entity(),
+            sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
+            predicate: NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", startOfMonth as NSDate, endOfMonth as NSDate)
+        )
+        
+        var bestAllTime: Int16 = 0
+        for data in dataAll {
+            if bestAllTime < data.hitSuccess {
+                bestAllTime = data.hitSuccess
+            }
+        }
+        self.recordOfAllTime = Int(bestAllTime)
+    }
+    
     let playerViewController = AVPlayerViewController()
     
     var body: some View {
@@ -149,9 +181,9 @@ struct LowServeTrajectoryView: View {
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("20")
+                                                TextAlignLeading("\(recordOfAllTime == 0 ? "-" : "\(recordOfAllTime)")")
                                                 Spacer()
-                                                TextAlignLeading("10")
+                                                TextAlignLeading("-")
                                             }
                                             .fontWeight(.medium)
                                             .font(Font.custom("Urbanist", size: 20))
@@ -166,9 +198,9 @@ struct LowServeTrajectoryView: View {
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("8")
+                                                TextAlignLeading("-")
                                                 Spacer()
-                                                TextAlignLeading("9")
+                                                TextAlignLeading("-")
                                             }
                                             .fontWeight(.medium)
                                             .font(Font.custom("Urbanist", size: 20))
