@@ -401,3 +401,8 @@ let closestFrontLine = NSLocalizedString(
     "closest_front_line",
     comment: ""
 )
+
+let servePlacementGuidlineText = NSLocalizedString(
+    "serve_placement_guidline_text",
+    comment: ""
+)

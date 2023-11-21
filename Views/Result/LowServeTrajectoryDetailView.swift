@@ -21,6 +21,7 @@ struct LowServeTrajectoryDetailView: View {
     @State private var isEditing = false
     @State private var editedName = ""
     @State private var isShare: Bool = false
+    @FocusState private var keyboardFocused: Bool
     
     @State private var attempData: [HitStatistics] = []
     
@@ -117,6 +118,7 @@ struct LowServeTrajectoryDetailView: View {
                                     if isEditing {
                                         TextField(editName, text: $editedName, onCommit: {
                                             updateItemName()
+                                            isEditing.toggle()
                                         })
                                         .font(Font.custom("Urbanist", size: 22))
                                         .foregroundColor(.neutralBlack)
@@ -134,6 +136,12 @@ struct LowServeTrajectoryDetailView: View {
                                             Image(systemName: isEditing ? "checkmark" : "pencil")
                                                 .foregroundStyle(Color.neutralBlack)
                                         }
+                                        .focused($keyboardFocused)
+                                        .onAppear {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                    keyboardFocused = true
+                                                }
+                                            }
                                     }
                                 }
                             }

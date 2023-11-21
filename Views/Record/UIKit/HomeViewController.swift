@@ -711,7 +711,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             boxNet.addSubview(guideBox1)
            
             guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
-            guideText1.text = "Place the tripod next to the net post.\nAdjust the camera to the guide lines."
+            guideText1.text = trajectoryTutorialTextOne
             guideText1.textColor = UIColor.white
             guideText1.textAlignment = .center
             guideText1.font = UIFont(name: "Urbanist", size: 17)
@@ -743,7 +743,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             guideBox2.layer.cornerRadius = 18
             boxNet.addSubview(guideBox2)
             guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
-            guideText2.text = "Top of the net"
+            guideText2.text = trajectoryTutorialTextTwo
             guideText2.textColor = UIColor.white
             guideText2.textAlignment = .center
             guideText2.font = UIFont(name: "Urbanist", size: 17)
@@ -771,7 +771,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             boxNet.addSubview(guideBox1)
            
             guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
-            guideText1.text = "Place the tripod beside the shuttlecock\nplacement area and align the camera with\nthe guidelines of the single-service court."
+            guideText1.text = servePlacementGuidlineText
             guideText1.textColor = UIColor.white
             guideText1.textAlignment = .center
             guideText1.font = UIFont(name: "Urbanist", size: 17)

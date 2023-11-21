@@ -165,10 +165,6 @@ struct ContentView: View {
                             .font(.system(size: 12)).lineLimit(nil)
                             .padding(.bottom, 0)
                             .foregroundColor(Color.greenMain)
-                        Text(technique)
-                            .font(.system(size: 12)).lineLimit(nil)
-                            .padding(.bottom, 0)
-                            .foregroundColor(Color.greenMain)
                     }
                 }
                 .navigationBarBackButtonHidden(true)
