@@ -22,7 +22,11 @@ protocol ContentAnalysisDelegate: AnyObject {
                     hitTarget: Int,
                     hitTotal: Int,
                     level: String,
-                    result: String)
+                    result: String,
+                    minDistance: Double,
+                    avgDistance: Double,
+                    variance: String
+    )
 }
 
 class ContentAnalysisViewController: UIViewController,
@@ -156,7 +160,10 @@ class ContentAnalysisViewController: UIViewController,
               hitTarget: Int,
               hitTotal: Int,
               level: String,
-              result: String) {
+              result: String,
+              minDistance: Double,
+              avgDistance: Double,
+              variance: String) {
         
         
         contentAnalysisDelegate?.saveRecord(url: url,
@@ -167,7 +174,10 @@ class ContentAnalysisViewController: UIViewController,
                                             hitTarget: hitTarget,
                                             hitTotal: hitTotal,
                                             level: level,
-                                            result: result)
+                                            result: result,
+                                            minDistance: minDistance,
+                                            avgDistance: avgDistance,
+                                            variance: variance)
     }
     
     // MARK: - Static Properties
@@ -627,7 +637,10 @@ class ContentAnalysisViewController: UIViewController,
                      hitTarget: hitTargetApp,
                      hitTotal: hitTotalApp,
                      level: techniqueName,
-                     result: arrResult)
+                     result: arrResult,
+                     minDistance: minDistance,
+                     avgDistance: averageOfDistance,
+                     variance: variance)
             } catch {
                 print(error.localizedDescription)
             }

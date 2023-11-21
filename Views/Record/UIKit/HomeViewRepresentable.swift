@@ -49,7 +49,10 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
             hitTarget: Int,
             hitTotal: Int,
             level: String,
-            result: String
+            result: String,
+            minDistance: Double,
+            avgDistance: Double,
+            variance: String
         ) {
             let data = Data(context: moc)
             data.datetime = Date()
@@ -64,6 +67,9 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
             data.result = result
             data.type = "Low Serve"
             data.url = url.absoluteString
+            data.minDistance = minDistance
+            data.avgDistance = avgDistance
+            data.variance = variance
             try? moc.save()
         }
         

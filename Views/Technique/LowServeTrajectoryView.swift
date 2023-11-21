@@ -353,26 +353,6 @@ struct LowServeTrajectoryView: View {
         }
     }
     
-    func getLatestLowest(_ data: FetchedResults<Data>) -> Double {
-        if data.count > 0 {
-            var lowest: Double = 100
-            for e in data {
-                if let res = e.result {
-                    let parsed = parseAttemp(res)
-                    for p in parsed {
-                        print("buggg: \(Double(p.netDistance))")
-                        if Double(p.netDistance) < lowest {
-                            lowest = Double(p.netDistance)
-                        }
-                    }
-                }
-            }
-            return lowest
-        } else {
-            return 0
-        }
-    }
-    
     func getAverate(_ data: [Data]) -> Double {
         if data.count == 0 {
             return 0
@@ -382,6 +362,14 @@ struct LowServeTrajectoryView: View {
                 total += Double(e.hitPerfect)
             }
             return Double(total/Double(data.count))
+        }
+    }
+    
+    func getLatestLowest(_ data: FetchedResults<Data>) -> Double {
+        if data.count > 0 {
+            return data[0].minDistance
+        } else {
+            return 0
         }
     }
     
