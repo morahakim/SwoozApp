@@ -22,8 +22,14 @@ struct HomeView: View {
                     VStack {
                         List {
                             ForEach(list) { item in
-                                NavigationLink(destination: LowServePlacementDetailView(item: item)) {
-                                    ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                if item.level == "0" {
+                                    NavigationLink(destination: LowServeTrajectoryDetailView(item: item)) {
+                                        ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                    }
+                                } else {
+                                    NavigationLink(destination: LowServePlacementDetailView(item: item)) {
+                                        ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                    }
                                 }
                             }
                             .onDelete { i in

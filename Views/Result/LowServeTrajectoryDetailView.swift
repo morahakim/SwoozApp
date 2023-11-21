@@ -100,7 +100,7 @@ struct LowServeTrajectoryDetailView: View {
                         VStack {
                             VStack {
                                 HStack {
-                                        Text(item.level ?? "-")
+                                        Text(chooseLevelTextOne ?? "-")
                                             .font(Font.custom("SF Pro", size: 12))
                                             .foregroundColor(.white)
                                         .padding(.horizontal, 6)
@@ -382,16 +382,7 @@ struct LowServeTrajectoryDetailView: View {
     
 extension Color {
     static func backgrounds(for level: String?) -> Color {
-        switch level {
-        case chooseLevelTextOne:
-            return Color.redMain.opacity(0.8)
-        case chooseLevelTextTwo:
-            return Color.greenMain.opacity(0.8)
-        case "Advanced":
-            return Color.information.opacity(0.8)
-        default:
-            return Color.gray
-        }
+        return Color.redMain.opacity(0.8)
     }
 }
     

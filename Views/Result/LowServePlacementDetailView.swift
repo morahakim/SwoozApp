@@ -97,7 +97,7 @@ struct LowServePlacementDetailView: View {
                         VStack {
                             VStack {
                                 HStack {
-                                        Text(item.level ?? "-")
+                                        Text(chooseLevelTextTwo ?? "-")
                                             .font(Font.custom("SF Pro", size: 12))
                                             .foregroundColor(.white)
                                             .padding(.horizontal, 6)
@@ -405,16 +405,7 @@ struct LowServePlacementDetailView: View {
     
 extension Color {
     static func backgroundColor(for level: String?) -> Color {
-        switch level {
-        case chooseLevelTextOne:
-            return Color.redMain.opacity(0.8)
-        case chooseLevelTextTwo:
-            return Color.greenMain.opacity(0.8)
-        case "Advanced":
-            return Color.information.opacity(0.8)
-        default:
-            return Color.gray
-        }
+        return Color.greenMain.opacity(0.8)
     }
 }
     

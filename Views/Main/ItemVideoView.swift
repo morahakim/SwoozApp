@@ -76,7 +76,7 @@ struct ItemVideoView: View {
                 .padding(0)
                 
                 HStack(alignment: .center, spacing: 4) {
-                    Text(level ?? "-")
+                    Text(level == "0" ? chooseLevelTextOne : chooseLevelTextTwo)
                         .font(Font.custom("SF Pro", size: 11))
                         .foregroundColor(.white)
                 }
@@ -100,12 +100,10 @@ struct ItemVideoView: View {
 extension Color {
     static func background(for level: String?) -> Color {
         switch level {
-        case chooseLevelTextOne:
+        case "0":
             return Color.redMain.opacity(0.8)
-        case chooseLevelTextTwo:
+        case "1":
             return Color.greenMain.opacity(0.8)
-        case "Advanced":
-            return Color.information.opacity(0.8)
         default:
             return Color.gray
         }
