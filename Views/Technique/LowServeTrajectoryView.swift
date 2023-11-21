@@ -162,7 +162,7 @@ struct LowServeTrajectoryView: View {
                                             Text(chooseLevelTextOne)
                                                 .font(Font.custom("SF Pro", size: 17))
                                                 .fontWeight(.semibold)
-                                            Text("Keep achieving.")
+                                            Text(keepAchieving)
                                                 .font(Font.custom("SF Pro", size: 15))
                                                 .foregroundStyle(.grayStroke6)
                                         }
@@ -211,10 +211,10 @@ struct LowServeTrajectoryView: View {
                                 CardView(action: {}, content: {
                                     VStack(alignment: .leading, spacing: 12) {
                                         VStack(alignment: .leading) {
-                                            Text("Shuttlecock Height Over The Net")
+                                            Text(shuttlecockOverNetText)
                                                 .font(Font.custom("SF Pro", size: 17))
                                                 .fontWeight(.semibold)
-                                            Text("The lower, the better.")
+                                            Text(theLowerBetter)
                                                 .font(Font.custom("SF Pro", size: 15))
                                                 .foregroundStyle(.grayStroke6)
                                         }
@@ -229,9 +229,9 @@ struct LowServeTrajectoryView: View {
                                             .fontWeight(.semibold)
                                             
                                             HStack {
-                                                TextAlignLeading("Latest Lowest")
+                                                TextAlignLeading(latestLowest)
                                                 Spacer()
-                                                TextAlignLeading("Latest Average")
+                                                TextAlignLeading(latestAvg)
                                             }
                                             .font(Font.custom("SF Pro", size: 15))
                                         }
@@ -247,13 +247,13 @@ struct LowServeTrajectoryView: View {
                                             
                                             HStack {
                                                 VStack{
-                                                    TextAlignLeading("Lowest")
-                                                    TextAlignLeading("This Month")
+                                                    TextAlignLeading(lowestShotText)
+                                                    TextAlignLeading(thisMonth)
                                                 }
                                                 Spacer()
                                                 VStack {
-                                                    TextAlignLeading("Best Average")
-                                                    TextAlignLeading("This Month")
+                                                    TextAlignLeading(bestAvg)
+                                                    TextAlignLeading(thisMonth)
                                                 }
                                             }
                                             .font(Font.custom("SF Pro", size: 15))

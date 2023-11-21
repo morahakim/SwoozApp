@@ -406,3 +406,43 @@ let servePlacementGuidlineText = NSLocalizedString(
     "serve_placement_guidline_text",
     comment: ""
 )
+
+let keepAchieving = NSLocalizedString(
+    "keep_achieving",
+    comment: ""
+)
+
+let theLowerBetter = NSLocalizedString(
+    "the_lower_better",
+    comment: ""
+)
+
+let bestAvg = NSLocalizedString(
+    "best_avg",
+    comment: ""
+)
+
+let thisMonth = NSLocalizedString(
+    "this_month",
+    comment: ""
+)
+
+let latestLowest = NSLocalizedString(
+    "latest_lowest",
+    comment: ""
+)
+
+let latestAvg = NSLocalizedString(
+    "latest_avg",
+    comment: ""
+)
+
+let theCloserBetter = NSLocalizedString(
+    "the_closer_better",
+    comment: ""
+)
+
+let latestClosest = NSLocalizedString(
+    "latest_closest",
+    comment: ""
+)

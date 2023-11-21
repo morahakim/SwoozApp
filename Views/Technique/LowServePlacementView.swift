@@ -162,7 +162,7 @@ struct LowServePlacementView: View {
                                             Text(chooseLevelTextTwo)
                                                 .font(Font.custom("SF Pro", size: 17))
                                                 .fontWeight(.semibold)
-                                            Text("Keep achieving.")
+                                            Text(keepAchieving)
                                                 .font(Font.custom("SF Pro", size: 15))
                                                 .foregroundStyle(.grayStroke6)
                                         }
@@ -211,10 +211,10 @@ struct LowServePlacementView: View {
                                 CardView(action: {}, content: {
                                     VStack(alignment: .leading, spacing: 12) {
                                         VStack(alignment: .leading) {
-                                            Text("Shuttlecock Distance from The Front Line")
+                                            Text(shuttlecockDistanceLineText)
                                                 .font(Font.custom("SF Pro", size: 17))
                                                 .fontWeight(.semibold)
-                                            Text("The closer, the better.")
+                                            Text(theCloserBetter)
                                                 .font(Font.custom("SF Pro", size: 15))
                                                 .foregroundStyle(.grayStroke6)
                                         }
@@ -229,9 +229,9 @@ struct LowServePlacementView: View {
                                             .fontWeight(.semibold)
                                             
                                             HStack {
-                                                TextAlignLeading("Latest Closest")
+                                                TextAlignLeading(latestClosest)
                                                 Spacer()
-                                                TextAlignLeading("Latest Average")
+                                                TextAlignLeading(latestAvg)
                                             }
                                             .font(Font.custom("SF Pro", size: 15))
                                         }
@@ -247,13 +247,13 @@ struct LowServePlacementView: View {
                                             
                                             HStack {
                                                 VStack{
-                                                    TextAlignLeading("Closest")
-                                                    TextAlignLeading("This Month")
+                                                    TextAlignLeading(closestText)
+                                                    TextAlignLeading(thisMonth)
                                                 }
                                                 Spacer()
                                                 VStack {
-                                                    TextAlignLeading("Best Average")
-                                                    TextAlignLeading("This Month")
+                                                    TextAlignLeading(bestAvg)
+                                                    TextAlignLeading(thisMonth)
                                                 }
                                             }
                                             .font(Font.custom("SF Pro", size: 15))
