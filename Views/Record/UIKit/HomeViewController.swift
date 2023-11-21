@@ -123,7 +123,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateStateMenu), userInfo: nil, repeats: true)
         contentAnalysisViewController.contentAnalysisDelegate = self
         
-        contentAnalysisViewController.counter.typeSend(type: type)
+        contentAnalysisViewController.counter.typeSend(type: String(techniqueId))
         contentAnalysisViewController.counter.levelSend(level: techniqueName)
         
         // Assuming you are inside a UIViewController or another appropriate context
@@ -231,6 +231,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         }else if(techniqueId == 1){
           
                       
+            
                       
             circleGreen.frame = CGRect(x: pathColorView.frame.width * 0.28, y: pathColorView.frame.height * 0.5, width: 14, height: 14)
                       circleGreen.layer.opacity = 1
@@ -755,34 +756,34 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             view.addSubview(boxNet)
             
             
-            guideBox1.frame = CGRect(x: view.frame.width * 0.5 - 250/2, y: view.frame.height * 0.3, width: 250, height: 58)
+            guideBox1.frame = CGRect(x: view.frame.width - 400 - 97, y: view.frame.height - 90 - 20, width: 400, height: 90)
             guideBox1.alpha = 0.9
             guideBox1.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
             guideBox1.layer.cornerRadius = 32
             boxNet.addSubview(guideBox1)
            
             guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
-            guideText1.text = "Shuttlecock Placement Area\n(Singles Game)"
+            guideText1.text = "Place the tripod beside the shuttlecock\nplacement area and align the camera with\nthe guidelines of the single-service court."
             guideText1.textColor = UIColor.white
             guideText1.textAlignment = .center
             guideText1.font = UIFont(name: "Urbanist", size: 17)
-            guideText1.numberOfLines = 2
+            guideText1.numberOfLines = 3
             guideText1.lineBreakMode = .byWordWrapping
             guideBox1.addSubview(guideText1)
             
-            guideBox2.frame = CGRect(x: view.frame.width * 0.5 - 450/2, y: view.frame.height * 0.5, width: 450, height: 58)
-            guideBox2.alpha = 0.9
-            guideBox2.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-            guideBox2.layer.cornerRadius = 32
-            boxNet.addSubview(guideBox2)
-            guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
-            guideText2.text = "Place the tripod facing the shuttlecock placement area.\nAdjust the camera according to the guide lines."
-            guideText2.textColor = UIColor.white
-            guideText2.textAlignment = .center
-            guideText2.font = UIFont(name: "Urbanist", size: 17)
-            guideText2.numberOfLines = 2
-            guideText2.lineBreakMode = .byWordWrapping
-            guideBox2.addSubview(guideText2)
+//            guideBox2.frame = CGRect(x: view.frame.width * 0.5 - 450/2, y: view.frame.height * 0.5, width: 450, height: 58)
+//            guideBox2.alpha = 0.9
+//            guideBox2.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//            guideBox2.layer.cornerRadius = 32
+//            boxNet.addSubview(guideBox2)
+//            guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
+//            guideText2.text = "Place the tripod facing the shuttlecock placement area.\nAdjust the camera according to the guide lines."
+//            guideText2.textColor = UIColor.white
+//            guideText2.textAlignment = .center
+//            guideText2.font = UIFont(name: "Urbanist", size: 17)
+//            guideText2.numberOfLines = 2
+//            guideText2.lineBreakMode = .byWordWrapping
+//            guideBox2.addSubview(guideText2)
             
             
         }

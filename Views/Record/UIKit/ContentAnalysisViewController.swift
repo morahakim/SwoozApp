@@ -30,9 +30,9 @@ class ContentAnalysisViewController: UIViewController,
     let counter = Counter()
     let localStorage = LocalStorage()
     
-    @State var averageOfDistance = 0.0
-    @State  var minDistance = 0.0
-    @State var variance = ""
+    var averageOfDistance: Double = 0.0
+    var minDistance: Double = 0.0
+    var variance: String = ""
     
     @AppStorage("type") var type: String = "Low Serve"
     @AppStorage("techniqueName") var techniqueName: String = ""
@@ -157,6 +157,8 @@ class ContentAnalysisViewController: UIViewController,
               hitTotal: Int,
               level: String,
               result: String) {
+        
+        
         contentAnalysisDelegate?.saveRecord(url: url,
                                             duration: duration,
                                             hitFail: hitFail,
@@ -397,14 +399,17 @@ class ContentAnalysisViewController: UIViewController,
         box5.frame = CGRect(x: (setupView1.frame.width/2)*0, y:  50+90, width: setupView1.frame.width/2, height: 65)
         //        box5.backgroundColor = UIColor.red
         setupView1.addSubview(box5)
-        
-        text5a.text = String(format: "%02d cm",hitTotal)
+        text5a.text = String(format: "%.2f cm",minDistance)
         text5a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text5a.textColor = UIColor.white
         text5a.textAlignment = .center
         text5a.frame = CGRect(x: 0, y: 5, width: box5.frame.width, height: 30)
         
-        text5b.text = lowestText
+        if(techniqueId == 0){
+            text5b.text = lowestText
+        }else if(techniqueId == 1){
+            text5b.text = closestText
+        }
         text5b.font = UIFont(name: "Urbanist", size: 17)
         text5b.textColor = UIColor.white
         text5b.textAlignment = .center
@@ -426,13 +431,18 @@ class ContentAnalysisViewController: UIViewController,
         //        box6.backgroundColor = UIColor.red
         setupView1.addSubview(box6)
         
-        text6a.text = String(format: "%02d cm", hitPerfect)
+        text6a.text = String(format: "%.2f cm", averageOfDistance)
         text6a.font = UIFont(name: "Urbanist-Medium", size: 34)
         text6a.textColor = UIColor.white
         text6a.textAlignment = .center
         text6a.frame = CGRect(x: 0, y: 5, width: box6.frame.width, height: 30)
         
-        text6b.text = averageHeightText
+        if(techniqueId == 0){
+            text6b.text = averageHeightText
+        }else if(techniqueId == 1){
+            text5b.text = averageDrillText
+        }
+        
         text6b.font = UIFont(name: "Urbanist", size: 17)
         text6b.textColor = UIColor.white
         text6b.textAlignment = .center
@@ -753,6 +763,8 @@ class ContentAnalysisViewController: UIViewController,
         counter.hitPerfectSend(hitPerfect: hitPerfect)
         counter.hitFailSend(hitFail: hitFail)
         counter.durationSend(duration: duration)
+        counter.averageSend(average: averageOfDistance)
+        counter.minSend(min: minDistance)
         
         var menuState = "result"
         
@@ -1174,12 +1186,53 @@ class ContentAnalysisViewController: UIViewController,
                 let seconds = durationTime % 60
                 let duration = String(format: "%02d:%02d", minutes, seconds)
                 
+                
+                    var value = 0.0
+                    var min = Double.infinity
+                   
+                
+                    for val in arrHitStatistics {
+                        if(val.hitStatus == "Perfect" || val.hitStatus == "Success"){
+                            if val.hitDistance < min {
+                                min = val.hitDistance
+                            }
+                        }
+                    }
+                    minDistance = min
+                    
+                print("bugis: \(value) - \(index) - \(Double(value) / Double(index)) - \(minDistance)")
+                
+                    value = 0
+                    var index = 0
+                
+                    for val in arrHitStatistics {
+                        if(val.hitStatus == "Perfect" || val.hitStatus == "Success"){
+                            value += val.hitDistance
+                            index += 1
+                        }
+                    }
+                
+                    value = Double(value) / Double(index)
+                    averageOfDistance = value
+                    
+                print("bugi: \(value) - \(index) - \(Double(value) / Double(index)) - \(averageOfDistance)")
+                
+                    variance = ""
+                    
+                print("***")
+                print("DBUGGG : \(minDistance)")
+                print("DBUGGG : \(averageOfDistance)")
+                print("DBUGGG : \(variance)")
+                
+                
                 counter.hitTotalSend(hitTotal: hitTotal)
                 counter.hitTargetSend(hitTarget: hitTargetApp)
                 counter.hitSuccessSend(hitSuccess: hitSuccess)
                 counter.hitPerfectSend(hitPerfect: hitPerfect)
                 counter.hitFailSend(hitFail: hitFail)
                 counter.durationSend(duration: duration)
+                counter.averageSend(average: averageOfDistance)
+                counter.minSend(min: minDistance)
                 
                 durationApp = duration
                 
@@ -1347,6 +1400,8 @@ class ContentAnalysisViewController: UIViewController,
                 counter.hitPerfectSend(hitPerfect: hitPerfect)
                 counter.hitFailSend(hitFail: hitFail)
                 counter.durationSend(duration: duration)
+                counter.averageSend(average: averageOfDistance)
+                counter.minSend(min: minDistance)
                 
                 durationApp = duration
                 

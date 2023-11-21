@@ -24,6 +24,13 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     let levelSubject: PassthroughSubject<String, Never>
     
     
+    let averageSubject: PassthroughSubject<Double, Never>
+    let minSubject: PassthroughSubject<Double, Never>
+    
+    
+    @AppStorage("averageApp") var averageApp = 0.0
+    @AppStorage("minApp") var minApp = 0.0
+    
     @AppStorage("hitTotalApp") var hitTotalApp = 0
     @AppStorage("hitTargetApp") var hitTargetApp = 0
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
@@ -38,7 +45,7 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     
     @AppStorage("progressApp") var progressApp:Double = 0.0
     
-    init(countSubject: PassthroughSubject<Int, Never>, hitTotalSubject: PassthroughSubject<Int, Never>,  hitTargetSubject: PassthroughSubject<Int, Never>,  hitSuccessSubject: PassthroughSubject<Int, Never>, hitPerfectSubject: PassthroughSubject<Int, Never>,  hitFailSubject: PassthroughSubject<Int, Never>, durationSubject: PassthroughSubject<String, Never>,  menuStateSubject: PassthroughSubject<String, Never>,  videoUrlSubject: PassthroughSubject<String, Never>,  typeSubject: PassthroughSubject<String, Never>,  levelSubject: PassthroughSubject<String, Never>) {
+    init(countSubject: PassthroughSubject<Int, Never>, hitTotalSubject: PassthroughSubject<Int, Never>,  hitTargetSubject: PassthroughSubject<Int, Never>,  hitSuccessSubject: PassthroughSubject<Int, Never>, hitPerfectSubject: PassthroughSubject<Int, Never>,  hitFailSubject: PassthroughSubject<Int, Never>, durationSubject: PassthroughSubject<String, Never>,  menuStateSubject: PassthroughSubject<String, Never>,  videoUrlSubject: PassthroughSubject<String, Never>,  typeSubject: PassthroughSubject<String, Never>,  levelSubject: PassthroughSubject<String, Never>,  averageSubject: PassthroughSubject<Double, Never>,  minSubject: PassthroughSubject<Double, Never>) {
         print("DBUG : RECEIVED INIT 1")
         self.countSubject = countSubject
         self.hitTotalSubject = hitTotalSubject
@@ -53,6 +60,9 @@ class SessionDelegater: NSObject, WCSessionDelegate {
         self.typeSubject = typeSubject
         self.levelSubject = levelSubject
         
+        self.averageSubject = averageSubject
+        self.minSubject = minSubject
+        
         super.init()
     }
     
@@ -65,6 +75,23 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         print("DBUG : RECEIVED INIT 3")
         DispatchQueue.main.async {
+            
+            if let average = message["average"] as? Double {
+                self.averageSubject.send(average)
+                print("DBUG : RECEIVED")
+                self.averageApp = average
+            } else {
+                print("There was an error")
+            }
+            
+            if let min = message["min"] as? Double {
+                self.minSubject.send(min)
+                print("DBUG : RECEIVED")
+                self.minApp = min
+            } else {
+                print("There was an error")
+            }
+            
             if let count = message["count"] as? Int {
                 self.countSubject.send(count)
                 print("DBUG : RECEIVED")

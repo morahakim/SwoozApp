@@ -28,6 +28,10 @@ final class Counter: ObservableObject {
     let typeSubject = PassthroughSubject<String, Never>()
     let levelSubject = PassthroughSubject<String, Never>()
     
+    
+    let averageSubject = PassthroughSubject<Double, Never>()
+    let minSubject = PassthroughSubject<Double, Never>()
+    
     @Published private(set) var count: Int = 0
     @Published private(set) var hitTotal: Int = 0
     @Published private(set) var hitSuccess: Int = 0
@@ -42,9 +46,12 @@ final class Counter: ObservableObject {
     
     @AppStorage("menuStateApp") var menuStateApp = ""
     
+    @AppStorage("averageApp") var averageApp = ""
+    @AppStorage("minApp") var minApp = ""
+    
     init(session: WCSession = .default) {
         print("DBUG : RECEIVED INIT C")
-        self.delegate = SessionDelegater(countSubject: subject, hitTotalSubject: totalSubject,  hitTargetSubject: targetSubject, hitSuccessSubject: successSubject, hitPerfectSubject: perfectSubject,hitFailSubject: failSubject, durationSubject: durationSubject, menuStateSubject: menuSubject, videoUrlSubject: videoUrlSubject, typeSubject: typeSubject, levelSubject: levelSubject)
+        self.delegate = SessionDelegater(countSubject: subject, hitTotalSubject: totalSubject,  hitTargetSubject: targetSubject, hitSuccessSubject: successSubject, hitPerfectSubject: perfectSubject,hitFailSubject: failSubject, durationSubject: durationSubject, menuStateSubject: menuSubject, videoUrlSubject: videoUrlSubject, typeSubject: typeSubject, levelSubject: levelSubject, averageSubject: averageSubject, minSubject:minSubject)
         self.session = session
         self.session.delegate = self.delegate
         self.session.activate()
@@ -57,6 +64,18 @@ final class Counter: ObservableObject {
             .receive(on: DispatchQueue.main)
             .assign(to: &$hitTotal)
         
+    }
+    
+    func averageSend(average:Double) {
+        session.sendMessage(["average": average], replyHandler: nil) { error in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func minSend(min:Double) {
+        session.sendMessage(["min": min], replyHandler: nil) { error in
+            print(error.localizedDescription)
+        }
     }
     
     func hitTotalSend(hitTotal:Int) {

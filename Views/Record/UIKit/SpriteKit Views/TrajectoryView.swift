@@ -459,9 +459,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             
             cgpoint.append(transformPoint(CGPoint(x: xSelected, y: ySelected), withHomographyMatrix: homographyMatrix))
             
-            print("DBUGG : \(transformPoint(CGPoint(x: xSelected, y: ySelected), withHomographyMatrix: homographyMatrix))")
-            
-    
+            print("DBUGI : \(cgpoint)")
             
             // Created by Rizaldi Lombok
             print("DBUGGGG : ")
@@ -491,7 +489,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             MinDistance = 0.0
             Variance = ""
 //            inputPoints.removeAll()
-            inputPoints.append(CGPoint(x: x, y: y))
+            inputPoints.append(CGPoint(x: xSelected, y: y))
             label.removeAll()
             // Transformasi dan tampilkan koordinat lapangan untuk setiap titik
            

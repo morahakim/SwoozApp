@@ -84,7 +84,7 @@ struct HomeView: View {
                     forKey: "orientation"
                 )
                 AppDelegate.orientationLock = .portrait
-                vm.path.append(.Record)
+//                vm.path.append(.Record)
             }
         }
         .preferredColorScheme(.light)

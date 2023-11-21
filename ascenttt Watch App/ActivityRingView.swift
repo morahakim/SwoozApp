@@ -11,6 +11,7 @@ struct ActivityRingView: View {
     @AppStorage("hitTotalApp") var hitTotalApp = 0
     @AppStorage("hitTargetApp") var hitTargetApp = 0
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
+    @AppStorage("hitPerfectApp") var hitPerfectApp = 0
    
     
     @AppStorage("progressApp") var progressApp:Double = 0.0
@@ -61,7 +62,7 @@ struct ActivityRingView: View {
                 }
             }
 
-            Text("\(goodTextTrajectory):\((hitSuccessApp))")
+            Text("\(goodTextTrajectory):\((hitPerfectApp))")
                 .foregroundColor(Color.greenMain)
                 .font(.system(size: 16))
                 .padding(.bottom, 20)
