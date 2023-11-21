@@ -298,7 +298,7 @@ let trajectoryQualityText = NSLocalizedString(
 )
 
 let goodServeQualityText = NSLocalizedString(
-    "good_serve_text",
+    "good_serve_quality_text",
     comment: ""
 )
 
@@ -333,7 +333,7 @@ let shuttlecockDistanceLineText = NSLocalizedString(
 )
 
 let closestText = NSLocalizedString(
-    "closestText",
+    "closest_text",
     comment: ""
 )
 

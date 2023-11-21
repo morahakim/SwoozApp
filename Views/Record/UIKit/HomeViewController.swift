@@ -171,7 +171,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             pathColorView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
             view.addSubview(pathColorView)
             
-            if(name == "Experienced"){
+//            if(techniqueId == 0){
                 
                 pathGreen.move(to: CGPoint(x: pathColorView.frame.width/4, y: pathColorView.frame.height/1.7))
                           pathGreen.addQuadCurve(to: CGPoint(x: pathColorView.frame.width/1.5, y: pathColorView.frame.height/1.8),
@@ -228,7 +228,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                             pathColorView.addSubview(circleGreen)
                             pathColorView.addSubview(circleYellow)
                             pathColorView.addSubview(circleRed)
-                      }
+//                      }
                       // Auto layout, variables, and unit scale are not yet supported
                       let boxPathColor = UIView()
                       boxPathColor.frame = CGRect(x: 0, y: pathColorView.frame.height - 20, width: pathColorView.frame.width / 1.5, height: 134)

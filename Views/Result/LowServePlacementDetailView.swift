@@ -97,21 +97,18 @@ struct LowServePlacementDetailView: View {
                         VStack {
                             VStack {
                                 HStack {
-                                    Rectangle()
-                                        .fill(Color.backgroundColor(for: item.level))
-                                        .cornerRadius(20)
-                                        .frame(width: 97, height: 24)
-                                        .overlay {
-                                            Text(item.level ?? "-")
-                                                .font(Font.custom("SF Pro", size: 12))
-                                                .foregroundStyle(Color.white)
-                                        }
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    
-                                    Text(dateFormat(item.datetime) == "" ? "-/-/-" : dateFormat(item.datetime))
-                                        .font(Font.custom("Urbanist", size: 12))
-                                        .foregroundStyle(Color.grayStroke6)
-                                    //                                        .padding(.bottom, 30)
+                                        Text(item.level ?? "-")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 6)
+                                            .padding(.vertical, 4)
+                                            .frame(minWidth: 74)
+                                            .background(Color.backgrounds(for: item.level))
+                                            .cornerRadius(12)
+                                    Spacer()
+                                        Text(dateFormat(item.datetime) == "" ? "-/-/-" : dateFormat(item.datetime))
+                                            .font(Font.custom("Urbanist", size: 12))
+                                            .foregroundStyle(Color.grayStroke6)
                                     
                                     
                                 }
@@ -171,7 +168,7 @@ struct LowServePlacementDetailView: View {
                                     .font(Font.custom("SF Pro", size: 17))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .foregroundColor(.neutralBlack)
-                                    .padding(.bottom)
+                                    
                                 HStack {
                                     VStack(spacing: 8) {
                                         Text("\(item.hitTarget )")
@@ -235,14 +232,17 @@ struct LowServePlacementDetailView: View {
                                 }
                                 .padding(.trailing, 90)
                                 
-                                Text("-5")
-                                    .font(Font.custom("SF Pro", size: 17))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                Text(goodServeQualityText)
-                                    .font(Font.custom("SF Pro", size: 12))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
+                                VStack(spacing: 10) {
+                                    Text("-5")
+                                        .font(Font.custom("SF Pro", size: 17))
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .foregroundColor(.neutralBlack)
+                                    Text(goodServeQualityText)
+                                        .font(Font.custom("SF Pro", size: 12))
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .foregroundColor(.neutralBlack)
+                                }
+                               
                                 
                                 
                                 ThickDividers(thickness: 1, color: .gray)
@@ -258,7 +258,7 @@ struct LowServePlacementDetailView: View {
                                     .font(Font.custom("SF Pro", size: 17))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .foregroundColor(.neutralBlack)
-                                    .padding(.bottom)
+                                    
                                 HStack {
                                     VStack(spacing: 8) {
                                         Text("4 cm")
@@ -288,17 +288,17 @@ struct LowServePlacementDetailView: View {
                                 }
                                 .padding(.trailing, 90)
                                 
-                                        
-                                Text("-1")
-                                    .font(Font.custom("SF Pro", size: 17))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                Text(averageProgressText)
-                                    .font(Font.custom("SF Pro", size: 12))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                
-                                
+                                VStack(spacing: 10) {
+                                    Text("-1")
+                                        .font(Font.custom("SF Pro", size: 17))
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .foregroundColor(.neutralBlack)
+                                    Text(averageProgressText)
+                                        .font(Font.custom("SF Pro", size: 12))
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .foregroundColor(.neutralBlack)
+                                }
+
                                 ThickDividers(thickness: 1, color: .gray)
                                 
                                 //
@@ -307,25 +307,30 @@ struct LowServePlacementDetailView: View {
                                     .font(Font.custom("SF Pro", size: 17))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .foregroundColor(.neutralBlack)
-                                    .padding(.bottom)
-                                Text(quiteScattered)
-                                    .font(Font.custom("Urbanist-Medium", size: 28))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                Text(latestDrillText)
-                                    .font(Font.custom("Urbanist", size: 17))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                    .padding(.bottom)
-                                Text(quiteCentralized)
-                                    .font(Font.custom("Urbanist-Medium", size: 28))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                Text(previousDrillText)
-                                    .font(Font.custom("Urbanist", size: 17))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .foregroundColor(.neutralBlack)
-                                    .padding(.bottom)
+                                    
+                                VStack(spacing: 10) {
+                                    Text(quiteScattered)
+                                        .font(Font.custom("Urbanist-Medium", size: 28))
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .foregroundColor(.neutralBlack)
+                                    Text(latestDrillText)
+                                        .font(Font.custom("Urbanist", size: 17))
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .foregroundColor(.neutralBlack)
+                                }
+                                  
+                                VStack(spacing: 10) {
+                                    Text(quiteCentralized)
+                                        .font(Font.custom("Urbanist-Medium", size: 28))
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .foregroundColor(.neutralBlack)
+                                    Text(previousDrillText)
+                                        .font(Font.custom("Urbanist", size: 17))
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        .foregroundColor(.neutralBlack)
+                                        .padding(.bottom)
+                                }
+                          
                                     
                             }
                             //                        .padding(.top)

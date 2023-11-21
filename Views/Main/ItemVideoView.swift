@@ -82,7 +82,7 @@ struct ItemVideoView: View {
                 }
                 .padding(.horizontal, 6)
                 .padding(.vertical, 4)
-                .frame(width: 74, alignment: .center)
+                .frame(minWidth: 74)
                 .background(Color.background(for: level))
                 .cornerRadius(12)
             }
