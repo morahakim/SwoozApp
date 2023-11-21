@@ -408,7 +408,7 @@ class ContentAnalysisViewController: UIViewController,
         if(techniqueId == 0){
             text5b.text = lowestText
         }else if(techniqueId == 1){
-            text5b.text = closestText
+            text5b.text = closestFrontLine
         }
         text5b.font = UIFont(name: "Urbanist", size: 17)
         text5b.textColor = UIColor.white
@@ -440,7 +440,7 @@ class ContentAnalysisViewController: UIViewController,
         if(techniqueId == 0){
             text6b.text = averageHeightText
         }else if(techniqueId == 1){
-            text5b.text = averageDrillText
+            text5b.text = averageDistance
         }
         
         text6b.font = UIFont(name: "Urbanist", size: 17)

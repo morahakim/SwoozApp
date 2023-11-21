@@ -391,3 +391,13 @@ let endText = NSLocalizedString(
     "end_text",
     comment: ""
 )
+
+let averageDistance = NSLocalizedString(
+    "average_distance",
+    comment: ""
+)
+
+let closestFrontLine = NSLocalizedString(
+    "closest_front_line",
+    comment: ""
+)

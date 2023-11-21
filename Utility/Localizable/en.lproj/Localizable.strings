@@ -85,3 +85,5 @@ and the video will automatically stop.";
 "make_sure_text" = "Are you sure?";
 "end_drill_text" = "End Drill";
 "end_text" = "End";
+"average_distance" = "Average Distance";
+"closest_front_line" = "Closest to The Front Line";
