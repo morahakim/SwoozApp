@@ -7,15 +7,29 @@
 
 import SwiftUI
 import AVKit
+import CoreData
 
 struct LowServePlacementView: View {
     @EnvironmentObject var vm: HomeViewModel
+    @Environment(\.managedObjectContext) var moc
     
     @State var showRepetitionSheet = false
     @State var selectedRepetition = 0
     @State var player: AVPlayer?
     
-    let playerViewController = AVPlayerViewController()
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
+        predicate: NSPredicate(format: "level == %@", "1")
+    ) var recordOfAllTime: FetchedResults<Data>
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
+        predicate: NSPredicate(format: "level == %@", "1")
+    ) var latestDrill: FetchedResults<Data>
+    
+    @State var recordOfTheMonth: [Data] = []
+    @State var lowestOfTheMonth: [Data] = []
+    @State var bestAvgOfTheMonth: [Data] = []
     
     var body: some View {
         ForceOrientation(.portrait) {
@@ -61,7 +75,7 @@ struct LowServePlacementView: View {
                             VideoPlayer(player: player)
                                 .frame(width: 358, height: 173)
                                 .cornerRadius(12)
-
+                            
                             ScrollView {
                                 VStack(spacing: 4) {
                                     HStack {
@@ -72,9 +86,9 @@ struct LowServePlacementView: View {
                                         Spacer()
                                     }
                                     .foregroundStyle(.success)
-                                    TextAlignLeading(goalsGoodTextTrajectory)
+                                    TextAlignLeading("Placement near the front service line.")
                                         .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading(descGoodTextTrajectory)
+                                    TextAlignLeading("The closer to the front service line, the better.")
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundStyle(.grayStroke6)
                                         .padding(.bottom, 8)
@@ -91,9 +105,9 @@ struct LowServePlacementView: View {
                                         Spacer()
                                     }
                                     .foregroundStyle(.warning)
-                                    TextAlignLeading(goalsRiskyTextTrajectory)
+                                    TextAlignLeading("Placement above average.")
                                         .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading(descRiskyTextTrajectory)
+                                    TextAlignLeading("Your service succeeds but is still easily countered.")
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundStyle(.grayStroke6)
                                         .padding(.bottom, 8)
@@ -110,9 +124,9 @@ struct LowServePlacementView: View {
                                         Spacer()
                                     }
                                     .foregroundStyle(.danger)
-                                    TextAlignLeading(goalsBadTextTrajectory)
+                                    TextAlignLeading("Placement outside the intended area.")
                                         .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading(descBadTextTrajectory)
+                                    TextAlignLeading("Your service fails.")
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundStyle(.grayStroke6)
                                         .padding(.bottom, 8)
@@ -134,65 +148,180 @@ struct LowServePlacementView: View {
                                         .cornerRadius(12)
                                     }
                                     
-                                    Text(tipsTrajectoryPlacement)
-                                      .font(Font.custom("SF Pro", size: 15))
-                                      .foregroundStyle(.grayStroke6)
-                                      .padding(.bottom, 8)
+                                    Text("Diversify the shuttlecock target to make your serve unpredictable.")
+                                        .font(Font.custom("SF Pro", size: 15))
+                                        .foregroundStyle(.grayStroke6)
+                                        .padding(.bottom, 8)
                                     Divider()
                                 }
                                 .padding(.top, 12)
                                 
                                 CardView(action: {}, content: {
                                     VStack(alignment: .leading, spacing: 12) {
-                                        Text(chooseLevelTextTwo)
-                                          .font(Font.custom("SF Pro", size: 16))
-                                        
-                                        VStack(spacing: 2) {
-                                            HStack {
-                                                TextAlignLeading("20")
-                                                Spacer()
-                                                TextAlignLeading("10")
-                                            }
-                                            .fontWeight(.medium)
-                                            .font(Font.custom("Urbanist", size: 20))
-                                            
-                                            HStack {
-                                                TextAlignLeading(recordAllTimeText)
-                                                Spacer()
-                                                TextAlignLeading(recordOfMonthText)
-                                            }
-                                            .font(Font.custom("SF Pro", size: 12))
+                                        VStack(alignment: .leading) {
+                                            Text(chooseLevelTextTwo)
+                                                .font(Font.custom("SF Pro", size: 17))
+                                                .fontWeight(.semibold)
+                                            Text("Keep achieving.")
+                                                .font(Font.custom("SF Pro", size: 15))
+                                                .foregroundStyle(.grayStroke6)
                                         }
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("8")
+                                                TextAlignLeading(latestDrill.count > 0 ? "\(latestDrill[0].hitPerfect)" : "-")
                                                 Spacer()
-                                                TextAlignLeading("9")
+                                                TextAlignLeading(String(format: "%.2f", getAverate(recordOfTheMonth)))
                                             }
-                                            .fontWeight(.medium)
-                                            .font(Font.custom("Urbanist", size: 20))
+                                            .font(Font.custom("Urbanist", size: 28))
+                                            .fontWeight(.semibold)
                                             
                                             HStack {
                                                 TextAlignLeading(latestDrillText)
                                                 Spacer()
                                                 TextAlignLeading(averageDrillText)
                                             }
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("SF Pro", size: 15))
+                                        }
+                                        
+                                        VStack(spacing: 2) {
+                                            HStack {
+                                                TextAlignLeading(recordOfAllTime.count > 0 ? "\(recordOfAllTime[0].hitPerfect)" : "-")
+                                                Spacer()
+                                                TextAlignLeading(recordOfTheMonth.count > 0 ? "\(recordOfTheMonth[0].hitPerfect)" : "-")
+                                            }
+                                            .font(Font.custom("Urbanist", size: 28))
+                                            .fontWeight(.semibold)
+                                            
+                                            HStack {
+                                                TextAlignLeading(recordAllTimeText)
+                                                Spacer()
+                                                TextAlignLeading(recordOfMonthText)
+                                            }
+                                            .font(Font.custom("SF Pro", size: 15))
                                         }
                                     }
-                                    .foregroundStyle(.success)
+                                    .foregroundStyle(.neutralBlack)
                                     
                                 })
                                 .frame(height: 150)
                                 .padding(.bottom, 16)
+                                .padding(.top, 24)
+                                
+                                CardView(action: {}, content: {
+                                    VStack(alignment: .leading, spacing: 12) {
+                                        VStack(alignment: .leading) {
+                                            Text("Shuttlecock Distance from The Front Line")
+                                                .font(Font.custom("SF Pro", size: 17))
+                                                .fontWeight(.semibold)
+                                            Text("The closer, the better.")
+                                                .font(Font.custom("SF Pro", size: 15))
+                                                .foregroundStyle(.grayStroke6)
+                                        }
+                                        
+                                        VStack(spacing: 2) {
+                                            HStack {
+                                                TextAlignLeading("\(String(format: "%.2f", getLatestLowest(latestDrill))) cm")
+                                                Spacer()
+                                                TextAlignLeading("\(String(format: "%.2f", getLatesAvg(latestDrill))) cm")
+                                            }
+                                            .font(Font.custom("Urbanist", size: 28))
+                                            .fontWeight(.semibold)
+                                            
+                                            HStack {
+                                                TextAlignLeading("Latest Closest")
+                                                Spacer()
+                                                TextAlignLeading("Latest Average")
+                                            }
+                                            .font(Font.custom("SF Pro", size: 15))
+                                        }
+                                        
+                                        VStack(spacing: 2) {
+                                            HStack {
+                                                TextAlignLeading("\(String(format: "%.2f", getMonthLowest(lowestOfTheMonth))) cm")
+                                                Spacer()
+                                                TextAlignLeading("\(String(format: "%.2f", getMonthBestAvg(bestAvgOfTheMonth))) cm")
+                                            }
+                                            .font(Font.custom("Urbanist", size: 28))
+                                            .fontWeight(.semibold)
+                                            
+                                            HStack {
+                                                VStack{
+                                                    TextAlignLeading("Closest")
+                                                    TextAlignLeading("This Month")
+                                                }
+                                                Spacer()
+                                                VStack {
+                                                    TextAlignLeading("Best Average")
+                                                    TextAlignLeading("This Month")
+                                                }
+                                            }
+                                            .font(Font.custom("SF Pro", size: 15))
+                                        }
+                                    }
+                                    .foregroundStyle(.neutralBlack)
+                                    
+                                })
+                                .frame(height: 150)
+                                .padding(.bottom, 24)
+                                .padding(.top, 24)
+                                
+                                CardView(action: {}, content: {
+                                    VStack(alignment: .leading, spacing: 12) {
+                                        Text(chooseLevelTextTwo)
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .fontWeight(.semibold)
+                                        
+                                        VStack {
+                                            TextAlignLeading("Quite Scattered")
+                                              .font(
+                                                Font.custom("Urbanist", size: 28)
+                                                  .weight(.semibold)
+                                              )
+                                              .foregroundColor(.black)
+                                            
+                                            TextAlignLeading("Latest Drill")
+                                              .font(Font.custom("SF Pro", size: 15))
+                                              .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
+                                        }
+                                        
+                                        VStack {
+                                            TextAlignLeading("Quite Centralized")
+                                              .font(
+                                                Font.custom("Urbanist", size: 28)
+                                                  .weight(.semibold)
+                                              )
+                                              .foregroundColor(.black)
+                                            
+                                            TextAlignLeading("Frequent This Month")
+                                              .font(Font.custom("SF Pro", size: 15))
+                                              .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
+                                              .frame(maxWidth: .infinity, alignment: .bottomLeading)
+                                        }
+                                        
+                                        VStack {
+                                            TextAlignLeading("- Very Scattered")
+                                            TextAlignLeading("  (Varied placement makes you hard to predict.)")
+                                            TextAlignLeading("- Quite Scattered")
+                                            TextAlignLeading("- Quite Centralized")
+                                            TextAlignLeading("- Very Centralized")
+                                            TextAlignLeading("  (Recommended to train beginners' consistency.)")
+                                        }
+                                        .font(Font.custom("SF Pro", size: 12))
+                                        .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
+                                    }
+                                    .foregroundStyle(.neutralBlack)
+                                    
+                                })
+                                .frame(height: 150)
+                                .padding(.bottom, 64)
+                                .padding(.top, 48)
                             }
                             .scrollIndicators(.hidden)
                             .padding(.bottom, getSafeArea().bottom + 12)
                         }
                         .font(Font.custom("SF Pro", size: 15))
                         .padding(16)
-                        
                     }
                 }
                 .padding(.top, getSafeArea().top - 24)
@@ -251,6 +380,76 @@ struct LowServePlacementView: View {
                 AppDelegate.orientationLock = .landscapeRight
                 player?.pause()
             }
+        }
+        .onAppear {
+            let levelPredicate = NSPredicate(format: "level == %@", "1")
+            
+            let request: NSFetchRequest<Data> = Data.fetchRequest()
+            let predicate = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
+            
+            let request2: NSFetchRequest<Data> = Data.fetchRequest()
+            let predicate2 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            request2.sortDescriptors = [NSSortDescriptor(key: "minDistance", ascending: true)]
+            request2.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate2])
+            
+            let request3: NSFetchRequest<Data> = Data.fetchRequest()
+            let predicate3 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            request3.sortDescriptors = [NSSortDescriptor(key: "avgDistance", ascending: true)]
+            request3.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate3])
+            
+            do {
+                recordOfTheMonth = try moc.fetch(request)
+                lowestOfTheMonth = try moc.fetch(request2)
+                bestAvgOfTheMonth = try moc.fetch(request3)
+            } catch {
+                print("Error fetching data: \(error)")
+            }
+        }
+    }
+    
+    private func getAverate(_ data: [Data]) -> Double {
+        if data.count == 0 {
+            return 0
+        } else {
+            var total: Double = 0.0
+            for e in data {
+                total += Double(e.hitPerfect)
+            }
+            return Double(total/Double(data.count))
+        }
+    }
+    
+    private func getLatestLowest(_ data: FetchedResults<Data>) -> Double {
+        if data.count > 0 {
+            return data[0].minDistance
+        } else {
+            return 0
+        }
+    }
+    
+    private func getLatesAvg(_ data: FetchedResults<Data>) -> Double {
+        if data.count > 0 {
+            return data[0].avgDistance
+        } else {
+            return 0
+        }
+    }
+    
+    private func getMonthBestAvg(_ data: [Data]) -> Double {
+        if data.count > 0 {
+            return data[0].avgDistance
+        } else {
+            return 0
+        }
+    }
+    
+    private func getMonthLowest(_ data: [Data]) -> Double {
+        if data.count > 0 {
+            return data[0].minDistance
+        } else {
+            return 0
         }
     }
 }

@@ -18,16 +18,18 @@ struct LowServeTrajectoryView: View {
     @State var player: AVPlayer?
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)]
+        sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
+        predicate: NSPredicate(format: "level == %@", "0")
     ) var recordOfAllTime: FetchedResults<Data>
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)]
+        sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
+        predicate: NSPredicate(format: "level == %@", "0")
     ) var latestDrill: FetchedResults<Data>
     
     @State var recordOfTheMonth: [Data] = []
-    
-    let playerViewController = AVPlayerViewController()
+    @State var lowestOfTheMonth: [Data] = []
+    @State var bestAvgOfTheMonth: [Data] = []
     
     var body: some View {
         ForceOrientation(.portrait) {
@@ -167,13 +169,9 @@ struct LowServeTrajectoryView: View {
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                if recordOfAllTime.count > 0 {
-                                                    TextAlignLeading("\(recordOfAllTime[0].hitPerfect == 0 ? "-" : "\(recordOfAllTime[0].hitPerfect)")")
-                                                } else {
-                                                    TextAlignLeading("-")
-                                                }
+                                                TextAlignLeading(recordOfAllTime.count > 0 ? "\(recordOfAllTime[0].hitPerfect)" : "-")
                                                 Spacer()
-                                                TextAlignLeading("\(recordOfTheMonth.count > 0 ? "\(recordOfTheMonth[0].hitPerfect)" : "-")")
+                                                TextAlignLeading(recordOfTheMonth.count > 0 ? "\(recordOfTheMonth[0].hitPerfect)" : "-")
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
@@ -188,13 +186,9 @@ struct LowServeTrajectoryView: View {
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                if latestDrill.count > 0 {
-                                                    TextAlignLeading("\(latestDrill[0].hitPerfect == 0 ? "-" : "\(latestDrill[0].hitPerfect)")")
-                                                } else {
-                                                    TextAlignLeading("-")
-                                                }
+                                                TextAlignLeading(latestDrill.count > 0 ? "\(latestDrill[0].hitPerfect)" : "-")
                                                 Spacer()
-                                                TextAlignLeading("\(getAverate(recordOfTheMonth) == Double(0) ? "-" : "\(String(format: "%.2f", getAverate(recordOfTheMonth)))")")
+                                                TextAlignLeading(String(format: "%.2f", getAverate(recordOfTheMonth)))
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
@@ -227,9 +221,9 @@ struct LowServeTrajectoryView: View {
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("\(getLatestLowest(latestDrill) == Double(0) ? "-" : "\(String(format: "%.2f", getLatestLowest(latestDrill)))") cm")
+                                                TextAlignLeading("\(String(format: "%.2f", getLatestLowest(latestDrill))) cm")
                                                 Spacer()
-                                                TextAlignLeading("8.25 cm")
+                                                TextAlignLeading("\(String(format: "%.2f", getLatesAvg(latestDrill))) cm")
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
@@ -244,9 +238,9 @@ struct LowServeTrajectoryView: View {
                                         
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("2 cm")
+                                                TextAlignLeading("\(String(format: "%.2f", getMonthLowest(lowestOfTheMonth))) cm")
                                                 Spacer()
-                                                TextAlignLeading("5.40 cm")
+                                                TextAlignLeading("\(String(format: "%.2f", getMonthBestAvg(bestAvgOfTheMonth))) cm")
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
@@ -277,7 +271,6 @@ struct LowServeTrajectoryView: View {
                         }
                         .font(Font.custom("SF Pro", size: 15))
                         .padding(16)
-                        
                     }
                 }
                 .padding(.top, getSafeArea().top - 24)
@@ -338,22 +331,34 @@ struct LowServeTrajectoryView: View {
             }
         }
         .onAppear {
+            let levelPredicate = NSPredicate(format: "level == %@", "0")
+            
             let request: NSFetchRequest<Data> = Data.fetchRequest()
             let predicate = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
-            request.predicate = predicate
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
+            
+            let request2: NSFetchRequest<Data> = Data.fetchRequest()
+            let predicate2 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            request2.sortDescriptors = [NSSortDescriptor(key: "minDistance", ascending: true)]
+            request2.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate2])
+            
+            let request3: NSFetchRequest<Data> = Data.fetchRequest()
+            let predicate3 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            request3.sortDescriptors = [NSSortDescriptor(key: "avgDistance", ascending: true)]
+            request3.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate3])
             
             do {
-                // Fetch the results using the managed object context
-                let fetchedResults = try moc.fetch(request)
-                recordOfTheMonth = fetchedResults // Assign fetched results to recordOfTheMonth
+                recordOfTheMonth = try moc.fetch(request)
+                lowestOfTheMonth = try moc.fetch(request2)
+                bestAvgOfTheMonth = try moc.fetch(request3)
             } catch {
                 print("Error fetching data: \(error)")
             }
         }
     }
     
-    func getAverate(_ data: [Data]) -> Double {
+    private func getAverate(_ data: [Data]) -> Double {
         if data.count == 0 {
             return 0
         } else {
@@ -365,7 +370,7 @@ struct LowServeTrajectoryView: View {
         }
     }
     
-    func getLatestLowest(_ data: FetchedResults<Data>) -> Double {
+    private func getLatestLowest(_ data: FetchedResults<Data>) -> Double {
         if data.count > 0 {
             return data[0].minDistance
         } else {
@@ -373,32 +378,28 @@ struct LowServeTrajectoryView: View {
         }
     }
     
-    private struct HitStatistics: Identifiable {
-        var id = UUID().uuidString
-        var hitNumber: String
-        var hitStatus: String
-        var netDistance: Double
+    private func getLatesAvg(_ data: FetchedResults<Data>) -> Double {
+        if data.count > 0 {
+            return data[0].avgDistance
+        } else {
+            return 0
+        }
     }
     
-    private func parseAttemp(_ data: String) -> [HitStatistics] {
-        var hitStatisticsArray: [HitStatistics] = []
-        
-        let components = data.components(separatedBy: ",")
-        for component in components {
-            // Split each component by colon
-            let keyValue = component.components(separatedBy: ":")
-            
-            // Check if there are exactly two components (key and value)
-            if keyValue.count == 3 {
-                let hitNumber = keyValue[0]
-                let hitStatus = keyValue[1]
-                let netDistance = Double(keyValue[2]) ?? 0.0
-                
-                let hitStat = HitStatistics(hitNumber: hitNumber, hitStatus: hitStatus, netDistance: netDistance)
-                hitStatisticsArray.append(hitStat)
-            }
+    private func getMonthBestAvg(_ data: [Data]) -> Double {
+        if data.count > 0 {
+            return data[0].avgDistance
+        } else {
+            return 0
         }
-        return hitStatisticsArray
+    }
+    
+    private func getMonthLowest(_ data: [Data]) -> Double {
+        if data.count > 0 {
+            return data[0].minDistance
+        } else {
+            return 0
+        }
     }
 }
 
