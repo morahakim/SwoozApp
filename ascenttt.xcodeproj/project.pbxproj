@@ -418,8 +418,8 @@
 				BEA1C12A2AF0436D00BFF1A4 /* HomeViewController.swift */,
 				BEA1C12B2AF0436D00BFF1A4 /* CameraViewController.swift */,
 				BEA1C12D2AF0436D00BFF1A4 /* ContentAnalysisViewController.swift */,
-				BEA1C1312AF0436D00BFF1A4 /* HomeViewRepresentable.swift */,
 				18EE72C82B08797700DE7BE7 /* LocalStorage.swift */,
+				BEA1C1312AF0436D00BFF1A4 /* HomeViewRepresentable.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -914,7 +914,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -944,7 +944,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -976,7 +976,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1013,7 +1013,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = 8W6F8JGKN9;
+				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;

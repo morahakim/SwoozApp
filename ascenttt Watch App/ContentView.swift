@@ -165,10 +165,6 @@ struct ContentView: View {
                             .font(.system(size: 12)).lineLimit(nil)
                             .padding(.bottom, 0)
                             .foregroundColor(Color.greenMain)
-                        Text(technique)
-                            .font(.system(size: 12)).lineLimit(nil)
-                            .padding(.bottom, 0)
-                            .foregroundColor(Color.greenMain)
                     }
                 }
                 .navigationBarBackButtonHidden(true)
@@ -224,14 +220,14 @@ struct ContentView: View {
                                 VStack(alignment: .leading) {
                                     Text(String(format: "%.2f cm", averageApp))
                                         .font(.system(size: 23))
-                                    Text("Average Height")
+                                    Text(averageHeightText)
                                     
                                 }
                             }else if(typeApp == "1"){
                                 VStack(alignment: .leading) {
                                     Text(String(format: "%.2f cm", averageApp))
                                         .font(.system(size: 23))
-                                    Text("Average Distance")
+                                    Text(averageDistance)
                                     
                                 }
                             }
@@ -240,14 +236,14 @@ struct ContentView: View {
                                 VStack(alignment: .leading) {
                                     Text(String(format: "%.2f cm", minApp))
                                         .font(.system(size: 23))
-                                    Text("Lowest")
+                                    Text(lowestShotText)
                                     
                                 }
                             }else if(typeApp == "1"){
                                 VStack(alignment: .leading) {
                                     Text(String(format: "%.2f cm", minApp))
                                         .font(.system(size: 23))
-                                    Text("Closest")
+                                    Text(closestText)
                                     
                                 }
                             }
