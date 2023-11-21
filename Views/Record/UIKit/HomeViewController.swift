@@ -24,12 +24,14 @@ protocol HomeDelegate: AnyObject {
                     hitTarget: Int,
                     hitTotal: Int,
                     level: String,
-                    result: String)
+                    result: String,
+                    minDistance: Double,
+                    avgDistance: Double,
+                    variance: String)
 }
 
 class HomeViewController: UIViewController, ContentAnalysisDelegate {
-
-        let localStorage = LocalStorage()
+    let localStorage = LocalStorage()
     
     let motionManager = CMMotionManager()
     
@@ -60,7 +62,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                     hitTarget: Int,
                     hitTotal: Int,
                     level: String,
-                    result: String) {
+                    result: String,
+                    minDistance: Double,
+                    avgDistance: Double,
+                    variance: String) {
         homeDelegate?.saveRecord(url: url,
                                  duration: duration,
                                  hitFail: hitFail,
@@ -69,7 +74,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                                  hitTarget: hitTarget,
                                  hitTotal: hitTotal,
                                  level: level,
-                                 result: result)
+                                 result: result,
+                                 minDistance: minDistance,
+                                 avgDistance: avgDistance,
+                                 variance: variance)
     }
     
     var homeDelegate: HomeDelegate?
