@@ -20,6 +20,8 @@ struct ContentView: View {
     @AppStorage("hitTargetApp") var hitTargetApp = 0
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
+    @AppStorage("averageApp") var averageApp = 0.0
+    @AppStorage("minApp") var minApp = 0.0
     @AppStorage("menuStateApp") var menuStateApp = ""
     @AppStorage("durationApp") var durationApp = ""
     
@@ -150,10 +152,10 @@ struct ContentView: View {
                         
                     }
                     if(typeApp != "" && levelApp != ""){
-                        Text(typeApp)
-                            .font(.system(size: 12)).lineLimit(nil)
-                            .padding(.bottom, 0)
-                            .foregroundColor(Color.greenMain)
+//                        Text(typeApp)
+//                            .font(.system(size: 12)).lineLimit(nil)
+//                            .padding(.bottom, 0)
+//                            .foregroundColor(Color.greenMain)
                         Text(levelApp)
                             .font(.system(size: 12)).lineLimit(nil)
                             .padding(.bottom, 0)
@@ -218,13 +220,45 @@ struct ContentView: View {
                                 }
                             }
                             
-                            //            Spacer()
+                            if(typeApp == "0"){
+                                VStack(alignment: .leading) {
+                                    Text(String(format: "%.2f cm", averageApp))
+                                        .font(.system(size: 23))
+                                    Text("Average Height")
+                                    
+                                }
+                            }else if(typeApp == "1"){
+                                VStack(alignment: .leading) {
+                                    Text(String(format: "%.2f cm", averageApp))
+                                        .font(.system(size: 23))
+                                    Text("Average Distance")
+                                    
+                                }
+                            }
+                            
+                            if(typeApp == "0"){
+                                VStack(alignment: .leading) {
+                                    Text(String(format: "%.2f cm", minApp))
+                                        .font(.system(size: 23))
+                                    Text("Lowest")
+                                    
+                                }
+                            }else if(typeApp == "1"){
+                                VStack(alignment: .leading) {
+                                    Text(String(format: "%.2f cm", minApp))
+                                        .font(.system(size: 23))
+                                    Text("Closest")
+                                    
+                                }
+                            }
+                            
                             VStack(alignment: .leading) {
                                 Text(durationApp)
                                     .font(.system(size: 23))
                                 Text(durationText)
                                 
                             }
+                            
                             
                             Button {
                                 counter.menuStateSend(menuState: "")
