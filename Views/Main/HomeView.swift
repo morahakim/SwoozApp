@@ -19,6 +19,17 @@ struct HomeView: View {
         NavigationStack(path: $vm.path) {
             ZStack {
                 if list.count > 0 {
+                    ZStack {
+                        Image("Challenge")
+                            .resizable()
+                            .frame(width: 350, height: 271)
+                        VStack {
+                            Image("Icon")
+                                .resizable()
+                                .frame(width: 19, height: 32)
+                            Text("Weekly Challenges")
+                        }
+                    }
                     VStack {
                         List {
                             ForEach(list) { item in
