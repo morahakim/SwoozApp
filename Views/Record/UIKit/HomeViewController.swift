@@ -185,7 +185,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             
             let size:CGFloat = CGFloat(Float(localStorage.loadSize(forKey: String(techniqueId))!) * 14)
             let cornerRadius = size / 2
-            let shape:CGFloat = CGFloat((1-((1.1-Float(localStorage.loadSize(forKey: String(techniqueId))!)) * 2)) * 8)
+            let shape:CGFloat = CGFloat((1-((1.1-Float(localStorage.loadSize(forKey: String(techniqueId))!)) * 2.5)) * 8)
             
             
             
@@ -237,7 +237,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             
             
             
-            circleRed.frame = CGRect(x: (pathColorView.frame.width/2.2) - size/2, y: (pathColorView.frame.height/1.92) - size/2, width: size, height: size)
+            circleRed.frame = CGRect(x: (pathColorView.frame.width/2.2) - size/2, y: (pathColorView.frame.height/1.90) - size/2, width: size, height: size)
             circleRed.layer.cornerRadius = cornerRadius
             circleRed.layer.masksToBounds = true
             circleRed.backgroundColor = localStorage.loadColor(forKey: "Red")
@@ -449,14 +449,14 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             localStorage.saveSize(sender.value, forKey: String(techniqueId))
             let size:CGFloat = CGFloat(Float(localStorage.loadSize(forKey: String(techniqueId))!) * 14)
             let cornerRadius = size / 2
-            let shape:CGFloat = CGFloat((1-((1.1-Float(localStorage.loadSize(forKey: String(techniqueId))!)) * 2)) * 8)
+            let shape:CGFloat = CGFloat((1-((1.1-Float(localStorage.loadSize(forKey: String(techniqueId))!)) * 2.5)) * 8)
             
             shapeLayerGreen.lineWidth = shape
             shapeLayerYellow.lineWidth = shape
             shapeLayerRed.lineWidth = shape
             circleGreen.frame = CGRect(x: (pathColorView.frame.width/2.4) - size/2, y: (pathColorView.frame.height/2.44) - size/2, width: size, height: size)
             circleYellow.frame = CGRect(x: (pathColorView.frame.width/1.9) - size/2, y: (pathColorView.frame.height/3.22) - size/2, width: size, height: size)
-            circleRed.frame = CGRect(x: (pathColorView.frame.width/2.2) - size/2, y: (pathColorView.frame.height/1.92) - size/2, width: size, height: size)
+            circleRed.frame = CGRect(x: (pathColorView.frame.width/2.2) - size/2, y: (pathColorView.frame.height/1.90) - size/2, width: size, height: size)
             circleGreen.layer.cornerRadius = cornerRadius
             circleYellow.layer.cornerRadius = cornerRadius
             circleRed.layer.cornerRadius = cornerRadius
@@ -590,6 +590,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             // Create a player view controller
             
             playerViewController.player = player
+                        playerViewController.showsPlaybackControls = false // Disable playback controls
+                        playerViewController.allowsPictureInPicturePlayback = false // Disable entering fullscreen mode
             
             // Create a container view with a border radius
             let container = UIView()

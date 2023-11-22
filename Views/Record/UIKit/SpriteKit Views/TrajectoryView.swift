@@ -673,7 +673,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
         //        print(bounds)
         
         
-        let shape:CGFloat = CGFloat((1-((1.1-Float(localStorage.loadSize(forKey: String(techniqueId))!)) * 2)) * 8)
+        let shape:CGFloat = CGFloat((1-((1.1-Float(localStorage.loadSize(forKey: String(techniqueId))!)) * 2.5)) * 8)
         
         let pathLayer = CAShapeLayer()
         pathLayer.lineWidth = shape

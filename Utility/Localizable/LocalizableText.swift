@@ -476,3 +476,8 @@ let recommendedTrainBeginner = NSLocalizedString(
     "recommended_train_beginner",
     comment: ""
 )
+
+let viewRecordText = NSLocalizedString(
+    "view_record_text",
+    comment: ""
+)

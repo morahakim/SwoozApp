@@ -33,7 +33,7 @@ struct ContentView: View {
     @State var countdownTimer: Timer?
     @State var countdownValue = 3
     @State var timer: Timer?
-    @State var remainingTime = 20 * 60 + 1
+    @State var remainingTime = 10 * 60 + 1
     
     @State var labelCountdown = ""
     

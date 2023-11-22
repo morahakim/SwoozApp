@@ -180,7 +180,7 @@ struct LowServeTrajectoryDetailView: View {
                                     .padding(.bottom)
                                 HStack {
                                     VStack(spacing: 8) {
-                                        Text("\(item.hitTarget )")
+                                        Text("\(item.hitTotal )")
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)

@@ -45,6 +45,7 @@ class ContentAnalysisViewController: UIViewController,
     @AppStorage("dataUrl") var dataUrl: String = ""
     
     @AppStorage("arrResult") var arrResult: String = ""
+    @AppStorage("isDetail") var isDetail: Bool = false
     
     // TODO: variable delegate untuk panggil function delegate
     var contentAnalysisDelegate: ContentAnalysisDelegate?
@@ -257,6 +258,11 @@ class ContentAnalysisViewController: UIViewController,
         isOnRecord = false
     }
     
+    @objc func detail() {
+        print("Detail")
+        isDetail = true
+    }
+    
     var arrHitStatistics : [HitStatistics] = [
     ]
     struct HitStatistics: Identifiable, Hashable {
@@ -415,11 +421,13 @@ class ContentAnalysisViewController: UIViewController,
         text5a.textAlignment = .center
         text5a.frame = CGRect(x: 0, y: 5, width: box5.frame.width, height: 30)
         
+        
         if(techniqueId == 0){
             text5b.text = lowestText
         }else if(techniqueId == 1){
             text5b.text = closestFrontLine
         }
+        
         text5b.font = UIFont(name: "Urbanist", size: 17)
         text5b.textColor = UIColor.white
         text5b.textAlignment = .center
@@ -450,7 +458,7 @@ class ContentAnalysisViewController: UIViewController,
         if(techniqueId == 0){
             text6b.text = averageHeightText
         }else if(techniqueId == 1){
-            text5b.text = averageDistance
+            text6b.text = averageDistance
         }
         
         text6b.font = UIFont(name: "Urbanist", size: 17)
@@ -559,13 +567,13 @@ class ContentAnalysisViewController: UIViewController,
             self.doneButton.frame = CGRect(x: 0, y: 0, width: view1.frame.width * 0.9, height: 50)
             self.doneButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
             view1.addSubview(self.doneButton)
-            self.detailButton.setTitle("Detail", for: .normal)
+            self.detailButton.setTitle(viewRecordText, for: .normal)
             self.detailButton.setTitleColor(.white, for: .normal)
             self.detailButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
             self.detailButton.backgroundColor = UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0)
             self.detailButton.layer.cornerRadius = 12
             self.detailButton.frame = CGRect(x: 0, y: 0, width: view1.frame.width * 0.9, height: 50)
-            self.detailButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
+            self.detailButton.addTarget(self, action: #selector(self.detail), for: .touchUpInside)
             view2.addSubview(self.detailButton)
             
         }
@@ -588,9 +596,9 @@ class ContentAnalysisViewController: UIViewController,
     var countdownTimer: Timer?
     var countdownValue = 3
     var timer: Timer?
-    var remainingTime = 20 * 60 + 1
+    var remainingTime = 10 * 60 + 1
     
-    var remainingTimeFix = 20 * 60 + 1
+    var remainingTimeFix = 10 * 60 + 1
     //    var remainingTime = 1 * 10 + 1
     
     //    var hitTarget = 3
