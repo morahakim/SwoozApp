@@ -33,6 +33,11 @@ struct LowServePlacementDetailView: View {
         var hitStatus: String
     }
     
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
+        predicate: NSPredicate(format: "level == %@", "1")
+    ) private var latestDrill: FetchedResults<Data>
+    
     private func parseAttemp(_ data: String) -> [HitStatistics] {
         var hitStatisticsArray: [HitStatistics] = []
         
@@ -76,8 +81,6 @@ struct LowServePlacementDetailView: View {
                     .cornerRadius(10)
                     .padding(.top, 50)
                 }
-                
-                
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
@@ -91,7 +94,6 @@ struct LowServePlacementDetailView: View {
                                 topTrailingRadius: 20
                             )
                         )
-                    
                     
                     ScrollView {
                         VStack {
@@ -109,8 +111,6 @@ struct LowServePlacementDetailView: View {
                                         Text(dateFormat(item.datetime) == "" ? "-/-/-" : dateFormat(item.datetime))
                                             .font(Font.custom("Urbanist", size: 12))
                                             .foregroundStyle(Color.grayStroke6)
-                                    
-                                    
                                 }
                                 HStack {
                                     if isEditing {
@@ -136,7 +136,6 @@ struct LowServePlacementDetailView: View {
                                     }
                                 }
                             }
-//                            .padding()
                             
                             VStack(spacing: 15) {
                                 TextAlignLeading(goodServePerformText)
@@ -190,10 +189,6 @@ struct LowServePlacementDetailView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        
-                                        
-                                        
-                                        
                                     }
                                 }
                                 .padding(.trailing, 90)
@@ -233,23 +228,28 @@ struct LowServePlacementDetailView: View {
                                 .padding(.trailing, 90)
                                 
                                 VStack(spacing: 10) {
-                                    Text("-5")
-                                        .font(Font.custom("SF Pro", size: 17))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                    Text(goodServeQualityText)
-                                        .font(Font.custom("SF Pro", size: 12))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
+                                    if latestDrill.count >= 2 {
+                                        Text("\(item.hitPerfect - latestDrill[1].hitPerfect)")
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("\(goodServeQualityText) \((item.hitPerfect - latestDrill[1].hitPerfect) < 0 ? keepDecreasing : keepIncreasing)")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    } else {
+                                        Text("0")
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("\(goodServeQualityText) \(keepIncreasing)")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    }
                                 }
-                               
-                                
-                                
                                 ThickDividers(thickness: 1, color: .gray)
-                                
-                                //
                             }
-                            //                        .padding(.top)
                             .padding(.top)
                             
                             
@@ -289,19 +289,28 @@ struct LowServePlacementDetailView: View {
                                 .padding(.trailing, 90)
                                 
                                 VStack(spacing: 10) {
-                                    Text("-1")
-                                        .font(Font.custom("SF Pro", size: 17))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                    Text(averageProgressText)
-                                        .font(Font.custom("SF Pro", size: 12))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
+                                    if latestDrill.count >= 2 {
+                                        Text(String(format: "%.2f", Double(item.avgDistance - latestDrill[1].avgDistance)))
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("\(averageProgressText) \((item.avgDistance - latestDrill[1].avgDistance) < 0 ? keepDecreasing : keepIncreasing)")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    } else {
+                                        Text("0")
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("\(averageProgressText) \(keepIncreasing)")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    }
                                 }
 
                                 ThickDividers(thickness: 1, color: .gray)
-                                
-                                //
                                 
                                 Text(placementType)
                                     .font(Font.custom("SF Pro", size: 17))
@@ -309,7 +318,7 @@ struct LowServePlacementDetailView: View {
                                     .foregroundColor(.neutralBlack)
                                     
                                 VStack(spacing: 10) {
-                                    Text(quiteScattered)
+                                    Text(item.variance ?? "")
                                         .font(Font.custom("Urbanist-Medium", size: 28))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
@@ -320,7 +329,7 @@ struct LowServePlacementDetailView: View {
                                 }
                                   
                                 VStack(spacing: 10) {
-                                    Text(quiteCentralized)
+                                    Text(latestDrill.count >= 2 ? latestDrill[0].variance ?? "" : "-")
                                         .font(Font.custom("Urbanist-Medium", size: 28))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)

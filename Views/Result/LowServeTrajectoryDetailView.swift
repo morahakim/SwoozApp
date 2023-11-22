@@ -35,6 +35,11 @@ struct LowServeTrajectoryDetailView: View {
         var netDistance: Double
     }
     
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
+        predicate: NSPredicate(format: "level == %@", "0")
+    ) private var latestDrill: FetchedResults<Data>
+    
     private func parseAttemp(_ data: String) -> [HitStatistics] {
         var hitStatisticsArray: [HitStatistics] = []
         
@@ -242,14 +247,25 @@ struct LowServeTrajectoryDetailView: View {
                                 .padding(.trailing, 90)
                                 
                                 VStack(spacing: 10) {
-                                    Text("-5")
-                                        .font(Font.custom("SF Pro", size: 17))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                    Text("\(goodServeQualityText) \(keepDecreasing)")
-                                        .font(Font.custom("SF Pro", size: 12))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
+                                    if latestDrill.count >= 2 {
+                                        Text("\(item.hitPerfect - latestDrill[1].hitPerfect)")
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("\(goodServeQualityText) \((item.hitPerfect - latestDrill[1].hitPerfect) < 0 ? keepDecreasing : keepIncreasing)")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    } else {
+                                        Text("0")
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("\(goodServeQualityText) \(keepIncreasing)")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    }
                                 }
                                 
                                 ThickDivider(thickness: 1, color: .gray)
@@ -297,14 +313,25 @@ struct LowServeTrajectoryDetailView: View {
                                 .padding(.trailing, 90)
                                 
                                 VStack(spacing: 10) {
-                                    Text("-1")
-                                        .font(Font.custom("SF Pro", size: 17))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
-                                    Text("\(averageProgressText) \(keepDecreasing)")
-                                        .font(Font.custom("SF Pro", size: 12))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
+                                    if latestDrill.count >= 2 {
+                                        Text(String(format: "%.2f", Double(item.avgDistance - latestDrill[1].avgDistance)))
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("\(averageProgressText) \((item.avgDistance - latestDrill[1].avgDistance) < 0 ? keepDecreasing : keepIncreasing)")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    } else {
+                                        Text("0")
+                                            .font(Font.custom("SF Pro", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                        Text("\(averageProgressText) \(keepIncreasing)")
+                                            .font(Font.custom("SF Pro", size: 12))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    }
                                 }
                             }
                             .padding(.top)
