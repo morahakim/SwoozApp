@@ -38,6 +38,9 @@ class ContentAnalysisViewController: UIViewController,
     var minDistance: Double = 0.0
     var variance: String = ""
     
+    var isCalculate: Bool = true
+    
+    
     @AppStorage("type") var type: String = "Low Serve"
     @AppStorage("techniqueName") var techniqueName: String = ""
     @AppStorage("techniqueId") var techniqueId: Int = 0
@@ -596,7 +599,8 @@ class ContentAnalysisViewController: UIViewController,
     var countdownTimer: Timer?
     var countdownValue = 3
     var timer: Timer?
-    var remainingTime = 10 * 60 + 1
+    var remainingTime:Int = 10 * 60 + 1
+    var calculateTimer:Int = 0
     
     var remainingTimeFix = 10 * 60 + 1
     //    var remainingTime = 1 * 10 + 1
@@ -1284,6 +1288,12 @@ class ContentAnalysisViewController: UIViewController,
     
     private func processTrajectoryObservationLevel3(results: [VNTrajectoryObservation]) {
         
+        if(calculateTimer-1 != remainingTime){
+            isCalculate = true
+        }else{
+            return
+        }
+        
         if(!isRecording){
             return
         }
@@ -1312,10 +1322,20 @@ class ContentAnalysisViewController: UIViewController,
                 let trajectoryHeight = firstY - lastY
                 
                 
+//                if(!existingTrajectory.contains(trajectory.uuid.uuidString)
+//                   && (trajectoryHeight > 0.05 || trajectoryLength > 0.05)
+//                ){
                 if(!existingTrajectory.contains(trajectory.uuid.uuidString)
-                   && (trajectoryHeight > 0.05 || trajectoryLength > 0.05)
                 ){
-                    existingTrajectory.append(trajectory.uuid.uuidString)
+                    if(isCalculate){
+                        print("AGUNG \(calculateTimer) - \(remainingTime)")
+                        existingTrajectory.append(trajectory.uuid.uuidString)
+                        isCalculate = false
+                        calculateTimer = remainingTime
+                    }else{
+                        return
+                    }
+                    
                 }
             }else{
                 
