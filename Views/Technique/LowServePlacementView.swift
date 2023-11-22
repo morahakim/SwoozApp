@@ -273,7 +273,7 @@ struct LowServePlacementView: View {
                                             .fontWeight(.semibold)
                                         
                                         VStack {
-                                            TextAlignLeading(quiteScattered)
+                                            TextAlignLeading(latestDrill.count > 0 ? latestDrill[0].variance ?? "-" : "-")
                                               .font(
                                                 Font.custom("Urbanist", size: 28)
                                                   .weight(.semibold)
@@ -286,7 +286,7 @@ struct LowServePlacementView: View {
                                         }
                                         
                                         VStack {
-                                            TextAlignLeading(quiteCentralized)
+                                            TextAlignLeading(latestDrill.count > 0 ? latestDrill[0].variance ?? "-" : "-")
                                               .font(
                                                 Font.custom("Urbanist", size: 28)
                                                   .weight(.semibold)
