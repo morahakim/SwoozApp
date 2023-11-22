@@ -47,8 +47,7 @@ class CameraViewController: UIViewController {
         
     }
     
-    @AppStorage("name") var name: String = "Intermediate"
-    @AppStorage("type") var type: String = "Low Serve"
+    @AppStorage("techniqueId") var techniqueId: Int = 0
     
     
     // MARK: - Public Methods
@@ -58,11 +57,11 @@ class CameraViewController: UIViewController {
         // Create a device discovery session.
         var wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
         
-        if(name == "Intermediate"){
-            wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
-        }else if(name == "Experienced"){
+       if(techniqueId == 0){
             wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
-        }else if(name == "Advanced"){
+        }else if(techniqueId == 1){
+            wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
+        }else{
             wideAngle = AVCaptureDevice.DeviceType.builtInUltraWideCamera
         }
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [wideAngle],
