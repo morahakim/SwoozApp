@@ -485,7 +485,8 @@ let keepDecreasing = NSLocalizedString(
 let keepIncreasing = NSLocalizedString(
     "keep_increasing",
     comment: ""
-    )
+)
+
 let viewRecordText = NSLocalizedString(
     "view_record_text",
     comment: ""
