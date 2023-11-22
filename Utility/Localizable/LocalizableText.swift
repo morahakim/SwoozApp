@@ -446,3 +446,33 @@ let latestClosest = NSLocalizedString(
     "latest_closest",
     comment: ""
 )
+
+let frequentMonthText = NSLocalizedString(
+    "frequest_month_text",
+    comment: ""
+)
+
+let veryScatteredText = NSLocalizedString(
+    "very_scattered_text",
+    comment: ""
+)
+
+let variedPlacementText = NSLocalizedString(
+    "varied_placement_text",
+    comment: ""
+)
+
+let quiteCentralizedText = NSLocalizedString(
+    "quite_centralized_text",
+    comment: ""
+)
+
+let veryCentralizedText = NSLocalizedString(
+    "very_centralized_text",
+    comment: ""
+)
+
+let recommendedTrainBeginner = NSLocalizedString(
+    "recommended_train_beginner",
+    comment: ""
+)

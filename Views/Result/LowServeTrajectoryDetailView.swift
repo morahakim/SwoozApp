@@ -268,7 +268,7 @@ struct LowServeTrajectoryDetailView: View {
                                     .padding(.bottom)
                                 HStack {
                                     VStack(spacing: 8) {
-                                        Text("\(item.hitTarget )")
+                                        Text(String(format: "%.2f", Double(item.minDistance)))
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -279,7 +279,7 @@ struct LowServeTrajectoryDetailView: View {
                                     }
                                     
                                     VStack(spacing: 8) {
-                                        Text(item.duration ?? "00:00")
+                                        Text(String(format: "%.2f", Double(item.avgDistance)))
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -292,6 +292,7 @@ struct LowServeTrajectoryDetailView: View {
                                         
                                         
                                     }
+                                    
                                 }
                                 .padding(.trailing, 90)
                                 

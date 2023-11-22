@@ -261,7 +261,7 @@ struct LowServePlacementDetailView: View {
                                     
                                 HStack {
                                     VStack(spacing: 8) {
-                                        Text("4 cm")
+                                        Text(String(format: "%.2f", Double(item.minDistance)))
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
@@ -272,7 +272,7 @@ struct LowServePlacementDetailView: View {
                                     }
                                     
                                     VStack(spacing: 8) {
-                                        Text("4,55 cm")
+                                        Text(String(format: "%.2f", Double(item.avgDistance)))
                                             .font(Font.custom("Urbanist-Medium", size: 34))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)

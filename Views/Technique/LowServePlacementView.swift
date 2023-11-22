@@ -273,39 +273,39 @@ struct LowServePlacementView: View {
                                             .fontWeight(.semibold)
                                         
                                         VStack {
-                                            TextAlignLeading("Quite Scattered")
+                                            TextAlignLeading(quiteScattered)
                                               .font(
                                                 Font.custom("Urbanist", size: 28)
                                                   .weight(.semibold)
                                               )
                                               .foregroundColor(.black)
                                             
-                                            TextAlignLeading("Latest Drill")
+                                            TextAlignLeading(latestDrillText)
                                               .font(Font.custom("SF Pro", size: 15))
                                               .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
                                         }
                                         
                                         VStack {
-                                            TextAlignLeading("Quite Centralized")
+                                            TextAlignLeading(quiteCentralized)
                                               .font(
                                                 Font.custom("Urbanist", size: 28)
                                                   .weight(.semibold)
                                               )
                                               .foregroundColor(.black)
                                             
-                                            TextAlignLeading("Frequent This Month")
+                                            TextAlignLeading(frequentMonthText)
                                               .font(Font.custom("SF Pro", size: 15))
                                               .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
                                               .frame(maxWidth: .infinity, alignment: .bottomLeading)
                                         }
                                         
                                         VStack {
-                                            TextAlignLeading("- Very Scattered")
-                                            TextAlignLeading("  (Varied placement makes you hard to predict.)")
-                                            TextAlignLeading("- Quite Scattered")
-                                            TextAlignLeading("- Quite Centralized")
-                                            TextAlignLeading("- Very Centralized")
-                                            TextAlignLeading("  (Recommended to train beginners' consistency.)")
+                                            TextAlignLeading("- \(veryScatteredText)")
+                                            TextAlignLeading("  \(variedPlacementText)")
+                                            TextAlignLeading("- \(quiteScattered)")
+                                            TextAlignLeading("- \(quiteCentralized)")
+                                            TextAlignLeading("- \(veryCentralizedText)")
+                                            TextAlignLeading("  \(recommendedTrainBeginner)")
                                         }
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
