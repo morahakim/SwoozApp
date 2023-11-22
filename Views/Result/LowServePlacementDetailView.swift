@@ -60,17 +60,17 @@ struct LowServePlacementDetailView: View {
                 
                 if item.url != nil {
                     VideoPlayer(player: player) {
-                        if !isPlay {
-                            Image("PlayButton")
-                                .resizable()
-                                .frame(width: 60, height: 60)
-                                .foregroundColor(.greenMain)
-                                .padding()
-                                .onTapGesture {
-                                    isPlay.toggle()
-                                    player?.seek(to: .zero)
-                                }
-                        }
+//                        if !isPlay {
+//                            Image("PlayButton")
+//                                .resizable()
+//                                .frame(width: 60, height: 60)
+//                                .foregroundColor(.greenMain)
+//                                .padding()
+//                                .onTapGesture {
+//                                    isPlay.toggle()
+//                                    player?.seek(to: .zero)
+//                                }
+//                        }
                     }
                     .frame(width: 358, height: 173)
                     .cornerRadius(10)

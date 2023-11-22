@@ -484,7 +484,34 @@ let keepDecreasing = NSLocalizedString(
 
 let keepIncreasing = NSLocalizedString(
     "keep_increasing",
+    comment: ""
+    )
 let viewRecordText = NSLocalizedString(
     "view_record_text",
+    comment: ""
+)
+
+let weeklyChallengeText = NSLocalizedString(
+    "weekly_challenges_text",
+    comment: ""
+)
+
+let performText = NSLocalizedString(
+    "perform_text",
+    comment: ""
+)
+
+let goodServe = NSLocalizedString(
+    "good_serve",
+    comment: ""
+)
+
+let tryAgainText = NSLocalizedString(
+    "try_again_text",
+    comment: ""
+)
+
+let sizeTrajectoryText = NSLocalizedString(
+    "size_trajectory_text",
     comment: ""
 )

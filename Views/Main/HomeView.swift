@@ -15,22 +15,55 @@ struct HomeView: View {
     @State var isMove: Bool = false
     @Environment(\.managedObjectContext) var moc
     
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
+        predicate: NSPredicate(format: "level == %@", "0")
+    ) var trajectoryList: FetchedResults<Data>
+    
+    @AppStorage("isDetail") var isDetail = false
+    
     var body: some View {
         NavigationStack(path: $vm.path) {
             ZStack {
                 if list.count > 0 {
-                    ZStack {
-                        Image("Challenge")
-                            .resizable()
-                            .frame(width: 350, height: 271)
-                        VStack {
-                            Image("Icon")
-                                .resizable()
-                                .frame(width: 19, height: 32)
-                            Text("Weekly Challenges")
-                        }
-                    }
                     VStack {
+                        if trajectoryList.count > 0 {
+                            ZStack {
+                                Image("Challenge")
+                                    .resizable()
+                                    .frame(width: 350, height: 271)
+                                VStack(spacing: 10) {
+                                    Image("Icon")
+                                        .resizable()
+                                        .frame(width: 19, height: 32)
+                                    Text(weeklyChallengeText)
+                                        .font(Font.custom("SF Pro", size: 20))
+                                        .foregroundStyle(Color.white)
+                                    VStack {
+                                        Text("\(performText) \(trajectoryList[0].hitPerfect) \(goodServe).")
+                                            .font(Font.custom("SF Pro", size: 15))
+                                            .foregroundStyle(Color.white)
+                                        Text(chooseLevelTextOne)
+                                            .font(Font.custom("SF Pro", size: 15))
+                                            .foregroundStyle(Color.white)
+                                    }
+                                    .padding(.bottom)
+                                    Button {
+                                        vm.path.append(contentsOf: [.Technique, .LowServeTrajectory])
+                                    } label: {
+                                        ZStack {
+                                            Rectangle()
+                                                .fill(Color.greenMain)
+                                                .cornerRadius(10)
+                                                .frame(width: 83, height: 28)
+                                            Text(tryAgainText)
+                                                .font(Font.custom("SF Pro", size: 15))
+                                                .foregroundStyle(Color.white)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         List {
                             ForEach(list) { item in
                                 if item.level == "0" {
@@ -96,6 +129,17 @@ struct HomeView: View {
                 HomeViewModel.viewForDestination(path)
             }
             .onAppear {
+                isMove = true
+                if isDetail {
+                    if list.count > 0 {
+                        if list[0].level == "0" {
+                            NavigationLink(destination: LowServeTrajectoryDetailView(item: list[0]), isActive: $isMove) {}
+                        } else {
+                            
+                        }
+                    }
+                }
+                
                 UIDevice.current.setValue(
                     UIInterfaceOrientation.portrait.rawValue,
                     forKey: "orientation"

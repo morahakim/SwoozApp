@@ -403,7 +403,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         //        box1.backgroundColor = .blue
         
         let text4 = UILabel()
-        text4.text = "Ukuran"
+        text4.text = sizeTrajectoryText
         text4.font = UIFont(name: "Urbanist", size: 20)
         text4.textColor = UIColor.white
         text4.textAlignment = .right
@@ -575,16 +575,16 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         setupView1.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         
-        var setupName = "CPTLevel1"
+        var setupName = "Trajectory"
         if(techniqueId == 0){
-            setupName = "CPTLevel2"
+            setupName = "Placement"
             netName = "Level1"
         }else if(techniqueId == 1){
-            setupName = "CPTLevel3"
+            setupName = "Placement"
         }
         
         // Create a video player
-        if let videoURL = Bundle.main.url(forResource: setupName, withExtension: "mp4") {
+        if let videoURL = Bundle.main.url(forResource: setupName, withExtension: "mov") {
             let player = AVPlayer(url: videoURL)
             
             // Create a player view controller
@@ -867,9 +867,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             
         }
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
+//        view.isUserInteractionEnabled = true
+//        view.addGestureRecognizer(tapGesture)
         
         
         let image2 = UIImage(named: "CPButtonID")

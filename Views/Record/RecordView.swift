@@ -23,10 +23,8 @@ struct RecordView: View {
                 HomeViewRepresentable(moc: moc, vm: vm)
             } else {
                 if isDetail {
-                    if techniqueId == 0 {
-                        LowServeTrajectoryView()
-                    } else {
-                        LowServePlacementView()
+                    Text("").onAppear {
+                        vm.popToRoot()
                     }
                 } else {
                     LoadingRecordView()

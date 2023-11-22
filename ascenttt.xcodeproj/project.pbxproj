@@ -58,6 +58,12 @@
 		374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */; };
 		374C435B2B0BED86007A4F1A /* Localizable.strings in Sources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
 		374C435C2B0BED86007A4F1A /* LocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43572B0B8B30007A4F1A /* LocalizableText.swift */; };
+		374C43652B0E7C84007A4F1A /* Placement.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C43672B0E7C84007A4F1A /* Placement.mov */; };
+		374C43682B0E7C92007A4F1A /* Placement.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C436A2B0E7C92007A4F1A /* Placement.mov */; };
+		374C436B2B0E7C9C007A4F1A /* Trajectory.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C436D2B0E7C9C007A4F1A /* Trajectory.mov */; };
+		374C436E2B0E7CA2007A4F1A /* Trajectory.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C43702B0E7CA2007A4F1A /* Trajectory.mov */; };
+		374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */; };
+		374C43742B0E936C007A4F1A /* ServePlacement.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 374C43732B0E936C007A4F1A /* ServePlacement.mp4 */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
@@ -169,6 +175,12 @@
 		370F77282B0213CD00BB2194 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		374C43572B0B8B30007A4F1A /* LocalizableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableText.swift; sourceTree = "<group>"; };
 		374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementDetailView.swift; sourceTree = "<group>"; };
+		374C43662B0E7C84007A4F1A /* en */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = en; path = en.lproj/Placement.mov; sourceTree = "<group>"; };
+		374C43692B0E7C92007A4F1A /* id */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = id; path = id.lproj/Placement.mov; sourceTree = "<group>"; };
+		374C436C2B0E7C9C007A4F1A /* en */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = en; path = en.lproj/Trajectory.mov; sourceTree = "<group>"; };
+		374C436F2B0E7CA2007A4F1A /* id */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = id; path = id.lproj/Trajectory.mov; sourceTree = "<group>"; };
+		374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ServeTrajectory.mp4; sourceTree = "<group>"; };
+		374C43732B0E936C007A4F1A /* ServePlacement.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ServePlacement.mp4; sourceTree = "<group>"; };
 		3782C9512B074A4F00D0C4C5 /* ascenttt-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ascenttt-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -338,6 +350,12 @@
 		BE975BFA2AFCC39F00C802CF /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				374C43732B0E936C007A4F1A /* ServePlacement.mp4 */,
+				374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */,
+				374C43672B0E7C84007A4F1A /* Placement.mov */,
+				374C436A2B0E7C92007A4F1A /* Placement.mov */,
+				374C436D2B0E7C9C007A4F1A /* Trajectory.mov */,
+				374C43702B0E7CA2007A4F1A /* Trajectory.mov */,
 				370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */,
 				370F77202B00924E00BB2194 /* CPTLevel3.mp4 */,
 				370F771D2B00922200BB2194 /* CPTLevel1.mp4 */,
@@ -658,14 +676,20 @@
 				184E02F82AF192F60004C569 /* Iphone Rotate.json in Resources */,
 				370F77212B00924E00BB2194 /* CPTLevel2.mp4 in Resources */,
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
+				374C43682B0E7C92007A4F1A /* Placement.mov in Resources */,
+				374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */,
+				374C43652B0E7C84007A4F1A /* Placement.mov in Resources */,
+				374C436B2B0E7C9C007A4F1A /* Trajectory.mov in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
 				1878C43B2AFFC8AF0037D610 /* Level 2.mov in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
+				374C43742B0E936C007A4F1A /* ServePlacement.mp4 in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
 				1878C43C2AFFC8AF0037D610 /* Level 3.mov in Resources */,
 				1834074E2B0BD50600A1F5F4 /* LowServe-Placement.json in Resources */,
 				18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */,
 				18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */,
+				374C436E2B0E7CA2007A4F1A /* Trajectory.mov in Resources */,
 				1878C43F2AFFC8AF0037D610 /* Level 1.mov in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
 				1834074F2B0BD50600A1F5F4 /* LowServe-Trajectory.json in Resources */,
@@ -783,6 +807,38 @@
 				370F77282B0213CD00BB2194 /* id */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		374C43672B0E7C84007A4F1A /* Placement.mov */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374C43662B0E7C84007A4F1A /* en */,
+			);
+			name = Placement.mov;
+			sourceTree = "<group>";
+		};
+		374C436A2B0E7C92007A4F1A /* Placement.mov */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374C43692B0E7C92007A4F1A /* id */,
+			);
+			name = Placement.mov;
+			sourceTree = "<group>";
+		};
+		374C436D2B0E7C9C007A4F1A /* Trajectory.mov */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374C436C2B0E7C9C007A4F1A /* en */,
+			);
+			name = Trajectory.mov;
+			sourceTree = "<group>";
+		};
+		374C43702B0E7CA2007A4F1A /* Trajectory.mov */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374C436F2B0E7CA2007A4F1A /* id */,
+			);
+			name = Trajectory.mov;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -305,7 +305,7 @@ struct LowServeTrajectoryView: View {
                 
             }
             .onAppear {
-                if let url = Bundle.main.url(forResource: "Level 1", withExtension: "mov") {
+                if let url = Bundle.main.url(forResource: "ServeTrajectory", withExtension: "mp4") {
                     player = AVPlayer(url: url)
                     player?.play()
                 }

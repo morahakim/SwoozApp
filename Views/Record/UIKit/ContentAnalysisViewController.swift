@@ -263,6 +263,7 @@ class ContentAnalysisViewController: UIViewController,
     
     @objc func detail() {
         print("Detail")
+        isOnRecord = false
         isDetail = true
     }
     
@@ -491,7 +492,7 @@ class ContentAnalysisViewController: UIViewController,
         //        setupView1.addSubview(imageIconView)
         
         let textYour = UILabel()
-        textYour.text = completeChallengeText
+        textYour.text = "\(completeChallengeText) \(hitPerfect) \(goodServe)"
         textYour.font = UIFont(name: "Urbanist", size: 17)
         textYour.textColor = UIColor.white
         textYour.textAlignment = .center
@@ -562,15 +563,15 @@ class ContentAnalysisViewController: UIViewController,
             view2.frame = CGRect(x: self.setupViewChild.frame.width * 0.51, y: setupView1.frame.height-40, width: setupView1.frame.width/2, height: 50)
             self.setupViewChild.addSubview(view2)
             
-            self.doneButton.setTitle(doneText, for: .normal)
-            self.doneButton.setTitleColor(UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0), for: .normal)
-            self.doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-            self.doneButton.backgroundColor = .white
-            self.doneButton.layer.cornerRadius = 12
-            self.doneButton.frame = CGRect(x: 0, y: 0, width: view1.frame.width * 0.9, height: 50)
-            self.doneButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
-            view1.addSubview(self.doneButton)
-            self.detailButton.setTitle(viewRecordText, for: .normal)
+//            self.doneButton.setTitle(doneText, for: .normal)
+//            self.doneButton.setTitleColor(UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0), for: .normal)
+//            self.doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+//            self.doneButton.backgroundColor = .white
+//            self.doneButton.layer.cornerRadius = 12
+//            self.doneButton.frame = CGRect(x: 0, y: 0, width: view1.frame.width * 0.9, height: 50)
+//            self.doneButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
+//            view1.addSubview(self.doneButton)
+            self.detailButton.setTitle(doneText, for: .normal)
             self.detailButton.setTitleColor(.white, for: .normal)
             self.detailButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
             self.detailButton.backgroundColor = UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0)
@@ -600,7 +601,7 @@ class ContentAnalysisViewController: UIViewController,
     var countdownValue = 3
     var timer: Timer?
     var remainingTime:Int = 10 * 60 + 1
-    var calculateTimer:Int = 0
+    var calculateTimer:Int = 10 * 60 + 1 + 1
     
     var remainingTimeFix = 10 * 60 + 1
     //    var remainingTime = 1 * 10 + 1
@@ -1288,7 +1289,7 @@ class ContentAnalysisViewController: UIViewController,
     
     private func processTrajectoryObservationLevel3(results: [VNTrajectoryObservation]) {
         
-        if(calculateTimer-1 != remainingTime){
+        if(calculateTimer-1 > remainingTime){
             isCalculate = true
         }else{
             return
