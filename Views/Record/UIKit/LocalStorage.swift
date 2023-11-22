@@ -40,4 +40,23 @@ class LocalStorage {
         }
         return nil
     }
+    
+    func saveSize(_ val: Float, forKey key: String) {
+        UserDefaults.standard.set(val, forKey: key)
+    }
+    
+    func loadSize(forKey key: String) -> Float? {
+        let val = UserDefaults.standard.float(forKey: key)
+        if(val > 0){
+            return val
+        }
+        if(key == "0"){
+            saveSize(0.88, forKey: key)
+            return loadSize(forKey: key)
+        }else if(key == "1"){
+            saveSize(0.88, forKey: key)
+            return loadSize(forKey: key)
+        }
+        return nil
+    }
 }

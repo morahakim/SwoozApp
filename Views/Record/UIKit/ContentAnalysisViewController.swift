@@ -539,7 +539,7 @@ class ContentAnalysisViewController: UIViewController,
         boxNet.removeFromSuperview()
         
         
-       
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.stopRecording()
@@ -918,10 +918,10 @@ class ContentAnalysisViewController: UIViewController,
             boxNet.addSubview(boxCourtView)
             
             
-            rightArea.frame = CGRect(x:boxCourtView.frame.width * 0.49,y:10,width:boxCourtView.frame.width * 0.37,height:boxCourtView.frame.height * 0.63)
+            rightArea.frame = CGRect(x:boxCourtView.frame.width * 0.52,y:20,width:boxCourtView.frame.width * 0.37,height:boxCourtView.frame.height * 0.55)
             print("DBUGG : ",rightArea.frame)
-            //            rightArea.backgroundColor = .blue
-            //            rightArea.layer.opacity = 0.3
+            //                        rightArea.backgroundColor = .blue
+            //                        rightArea.layer.opacity = 0.3
             boxCourtView.addSubview(rightArea)
             
         }
@@ -1200,38 +1200,38 @@ class ContentAnalysisViewController: UIViewController,
                 let duration = String(format: "%02d:%02d", minutes, seconds)
                 
                 
-                    var value = 0.0
-                    var min = Double.infinity
-                   
+                var value = 0.0
+                var min = Double.infinity
                 
-                    for val in arrHitStatistics {
-                        if(val.hitStatus == "Perfect" || val.hitStatus == "Success"){
-                            if val.hitDistance < min {
-                                min = val.hitDistance
-                            }
+                
+                for val in arrHitStatistics {
+                    if(val.hitStatus == "Perfect" || val.hitStatus == "Success"){
+                        if val.hitDistance < min {
+                            min = val.hitDistance
                         }
                     }
-                    minDistance = min
-                    
+                }
+                minDistance = min
+                
                 print("bugis: \(value) - \(index) - \(Double(value) / Double(index)) - \(minDistance)")
                 
-                    value = 0
-                    var index = 0
+                value = 0
+                var index = 0
                 
-                    for val in arrHitStatistics {
-                        if(val.hitStatus == "Perfect" || val.hitStatus == "Success"){
-                            value += val.hitDistance
-                            index += 1
-                        }
+                for val in arrHitStatistics {
+                    if(val.hitStatus == "Perfect" || val.hitStatus == "Success"){
+                        value += val.hitDistance
+                        index += 1
                     }
+                }
                 
-                    value = Double(value) / Double(index)
-                    averageOfDistance = value
-                    
+                value = Double(value) / Double(index)
+                averageOfDistance = value
+                
                 print("bugi: \(value) - \(index) - \(Double(value) / Double(index)) - \(averageOfDistance)")
                 
-                    variance = ""
-                    
+                variance = ""
+                
                 print("***")
                 print("DBUGGG : \(minDistance)")
                 print("DBUGGG : \(averageOfDistance)")
