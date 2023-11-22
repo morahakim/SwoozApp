@@ -477,6 +477,13 @@ let recommendedTrainBeginner = NSLocalizedString(
     comment: ""
 )
 
+let keepDecreasing = NSLocalizedString(
+    "keep_decreasing",
+    comment: ""
+)
+
+let keepIncreasing = NSLocalizedString(
+    "keep_increasing",
 let viewRecordText = NSLocalizedString(
     "view_record_text",
     comment: ""

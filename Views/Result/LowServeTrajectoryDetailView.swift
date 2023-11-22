@@ -246,7 +246,7 @@ struct LowServeTrajectoryDetailView: View {
                                         .font(Font.custom("SF Pro", size: 17))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
-                                    Text(goodServeQualityText)
+                                    Text("\(goodServeQualityText) \(keepDecreasing)")
                                         .font(Font.custom("SF Pro", size: 12))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
@@ -301,25 +301,18 @@ struct LowServeTrajectoryDetailView: View {
                                         .font(Font.custom("SF Pro", size: 17))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
-                                    Text(averageProgressText)
+                                    Text("\(averageProgressText) \(keepDecreasing)")
                                         .font(Font.custom("SF Pro", size: 12))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
                                 }
-                                
-                                ThickDivider(thickness: 1, color: .gray)
-                                
-                                //
                             }
-                            //                        .padding(.top)
                             .padding(.top)
-
-                         
-//                            .background(Color.greenBasicMain.opacity(0.2))
                         }
                     }
                     .padding()
-                    //                .padding(.top, getSafeArea().top + 20)
+                    .padding(.bottom, getSafeArea().bottom + 12)
+                    .scrollIndicators(.hidden)
                 }
                 
                 .navigationTitle("")
