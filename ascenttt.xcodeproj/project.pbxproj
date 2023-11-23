@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1828EBBF2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828EBBE2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift */; };
 		1834074E2B0BD50600A1F5F4 /* LowServe-Placement.json in Resources */ = {isa = PBXBuildFile; fileRef = 1834074C2B0BD50600A1F5F4 /* LowServe-Placement.json */; };
 		1834074F2B0BD50600A1F5F4 /* LowServe-Trajectory.json in Resources */ = {isa = PBXBuildFile; fileRef = 1834074D2B0BD50600A1F5F4 /* LowServe-Trajectory.json */; };
 		18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */; };
@@ -126,6 +127,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1828EBBE2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServerTrajectoryDetailSingleView.swift; sourceTree = "<group>"; };
 		1834074C2B0BD50600A1F5F4 /* LowServe-Placement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Placement.json"; sourceTree = "<group>"; };
 		1834074D2B0BD50600A1F5F4 /* LowServe-Trajectory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Trajectory.json"; sourceTree = "<group>"; };
 		18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeAdvanced.json; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				18922FF52AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift */,
+				1828EBBE2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift */,
 				374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */,
 			);
 			path = Result;
@@ -751,6 +754,7 @@
 				BEA1C1662AF0436D00BFF1A4 /* CameraFeedView.swift in Sources */,
 				184E02EB2AF174480004C569 /* View+Ext.swift in Sources */,
 				BEA1C1712AF0436D00BFF1A4 /* MainView.swift in Sources */,
+				1828EBBF2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift in Sources */,
 				BEA1C1672AF0436D00BFF1A4 /* HomeViewRepresentable.swift in Sources */,
 				BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */,
 				18CD6E0F2AF953AC0087B24D /* Card.swift in Sources */,
@@ -1045,7 +1049,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1054,9 +1058,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.agungsptr.ascenttt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1082,7 +1089,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1091,9 +1098,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.agungsptr.ascenttt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

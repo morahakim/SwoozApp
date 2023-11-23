@@ -12,7 +12,6 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(key: "datetime", ascending: false)
     ]) var list: FetchedResults<Data>
-    @State var isMove: Bool = false
     @Environment(\.managedObjectContext) var moc
     
     @FetchRequest(
@@ -23,132 +22,127 @@ struct HomeView: View {
     @AppStorage("isDetail") var isDetail = false
     
     var body: some View {
-        NavigationStack(path: $vm.path) {
-            ZStack {
-                if list.count > 0 {
-                    VStack {
-                        if trajectoryList.count > 0 {
-                            ZStack {
-                                Image("Challenge")
-                                    .resizable()
-                                    .frame(width: 350, height: 271)
-                                VStack(spacing: 10) {
-                                    Image("Icon")
+        if isDetail {
+            if list.count > 0 {
+                LowServeTrajectoryDetailSingleView(item: list[0] , isShowDetail: $isDetail)
+            }
+        } else {
+            NavigationStack(path: $vm.path) {
+                ZStack {
+                    if list.count > 0 {
+                        VStack {
+                            if trajectoryList.count > 0 {
+                                ZStack {
+                                    Image("Challenge")
                                         .resizable()
-                                        .frame(width: 19, height: 32)
-                                    Text(weeklyChallengeText)
-                                        .font(Font.custom("SF Pro", size: 20))
-                                        .foregroundStyle(Color.white)
-                                    VStack {
-                                        Text("\(performText) \(trajectoryList[0].hitPerfect) \(goodServe).")
-                                            .font(Font.custom("SF Pro", size: 15))
+                                        .frame(width: 350, height: 271)
+                                    VStack(spacing: 10) {
+                                        Image("Icon")
+                                            .resizable()
+                                            .frame(width: 19, height: 32)
+                                        Text(weeklyChallengeText)
+                                            .font(Font.custom("SF Pro", size: 20))
                                             .foregroundStyle(Color.white)
-                                        Text(chooseLevelTextOne)
-                                            .font(Font.custom("SF Pro", size: 15))
-                                            .foregroundStyle(Color.white)
-                                    }
-                                    .padding(.bottom)
-                                    Button {
-                                        vm.path.append(contentsOf: [.Technique, .LowServeTrajectory])
-                                    } label: {
-                                        ZStack {
-                                            Rectangle()
-                                                .fill(Color.greenMain)
-                                                .cornerRadius(10)
-                                                .frame(width: 83, height: 28)
-                                            Text(tryAgainText)
+                                        VStack {
+                                            Text("\(performText) \(trajectoryList[0].hitPerfect) \(goodServe).")
                                                 .font(Font.custom("SF Pro", size: 15))
                                                 .foregroundStyle(Color.white)
+                                            Text(chooseLevelTextOne)
+                                                .font(Font.custom("SF Pro", size: 15))
+                                                .foregroundStyle(Color.white)
+                                        }
+                                        .padding(.bottom)
+                                        Button {
+                                            vm.path.append(contentsOf: [.Technique, .LowServeTrajectory])
+                                        } label: {
+                                            ZStack {
+                                                Rectangle()
+                                                    .fill(Color.greenMain)
+                                                    .cornerRadius(10)
+                                                    .frame(width: 83, height: 28)
+                                                Text(tryAgainText)
+                                                    .font(Font.custom("SF Pro", size: 15))
+                                                    .foregroundStyle(Color.white)
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        List {
-                            ForEach(list) { item in
-                                if item.level == "0" {
-                                    NavigationLink(destination: LowServeTrajectoryDetailView(item: item)) {
-                                        ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                            List {
+                                ForEach(list) { item in
+                                    if item.level == "0" {
+                                        NavigationLink(destination: LowServeTrajectoryDetailView(item: item)) {
+                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                        }
+                                    } else {
+                                        NavigationLink(destination: LowServePlacementDetailView(item: item)) {
+                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                        }
                                     }
-                                } else {
-                                    NavigationLink(destination: LowServePlacementDetailView(item: item)) {
-                                        ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                }
+                                .onDelete { i in
+                                    let itemToDelete = i.map { list[$0] }
+                                    for item in itemToDelete {
+                                        moc.delete(item)
+                                    }
+                                    do {
+                                        try moc.save()
+                                    } catch  {
+                                        print(error.localizedDescription)
                                     }
                                 }
                             }
-                            .onDelete { i in
-                                let itemToDelete = i.map { list[$0] }
-                                for item in itemToDelete {
-                                    moc.delete(item)
-                                }
-                                do {
-                                    try moc.save()
-                                } catch  {
-                                    print(error.localizedDescription)
+                            .scrollIndicators(.hidden)
+                            .listStyle(.plain)
+                            .padding(.bottom, getSafeArea().bottom + 24)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
+                                    EditButton()
+                                        .accentColor(.greenMain)
                                 }
                             }
                         }
-                        .scrollIndicators(.hidden)
-                        .listStyle(.plain)
-                        .padding(.bottom, getSafeArea().bottom + 24)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                EditButton()
-                                    .accentColor(.greenMain)
-                            }
+                    } else {
+                        VStack {
+                            ImgHero(
+                                name: "HeroImg",
+                                desc: onBoardingDesc
+                            )
+                            .offset(y: -50)
                         }
                     }
-                } else {
+                    
                     VStack {
-                        ImgHero(
-                            name: "HeroImg",
-                            desc: onBoardingDesc
-                        )
-                        .offset(y: -50)
-                    }
-                }
-                
-                VStack {
-                    Spacer()
-                    VStack(alignment: .center, spacing: 4) {
-                        BtnPrimary(text: onBoardingButtonText) {
-                            vm.path.append(.Technique)
+                        Spacer()
+                        VStack(alignment: .center, spacing: 4) {
+                            BtnPrimary(text: onBoardingButtonText) {
+                                vm.path.append(.Technique)
+                            }
                         }
+                        .padding(.horizontal, 16)
+                        .padding(.top, 12)
+                        .padding(.bottom, getSafeArea().bottom + 2)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 12)
-                    .padding(.bottom, getSafeArea().bottom + 2)
-                    .background(.white)
-                    .cornerRadius(12)
-                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
+                    .ignoresSafeArea(.container, edges: .bottom)
                 }
-                .ignoresSafeArea(.container, edges: .bottom)
-            }
-            .navigationTitle(list.count > 0 ? yourRecordingText : welcome)
-            .navigationDestination(for: ViewPath.self) { path in
-                HomeViewModel.viewForDestination(path)
-            }
-            .onAppear {
-                isMove = true
-                if isDetail {
-                    if list.count > 0 {
-                        if list[0].level == "0" {
-                            NavigationLink(destination: LowServeTrajectoryDetailView(item: list[0]), isActive: $isMove) {}
-                        } else {
-                            
-                        }
-                    }
+                .navigationTitle(list.count > 0 ? yourRecordingText : welcome)
+                .navigationDestination(for: ViewPath.self) { path in
+                    HomeViewModel.viewForDestination(path)
                 }
-                
-                UIDevice.current.setValue(
-                    UIInterfaceOrientation.portrait.rawValue,
-                    forKey: "orientation"
-                )
-                AppDelegate.orientationLock = .portrait
+                .onAppear {
+                    UIDevice.current.setValue(
+                        UIInterfaceOrientation.portrait.rawValue,
+                        forKey: "orientation"
+                    )
+                    AppDelegate.orientationLock = .portrait
+                }
             }
+            .preferredColorScheme(.light)
+            .environmentObject(vm)
         }
-        .preferredColorScheme(.light)
-        .environmentObject(vm)
     }
 }
 
