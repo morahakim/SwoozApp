@@ -67,19 +67,14 @@ struct LowServeTrajectoryDetailView: View {
             VStack(spacing: 15) {
                 
                 if item.url != nil {
-                    VideoPlayer(player: player) {
-                        //                        if !isPlay {
-                        //                            Image("PlayButton")
-                        //                                .resizable()
-                        //                                .frame(width: 60, height: 60)
-                        //                                .foregroundColor(.greenMain)
-                        //                                .padding()
-                        //                                .onTapGesture {
-                        //                                    isPlay.toggle()
-                        //                                    player?.seek(to: .zero)
-                        //                                }
-                        //                        }
-                    }
+                    //                    VideoPlayer(player: player) {
+                    //
+                    //                    }
+                    VideoPlayer(player: player)
+                        .cornerRadius(12)
+                        .frame(height: getScreenBound().width * 0.5)
+                        .padding(.horizontal, 16)
+                    
                     
                 }
                 
@@ -368,8 +363,11 @@ struct LowServeTrajectoryDetailView: View {
             }
             .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])
         }
-    
-    
+        
+        
+        
+        
+    }
     
     func updateItemName() {
         if let selectedItem = database.first(where: { $0 == item }) {

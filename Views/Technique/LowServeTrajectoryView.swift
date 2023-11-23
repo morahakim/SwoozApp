@@ -40,7 +40,7 @@ struct LowServeTrajectoryView: View {
                     /** Card animation */
                     CardView(action: {}, content: {
                         ZStack {
-                            LottieView(name: "LowServe-Trajectory")
+                            LottieView(name: "LowServe-Lintasan")
                                 .frame(height: 150)
                             VStack {
                                 Spacer()
@@ -205,7 +205,7 @@ struct LowServeTrajectoryView: View {
                                     
                                 })
                                 .frame(height: 150)
-                                .padding(.bottom, 16)
+                                .padding(.bottom, 26)
                                 .padding(.top, 24)
                                 
                                 CardView(action: {}, content: {
@@ -263,7 +263,7 @@ struct LowServeTrajectoryView: View {
                                     
                                 })
                                 .frame(height: 150)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, 40)
                                 .padding(.top, 24)
                             }
                             .scrollIndicators(.hidden)

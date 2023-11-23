@@ -21,9 +21,9 @@ struct TechniqueView: View {
     @AppStorage("techniqueName") var techniqueName: String = ""
     
     private let data = [
-        TechniqueLevelData(id: 0, name: chooseLevelTextOne, desc: chooseLevelDescOne, img: "LowServe-Trajectory", isLock: false),
-        TechniqueLevelData(id: 1, name: chooseLevelTextTwo, desc: chooseLevelDescTwo, img: "Advanced", isLock: false),
-        TechniqueLevelData(id: 2, name: chooseLevelTextThree, desc: "", img: "HighServe-Trajectory", isLock: false)
+        TechniqueLevelData(id: 0, name: chooseLevelTextOne, desc: chooseLevelDescOne, img: "Low Serve - Trajectory", isLock: false),
+        TechniqueLevelData(id: 1, name: chooseLevelTextTwo, desc: chooseLevelDescTwo, img: "Low Serve - Placement", isLock: false),
+        TechniqueLevelData(id: 2, name: chooseLevelTextThree, desc: "", img: "HighServe-Trajectory", isLock: true)
     ]
     
     var body: some View {
@@ -59,19 +59,19 @@ struct TechniqueView: View {
                                 }
                                 .padding(.horizontal, 16)
                                 if d.isLock {
-                                    HStack {
-                                        Image(systemName: "lock.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 16)
-                                            .foregroundStyle(.grayStroke6)
-                                        Text(chooseLevelDescThree)
-                                            .font(Font.custom("SF Pro", size: 17))
-                                            .multilineTextAlignment(.leading)
-                                            .foregroundStyle(.grayStroke6)
-                                        Spacer()
-                                    }
-                                    .padding(.horizontal, 16)
+//                                    HStack {
+//                                        Image(systemName: "lock.fill")
+//                                            .resizable()
+//                                            .scaledToFit()
+//                                            .frame(width: 16)
+//                                            .foregroundStyle(.grayStroke6)
+//                                        Text(chooseLevelDescThree)
+//                                            .font(Font.custom("SF Pro", size: 17))
+//                                            .multilineTextAlignment(.leading)
+//                                            .foregroundStyle(.grayStroke6)
+//                                        Spacer()
+//                                    }
+//                                    .padding(.horizontal, 16)
                                 } else {
                                     HStack {
                                         Text(d.desc)
@@ -95,7 +95,9 @@ struct TechniqueView: View {
                     }
                 }
                 .scrollIndicators(.hidden)
+                .padding(.top, 10)
             }
+            
             .navigationTitle(navigationTitleTechnique)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbarBackground(.greenMain, for: .navigationBar)

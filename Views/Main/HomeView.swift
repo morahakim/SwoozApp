@@ -92,6 +92,7 @@ struct HomeView: View {
                                     }
                                 }
                             }
+                            
                             .scrollIndicators(.hidden)
                             .listStyle(.plain)
                             .padding(.bottom, getSafeArea().bottom + 24)

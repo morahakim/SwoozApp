@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1828EBBF2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828EBBE2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift */; };
-		1834074E2B0BD50600A1F5F4 /* LowServe-Placement.json in Resources */ = {isa = PBXBuildFile; fileRef = 1834074C2B0BD50600A1F5F4 /* LowServe-Placement.json */; };
-		1834074F2B0BD50600A1F5F4 /* LowServe-Trajectory.json in Resources */ = {isa = PBXBuildFile; fileRef = 1834074D2B0BD50600A1F5F4 /* LowServe-Trajectory.json */; };
 		18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */; };
 		18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */; };
 		18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */; };
@@ -66,6 +64,8 @@
 		374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */; };
 		374C43742B0E936C007A4F1A /* ServePlacement.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 374C43732B0E936C007A4F1A /* ServePlacement.mp4 */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		37B5E7622B0F4AC0003A72DC /* LowServe-Lintasan.json in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */; };
+		37B5E7632B0F4AC0003A72DC /* LowServe-Penempatan.json in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
@@ -128,8 +128,6 @@
 
 /* Begin PBXFileReference section */
 		1828EBBE2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServerTrajectoryDetailSingleView.swift; sourceTree = "<group>"; };
-		1834074C2B0BD50600A1F5F4 /* LowServe-Placement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Placement.json"; sourceTree = "<group>"; };
-		1834074D2B0BD50600A1F5F4 /* LowServe-Trajectory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Trajectory.json"; sourceTree = "<group>"; };
 		18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeAdvanced.json; sourceTree = "<group>"; };
 		18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeIntermediate.json; sourceTree = "<group>"; };
 		18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeExperienced.json; sourceTree = "<group>"; };
@@ -184,6 +182,8 @@
 		374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ServeTrajectory.mp4; sourceTree = "<group>"; };
 		374C43732B0E936C007A4F1A /* ServePlacement.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ServePlacement.mp4; sourceTree = "<group>"; };
 		3782C9512B074A4F00D0C4C5 /* ascenttt-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ascenttt-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Lintasan.json"; sourceTree = "<group>"; };
+		37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Penempatan.json"; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
@@ -264,8 +264,8 @@
 		184E02EF2AF192E00004C569 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				1834074D2B0BD50600A1F5F4 /* LowServe-Trajectory.json */,
-				1834074C2B0BD50600A1F5F4 /* LowServe-Placement.json */,
+				37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */,
+				37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */,
 				18361F372AFF877000CBD1D8 /* LowServe */,
 				37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */,
 				184E02F32AF192F60004C569 /* Clear Shot.json */,
@@ -681,21 +681,21 @@
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				374C43682B0E7C92007A4F1A /* Placement.mov in Resources */,
 				374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */,
+				37B5E7622B0F4AC0003A72DC /* LowServe-Lintasan.json in Resources */,
 				374C43652B0E7C84007A4F1A /* Placement.mov in Resources */,
 				374C436B2B0E7C9C007A4F1A /* Trajectory.mov in Resources */,
+				37B5E7632B0F4AC0003A72DC /* LowServe-Penempatan.json in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
 				1878C43B2AFFC8AF0037D610 /* Level 2.mov in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
 				374C43742B0E936C007A4F1A /* ServePlacement.mp4 in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
 				1878C43C2AFFC8AF0037D610 /* Level 3.mov in Resources */,
-				1834074E2B0BD50600A1F5F4 /* LowServe-Placement.json in Resources */,
 				18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */,
 				18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */,
 				374C436E2B0E7CA2007A4F1A /* Trajectory.mov in Resources */,
 				1878C43F2AFFC8AF0037D610 /* Level 1.mov in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
-				1834074F2B0BD50600A1F5F4 /* LowServe-Trajectory.json in Resources */,
 				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
