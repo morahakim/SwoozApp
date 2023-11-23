@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1828EBBF2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828EBBE2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift */; };
+		1828EBC12B0F64200080BB51 /* LowServePlacementDetailSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828EBC02B0F64200080BB51 /* LowServePlacementDetailSingleView.swift */; };
 		18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */; };
 		18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */; };
 		18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */ = {isa = PBXBuildFile; fileRef = 18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */; };
@@ -128,6 +129,7 @@
 
 /* Begin PBXFileReference section */
 		1828EBBE2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServerTrajectoryDetailSingleView.swift; sourceTree = "<group>"; };
+		1828EBC02B0F64200080BB51 /* LowServePlacementDetailSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementDetailSingleView.swift; sourceTree = "<group>"; };
 		18361F382AFF878700CBD1D8 /* LowServeAdvanced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeAdvanced.json; sourceTree = "<group>"; };
 		18361F392AFF878700CBD1D8 /* LowServeIntermediate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeIntermediate.json; sourceTree = "<group>"; };
 		18361F3A2AFF878700CBD1D8 /* LowServeExperienced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LowServeExperienced.json; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				18922FF52AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift */,
 				1828EBBE2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift */,
 				374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */,
+				1828EBC02B0F64200080BB51 /* LowServePlacementDetailSingleView.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				BEA1C1662AF0436D00BFF1A4 /* CameraFeedView.swift in Sources */,
 				184E02EB2AF174480004C569 /* View+Ext.swift in Sources */,
 				BEA1C1712AF0436D00BFF1A4 /* MainView.swift in Sources */,
+				1828EBC12B0F64200080BB51 /* LowServePlacementDetailSingleView.swift in Sources */,
 				1828EBBF2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift in Sources */,
 				BEA1C1672AF0436D00BFF1A4 /* HomeViewRepresentable.swift in Sources */,
 				BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */,
@@ -974,7 +978,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -1004,7 +1008,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -1036,7 +1040,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1076,7 +1080,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = 8W6F8JGKN9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;

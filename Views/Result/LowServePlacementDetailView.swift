@@ -62,22 +62,13 @@ struct LowServePlacementDetailView: View {
         ZStack {
             Color.greenMain.ignoresSafeArea(.container, edges: .top)
             VStack(spacing: 15) {
-                
                 if item.url != nil {
-                    VideoPlayer(player: player) {
-                        //                        if !isPlay {
-                        //                            Image("PlayButton")
-                        //                                .resizable()
-                        //                                .frame(width: 60, height: 60)
-                        //                                .foregroundColor(.greenMain)
-                        //                                .padding()
-                        //                                .onTapGesture {
-                        //                                    isPlay.toggle()
-                        //                                    player?.seek(to: .zero)
-                        //                                }
-                        //                        }
-                    }
+                    VideoPlayer(player: player)
+                        .cornerRadius(12)
+                        .frame(height: getScreenBound().width * 0.5)
+                        .padding(.horizontal, 16)
                 }
+                
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
@@ -345,8 +336,11 @@ struct LowServePlacementDetailView: View {
                             //                            .background(Color.greenBasicMain.opacity(0.2))
                         }
                     }
-                    .padding()
-                    //                .padding(.top, getSafeArea().top + 20)
+                    .padding(.top, 16)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, getSafeArea().bottom + 2)
+                    .scrollIndicators(.hidden)
+                    .ignoresSafeArea(.container, edges: .bottom)
                 }
                 
                 .navigationTitle("")

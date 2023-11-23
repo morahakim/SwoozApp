@@ -65,19 +65,12 @@ struct LowServeTrajectoryDetailView: View {
         ZStack {
             Color.greenMain.ignoresSafeArea(.container, edges: .top)
             VStack(spacing: 15) {
-                
                 if item.url != nil {
-                    //                    VideoPlayer(player: player) {
-                    //
-                    //                    }
                     VideoPlayer(player: player)
                         .cornerRadius(12)
                         .frame(height: getScreenBound().width * 0.5)
                         .padding(.horizontal, 16)
-                    
-                    
                 }
-                
                 
                 ZStack {
                     Rectangle()
@@ -109,7 +102,6 @@ struct LowServeTrajectoryDetailView: View {
                                     Text(dateFormat(item.datetime) == "" ? "-/-/-" : dateFormat(item.datetime))
                                         .font(Font.custom("Urbanist", size: 12))
                                         .foregroundStyle(Color.grayStroke6)
-                                    
                                 }
                                 HStack {
                                     if isEditing {
@@ -142,7 +134,6 @@ struct LowServeTrajectoryDetailView: View {
                                     }
                                 }
                             }
-                            //                            .padding()
                             
                             VStack(spacing: 15) {
                                 TextAlignLeading(goodServePerformText)
@@ -196,10 +187,6 @@ struct LowServeTrajectoryDetailView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        
-                                        
-                                        
-                                        
                                     }
                                 }
                                 .padding(.trailing, 90)
@@ -261,10 +248,7 @@ struct LowServeTrajectoryDetailView: View {
                                 }
                                 
                                 ThickDivider(thickness: 1, color: .gray)
-                                
-                                //
                             }
-                            //                        .padding(.top)
                             .padding(.top)
                             
                             
@@ -295,10 +279,6 @@ struct LowServeTrajectoryDetailView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        
-                                        
-                                        
-                                        
                                     }
                                     
                                 }
@@ -329,11 +309,12 @@ struct LowServeTrajectoryDetailView: View {
                             .padding(.top)
                         }
                     }
-                    .padding()
-                    .padding(.bottom, getSafeArea().bottom + 12)
+                    .padding(.top, 16)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, getSafeArea().bottom + 2)
                     .scrollIndicators(.hidden)
+                    .ignoresSafeArea(.container, edges: .bottom)
                 }
-                
                 .navigationTitle("")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbarColorScheme(.dark, for: .navigationBar)
@@ -359,7 +340,6 @@ struct LowServeTrajectoryDetailView: View {
                         
                     }
                 }
-                
             }
             .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])
         }

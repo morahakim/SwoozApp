@@ -263,8 +263,8 @@ class ContentAnalysisViewController: UIViewController,
     
     @objc func detail() {
         print("Detail")
-        isOnRecord = false
         isDetail = true
+        isOnRecord = false
     }
     
     var arrHitStatistics : [HitStatistics] = [
@@ -559,18 +559,19 @@ class ContentAnalysisViewController: UIViewController,
             let view1 = UIView()
             view1.frame = CGRect(x: self.setupViewChild.frame.width * 0.19, y: setupView1.frame.height-40, width: setupView1.frame.width/2, height: 50)
             self.setupViewChild.addSubview(view1)
+            
             let view2 = UIView()
-            view2.frame = CGRect(x: self.setupViewChild.frame.width * 0.51, y: setupView1.frame.height-40, width: setupView1.frame.width/2, height: 50)
+            view2.frame = CGRect(x: self.setupViewChild.frame.width * 0.35, y: setupView1.frame.height-40, width: setupView1.frame.width/2, height: 50)
             self.setupViewChild.addSubview(view2)
             
-            self.doneButton.setTitle(doneText, for: .normal)
-            self.doneButton.setTitleColor(UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0), for: .normal)
-            self.doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-            self.doneButton.backgroundColor = .white
-            self.doneButton.layer.cornerRadius = 12
-            self.doneButton.frame = CGRect(x: 0, y: 0, width: view1.frame.width * 0.9, height: 50)
-            self.doneButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
-            view1.addSubview(self.doneButton)
+//            self.doneButton.setTitle(doneText, for: .normal)
+//            self.doneButton.setTitleColor(UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0), for: .normal)
+//            self.doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+//            self.doneButton.backgroundColor = .white
+//            self.doneButton.layer.cornerRadius = 12
+//            self.doneButton.frame = CGRect(x: 0, y: 0, width: view1.frame.width * 0.9, height: 50)
+//            self.doneButton.addTarget(self, action: #selector(self.back), for: .touchUpInside)
+//            view1.addSubview(self.doneButton)
             self.detailButton.setTitle("Detail", for: .normal)
             self.detailButton.setTitleColor(.white, for: .normal)
             self.detailButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)

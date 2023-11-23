@@ -21,10 +21,19 @@ struct HomeView: View {
     
     @AppStorage("isDetail") var isDetail = false
     
+    @State var isMoveToDetail = false
+    
     var body: some View {
-        if isDetail {
+        if isMoveToDetail {
             if list.count > 0 {
-                LowServeTrajectoryDetailSingleView(item: list[0] , isShowDetail: $isDetail)
+                LowServeTrajectoryDetailSingleView(item: list[0], isMoveToDetail: $isMoveToDetail)
+                    .onAppear {
+                        UIDevice.current.setValue(
+                            UIInterfaceOrientation.portrait.rawValue,
+                            forKey: "orientation"
+                        )
+                        AppDelegate.orientationLock = .portrait
+                    }
             }
         } else {
             NavigationStack(path: $vm.path) {
@@ -35,11 +44,14 @@ struct HomeView: View {
                                 ZStack {
                                     Image("Challenge")
                                         .resizable()
-                                        .frame(width: 350, height: 271)
+                                        .frame(height: 180)
+                                        .cornerRadius(12)
+                                    
                                     VStack(spacing: 10) {
                                         Image("Icon")
                                             .resizable()
-                                            .frame(width: 19, height: 32)
+                                            .scaledToFit()
+                                            .frame(width: 16)
                                         Text(weeklyChallengeText)
                                             .font(Font.custom("SF Pro", size: 20))
                                             .foregroundStyle(Color.white)
@@ -52,6 +64,7 @@ struct HomeView: View {
                                                 .foregroundStyle(Color.white)
                                         }
                                         .padding(.bottom)
+                                        
                                         Button {
                                             vm.path.append(contentsOf: [.Technique, .LowServeTrajectory])
                                         } label: {
@@ -67,6 +80,7 @@ struct HomeView: View {
                                         }
                                     }
                                 }
+                                .padding(.horizontal)
                             }
                             List {
                                 ForEach(list) { item in
@@ -92,7 +106,6 @@ struct HomeView: View {
                                     }
                                 }
                             }
-                            
                             .scrollIndicators(.hidden)
                             .listStyle(.plain)
                             .padding(.bottom, getSafeArea().bottom + 24)

@@ -14,7 +14,6 @@ struct RecordView: View {
     @AppStorage("isOnRecord") var isOnRecord = true
     @AppStorage("hitTarget") var hitTarget: Int = 0
     @AppStorage("dataUrl") var dataUrl: String = ""
-    @AppStorage("isDetail") var isDetail = false
     @AppStorage("techniqueId") var techniqueId = 0
     
     var body: some View {
@@ -22,17 +21,10 @@ struct RecordView: View {
             if isOnRecord {
                 HomeViewRepresentable(moc: moc, vm: vm)
             } else {
-                if isDetail {
-                    Text("").onAppear {
-                        vm.popToRoot()
-                    }
-                } else {
-                    LoadingRecordView()
-                }
+                LoadingRecordView()
             }
         }
         .onAppear {
-            isDetail = false
             UIDevice.current.setValue(
                 UIInterfaceOrientation.landscapeRight.rawValue,
                 forKey: "orientation"

@@ -88,13 +88,6 @@ struct ItemVideoView: View {
             }
             .frame(maxWidth: .infinity, alignment: .topLeading)
         }
-        .padding(.horizontal, 0)
-        .padding(.top, 0)
-        .padding(.bottom, 12)
-//        .frame(width: 358, alignment: .leading)
-        .frame(width: .infinity-10, alignment: .leading)
-        .padding(.leading,5)
-        .padding(.trailing,5)
     }
 }
 
