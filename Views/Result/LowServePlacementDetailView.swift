@@ -77,6 +77,7 @@ struct LowServePlacementDetailView: View {
 //                                }
 //                        }
                     }
+                }
                     ZStack {
                         Rectangle()
                             .foregroundColor(.clear)
@@ -378,7 +379,7 @@ struct LowServePlacementDetailView: View {
                 .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])
             }
         }
-    }
+    
     
     func updateItemName() {
         if let selectedItem = database.first(where: { $0 == item }) {

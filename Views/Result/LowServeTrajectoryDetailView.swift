@@ -81,7 +81,7 @@ struct LowServeTrajectoryDetailView: View {
 //                        }
                     }
                     
-                    
+                }
                     ZStack {
                         Rectangle()
                             .foregroundColor(.clear)
@@ -371,7 +371,7 @@ struct LowServeTrajectoryDetailView: View {
                 
             }
         }
-    }
+    
     
     func updateItemName() {
         if let selectedItem = database.first(where: { $0 == item }) {
