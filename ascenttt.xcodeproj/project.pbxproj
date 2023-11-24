@@ -27,9 +27,6 @@
 		184E02FB2AF192F60004C569 /* Low Serve.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F42AF192F60004C569 /* Low Serve.json */; };
 		184E02FC2AF192F60004C569 /* High Serve.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F52AF192F60004C569 /* High Serve.json */; };
 		184E02FD2AF192F60004C569 /* Smash.json in Resources */ = {isa = PBXBuildFile; fileRef = 184E02F62AF192F60004C569 /* Smash.json */; };
-		1878C43B2AFFC8AF0037D610 /* Level 2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4352AFFC8AF0037D610 /* Level 2.mov */; };
-		1878C43C2AFFC8AF0037D610 /* Level 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4362AFFC8AF0037D610 /* Level 3.mov */; };
-		1878C43F2AFFC8AF0037D610 /* Level 1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1878C4392AFFC8AF0037D610 /* Level 1.mov */; };
 		188062F12AF9536400310F93 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F02AF9536400310F93 /* SFSymbol.swift */; };
 		188062F32AF9537E00310F93 /* ActionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188062F22AF9537E00310F93 /* ActionEnum.swift */; };
 		18922FF62AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18922FF52AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift */; };
@@ -51,9 +48,6 @@
 		18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CEF7242B022ACA00952E16 /* Urbanist.ttf */; };
 		18EE72C92B08797700DE7BE7 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72C82B08797700DE7BE7 /* LocalStorage.swift */; };
 		18EE72CB2B08D04F00DE7BE7 /* LowServePlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */; };
-		370F771E2B00922200BB2194 /* CPTLevel1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771D2B00922200BB2194 /* CPTLevel1.mp4 */; };
-		370F77212B00924E00BB2194 /* CPTLevel2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */; };
-		370F77222B00924E00BB2194 /* CPTLevel3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 370F77202B00924E00BB2194 /* CPTLevel3.mp4 */; };
 		370F77252B0213CC00BB2194 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
 		374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43572B0B8B30007A4F1A /* LocalizableText.swift */; };
 		374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */; };
@@ -152,9 +146,6 @@
 		184E02F42AF192F60004C569 /* Low Serve.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Low Serve.json"; sourceTree = "<group>"; };
 		184E02F52AF192F60004C569 /* High Serve.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "High Serve.json"; sourceTree = "<group>"; };
 		184E02F62AF192F60004C569 /* Smash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Smash.json; sourceTree = "<group>"; };
-		1878C4352AFFC8AF0037D610 /* Level 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 2.mov"; sourceTree = "<group>"; };
-		1878C4362AFFC8AF0037D610 /* Level 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 3.mov"; sourceTree = "<group>"; };
-		1878C4392AFFC8AF0037D610 /* Level 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Level 1.mov"; sourceTree = "<group>"; };
 		188062F02AF9536400310F93 /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		188062F22AF9537E00310F93 /* ActionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionEnum.swift; sourceTree = "<group>"; };
 		18922FF52AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectoryDetailView.swift; sourceTree = "<group>"; };
@@ -175,9 +166,6 @@
 		18CEF7292B02317E00952E16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		18EE72C82B08797700DE7BE7 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementView.swift; sourceTree = "<group>"; };
-		370F771D2B00922200BB2194 /* CPTLevel1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel1.mp4; sourceTree = "<group>"; };
-		370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel2.mp4; sourceTree = "<group>"; };
-		370F77202B00924E00BB2194 /* CPTLevel3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPTLevel3.mp4; sourceTree = "<group>"; };
 		370F77262B0213CC00BB2194 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		370F77282B0213CD00BB2194 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		374C43572B0B8B30007A4F1A /* LocalizableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableText.swift; sourceTree = "<group>"; };
@@ -379,12 +367,6 @@
 				374C436A2B0E7C92007A4F1A /* Placement.mov */,
 				374C436D2B0E7C9C007A4F1A /* Trajectory.mov */,
 				374C43702B0E7CA2007A4F1A /* Trajectory.mov */,
-				370F771F2B00924E00BB2194 /* CPTLevel2.mp4 */,
-				370F77202B00924E00BB2194 /* CPTLevel3.mp4 */,
-				370F771D2B00922200BB2194 /* CPTLevel1.mp4 */,
-				1878C4392AFFC8AF0037D610 /* Level 1.mov */,
-				1878C4352AFFC8AF0037D610 /* Level 2.mov */,
-				1878C4362AFFC8AF0037D610 /* Level 3.mov */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -698,9 +680,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				370F77222B00924E00BB2194 /* CPTLevel3.mp4 in Resources */,
 				184E02F82AF192F60004C569 /* Iphone Rotate.json in Resources */,
-				370F77212B00924E00BB2194 /* CPTLevel2.mp4 in Resources */,
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				374C43682B0E7C92007A4F1A /* Placement.mov in Resources */,
 				374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */,
@@ -710,23 +690,19 @@
 				37B5E7632B0F4AC0003A72DC /* LowServe-Penempatan.json in Resources */,
 				184E02FB2AF192F60004C569 /* Low Serve.json in Resources */,
 				37B5E7672B10EA93003A72DC /* Low Serve - Penempatan.gif in Resources */,
-				1878C43B2AFFC8AF0037D610 /* Level 2.mov in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
 				374C43742B0E936C007A4F1A /* ServePlacement.mp4 in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
-				1878C43C2AFFC8AF0037D610 /* Level 3.mov in Resources */,
 				18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */,
 				37B5E7662B10EA93003A72DC /* Low Serve - Lintasan.gif in Resources */,
 				18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */,
 				374C436E2B0E7CA2007A4F1A /* Trajectory.mov in Resources */,
-				1878C43F2AFFC8AF0037D610 /* Level 1.mov in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
 				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
 				370F77252B0213CC00BB2194 /* Localizable.strings in Resources */,
 				18CEF7252B022ACA00952E16 /* Urbanist-Medium.ttf in Resources */,
-				370F771E2B00922200BB2194 /* CPTLevel1.mp4 in Resources */,
 				18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
 				18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */,
