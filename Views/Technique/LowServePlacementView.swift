@@ -20,16 +20,16 @@ struct LowServePlacementView: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "1")
-    ) var recordOfAllTime: FetchedResults<Data>
+    ) var recordOfAllTime: FetchedResults<RecordSkill>
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "1")
-    ) var latestDrill: FetchedResults<Data>
+    ) var latestDrill: FetchedResults<RecordSkill>
     
-    @State var recordOfTheMonth: [Data] = []
-    @State var lowestOfTheMonth: [Data] = []
-    @State var bestAvgOfTheMonth: [Data] = []
+    @State var recordOfTheMonth: [RecordSkill] = []
+    @State var lowestOfTheMonth: [RecordSkill] = []
+    @State var bestAvgOfTheMonth: [RecordSkill] = []
     
     var body: some View {
         ForceOrientation(.portrait) {
@@ -40,7 +40,7 @@ struct LowServePlacementView: View {
                     /** Card animation */
                     CardView(action: {}, content: {
                         ZStack {
-                            LottieView(name: "LowServe-Penempatan")
+                            GifImage("Low Serve - Penempatan")
                                 .frame(height: 150)
                             VStack {
                                 Spacer()
@@ -384,17 +384,17 @@ struct LowServePlacementView: View {
         .onAppear {
             let levelPredicate = NSPredicate(format: "level == %@", "1")
             
-            let request: NSFetchRequest<Data> = Data.fetchRequest()
+            let request: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
             let predicate = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
             
-            let request2: NSFetchRequest<Data> = Data.fetchRequest()
+            let request2: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
             let predicate2 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request2.sortDescriptors = [NSSortDescriptor(key: "minDistance", ascending: true)]
             request2.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate2])
             
-            let request3: NSFetchRequest<Data> = Data.fetchRequest()
+            let request3: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
             let predicate3 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request3.sortDescriptors = [NSSortDescriptor(key: "avgDistance", ascending: true)]
             request3.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate3])
@@ -409,7 +409,7 @@ struct LowServePlacementView: View {
         }
     }
     
-    private func getAverate(_ data: [Data]) -> Double {
+    private func getAverate(_ data: [RecordSkill]) -> Double {
         if data.count == 0 {
             return 0
         } else {
@@ -421,7 +421,7 @@ struct LowServePlacementView: View {
         }
     }
     
-    private func getLatestLowest(_ data: FetchedResults<Data>) -> Double {
+    private func getLatestLowest(_ data: FetchedResults<RecordSkill>) -> Double {
         if data.count > 0 {
             return data[0].minDistance
         } else {
@@ -429,7 +429,7 @@ struct LowServePlacementView: View {
         }
     }
     
-    private func getLatesAvg(_ data: FetchedResults<Data>) -> Double {
+    private func getLatesAvg(_ data: FetchedResults<RecordSkill>) -> Double {
         if data.count > 0 {
             return data[0].avgDistance
         } else {
@@ -437,7 +437,7 @@ struct LowServePlacementView: View {
         }
     }
     
-    private func getMonthBestAvg(_ data: [Data]) -> Double {
+    private func getMonthBestAvg(_ data: [RecordSkill]) -> Double {
         if data.count > 0 {
             return data[0].avgDistance
         } else {
@@ -445,7 +445,7 @@ struct LowServePlacementView: View {
         }
     }
     
-    private func getMonthLowest(_ data: [Data]) -> Double {
+    private func getMonthLowest(_ data: [RecordSkill]) -> Double {
         if data.count > 0 {
             return data[0].minDistance
         } else {

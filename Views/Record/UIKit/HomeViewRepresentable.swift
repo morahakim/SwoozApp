@@ -54,7 +54,7 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
             avgDistance: Double,
             variance: String
         ) {
-            let data = Data(context: moc)
+            let data = RecordSkill(context: moc)
             data.datetime = Date()
             data.duration = duration
             data.hitFail = Int16(hitFail)
