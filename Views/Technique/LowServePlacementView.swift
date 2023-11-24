@@ -38,7 +38,7 @@ struct LowServePlacementView: View {
                 
                 VStack {
                     /** Card animation */
-                    CardView(action: {}, content: {
+                    CardPlainView {
                         ZStack {
                             GifImage("Low Serve - Penempatan")
                                 .frame(height: 150)
@@ -53,7 +53,7 @@ struct LowServePlacementView: View {
                                 }
                             }
                         }
-                    })
+                    }
                     .frame(height: 150)
                     .padding(.bottom, 16)
                     

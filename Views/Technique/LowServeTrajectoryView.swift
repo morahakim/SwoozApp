@@ -38,7 +38,7 @@ struct LowServeTrajectoryView: View {
                 
                 VStack {
                     /** Card animation */
-                    CardView(action: {}, content: {
+                    CardPlainView {
                         ZStack {
                            GifImage("Low Serve - Lintasan")
                                 .frame(height: 150)
@@ -53,7 +53,7 @@ struct LowServeTrajectoryView: View {
                                 }
                             }
                         }
-                    })
+                    }
                     .frame(height: 150)
                     .padding(.bottom, 16)
                     
