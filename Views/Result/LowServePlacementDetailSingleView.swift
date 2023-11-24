@@ -10,7 +10,7 @@ import AVKit
 import CoreData
 
 struct LowServePlacementDetailSingleView: View {
-    var item: FetchedResults<Data>.Element
+    var item: FetchedResults<RecordSkill>.Element
     @Binding var isShowDetail: Bool
     
     @State var isPlay: Bool = false
@@ -27,7 +27,7 @@ struct LowServePlacementDetailSingleView: View {
     @State private var attempData: [HitStatistics] = []
     
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: Data.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Data.name, ascending: true)]) var database: FetchedResults<Data>
+    @FetchRequest(entity: RecordSkill.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)]) var database: FetchedResults<RecordSkill>
     
     private struct HitStatistics: Identifiable {
         var id = UUID().uuidString
@@ -38,7 +38,7 @@ struct LowServePlacementDetailSingleView: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "1")
-    ) private var latestDrill: FetchedResults<Data>
+    ) private var latestDrill: FetchedResults<RecordSkill>
     
     private func parseAttemp(_ data: String) -> [HitStatistics] {
         var hitStatisticsArray: [HitStatistics] = []

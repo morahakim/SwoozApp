@@ -10,7 +10,7 @@ import AVKit
 import CoreData
 
 struct LowServeTrajectoryDetailSingleView: View {
-    var item: FetchedResults<Data>.Element
+    var item: FetchedResults<RecordSkill>.Element
     @Binding var isMoveToDetail: Bool
     @AppStorage("isDetail") var isDetail = false
     
@@ -27,13 +27,13 @@ struct LowServeTrajectoryDetailSingleView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        entity: Data.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Data.name, ascending: true)]
-    ) private var database: FetchedResults<Data>
+        entity: RecordSkill.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)]
+    ) private var database: FetchedResults<RecordSkill>
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "0")
-    ) private var latestDrill: FetchedResults<Data>
+    ) private var latestDrill: FetchedResults<RecordSkill>
     
     private struct HitStatistics: Identifiable {
         var id = UUID().uuidString
@@ -41,11 +41,6 @@ struct LowServeTrajectoryDetailSingleView: View {
         var hitStatus: String
         var netDistance: Double
     }
-    
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
-        predicate: NSPredicate(format: "level == %@", "0")
-    ) private var latestDrill: FetchedResults<RecordSkill>
     
     private func parseAttemp(_ data: String) -> [HitStatistics] {
         var hitStatisticsArray: [HitStatistics] = []
