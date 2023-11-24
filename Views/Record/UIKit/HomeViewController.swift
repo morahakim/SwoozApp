@@ -590,8 +590,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             // Create a player view controller
             
             playerViewController.player = player
-                        playerViewController.showsPlaybackControls = false // Disable playback controls
-                        playerViewController.allowsPictureInPicturePlayback = false // Disable entering fullscreen mode
+            playerViewController.showsPlaybackControls = false // Disable playback controls
+            playerViewController.allowsPictureInPicturePlayback = false // Disable entering fullscreen mode
             
             // Create a container view with a border radius
             let container = UIView()
@@ -671,41 +671,63 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         setupViewChild.removeFromSuperview()
     }
     
+    
+    
+    var latestStatus = ""
     @objc func updateStateMenu(){
-        //        print("DBUG : Timer")
-        //        print("DBUG : ",menuStateApp)
-        if(menuStateApp == "stillPlay"){
-            liveCamera()
-        } else if(menuStateApp == "result"){
-            //            print("DBUG : RESULT")
-            contentAnalysisViewController.stop()
+        if(latestStatus != menuStateApp){
+            latestStatus = menuStateApp
+            if(menuStateApp == "stillPlay"){
+                print("DBUGGGGG : PLAY")
+                liveCamera()
+            } else if(menuStateApp == "result"){
+                print("DBUGGGGG : STOP")
+                contentAnalysisViewController.stop()
+            }
         }
-        
     }
     
     let pathColorView = UIView()
     
     
     
-    @objc func setColorGreen(){
+    @objc func setColorGreen() {
         colorType = "Green"
+        
         let colorPicker = UIColorPickerViewController()
         colorPicker.delegate = self
-        
+        colorPicker.modalPresentationStyle = .popover
+        if let popoverPresentationController = colorPicker.popoverPresentationController {
+            popoverPresentationController.sourceView = view
+            popoverPresentationController.sourceRect = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height / 1.5)
+            popoverPresentationController.permittedArrowDirections = [.up]
+        }
         present(colorPicker, animated: true, completion: nil)
     }
     @objc func setColorYellow(){
         colorType = "Yellow"
+        
         let colorPicker = UIColorPickerViewController()
         colorPicker.delegate = self
-        
+        colorPicker.modalPresentationStyle = .popover
+        if let popoverPresentationController = colorPicker.popoverPresentationController {
+            popoverPresentationController.sourceView = view
+            popoverPresentationController.sourceRect = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height / 1.5)
+            popoverPresentationController.permittedArrowDirections = [.up]
+        }
         present(colorPicker, animated: true, completion: nil)
     }
     @objc func setColorRed(){
         colorType = "Red"
+        
         let colorPicker = UIColorPickerViewController()
         colorPicker.delegate = self
-        
+        colorPicker.modalPresentationStyle = .popover
+        if let popoverPresentationController = colorPicker.popoverPresentationController {
+            popoverPresentationController.sourceView = view
+            popoverPresentationController.sourceRect = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height / 1.5)
+            popoverPresentationController.permittedArrowDirections = [.up]
+        }
         present(colorPicker, animated: true, completion: nil)
     }
     
@@ -867,9 +889,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             
         }
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
-//        view.isUserInteractionEnabled = true
-//        view.addGestureRecognizer(tapGesture)
+        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
+        //        view.isUserInteractionEnabled = true
+        //        view.addGestureRecognizer(tapGesture)
         
         
         let image2 = UIImage(named: "CPButtonID")

@@ -42,6 +42,11 @@ struct LowServeTrajectoryDetailSingleView: View {
         var netDistance: Double
     }
     
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
+        predicate: NSPredicate(format: "level == %@", "0")
+    ) private var latestDrill: FetchedResults<RecordSkill>
+    
     private func parseAttemp(_ data: String) -> [HitStatistics] {
         var hitStatisticsArray: [HitStatistics] = []
         

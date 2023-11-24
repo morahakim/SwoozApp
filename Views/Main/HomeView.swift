@@ -11,13 +11,13 @@ struct HomeView: View {
     @StateObject var vm = HomeViewModel()
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(key: "datetime", ascending: false)
-    ]) var list: FetchedResults<Data>
+    ]) var list: FetchedResults<RecordSkill>
     @Environment(\.managedObjectContext) var moc
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "0")
-    ) var trajectoryList: FetchedResults<Data>
+    ) var trajectoryList: FetchedResults<RecordSkill>
     
     @AppStorage("isDetail") var isDetail = false
     
