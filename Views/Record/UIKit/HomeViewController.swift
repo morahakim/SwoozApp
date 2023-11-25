@@ -127,7 +127,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         super.viewDidLoad()
         setupCamera()
         setupView()
-        //        menuStateApp = "placement"
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateStateMenu), userInfo: nil, repeats: true)
         contentAnalysisViewController.contentAnalysisDelegate = self
         
@@ -656,6 +655,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     @objc func skipVideo() {
         
+        
+        menuStateApp = "placement"
         
         
         //        boxView.isHidden = false

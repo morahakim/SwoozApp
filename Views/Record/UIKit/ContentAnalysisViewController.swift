@@ -1110,7 +1110,7 @@ class ContentAnalysisViewController: UIViewController,
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
     @AppStorage("duration") var durationApp = ""
-    @AppStorage("menuStateApp") var menuStateApp = ""
+    @AppStorage("menuStateApp") var menuStateAppmenuStateApp = ""
     
     var response : [String:Double] = [:]
     

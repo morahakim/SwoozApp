@@ -65,6 +65,8 @@
 		37B5E7662B10EA93003A72DC /* Low Serve - Lintasan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7642B10EA93003A72DC /* Low Serve - Lintasan.gif */; };
 		37B5E7672B10EA93003A72DC /* Low Serve - Penempatan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */; };
 		37B5E76D2B10F1A3003A72DC /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B5E76C2B10F1A3003A72DC /* GifImage.swift */; };
+		BE0A4E722B11A1AA005E1518 /* Iphone Portrait to Landscape.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE0A4E702B11A1AA005E1518 /* Iphone Portrait to Landscape.gif */; };
+		BE0A4E732B11A1AA005E1518 /* Iphone Landscape to Portrait.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE0A4E712B11A1AA005E1518 /* Iphone Landscape to Portrait.gif */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
 		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
@@ -183,6 +185,8 @@
 		37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Low Serve - Penempatan.gif"; sourceTree = "<group>"; };
 		37B5E76C2B10F1A3003A72DC /* GifImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
+		BE0A4E702B11A1AA005E1518 /* Iphone Portrait to Landscape.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Iphone Portrait to Landscape.gif"; sourceTree = "<group>"; };
+		BE0A4E712B11A1AA005E1518 /* Iphone Landscape to Portrait.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Iphone Landscape to Portrait.gif"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToLandscapeView.swift; sourceTree = "<group>"; };
 		BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToPotraitView.swift; sourceTree = "<group>"; };
@@ -308,6 +312,8 @@
 			children = (
 				37B5E7642B10EA93003A72DC /* Low Serve - Lintasan.gif */,
 				37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */,
+				BE0A4E712B11A1AA005E1518 /* Iphone Landscape to Portrait.gif */,
+				BE0A4E702B11A1AA005E1518 /* Iphone Portrait to Landscape.gif */,
 			);
 			path = Gif;
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 				37B5E7672B10EA93003A72DC /* Low Serve - Penempatan.gif in Resources */,
 				184E02FA2AF192F60004C569 /* Clear Shot.json in Resources */,
 				374C43742B0E936C007A4F1A /* ServePlacement.mp4 in Resources */,
+				BE0A4E732B11A1AA005E1518 /* Iphone Landscape to Portrait.gif in Resources */,
 				184E02FC2AF192F60004C569 /* High Serve.json in Resources */,
 				18361F3C2AFF878700CBD1D8 /* LowServeAdvanced.json in Resources */,
 				37B5E7662B10EA93003A72DC /* Low Serve - Lintasan.gif in Resources */,
@@ -703,6 +710,7 @@
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
 				370F77252B0213CC00BB2194 /* Localizable.strings in Resources */,
 				18CEF7252B022ACA00952E16 /* Urbanist-Medium.ttf in Resources */,
+				BE0A4E722B11A1AA005E1518 /* Iphone Portrait to Landscape.gif in Resources */,
 				18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
 				18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */,

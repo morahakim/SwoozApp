@@ -151,7 +151,7 @@ struct ContentView: View {
                         }
                         
                     }
-                    if(typeApp != "" && levelApp != ""){
+                    if menuStateApp == "placement" && typeApp != "" && levelApp != ""{
 //                        Text(typeApp)
 //                            .font(.system(size: 12)).lineLimit(nil)
 //                            .padding(.bottom, 0)

@@ -21,6 +21,8 @@ struct HomeView: View {
     
     @AppStorage("isDetail") var isDetail = false
     
+    @AppStorage("menuStateApp") var menuStateApp = ""
+    
     @State var isMoveToDetail = false
     
     var body: some View {
@@ -152,6 +154,7 @@ struct HomeView: View {
                         forKey: "orientation"
                     )
                     AppDelegate.orientationLock = .portrait
+                    menuStateApp = ""
                 }
             }
             .preferredColorScheme(.light)

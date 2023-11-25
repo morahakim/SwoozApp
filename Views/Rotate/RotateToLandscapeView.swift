@@ -13,8 +13,10 @@ struct RotateToLandscapeView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            LottieView(name: "Iphone Rotate").frame(width:600,height:300)
-                .padding(32)
+//            LottieView(name: "Iphone Rotate").frame(width:600,height:300)
+//                .padding(32)
+            GifImage("Iphone Portrait to Landscape")
+                .frame(width:330,height: 220)
         }
         .padding(16)
         .navigationBarBackButtonHidden(true)
