@@ -152,7 +152,7 @@ struct LowServeTrajectoryDetailView: View {
                                             }
                                         }
                                     } else {
-                                        Text(noDataText)
+                                        Text(noDataText).font(Font.custom( "Urbanist",size: 20))
                                     }
                                 }
                                 
@@ -228,20 +228,20 @@ struct LowServeTrajectoryDetailView: View {
                                 VStack(spacing: 10) {
                                     if latestDrill.count >= 2 {
                                         Text("\(item.hitPerfect - latestDrill[1].hitPerfect)")
-                                            .font(Font.custom("SF Pro", size: 17))
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                         Text("\(goodServeQualityText) \((item.hitPerfect - latestDrill[1].hitPerfect) < 0 ? keepDecreasing : keepIncreasing)")
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("Urbanist-Medium", size: 12))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     } else {
                                         Text("0")
-                                            .font(Font.custom("SF Pro", size: 17))
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                         Text("\(goodServeQualityText) \(keepIncreasing)")
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("Urbanist-Medium", size: 12))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     }
@@ -287,7 +287,7 @@ struct LowServeTrajectoryDetailView: View {
                                 VStack(spacing: 10) {
                                     if latestDrill.count >= 2 {
                                         Text(String(format: "%.2f", Double(item.avgDistance - latestDrill[1].avgDistance)))
-                                            .font(Font.custom("SF Pro", size: 17))
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                         Text("\(averageProgressText) \((item.avgDistance - latestDrill[1].avgDistance) < 0 ? keepDecreasing : keepIncreasing)")
@@ -296,11 +296,11 @@ struct LowServeTrajectoryDetailView: View {
                                             .foregroundColor(.neutralBlack)
                                     } else {
                                         Text("0")
-                                            .font(Font.custom("SF Pro", size: 17))
+                                            .font(Font.custom("Urbanist", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                         Text("\(averageProgressText) \(keepIncreasing)")
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("Urbanist-Medium", size: 12))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     }

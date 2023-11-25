@@ -31,12 +31,16 @@ struct LowServePlacementDetailView: View {
         var id = UUID().uuidString
         var hitNumber: String
         var hitStatus: String
+        var netDistance: Double
     }
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "1")
     ) private var latestDrill: FetchedResults<RecordSkill>
+    
+    let language = Locale.current.language.languageCode?.identifier ?? ""
+    @State var previousDrill = ""
     
     private func parseAttemp(_ data: String) -> [HitStatistics] {
         var hitStatisticsArray: [HitStatistics] = []
@@ -47,11 +51,12 @@ struct LowServePlacementDetailView: View {
             let keyValue = component.components(separatedBy: ":")
             
             // Check if there are exactly two components (key and value)
-            if keyValue.count == 2 {
+            if keyValue.count == 3 {
                 let hitNumber = keyValue[0]
                 let hitStatus = keyValue[1]
+                let netDistance = Double(keyValue[2]) ?? 0.0
                 
-                let hitStat = HitStatistics(hitNumber: hitNumber, hitStatus: hitStatus)
+                let hitStat = HitStatistics(hitNumber: hitNumber, hitStatus: hitStatus, netDistance: netDistance)
                 hitStatisticsArray.append(hitStat)
             }
         }
@@ -141,7 +146,7 @@ struct LowServePlacementDetailView: View {
                                             }
                                         }
                                     } else {
-                                        Text(noDataText)
+                                        Text(noDataText).font(Font.custom( "Urbanist",size: 20))
                                     }
                                 }
                                 
@@ -217,20 +222,20 @@ struct LowServePlacementDetailView: View {
                                 VStack(spacing: 10) {
                                     if latestDrill.count >= 2 {
                                         Text("\(item.hitPerfect - latestDrill[1].hitPerfect)")
-                                            .font(Font.custom("SF Pro", size: 17))
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                         Text("\(goodServeQualityText) \((item.hitPerfect - latestDrill[1].hitPerfect) < 0 ? keepDecreasing : keepIncreasing)")
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("Urbanist-Medium", size: 12))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     } else {
                                         Text("0")
-                                            .font(Font.custom("SF Pro", size: 17))
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                         Text("\(goodServeQualityText) \(keepIncreasing)")
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("Urbanist-Medium", size: 12))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     }
@@ -278,20 +283,20 @@ struct LowServePlacementDetailView: View {
                                 VStack(spacing: 10) {
                                     if latestDrill.count >= 2 {
                                         Text(String(format: "%.2f", Double(item.avgDistance - latestDrill[1].avgDistance)))
-                                            .font(Font.custom("SF Pro", size: 17))
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                         Text("\(averageProgressText) \((item.avgDistance - latestDrill[1].avgDistance) < 0 ? keepDecreasing : keepIncreasing)")
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("Urbanist-Medium", size: 12))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     } else {
                                         Text("0")
-                                            .font(Font.custom("SF Pro", size: 17))
+                                            .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                         Text("\(averageProgressText) \(keepIncreasing)")
-                                            .font(Font.custom("SF Pro", size: 12))
+                                            .font(Font.custom("Urbanist-Medium", size: 12))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     }
@@ -305,10 +310,39 @@ struct LowServePlacementDetailView: View {
                                     .foregroundColor(.neutralBlack)
                                 
                                 VStack(spacing: 10) {
-                                    Text(item.variance ?? "")
-                                        .font(Font.custom("Urbanist-Medium", size: 28))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
+                                    if(language == "id"){
+                                        Text(item.variance ?? "")
+                                            .font(Font.custom("Urbanist-Medium", size: 28))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
+                                    }else{
+                                        if(item.variance == "Sangat Tersebar"){
+                                            Text("Very Scattered")
+                                                .font(Font.custom("Urbanist-Medium", size: 28))
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                .foregroundColor(.neutralBlack)
+                                        }else if(item.variance == "Cukup Tersebar"){
+                                            Text("Quite Scattered")
+                                                .font(Font.custom("Urbanist-Medium", size: 28))
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                .foregroundColor(.neutralBlack)
+                                        }else if(item.variance == "Sangat Terpusat"){
+                                            Text("Very Centralized")
+                                                .font(Font.custom("Urbanist-Medium", size: 28))
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                .foregroundColor(.neutralBlack)
+                                        }else if(item.variance == "Cukup Terpusat"){
+                                            Text("Quite Centralized")
+                                                .font(Font.custom("Urbanist-Medium", size: 28))
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                .foregroundColor(.neutralBlack)
+                                        }else{
+                                            Text("-")
+                                                .font(Font.custom("Urbanist-Medium", size: 28))
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                .foregroundColor(.neutralBlack)
+                                        }
+                                    }
                                     Text(latestDrillText)
                                         .font(Font.custom("Urbanist", size: 17))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -316,10 +350,55 @@ struct LowServePlacementDetailView: View {
                                 }
                                 
                                 VStack(spacing: 10) {
-                                    Text(latestDrill.count >= 2 ? latestDrill[0].variance ?? "" : "-")
-                                        .font(Font.custom("Urbanist-Medium", size: 28))
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        .foregroundColor(.neutralBlack)
+                                    if(language == "id"){
+                                        if(previousDrill != ""){
+                                            Text(previousDrill)
+                                                .font(Font.custom("Urbanist-Medium", size: 28))
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                .foregroundColor(.neutralBlack)
+                                        }else{
+                                            Text("-")
+                                                .font(Font.custom("Urbanist-Medium", size: 28))
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                .foregroundColor(.neutralBlack)
+                                        }
+                                        
+                                    }else{
+                                        if(previousDrill != ""){
+                                            if(previousDrill == "Sangat Tersebar"){
+                                                Text("Very Scattered")
+                                                    .font(Font.custom("Urbanist-Medium", size: 28))
+                                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                    .foregroundColor(.neutralBlack)
+                                            }else if(previousDrill == "Cukup Tersebar"){
+                                                Text("Quite Scattered")
+                                                    .font(Font.custom("Urbanist-Medium", size: 28))
+                                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                    .foregroundColor(.neutralBlack)
+                                            }else if(previousDrill == "Sangat Terpusat"){
+                                                Text("Very Centralized")
+                                                    .font(Font.custom("Urbanist-Medium", size: 28))
+                                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                    .foregroundColor(.neutralBlack)
+                                            }else if(previousDrill == "Cukup Terpusat"){
+                                                Text("Quite Centralized")
+                                                    .font(Font.custom("Urbanist-Medium", size: 28))
+                                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                    .foregroundColor(.neutralBlack)
+                                            }else{
+                                                Text("-")
+                                                    .font(Font.custom("Urbanist-Medium", size: 28))
+                                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                    .foregroundColor(.neutralBlack)
+                                            }
+                                        }else{
+                                            Text("-")
+                                                .font(Font.custom("Urbanist-Medium", size: 28))
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                .foregroundColor(.neutralBlack)
+                                        }
+                                        
+                                    }
                                     Text(previousDrillText)
                                         .font(Font.custom("Urbanist", size: 17))
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -357,6 +436,17 @@ struct LowServePlacementDetailView: View {
                         player?.play()
                     }
                     itemWidth = screenWith / 10
+                    var isLoop = true
+                    for val in latestDrill {
+                        if let valDatetime = val.datetime, let itemDatetime = item.datetime {
+                            if valDatetime < itemDatetime && isLoop {
+                                print(valDatetime)
+                                previousDrill = val.variance ?? ""
+                                isLoop = false
+                            }
+                        }
+                    }
+                    print(previousDrill)
                 }
                 .toolbar {
                     ToolbarItem {

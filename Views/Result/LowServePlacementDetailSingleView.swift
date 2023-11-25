@@ -33,6 +33,7 @@ struct LowServePlacementDetailSingleView: View {
         var id = UUID().uuidString
         var hitNumber: String
         var hitStatus: String
+        var netDistance: Double
     }
     
     @FetchRequest(
@@ -49,11 +50,12 @@ struct LowServePlacementDetailSingleView: View {
             let keyValue = component.components(separatedBy: ":")
             
             // Check if there are exactly two components (key and value)
-            if keyValue.count == 2 {
+            if keyValue.count == 3 {
                 let hitNumber = keyValue[0]
                 let hitStatus = keyValue[1]
+                let netDistance = Double(keyValue[2]) ?? 0.0
                 
-                let hitStat = HitStatistics(hitNumber: hitNumber, hitStatus: hitStatus)
+                let hitStat = HitStatistics(hitNumber: hitNumber, hitStatus: hitStatus, netDistance: netDistance)
                 hitStatisticsArray.append(hitStat)
             }
         }
@@ -153,7 +155,7 @@ struct LowServePlacementDetailSingleView: View {
                                                 }
                                             }
                                         } else {
-                                            Text(noDataText)
+                                            Text(noDataText).font(Font.custom( "Urbanist",size: 20))
                                         }
                                     }
                                     
@@ -229,7 +231,7 @@ struct LowServePlacementDetailSingleView: View {
                                     VStack(spacing: 10) {
                                         if latestDrill.count >= 2 {
                                             Text("\(item.hitPerfect - latestDrill[1].hitPerfect)")
-                                                .font(Font.custom("SF Pro", size: 17))
+                                                .font(Font.custom("Urbanist", size: 17))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
                                             Text("\(goodServeQualityText) \((item.hitPerfect - latestDrill[1].hitPerfect) < 0 ? keepDecreasing : keepIncreasing)")
@@ -238,7 +240,7 @@ struct LowServePlacementDetailSingleView: View {
                                                 .foregroundColor(.neutralBlack)
                                         } else {
                                             Text("0")
-                                                .font(Font.custom("SF Pro", size: 17))
+                                                .font(Font.custom("Urbanist", size: 17))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
                                             Text("\(goodServeQualityText) \(keepIncreasing)")
@@ -290,7 +292,7 @@ struct LowServePlacementDetailSingleView: View {
                                     VStack(spacing: 10) {
                                         if latestDrill.count >= 2 {
                                             Text(String(format: "%.2f", Double(item.avgDistance - latestDrill[1].avgDistance)))
-                                                .font(Font.custom("SF Pro", size: 17))
+                                                .font(Font.custom("Urbanist", size: 17))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
                                             Text("\(averageProgressText) \((item.avgDistance - latestDrill[1].avgDistance) < 0 ? keepDecreasing : keepIncreasing)")
@@ -299,7 +301,7 @@ struct LowServePlacementDetailSingleView: View {
                                                 .foregroundColor(.neutralBlack)
                                         } else {
                                             Text("0")
-                                                .font(Font.custom("SF Pro", size: 17))
+                                                .font(Font.custom("Urbanist", size: 17))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
                                             Text("\(averageProgressText) \(keepIncreasing)")

@@ -10,10 +10,10 @@ import SwiftUI
 struct RotateToPotraitView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-//            LottieView(name: "iPhone Landscape to Portrait").frame(width:600,height:300)
-//                .padding(32)
-            GifImage("Iphone Landscape to Portrait")
-                .frame(width:330,height: 220)
+            LottieView(name: "iPhone Landscape to Portrait").frame(width:600,height:300)
+                .padding(32)
+//            GifImage("Iphone Landscape to Portrait")
+//                .frame(width:330,height: 220)
         }
         .padding(16)
         .navigationBarBackButtonHidden(true).onAppear{

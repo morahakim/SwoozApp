@@ -192,7 +192,8 @@ class TrajectoryView: SKView, AnimatedTransitioning {
 
     func Variance(transformedXValues: [Double]) -> String{
         guard !transformedXValuesGood.isEmpty else {
-            return "error"
+//            return "error"
+            return "-"
         }
         let sum = transformedXValuesGood.reduce(0, +)
         let average = (sum / Double(transformedXValuesGood.count))
@@ -567,14 +568,14 @@ class TrajectoryView: SKView, AnimatedTransitioning {
                     let xValue = transformedXValues[i]
                     let yValue = transformedYValues[i]
                     if (!isAccepted(x: xValue, y: yValue)){
-                        label.append("BURUK")
+                        label.append("Fail")
                     }else{
                         if(yValue<=AverageOfDistance){
-                            label.append("BAGUS")
+                            label.append("Perfect")
                             transformedXValuesGood.append(Double(xValue))
                             transformedYValuesGood.append(Double(yValue))
                         }else{
-                            label.append("KURANG")
+                            label.append("Success")
                         }
                     }
                 }
@@ -637,11 +638,11 @@ class TrajectoryView: SKView, AnimatedTransitioning {
                 
                 
                 switch(label[i]){
-                case "BAGUS":
+                case "Perfect":
                     circlePoint.backgroundColor = localStorage.loadColor(forKey: "Green")?.cgColor
-                case "KURANG":
+                case "Success":
                     circlePoint.backgroundColor = localStorage.loadColor(forKey: "Yellow")?.cgColor
-                case "BURUK":
+                case "Fail":
                     circlePoint.backgroundColor = localStorage.loadColor(forKey: "Red")?.cgColor
                 default:
                     print(0)

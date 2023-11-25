@@ -672,6 +672,7 @@ class ContentAnalysisViewController: UIViewController,
             if(isRecording == false){
                 startRecording()
                 isRecording = true
+                isPlay = true
             }
             //            boxCountdown.backgroundColor = UIColor(red: 0.99, green: 0.37, blue: 0.33, alpha: 1.0)
             labelCountdown.text = ""
@@ -695,6 +696,9 @@ class ContentAnalysisViewController: UIViewController,
     
     @objc func stopManual(){
         
+        if(!isPlay){
+            return
+        }
         urlVideoSource = nil
         detectTrajectoryRequest = nil
         
@@ -716,7 +720,13 @@ class ContentAnalysisViewController: UIViewController,
         self.setupResultView()
     }
     
+    var isPlay:Bool = false
+    
     @objc func stop(){
+        
+        if(!isPlay){
+            return
+        }
         
         urlVideoSource = nil
         detectTrajectoryRequest = nil
@@ -743,6 +753,7 @@ class ContentAnalysisViewController: UIViewController,
     }
     
     func restart(){
+        
         //ada fungsi untuk stop recording tanpa ubah status
         startRecording()
         dismiss(animated: true, completion: nil)
@@ -855,7 +866,7 @@ class ContentAnalysisViewController: UIViewController,
         boxCountdown.addSubview(textCountdown)
         
         
-        buttonWhite.frame = CGRect(x: view.frame.size.width - 70 + 20 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
+        buttonWhite.frame = CGRect(x: view.frame.size.width - 70 + 18 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
         buttonWhite.backgroundColor = nil
         buttonWhite.layer.cornerRadius = 32
         buttonWhite.clipsToBounds = true
@@ -1110,7 +1121,7 @@ class ContentAnalysisViewController: UIViewController,
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
     @AppStorage("duration") var durationApp = ""
-    @AppStorage("menuStateApp") var menuStateAppmenuStateApp = ""
+    @AppStorage("menuStateApp") var menuStateApp = ""
     
     var response : [String:Double] = [:]
     
@@ -1215,7 +1226,7 @@ class ContentAnalysisViewController: UIViewController,
                 
                 
                 var value = 0.0
-                var min = Double.infinity
+                var min = 10000.0
                 
                 
                 for val in arrHitStatistics {
@@ -1225,7 +1236,12 @@ class ContentAnalysisViewController: UIViewController,
                         }
                     }
                 }
-                minDistance = min
+                if(min > 0 && min != 10000.0){
+                    minDistance = min
+                }else{
+                    minDistance = 0
+                }
+                
                 
                 print("bugis: \(value) - \(index) - \(Double(value) / Double(index)) - \(minDistance)")
                 
@@ -1239,8 +1255,13 @@ class ContentAnalysisViewController: UIViewController,
                     }
                 }
                 
-                value = Double(value) / Double(index)
-                averageOfDistance = value
+                if(index > 0){
+                    averageOfDistance = value
+                }else{
+                    averageOfDistance = 0
+                }
+                
+               
                 
                 print("bugi: \(value) - \(index) - \(Double(value) / Double(index)) - \(averageOfDistance)")
                 
@@ -1391,15 +1412,15 @@ class ContentAnalysisViewController: UIViewController,
                             rightArea.layer.addSublayer(circleNet)
                             var status = ""
                             switch(response.4[i]){
-                            case "BAGUS":
+                            case "Perfect":
                                 status = "Perfect"
                                 hitPerfect += 1
                                 circleNet.backgroundColor = localStorage.loadColor(forKey: "Green")?.cgColor
-                            case "KURANG":
+                            case "Success":
                                 status = "Success"
                                 hitSuccess += 1
                                 circleNet.backgroundColor = localStorage.loadColor(forKey: "Yellow")?.cgColor
-                            case "BURUK":
+                            case "Fail":
                                 status = "Fail"
                                 hitFail += 1
                                 circleNet.backgroundColor = localStorage.loadColor(forKey: "Red")?.cgColor

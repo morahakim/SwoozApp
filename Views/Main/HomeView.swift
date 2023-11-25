@@ -46,7 +46,7 @@ struct HomeView: View {
                                 ZStack {
                                     Image("Challenge")
                                         .resizable()
-                                        .frame(height: 180)
+                                        .frame(height: 190)
                                         .cornerRadius(12)
                                     
                                     VStack(spacing: 10) {
@@ -74,9 +74,9 @@ struct HomeView: View {
                                                 Rectangle()
                                                     .fill(Color.greenMain)
                                                     .cornerRadius(10)
-                                                    .frame(width: 83, height: 28)
+                                                    .frame(width: 86, height: 34)
                                                 Text(tryAgainText)
-                                                    .font(Font.custom("SF Pro", size: 15))
+                                                    .font(Font.custom("Urbanist", size: 17))
                                                     .foregroundStyle(Color.white)
                                             }
                                         }
@@ -86,13 +86,14 @@ struct HomeView: View {
                             }
                             List {
                                 ForEach(list) { item in
+//                                    Text(item.result!)
                                     if item.level == "0" {
                                         NavigationLink(destination: LowServeTrajectoryDetailView(item: item)) {
-                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
                                         }
                                     } else {
                                         NavigationLink(destination: LowServePlacementDetailView(item: item)) {
-                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTarget, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
                                         }
                                     }
                                 }

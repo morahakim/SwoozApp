@@ -12,6 +12,7 @@ import UniformTypeIdentifiers
 import SwiftUI
 import AVKit
 import CoreMotion
+import ReplayKit
 
 protocol HomeDelegate: AnyObject {
     func back()
@@ -53,6 +54,52 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     let boxScore = UIView()
     
     let playerViewController = AVPlayerViewController()
+    
+   
+    
+    func stopRecordScreen() async throws -> URL {
+        let name = "\(UUID().uuidString).mov"
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(name)
+        let recorder = RPScreenRecorder.shared()
+        try await recorder.stopRecording(withOutput: url)
+        return url
+    }
+    @objc func startRecording(){
+        startRecordScreen { error in
+            if let e = error {
+                print(e.localizedDescription)
+                return
+            }
+        }
+        print("Start Recording!")
+    }
+    func startRecordScreen(
+        enableMic: Bool = false,
+        completion: @escaping (Error?) -> ()
+    ) {
+        let recorder = RPScreenRecorder.shared()
+        recorder.isMicrophoneEnabled = enableMic
+        recorder.startRecording(handler: completion)
+        if(recorder.isRecording){
+            print("RECORD")
+            stopRecording()
+            liveCamera()
+        }else{
+            print("NOT RECORD")
+        }
+    }
+    func stopRecording(){
+        Task {
+            do {
+                let url = try await stopRecordScreen()
+                try FileManager.default.removeItem(at: url)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        print("Stop Recording!")
+    }
+    
     
     func saveRecord(url: URL,
                     duration: String,
@@ -678,10 +725,11 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     @objc func updateStateMenu(){
         if(latestStatus != menuStateApp){
             latestStatus = menuStateApp
-            if(menuStateApp == "stillPlay"){
-                print("DBUGGGGG : PLAY")
-                liveCamera()
-            } else if(menuStateApp == "result"){
+//            if(menuStateApp == "stillPlay"){
+//                print("DBUGGGGG : PLAY")
+//                startRecording()
+//            } else 
+            if(menuStateApp == "result"){
                 print("DBUGGGGG : STOP")
                 contentAnalysisViewController.stop()
             }
@@ -925,13 +973,13 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         iconImageView.frame = CGRect(x:10, y: 10, width: 20, height: 20)
         buttonClose.addSubview(iconImageView)
         
-        buttonWhite.frame = CGRect(x: view.frame.size.width - 70 + 20 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
+        buttonWhite.frame = CGRect(x: view.frame.size.width - 70 + 18 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
         buttonWhite.backgroundColor = nil
         buttonWhite.layer.cornerRadius = 32
         buttonWhite.clipsToBounds = true
         buttonWhite.layer.borderWidth = 3.0
         buttonWhite.layer.borderColor = UIColor.white.cgColor
-        buttonWhite.addTarget(self, action: #selector(liveCamera), for: .touchUpInside)
+        buttonWhite.addTarget(self, action: #selector(startRecording), for: .touchUpInside)
         view.addSubview(buttonWhite)
         
         
@@ -940,7 +988,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         button.backgroundColor = UIColor(red: 1, green: 0.2, blue: 0.15, alpha: 1.0)
         button.layer.cornerRadius = 27
         button.clipsToBounds = true
-        button.addTarget(self, action: #selector(liveCamera), for: .touchUpInside)
+        button.addTarget(self, action: #selector(startRecording), for: .touchUpInside)
         
         buttonWhite.addSubview(button)
         
