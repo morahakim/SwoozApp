@@ -87,7 +87,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         }else{
             print("NOT RECORD")
 //            menuStateApp = "placement"
-            contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
+//            contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
             latestStatus = ""
         }
     }
@@ -727,9 +727,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     var latestStatus = ""
     @objc func updateStateMenu(){
-        print("DBUGGGGG : \(menuStateApp)")
         if(latestStatus != menuStateApp){
-            print("DBUGGGGG : \(latestStatus) - \(menuStateApp)")
             if(menuStateApp == "stillPlay"){
                 latestStatus = menuStateApp
                 print("DBUGGGGG : PLAY")
@@ -739,8 +737,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                 print("DBUGGGGG : STOP")
                 contentAnalysisViewController.stop()
             }
-        }else{
-            print("DBUGGGGG : \(latestStatus) - \(menuStateApp)")
         }
     }
     
