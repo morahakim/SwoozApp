@@ -724,7 +724,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     var latestStatus = ""
     @objc func updateStateMenu(){
         if(latestStatus != menuStateApp){
-            latestStatus = menuStateApp
             if(menuStateApp == "stillPlay"){
                 print("DBUGGGGG : PLAY")
                 startRecording()
@@ -732,6 +731,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                 print("DBUGGGGG : STOP")
                 contentAnalysisViewController.stop()
             }
+            latestStatus = menuStateApp
         }
     }
     
