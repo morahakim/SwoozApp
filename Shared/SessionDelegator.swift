@@ -38,6 +38,7 @@ class SessionDelegater: NSObject, WCSessionDelegate {
     @AppStorage("hitFailApp") var hitFailApp = 0
     @AppStorage("durationApp") var durationApp = ""
     @AppStorage("menuStateApp") var menuStateApp = ""
+    @AppStorage("menuStateApp2") var menuStateApp2 = ""
     
     @AppStorage("videoUrlApp") var videoUrlApp = ""
     @AppStorage("typeApp") var typeApp = ""
@@ -151,6 +152,7 @@ class SessionDelegater: NSObject, WCSessionDelegate {
                 self.menuStateSubject.send(menuHitState)
                 print("DBUG : RECEIVED", menuHitState)
                 self.menuStateApp = menuHitState
+                self.menuStateApp2 = menuHitState
                 if(menuHitState == "result"){
                     //                    self.hitTotalApp = 0
                     //                    self.hitTargetApp = 0

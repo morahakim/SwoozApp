@@ -86,6 +86,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             liveCamera()
         }else{
             print("NOT RECORD")
+//            menuStateApp = "placement"
+            contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
+            latestStatus = ""
         }
     }
     func stopRecording(){
@@ -133,6 +136,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     @AppStorage("hitTargetApp") var hitTargetApp = 0
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("menuStateApp") var menuStateApp = ""
+    @AppStorage("menuStateApp2") var menuStateApp2 = ""
     @AppStorage("name") var name: String = ""
     @AppStorage("type") var type: String = ""
     
@@ -702,9 +706,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     @objc func skipVideo() {
         
-        
-        menuStateApp = "placement"
-        
+        print("DBUGGGGG : SKIP")
+//        menuStateApp = "placement"
+        contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
         
         //        boxView.isHidden = false
         buttonClose.isHidden = false
@@ -713,7 +717,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         buttonSetUp.isHidden = false
         boxNet.isHidden = false
         print("skipVideo")
-        contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
+        
         playerViewController.player?.pause()
         setupViewParent.removeFromSuperview()
         setupViewChild.removeFromSuperview()
@@ -723,15 +727,20 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     
     var latestStatus = ""
     @objc func updateStateMenu(){
+        print("DBUGGGGG : \(menuStateApp)")
         if(latestStatus != menuStateApp){
+            print("DBUGGGGG : \(latestStatus) - \(menuStateApp)")
             if(menuStateApp == "stillPlay"){
+                latestStatus = menuStateApp
                 print("DBUGGGGG : PLAY")
                 startRecording()
             } else  if(menuStateApp == "result"){
+                latestStatus = menuStateApp
                 print("DBUGGGGG : STOP")
                 contentAnalysisViewController.stop()
             }
-            latestStatus = menuStateApp
+        }else{
+            print("DBUGGGGG : \(latestStatus) - \(menuStateApp)")
         }
     }
     
