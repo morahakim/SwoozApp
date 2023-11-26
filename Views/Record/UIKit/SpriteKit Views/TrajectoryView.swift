@@ -264,7 +264,8 @@ class TrajectoryView: SKView, AnimatedTransitioning {
           let cornerRadius = size / 2
           
             yNet = 0.53 * bounds.height
-            xNet = bounds.width/2.7
+          xNet = bounds.width/2.7
+//          xNet = bounds.width/2.75
             
             let box = UIView()
             box.frame = CGRect(x: 0, y: 0, width: bounds.width,height: bounds.height)

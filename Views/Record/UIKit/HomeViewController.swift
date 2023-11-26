@@ -942,9 +942,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             
         }
         
-        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
-        //        view.isUserInteractionEnabled = true
-        //        view.addGestureRecognizer(tapGesture)
+//                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
+//                view.isUserInteractionEnabled = true
+//                view.addGestureRecognizer(tapGesture)
         
         
         let image2 = UIImage(named: "CPButtonID")

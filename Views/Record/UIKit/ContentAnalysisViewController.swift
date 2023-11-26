@@ -777,14 +777,14 @@ class ContentAnalysisViewController: UIViewController,
         
         let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         
-        var netName = "NetLevel1B"
+        var netName = "NetLevel2"
         if(techniqueId == 0){
-            //            netName = "NetLevel2B"
-            //            if let image = UIImage(named: netName) {
-            //                imageNetView.image = image
-            //            }
-            //            boxNet.addSubview(imageNetView)
-            //            view.addSubview(boxNet)
+//            netName = "NetLevel2"
+//            if let image = UIImage(named: netName) {
+//                imageNetView.image = image
+//            }
+//            boxNet.addSubview(imageNetView)
+//            view.addSubview(boxNet)
         }else if(techniqueId == 1){
             netName = "NetLevel3B"
             if let image = UIImage(named: netName) {
@@ -1707,8 +1707,8 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
         do {
             // Following optional bounds by checking for the moving average radius
             // of the trajectories the app is looking for.
-            detectTrajectoryRequest.objectMinimumNormalizedRadius = 10.0 / Float(1920.0)
-            detectTrajectoryRequest.objectMaximumNormalizedRadius = 50.0 / Float(1920.0)
+//            detectTrajectoryRequest.objectMinimumNormalizedRadius = 10.0 / Float(1920.0)
+//            detectTrajectoryRequest.objectMaximumNormalizedRadius = 50.0 / Float(1920.0)
             
             // Help manage the real-time use case to improve the precision versus delay tradeoff.
             detectTrajectoryRequest.targetFrameTime = CMTimeMake(value: 1, timescale: 60)
