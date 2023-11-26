@@ -109,7 +109,7 @@ struct LowServePlacementDetailView: View {
                                         TextField(editName, text: $editedName, onCommit: {
                                             updateItemName()
                                         })
-                                        .font(Font.custom("Urbanist", size: 22))
+                                        .font(Font.custom("Urbanist-Medium", size: 22))
                                         .foregroundColor(.neutralBlack)
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                     } else {
@@ -130,7 +130,7 @@ struct LowServePlacementDetailView: View {
                             }
                             
                             VStack(spacing: 15) {
-                                TextAlignLeading(goodServePerformText)
+                                TextAlignLeading("\(goodServePerformText) *cm")
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
                                 
@@ -139,9 +139,14 @@ struct LowServePlacementDetailView: View {
                                         ForEach(0..<((attempData.count + 9) / 10)) { row in
                                             HStack(){
                                                 ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
-                                                    Text(i.hitNumber)
-                                                        .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                        .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                                    VStack(){
+                                                        Text(i.hitNumber)
+                                                            .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
+                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                                        Text(String(format: "%.1f", i.netDistance))
+                                                            .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
+                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist",size: 10)).frame(maxWidth:itemWidth)
+                                                    }
                                                 }
                                             }
                                         }
@@ -446,7 +451,8 @@ struct LowServePlacementDetailView: View {
                             }
                         }
                     }
-                    print(previousDrill)
+//                    print(previousDrill)
+                    editedName = item.name ?? ""
                 }
                 .toolbar {
                     ToolbarItem {

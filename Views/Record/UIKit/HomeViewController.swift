@@ -585,6 +585,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         abs(acceleration.z) < threshold
     }
     
+    var player = AVPlayer()
+    
     
     @objc func setupSetUp(){
         
@@ -635,7 +637,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         // Create a video player
         if let videoURL = Bundle.main.url(forResource: setupName, withExtension: "mov") {
-            let player = AVPlayer(url: videoURL)
+            player = AVPlayer(url: videoURL)
             
             // Create a player view controller
             
@@ -669,7 +671,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(playVideo))
             thumbnailImageView.addGestureRecognizer(tapGesture)
             thumbnailImageView.isUserInteractionEnabled = true
-            
             
         } else {
             print("Video file not found in the app's bundle.")
@@ -708,6 +709,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         print("DBUGGGGG : SKIP")
 //        menuStateApp = "placement"
+        contentAnalysisViewController.counter.typeSend(type: String(techniqueId))
+        contentAnalysisViewController.counter.levelSend(level: techniqueName)
         contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
         
         //        boxView.isHidden = false
@@ -728,6 +731,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     var latestStatus = ""
     @objc func updateStateMenu(){
         if(latestStatus != menuStateApp){
+            print("DBUGGGGG : \(latestStatus) - \(menuStateApp)")
             if(menuStateApp == "stillPlay"){
                 latestStatus = menuStateApp
                 print("DBUGGGGG : PLAY")
@@ -942,9 +946,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             
         }
         
-//                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
-//                view.isUserInteractionEnabled = true
-//                view.addGestureRecognizer(tapGesture)
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
+                view.isUserInteractionEnabled = true
+                view.addGestureRecognizer(tapGesture)
         
         
         let image2 = UIImage(named: "CPButtonID")
@@ -1012,6 +1016,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         if(!isSteady){
             return
         }
+        
+        player.pause()
+        playerViewController.player = nil
+        
         motionManager.stopAccelerometerUpdates()
         print("Live Camera!")
         //        performSegue(withIdentifier: ContentAnalysisViewController.segueDestinationId,

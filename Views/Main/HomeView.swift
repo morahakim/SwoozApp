@@ -25,11 +25,20 @@ struct HomeView: View {
     
     @State var isMoveToDetail = false
     
+    
+    let contentAnalysisViewController = ContentAnalysisViewController()
+    
     var body: some View {
         if isMoveToDetail {
             if list.count > 0 {
                 LowServeTrajectoryDetailSingleView(item: list[0], isMoveToDetail: $isMoveToDetail)
                     .onAppear {
+                        UIDevice.current.setValue(
+                            UIInterfaceOrientation.portrait.rawValue,
+                            forKey: "orientation"
+                        )
+                        AppDelegate.orientationLock = .portrait
+                    }.onDisappear {
                         UIDevice.current.setValue(
                             UIInterfaceOrientation.portrait.rawValue,
                             forKey: "orientation"
@@ -156,6 +165,15 @@ struct HomeView: View {
                     )
                     AppDelegate.orientationLock = .portrait
                     menuStateApp = ""
+                    contentAnalysisViewController.counter.menuStateSend(menuState: "")
+                    contentAnalysisViewController.counter.typeSend(type: "")
+                    contentAnalysisViewController.counter.levelSend(level: "")
+                }.onDisappear {
+                    UIDevice.current.setValue(
+                        UIInterfaceOrientation.portrait.rawValue,
+                        forKey: "orientation"
+                    )
+                    AppDelegate.orientationLock = .portrait
                 }
             }
             .preferredColorScheme(.light)
