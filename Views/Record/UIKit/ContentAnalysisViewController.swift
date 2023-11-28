@@ -1256,6 +1256,7 @@ class ContentAnalysisViewController: UIViewController,
                 }
                 
                 if(index > 0){
+                    value = value / Double(index)
                     averageOfDistance = value
                 }else{
                     averageOfDistance = 0
