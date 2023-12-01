@@ -98,11 +98,11 @@ struct HomeView: View {
 //                                    Text(item.result!)
                                     if item.level == "0" {
                                         NavigationLink(destination: LowServeTrajectoryDetailView(item: item)) {
-                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitPerfect, hitFail: item.hitFail, level: item.level)
                                         }
                                     } else {
                                         NavigationLink(destination: LowServePlacementDetailView(item: item)) {
-                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
+                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitPerfect, hitFail: item.hitFail, level: item.level)
                                         }
                                     }
                                 }
