@@ -16,6 +16,7 @@ struct LowServeTrajectoryView: View {
     @State var showRepetitionSheet = false
     @State var selectedRepetition = 0
     @State var player: AVPlayer?
+    @State var tutorial: AVPlayer?
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
@@ -265,6 +266,27 @@ struct LowServeTrajectoryView: View {
                                 .frame(height: 150)
                                 .padding(.bottom, 40)
                                 .padding(.top, 24)
+                                
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        HStack(alignment: .top, spacing: 4) {
+                                            Text("Tutorial")
+                                                .font(Font.custom("SF Pro", size: 17))
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(.white)
+                                        }
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(Color.greenMain)
+                                        .cornerRadius(12)
+                                    }
+                                    
+                                    VideoPlayer(player: tutorial)
+                                        .frame(width: 358, height: 173)
+                                        .cornerRadius(12)
+                                    
+                                }
+
                             }
                             .scrollIndicators(.hidden)
                             .padding(.bottom, getSafeArea().bottom + 12)
@@ -308,6 +330,13 @@ struct LowServeTrajectoryView: View {
                 if let url = Bundle.main.url(forResource: "ServeTrajectory", withExtension: "mp4") {
                     player = AVPlayer(url: url)
                     player?.play()
+                }
+            }
+            
+            .onAppear {
+                if let url = Bundle.main.url(forResource: "Tutorial", withExtension: "mp4") {
+                    tutorial = AVPlayer(url: url)
+                    tutorial?.play()
                 }
             }
             

@@ -60,6 +60,7 @@
 		374C436E2B0E7CA2007A4F1A /* Trajectory.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C43702B0E7CA2007A4F1A /* Trajectory.mov */; };
 		374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		37ADDF512B4A03880016EB07 /* Tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37ADDF502B4A03880016EB07 /* Tutorial.mp4 */; };
 		37B5E7622B0F4AC0003A72DC /* LowServe-Lintasan.json in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */; };
 		37B5E7632B0F4AC0003A72DC /* LowServe-Penempatan.json in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */; };
 		37B5E7662B10EA93003A72DC /* Low Serve - Lintasan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7642B10EA93003A72DC /* Low Serve - Lintasan.gif */; };
@@ -179,6 +180,7 @@
 		374C436F2B0E7CA2007A4F1A /* id */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = id; path = id.lproj/Trajectory.mov; sourceTree = "<group>"; };
 		374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ServeTrajectory.mp4; sourceTree = "<group>"; };
 		3782C9512B074A4F00D0C4C5 /* ascenttt-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ascenttt-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		37ADDF502B4A03880016EB07 /* Tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tutorial.mp4; sourceTree = "<group>"; };
 		37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Lintasan.json"; sourceTree = "<group>"; };
 		37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Penempatan.json"; sourceTree = "<group>"; };
 		37B5E7642B10EA93003A72DC /* Low Serve - Lintasan.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Low Serve - Lintasan.gif"; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 		BE975BFA2AFCC39F00C802CF /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				37ADDF502B4A03880016EB07 /* Tutorial.mp4 */,
 				181121872B14DDE9008FD958 /* ServePlacement.mp4 */,
 				374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */,
 				374C43672B0E7C84007A4F1A /* Placement.mov */,
@@ -706,6 +709,7 @@
 				374C436E2B0E7CA2007A4F1A /* Trajectory.mov in Resources */,
 				184E02F92AF192F60004C569 /* Drive Shot.json in Resources */,
 				18361F3E2AFF878700CBD1D8 /* LowServeExperienced.json in Resources */,
+				37ADDF512B4A03880016EB07 /* Tutorial.mp4 in Resources */,
 				184E02F72AF192F60004C569 /* Drop Shot.json in Resources */,
 				BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */,
 				370F77252B0213CC00BB2194 /* Localizable.strings in Resources */,
