@@ -1058,7 +1058,7 @@
 				INFOPLIST_FILE = ascenttt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "This will let you take photos and record video";
+				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1098,7 +1098,7 @@
 				INFOPLIST_FILE = ascenttt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "This will let you take photos and record video";
+				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
