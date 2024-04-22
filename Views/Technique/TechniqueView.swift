@@ -20,18 +20,18 @@ struct TechniqueView: View {
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("techniqueId") var techniqueId: Int = 0
     @AppStorage("techniqueName") var techniqueName: String = ""
-    
+
     private let data = [
         TechniqueLevelData(id: 0, name: chooseLevelTextOne, desc: chooseLevelDescOne, img: "Low Serve - Trajectory", isLock: false),
         TechniqueLevelData(id: 1, name: chooseLevelTextTwo, desc: chooseLevelDescTwo, img: "Low Serve - Placement", isLock: false),
         TechniqueLevelData(id: 2, name: chooseLevelTextThree, desc: "", img: "HighServe-Trajectory", isLock: true)
     ]
-    
+
     var body: some View {
         ForceOrientation(.portrait) {
             ZStack {
                 Color.greenMain.ignoresSafeArea(.all)
-                
+
                 ScrollView {
                     ForEach(data, id: \.self) { d in
                         CardView(action: {
@@ -98,7 +98,7 @@ struct TechniqueView: View {
                 .scrollIndicators(.hidden)
                 .padding(.top, 10)
             }
-            
+
             .navigationTitle(navigationTitleTechnique)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbarBackground(.greenMain, for: .navigationBar)

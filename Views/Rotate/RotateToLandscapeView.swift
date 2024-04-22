@@ -10,10 +10,10 @@ import SwiftUI
 struct RotateToLandscapeView: View {
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("isOnRecord") var isOnRecord = true
-    
+
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            LottieView(name: "Iphone Rotate").frame(width:600,height:300)
+            LottieView(name: "Iphone Rotate").frame(width: 600, height: 300)
                 .padding(32)
 //            GifImage("Iphone Portrait to Landscape")
 //                .frame(width:330,height: 220)
@@ -26,7 +26,7 @@ struct RotateToLandscapeView: View {
                 forKey: "orientation"
             )
             AppDelegate.orientationLock = .landscapeRight
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 withAnimation {
                     isOnRecord = true

@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingRecordView: View {
     @EnvironmentObject var vm: HomeViewModel
     @State private var isShowAlerRotate = true
-    
+
     var body: some View {
         ZStack {
             RotateToPotraitView()

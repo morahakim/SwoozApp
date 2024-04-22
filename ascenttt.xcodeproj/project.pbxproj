@@ -60,6 +60,7 @@
 		374C436E2B0E7CA2007A4F1A /* Trajectory.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C43702B0E7CA2007A4F1A /* Trajectory.mov */; };
 		374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		37A209EC2BD69A63007A897A /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 37A209EB2BD69A63007A897A /* swiftlint.yml */; };
 		37ADDF512B4A03880016EB07 /* Tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37ADDF502B4A03880016EB07 /* Tutorial.mp4 */; };
 		37B5E7622B0F4AC0003A72DC /* LowServe-Lintasan.json in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */; };
 		37B5E7632B0F4AC0003A72DC /* LowServe-Penempatan.json in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */; };
@@ -180,6 +181,7 @@
 		374C436F2B0E7CA2007A4F1A /* id */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = id; path = id.lproj/Trajectory.mov; sourceTree = "<group>"; };
 		374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ServeTrajectory.mp4; sourceTree = "<group>"; };
 		3782C9512B074A4F00D0C4C5 /* ascenttt-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ascenttt-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		37A209EB2BD69A63007A897A /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 		37ADDF502B4A03880016EB07 /* Tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tutorial.mp4; sourceTree = "<group>"; };
 		37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Lintasan.json"; sourceTree = "<group>"; };
 		37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Penempatan.json"; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 		BEF748272AF02AAF00E8FB8B = {
 			isa = PBXGroup;
 			children = (
+				37A209EB2BD69A63007A897A /* swiftlint.yml */,
 				371240D22AF1628F009C8021 /* CoreData */,
 				BEA1C1492AF0436D00BFF1A4 /* Utility */,
 				BEA1C11A2AF0436D00BFF1A4 /* Views */,
@@ -610,6 +613,7 @@
 				BEF7482D2AF02AAF00E8FB8B /* Frameworks */,
 				BEF7482E2AF02AAF00E8FB8B /* Resources */,
 				BEF748532AF02AB000E8FB8B /* Embed Watch Content */,
+				37A209ED2BD69AB8007A897A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -690,6 +694,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				184E02F82AF192F60004C569 /* Iphone Rotate.json in Resources */,
+				37A209EC2BD69A63007A897A /* swiftlint.yml in Resources */,
 				BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
 				374C43682B0E7C92007A4F1A /* Placement.mov in Resources */,
 				374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */,
@@ -731,6 +736,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		37A209ED2BD69AB8007A897A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BEF7482C2AF02AAF00E8FB8B /* Sources */ = {
@@ -1054,6 +1081,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
 				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
@@ -1094,6 +1122,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
 				DEVELOPMENT_TEAM = S3Z84JBVGM;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;

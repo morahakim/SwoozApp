@@ -11,15 +11,15 @@ struct OnBoardingView: View {
     @AppStorage("isOnBoarding") var isOnBoarding: Bool = true
     @AppStorage("path") var path: Path = .Home
     @State private var step = 0
-    
+
     let transition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
-    
+
     private let onboardingData = [
         "Players want long rallies but \noften struggle to find their weaknesses.",
         "We're here to help you understand your \ngame by analyzing your game.",
         "Boost your game through objective \nevaluation with simplified visuals!"
     ]
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -35,7 +35,7 @@ struct OnBoardingView: View {
                                 .foregroundColor(Color(red: 0.15, green: 0.15, blue: 0.15))
                         }
                     }
-                    
+
                     /** onboarding image */
                     TabView(selection: $step) {
 //                        ImgHero(
@@ -63,7 +63,7 @@ struct OnBoardingView: View {
                     .animation(.easeInOut, value: step)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 }
-                
+
                 /** onboarding indicator */
                 VStack {
                     GeometryReader { gr in
@@ -87,7 +87,7 @@ struct OnBoardingView: View {
                         )
                     }
                 }
-                
+
                 VStack {
                     Spacer()
                     Button {
@@ -107,7 +107,7 @@ struct OnBoardingView: View {
     }
 }
 
-//struct ImgHero: View {
+// struct ImgHero: View {
 //    var tag: Int
 //    var name: String
 //    var desc: String
@@ -133,7 +133,7 @@ struct OnBoardingView: View {
 //        .tag(tag)
 //        .transition(transition)
 //    }
-//}
+// }
 
 struct BtnNext: View {
     var body: some View {

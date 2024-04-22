@@ -10,12 +10,12 @@ import SwiftUI
 struct ForceOrientation<Content: View>: View {
     let content: () -> Content
     let orientation: UIInterfaceOrientationMask
-    
+
     init(_ orientation: UIInterfaceOrientationMask, @ViewBuilder content: @escaping () -> Content) {
         self.content = content
         self.orientation = orientation
     }
-    
+
     var body: some View {
         Group {
             content()

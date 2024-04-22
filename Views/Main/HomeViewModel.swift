@@ -20,7 +20,7 @@ enum ViewPath {
 
 class HomeViewModel: ObservableObject {
     @Published var path: [ViewPath] = []
-    
+
     @ViewBuilder
     static func viewForDestination(_ path: ViewPath) -> some View {
         switch path {
@@ -42,15 +42,15 @@ class HomeViewModel: ObservableObject {
             LowServePlacementView()
         }
     }
-    
+
     func popToRoot() {
         path = []
     }
-    
+
     func removeLast() {
         path.removeLast()
     }
-    
+
     func popToPage(_ page: ViewPath) {
         if let index = path.firstIndex(of: page) {
             path.removeLast(path.count - (index + 1))
@@ -58,7 +58,7 @@ class HomeViewModel: ObservableObject {
             print("Value not found in the array")
         }
     }
-    
+
     func goToPage(_ page: ViewPath) {
         var defaultPath: [ViewPath] = [.CameraGuide, .Record]
         if let index = defaultPath.firstIndex(of: page) {

@@ -14,8 +14,8 @@ struct SheetShare: UIViewControllerRepresentable {
         let view = UIActivityViewController(activityItems: items, applicationActivities: nil)
         return view
     }
-    
+
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        
+
     }
 }

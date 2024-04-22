@@ -11,9 +11,9 @@ import SwiftUI
 struct ascentttApp: App {
     private let dataController = DataController.shared
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
     let contentAnalysisViewController = ContentAnalysisViewController()
-    
+
     var body: some Scene {
         WindowGroup {
             MainView()
@@ -34,9 +34,9 @@ struct ascentttApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    
-    static var orientationLock = UIInterfaceOrientationMask.all //By default you want all your views to rotate freely
-    
+
+    static var orientationLock = UIInterfaceOrientationMask.all // By default you want all your views to rotate freely
+
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return AppDelegate.orientationLock
     }

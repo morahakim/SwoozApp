@@ -27,12 +27,12 @@ protocol AnimatedTransitioning {
 }
 
 extension AnimatedTransitioning where Self: UIView {
-    
+
     func performTransition(_ transition: AnimatedTransitionType,
                            duration: TimeInterval) {
         performTransition(transition, duration: duration, completion: nil)
     }
-    
+
     func performTransition(_ transition: AnimatedTransitionType,
                            duration: TimeInterval,
                            completion: (() -> Void)?) {
@@ -83,7 +83,7 @@ extension AnimatedTransitioning where Self: UIView {
             }
         }
     }
-    
+
     func performTransitions(_ transitions: [AnimatedTransitionType],
                             durations: [TimeInterval],
                             delayBetween: TimeInterval,
@@ -93,7 +93,7 @@ extension AnimatedTransitioning where Self: UIView {
             completion?()
             return
         }
-        
+
         let duration = durations.first ?? 0.25
         let view = self
         view.performTransition(transition, duration: duration) {
@@ -108,5 +108,5 @@ extension AnimatedTransitioning where Self: UIView {
             }
         }
     }
-    
+
 }

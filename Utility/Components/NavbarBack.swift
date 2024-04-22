@@ -10,7 +10,7 @@ import SwiftUI
 struct NavbarBack: View {
     let action: () -> Void
     let bg: Color
-    
+
     var body: some View {
         HStack(spacing: 15) {
             Button(action: action, label: {

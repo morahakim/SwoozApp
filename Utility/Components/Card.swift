@@ -10,12 +10,12 @@ import SwiftUI
 struct CardView<Content: View>: View {
     let action: () -> Void
     let content: () -> Content
-    
+
     init(action: @escaping () -> Void, @ViewBuilder content: @escaping () -> Content) {
         self.action = action
         self.content = content
     }
-    
+
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 8, content: content)

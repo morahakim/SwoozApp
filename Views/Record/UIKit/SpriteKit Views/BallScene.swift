@@ -9,20 +9,20 @@ import UIKit
 import SpriteKit
 
 class BallScene: SKScene {
-    
+
     // MARK: - Life Cycle
-    
+
     required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
         }
-        
+
     override init(size: CGSize) {
         super.init(size: size)
         self.backgroundColor = UIColor.clear
     }
-    
+
     // MARK: - Public Methods
-    
+
     func flyBall(points: [CGPoint]) {
         DispatchQueue.main.async {
             if self.children.isEmpty {
@@ -36,5 +36,5 @@ class BallScene: SKScene {
             }
         }
     }
-    
+
 }

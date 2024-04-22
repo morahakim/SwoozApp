@@ -17,7 +17,7 @@ class LocalStorage {
             print("Error saving color data: \(error.localizedDescription)")
         }
     }
-    
+
     func loadColor(forKey key: String) -> UIColor? {
         if let colorData = UserDefaults.standard.data(forKey: key) {
             do {
@@ -28,32 +28,32 @@ class LocalStorage {
                 print("Error loading color data: \(error.localizedDescription)")
             }
         }
-        if(key == "Green"){
+        if key == "Green"{
             saveColor(UIColor.green, forKey: key)
             return loadColor(forKey: key)
-        }else if(key == "Yellow"){
+        } else if key == "Yellow"{
             saveColor(UIColor.yellow, forKey: key)
             return loadColor(forKey: key)
-        }else if(key == "Red"){
+        } else if key == "Red"{
             saveColor(UIColor.red, forKey: key)
             return loadColor(forKey: key)
         }
         return nil
     }
-    
+
     func saveSize(_ val: Float, forKey key: String) {
         UserDefaults.standard.set(val, forKey: key)
     }
-    
+
     func loadSize(forKey key: String) -> Float? {
         let val = UserDefaults.standard.float(forKey: key)
-        if(val > 0){
+        if val > 0 {
             return val
         }
-        if(key == "0"){
+        if key == "0"{
             saveSize(0.88, forKey: key)
             return loadSize(forKey: key)
-        }else if(key == "1"){
+        } else if key == "1"{
             saveSize(0.88, forKey: key)
             return loadSize(forKey: key)
         }

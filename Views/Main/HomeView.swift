@@ -13,21 +13,20 @@ struct HomeView: View {
         NSSortDescriptor(key: "datetime", ascending: false)
     ]) var list: FetchedResults<RecordSkill>
     @Environment(\.managedObjectContext) var moc
-    
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "0")
     ) var trajectoryList: FetchedResults<RecordSkill>
-    
+
     @AppStorage("isDetail") var isDetail = false
-    
+
     @AppStorage("menuStateApp") var menuStateApp = ""
-    
+
     @State var isMoveToDetail = false
-    
-    
+
     let contentAnalysisViewController = ContentAnalysisViewController()
-    
+
     var body: some View {
         if isMoveToDetail {
             if list.count > 0 {
@@ -57,7 +56,7 @@ struct HomeView: View {
                                         .resizable()
                                         .frame(height: 190)
                                         .cornerRadius(12)
-                                    
+
                                     VStack(spacing: 10) {
                                         Image("Icon")
                                             .resizable()
@@ -75,7 +74,7 @@ struct HomeView: View {
                                                 .foregroundStyle(Color.white)
                                         }
                                         .padding(.bottom)
-                                        
+
                                         Button {
                                             vm.path.append(contentsOf: [.Technique, .LowServeTrajectory])
                                         } label: {
@@ -113,7 +112,7 @@ struct HomeView: View {
                                     }
                                     do {
                                         try moc.save()
-                                    } catch  {
+                                    } catch {
                                         print(error.localizedDescription)
                                     }
                                 }
@@ -137,7 +136,7 @@ struct HomeView: View {
                             .offset(y: -50)
                         }
                     }
-                    
+
                     VStack {
                         Spacer()
                         VStack(alignment: .center, spacing: 4) {

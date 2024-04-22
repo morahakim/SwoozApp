@@ -10,12 +10,12 @@ import SwiftUI
 struct RecordView: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var vm: HomeViewModel
-    
+
     @AppStorage("isOnRecord") var isOnRecord = true
     @AppStorage("hitTarget") var hitTarget: Int = 0
     @AppStorage("dataUrl") var dataUrl: String = ""
     @AppStorage("techniqueId") var techniqueId = 0
-    
+
     var body: some View {
         VStack {
             if isOnRecord {

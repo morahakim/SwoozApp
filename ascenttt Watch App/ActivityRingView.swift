@@ -12,20 +12,18 @@ struct ActivityRingView: View {
     @AppStorage("hitTargetApp") var hitTargetApp = 0
     @AppStorage("hitSuccessApp") var hitSuccessApp = 0
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
-   
-    
-    @AppStorage("progressApp") var progressApp:Double = 0.0
-    
-    
+
+    @AppStorage("progressApp") var progressApp: Double = 0.0
+
     @State private var hitSuccess: Int = 0
     @State private var maxHitSuccess: Int = 50
     var colorsMain: [Color] = [Color.greenMain, Color.greenMain]
     var colors: [Color] = [Color.greenBlur, Color.greenBlur]
-    
+
     var body: some View {
         VStack(spacing: 20) {
             ZStack {
-               
+
                 Circle()
                                     .trim(from: 0, to: 1)
                                     .stroke(Color.greenBlur, lineWidth: 20)
@@ -44,18 +42,18 @@ struct ActivityRingView: View {
                                     )
                                     .rotationEffect(.degrees(-90))
                 VStack(spacing: 5) {
-                    if(1 == 1){
+                    if 1 == 1 {
                         Text("\(Int(hitTotalApp))/\(Int(hitTargetApp))")
                             .foregroundColor(Color.greenMain)
                             .font(.system(size: 28))
                             .fontWeight(.semibold)
-                    }else{
+                    } else {
                         Text("\(Int(hitTotalApp))/∞")
                             .foregroundColor(Color.greenMain)
                             .font(.system(size: 28))
                             .fontWeight(.semibold)
                     }
-                   
+
                     Text(tryingText)
                         .font(.system(size: 16))
                         .foregroundColor(Color.greenMain)
@@ -71,11 +69,10 @@ struct ActivityRingView: View {
     }
 }
 
-
 struct PauseEndView: View {
     @State private var showingAlert = false
     @Binding var value: Int
-    @Binding var textCountdown:String
+    @Binding var textCountdown: String
     var body: some View {
         VStack(spacing: 40) {
             HStack(spacing: 30) {
@@ -104,7 +101,6 @@ struct PauseEndView: View {
     }
 }
 
-
 struct SheetAlert: View {
     @AppStorage("hitFailApp") var hitFailApp = 0
     @AppStorage("hitTotalApp") var hitTotalApp = 0
@@ -113,7 +109,7 @@ struct SheetAlert: View {
     @AppStorage("hitPerfectApp") var hitPerfectApp = 0
     @AppStorage("menuStateApp") var menuStateApp = ""
     @State var showingAlert = false
-    
+
     @ObservedObject var counter = Counter.shared
     var body: some View {
         VStack(spacing: 10) {
@@ -127,12 +123,11 @@ struct SheetAlert: View {
                     .font(.system(size: 17))
                     .foregroundColor(Color.redMain)
             })
-            
+
         }
     }
 }
 
-
-//#Preview {
+// #Preview {
 //    CountingView(value: .constant(1))
-//}
+// }

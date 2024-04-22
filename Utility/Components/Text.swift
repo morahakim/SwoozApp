@@ -9,11 +9,11 @@ import SwiftUI
 
 struct TextAlignLeading: View {
     let text: String
-    
+
     init(_ text: String) {
         self.text = text
     }
-    
+
     var body: some View {
         HStack {
             Text(text)
@@ -24,11 +24,11 @@ struct TextAlignLeading: View {
 
 struct TextAlignTrailing: View {
     let text: String
-    
+
     init(_ text: String) {
         self.text = text
     }
-    
+
     var body: some View {
         HStack {
             Spacer()

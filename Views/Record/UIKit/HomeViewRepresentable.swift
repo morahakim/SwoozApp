@@ -13,33 +13,33 @@ import CoreData
 struct HomeViewRepresentable: UIViewControllerRepresentable {
     var moc: NSManagedObjectContext
     var vm: HomeViewModel
-    
+
     @AppStorage("name") var name: String = "Intermediate"
-    
+
     func makeUIViewController(context: Context) -> some UIViewController {
         let homeViewController = HomeViewController()
         homeViewController.homeDelegate = context.coordinator
         return homeViewController
     }
-    
+
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
+
     }
-    
+
     // TODO: create makeCoordinator
     // TODO: create class coordinator, di kelas ini 
     func makeCoordinator() -> Coordinator {
         Coordinator(moc: moc, vm: vm)
     }
-    
-    class Coordinator: NSObject, HomeDelegate {   
+
+    class Coordinator: NSObject, HomeDelegate {
         var moc: NSManagedObjectContext
         var vm: HomeViewModel
-        
+
         func back() {
             vm.popToRoot()
         }
-        
+
         func saveRecord(
             url: URL,
             duration: String,
@@ -72,11 +72,10 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
             data.variance = variance
             try? moc.save()
         }
-        
+
         init(moc: NSManagedObjectContext, vm: HomeViewModel) {
             self.moc = moc
             self.vm = vm
         }
     }
 }
-

@@ -12,31 +12,31 @@ import CoreData
 struct LowServeTrajectoryView: View {
     @EnvironmentObject var vm: HomeViewModel
     @Environment(\.managedObjectContext) var moc
-    
+
     @State var showRepetitionSheet = false
     @State var selectedRepetition = 0
     @State var player: AVPlayer?
     @State var tutorial: AVPlayer?
-    
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "0")
     ) var recordOfAllTime: FetchedResults<RecordSkill>
-    
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "0")
     ) var latestDrill: FetchedResults<RecordSkill>
-    
+
     @State var recordOfTheMonth: [RecordSkill] = []
     @State var lowestOfTheMonth: [RecordSkill] = []
     @State var bestAvgOfTheMonth: [RecordSkill] = []
-    
+
     var body: some View {
         ForceOrientation(.portrait) {
             ZStack(alignment: .top) {
                 Color.greenMain.ignoresSafeArea(.all)
-                
+
                 VStack {
                     /** Card animation */
                     CardPlainView {
@@ -57,7 +57,7 @@ struct LowServeTrajectoryView: View {
                     }
                     .frame(height: 150)
                     .padding(.bottom, 16)
-                    
+
                     /** Card description */
                     ZStack {
                         Rectangle()
@@ -71,12 +71,12 @@ struct LowServeTrajectoryView: View {
                                     topTrailingRadius: 20
                                 )
                             )
-                        
+
                         VStack(spacing: 12) {
                             VideoPlayer(player: player)
                                 .frame(width: 358, height: 173)
                                 .cornerRadius(12)
-                            
+
                             ScrollView {
                                 VStack(spacing: 4) {
                                     HStack {
@@ -96,7 +96,7 @@ struct LowServeTrajectoryView: View {
                                     Divider()
                                 }
                                 .padding(.top, 12)
-                                
+
                                 VStack(spacing: 4) {
                                     HStack {
                                         Circle()
@@ -115,7 +115,7 @@ struct LowServeTrajectoryView: View {
                                     Divider()
                                 }
                                 .padding(.top, 12)
-                                
+
                                 VStack(spacing: 4) {
                                     HStack {
                                         Circle()
@@ -134,7 +134,7 @@ struct LowServeTrajectoryView: View {
                                     Divider()
                                 }
                                 .padding(.top, 12)
-                                
+
                                 VStack(alignment: .leading, spacing: 4) {
                                     HStack {
                                         HStack(alignment: .top, spacing: 4) {
@@ -148,7 +148,7 @@ struct LowServeTrajectoryView: View {
                                         .background(Color(red: 1, green: 0.69, blue: 0))
                                         .cornerRadius(12)
                                     }
-                                    
+
                                     Text(trajectoryTipsText)
                                         .font(Font.custom("SF Pro", size: 15))
                                         .foregroundStyle(.grayStroke6)
@@ -156,7 +156,7 @@ struct LowServeTrajectoryView: View {
                                     Divider()
                                 }
                                 .padding(.top, 12)
-                                
+
                                 CardView(action: {}, content: {
                                     VStack(alignment: .leading, spacing: 12) {
                                         VStack(alignment: .leading) {
@@ -167,7 +167,7 @@ struct LowServeTrajectoryView: View {
                                                 .font(Font.custom("SF Pro", size: 15))
                                                 .foregroundStyle(.grayStroke6)
                                         }
-                                        
+
                                         VStack(spacing: 2) {
                                             HStack {
                                                 TextAlignLeading(recordOfAllTime.count > 0 ? "\(recordOfAllTime[0].hitPerfect)" : "-")
@@ -176,7 +176,7 @@ struct LowServeTrajectoryView: View {
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
-                                            
+
                                             HStack {
                                                 TextAlignLeading(recordAllTimeText)
                                                 Spacer()
@@ -184,7 +184,7 @@ struct LowServeTrajectoryView: View {
                                             }
                                             .font(Font.custom("SF Pro", size: 15))
                                         }
-                                        
+
                                         VStack(spacing: 2) {
                                             HStack {
                                                 TextAlignLeading(latestDrill.count > 0 ? "\(latestDrill[0].hitPerfect)" : "-")
@@ -193,7 +193,7 @@ struct LowServeTrajectoryView: View {
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
-                                            
+
                                             HStack {
                                                 TextAlignLeading(latestDrillText)
                                                 Spacer()
@@ -203,12 +203,12 @@ struct LowServeTrajectoryView: View {
                                         }
                                     }
                                     .foregroundStyle(.neutralBlack)
-                                    
+
                                 })
                                 .frame(height: 150)
                                 .padding(.bottom, 26)
                                 .padding(.top, 24)
-                                
+
                                 CardView(action: {}, content: {
                                     VStack(alignment: .leading, spacing: 12) {
                                         VStack(alignment: .leading) {
@@ -219,7 +219,7 @@ struct LowServeTrajectoryView: View {
                                                 .font(Font.custom("SF Pro", size: 15))
                                                 .foregroundStyle(.grayStroke6)
                                         }
-                                        
+
                                         VStack(spacing: 2) {
                                             HStack {
                                                 TextAlignLeading("\(String(format: "%.2f", getLatestLowest(latestDrill))) cm")
@@ -228,7 +228,7 @@ struct LowServeTrajectoryView: View {
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
-                                            
+
                                             HStack {
                                                 TextAlignLeading(latestLowest)
                                                 Spacer()
@@ -236,7 +236,7 @@ struct LowServeTrajectoryView: View {
                                             }
                                             .font(Font.custom("SF Pro", size: 15))
                                         }
-                                        
+
                                         VStack(spacing: 2) {
                                             HStack {
                                                 TextAlignLeading("\(String(format: "%.2f", getMonthLowest(lowestOfTheMonth))) cm")
@@ -245,9 +245,9 @@ struct LowServeTrajectoryView: View {
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
-                                            
+
                                             HStack {
-                                                VStack{
+                                                VStack {
                                                     TextAlignLeading(lowestShotText)
                                                     TextAlignLeading(thisMonth)
                                                 }
@@ -261,12 +261,12 @@ struct LowServeTrajectoryView: View {
                                         }
                                     }
                                     .foregroundStyle(.neutralBlack)
-                                    
+
                                 })
                                 .frame(height: 150)
                                 .padding(.bottom, 40)
                                 .padding(.top, 24)
-                                
+
                                 VStack(alignment: .leading) {
                                     HStack {
                                         HStack(alignment: .top, spacing: 4) {
@@ -280,11 +280,11 @@ struct LowServeTrajectoryView: View {
                                         .background(Color.greenMain)
                                         .cornerRadius(12)
                                     }
-                                    
+
                                     VideoPlayer(player: tutorial)
                                         .frame(width: 358, height: 173)
                                         .cornerRadius(12)
-                                    
+
                                 }
 
                             }
@@ -296,7 +296,7 @@ struct LowServeTrajectoryView: View {
                     }
                 }
                 .padding(.top, getSafeArea().top - 24)
-                
+
                 /** Button record */
                 VStack {
                     Spacer()
@@ -324,7 +324,7 @@ struct LowServeTrajectoryView: View {
                     selectedRepetition: $selectedRepetition
                 )
                 .presentationDetents([.fraction(0.4)])
-                
+
             }
             .onAppear {
                 if let url = Bundle.main.url(forResource: "ServeTrajectory", withExtension: "mp4") {
@@ -332,15 +332,14 @@ struct LowServeTrajectoryView: View {
                     player?.play()
                 }
             }
-            
+
             .onAppear {
                 if let url = Bundle.main.url(forResource: "Tutorial", withExtension: "mp4") {
                     tutorial = AVPlayer(url: url)
                     tutorial?.play()
                 }
             }
-            
-            
+
         }
         .onDisappear {
             if vm.path.last == .Record {
@@ -361,22 +360,22 @@ struct LowServeTrajectoryView: View {
         }
         .onAppear {
             let levelPredicate = NSPredicate(format: "level == %@", "0")
-            
+
             let request: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
             let predicate = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
-            
+
             let request2: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
             let predicate2 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request2.sortDescriptors = [NSSortDescriptor(key: "minDistance", ascending: true)]
             request2.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate2])
-            
+
             let request3: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
             let predicate3 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request3.sortDescriptors = [NSSortDescriptor(key: "avgDistance", ascending: true)]
             request3.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate3])
-            
+
             do {
                 recordOfTheMonth = try moc.fetch(request)
                 lowestOfTheMonth = try moc.fetch(request2)
@@ -386,7 +385,7 @@ struct LowServeTrajectoryView: View {
             }
         }
     }
-    
+
     private func getAverate(_ data: [RecordSkill]) -> Double {
         if data.count == 0 {
             return 0
@@ -398,7 +397,7 @@ struct LowServeTrajectoryView: View {
             return Double(total/Double(data.count))
         }
     }
-    
+
     private func getLatestLowest(_ data: FetchedResults<RecordSkill>) -> Double {
         if data.count > 0 {
             return data[0].minDistance
@@ -406,7 +405,7 @@ struct LowServeTrajectoryView: View {
             return 0
         }
     }
-    
+
     private func getLatesAvg(_ data: FetchedResults<RecordSkill>) -> Double {
         if data.count > 0 {
             return data[0].avgDistance
@@ -414,7 +413,7 @@ struct LowServeTrajectoryView: View {
             return 0
         }
     }
-    
+
     private func getMonthBestAvg(_ data: [RecordSkill]) -> Double {
         if data.count > 0 {
             return data[0].avgDistance
@@ -422,7 +421,7 @@ struct LowServeTrajectoryView: View {
             return 0
         }
     }
-    
+
     private func getMonthLowest(_ data: [RecordSkill]) -> Double {
         if data.count > 0 {
             return data[0].minDistance
@@ -436,9 +435,9 @@ private struct RepetitionSheet: View {
     @EnvironmentObject var vm: HomeViewModel
     @Binding var isPresented: Bool
     @Binding var selectedRepetition: Int
-    
+
     @AppStorage("hitTargetApp") var hitTargetApp: Int = 0
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             TextAlignLeading(repetitionText)
@@ -446,7 +445,7 @@ private struct RepetitionSheet: View {
                 .foregroundColor(.neutralBlack)
                 .padding(.top, 18)
                 .padding(.horizontal, 16)
-            
+
             Picker("", selection: $selectedRepetition) {
                 Text(unlimitedText).tag(0)
                 Text("5").tag(5)
@@ -456,7 +455,7 @@ private struct RepetitionSheet: View {
             }
             .pickerStyle(.wheel)
             .padding(.horizontal, 16)
-            
+
             Divider()
             BtnPrimary(text: continueText) {
                 hitTargetApp = selectedRepetition

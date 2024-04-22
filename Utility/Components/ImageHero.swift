@@ -10,14 +10,14 @@ import SwiftUI
 struct ImgHero: View {
     var name: String
     var desc: String
-    
+
     var body: some View {
         VStack {
             Image(name)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 314)
-            
+
             Text(desc)
                 .font(Font.custom("SF Pro", size: 16))
                 .fontWeight(.medium)

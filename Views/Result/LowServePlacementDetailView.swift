@@ -14,55 +14,55 @@ struct LowServePlacementDetailView: View {
     @State var isPlay: Bool = false
     @State var player: AVPlayer?
     @State private var isPresenting = false
-    
-    @State private var itemWidth:Double = 0
+
+    @State private var itemWidth: Double = 0
     @State private var screenWith = UIScreen.main.bounds.width
-    
+
     @State private var isEditing = false
     @State private var editedName = ""
     @State private var isShare: Bool = false
-    
+
     @State private var attempData: [HitStatistics] = []
-    
+
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: RecordSkill.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)]) var database: FetchedResults<RecordSkill>
-    
+
     private struct HitStatistics: Identifiable {
         var id = UUID().uuidString
         var hitNumber: String
         var hitStatus: String
         var netDistance: Double
     }
-    
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "1")
     ) private var latestDrill: FetchedResults<RecordSkill>
-    
+
     let language = Locale.current.language.languageCode?.identifier ?? ""
     @State var previousDrill = ""
-    
+
     private func parseAttemp(_ data: String) -> [HitStatistics] {
         var hitStatisticsArray: [HitStatistics] = []
-        
+
         let components = data.components(separatedBy: ",")
         for component in components {
             // Split each component by colon
             let keyValue = component.components(separatedBy: ":")
-            
+
             // Check if there are exactly two components (key and value)
             if keyValue.count == 3 {
                 let hitNumber = keyValue[0]
                 let hitStatus = keyValue[1]
                 let netDistance = Double(keyValue[2]) ?? 0.0
-                
+
                 let hitStat = HitStatistics(hitNumber: hitNumber, hitStatus: hitStatus, netDistance: netDistance)
                 hitStatisticsArray.append(hitStat)
             }
         }
         return hitStatisticsArray
     }
-    
+
     var body: some View {
         ZStack {
             Color.greenMain.ignoresSafeArea(.container, edges: .top)
@@ -73,7 +73,7 @@ struct LowServePlacementDetailView: View {
                         .frame(height: getScreenBound().width * 0.5)
                         .padding(.horizontal, 16)
                 }
-                
+
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
@@ -86,7 +86,7 @@ struct LowServePlacementDetailView: View {
                                 topTrailingRadius: 20
                             )
                         )
-                    
+
                     ScrollView {
                         VStack {
                             VStack {
@@ -117,7 +117,7 @@ struct LowServePlacementDetailView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 22))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        
+
                                         Button {
                                             isEditing.toggle()
                                             updateItemName()
@@ -128,43 +128,43 @@ struct LowServePlacementDetailView: View {
                                     }
                                 }
                             }
-                            
+
                             VStack(spacing: 15) {
                                 TextAlignLeading("\(goodServePerformText) *cm")
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
-                                
+
                                 VStack(spacing: 15) {
                                     if attempData.count > 0 {
                                         ForEach(0..<((attempData.count + 9) / 10)) { row in
-                                            HStack(){
+                                            HStack {
                                                 ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
-                                                    VStack(){
+                                                    VStack {
                                                         Text(i.hitNumber)
                                                             .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 20)).frame(maxWidth: itemWidth)
                                                         Text(String(format: "%.1f", i.netDistance))
                                                             .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist",size: 10)).frame(maxWidth:itemWidth)
+                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 10)).frame(maxWidth: itemWidth)
                                                     }
                                                 }
                                             }
                                         }
                                     } else {
-                                        Text(noDataText).font(Font.custom( "Urbanist",size: 20))
+                                        Text(noDataText).font(Font.custom( "Urbanist", size: 20))
                                     }
                                 }
-                                
+
                                 ThickDividers(thickness: 1, color: .gray)
                             }
                             .padding(.top)
-                            
+
                             VStack(spacing: 25) {
                                 Text(placementQuality)
                                     .font(Font.custom("SF Pro", size: 17))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .foregroundColor(.neutralBlack)
-                                
+
                                 HStack {
                                     VStack(spacing: 8) {
                                         Text("\(item.hitTotal )")
@@ -176,7 +176,7 @@ struct LowServePlacementDetailView: View {
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     }
-                                    
+
                                     VStack(spacing: 8) {
                                         Text(item.duration ?? "00:00")
                                             .font(Font.custom("Urbanist-Medium", size: 34))
@@ -189,7 +189,7 @@ struct LowServePlacementDetailView: View {
                                     }
                                 }
                                 .padding(.trailing, 90)
-                                
+
                                 HStack {
                                     VStack(spacing: 8) {
                                         Text("\(item.hitPerfect)")
@@ -223,7 +223,7 @@ struct LowServePlacementDetailView: View {
                                     }
                                 }
                                 .padding(.trailing, 90)
-                                
+
                                 VStack(spacing: 10) {
                                     if latestDrill.count >= 2 {
                                         Text("\(item.hitPerfect - latestDrill[1].hitPerfect)")
@@ -248,14 +248,13 @@ struct LowServePlacementDetailView: View {
                                 ThickDividers(thickness: 1, color: .gray)
                             }
                             .padding(.top)
-                            
-                            
+
                             VStack(spacing: 25) {
                                 Text(shuttlecockDistanceLineText)
                                     .font(Font.custom("SF Pro", size: 17))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .foregroundColor(.neutralBlack)
-                                
+
                                 HStack {
                                     VStack(spacing: 8) {
                                         Text(String(format: "%.2f", Double(item.minDistance)))
@@ -267,7 +266,7 @@ struct LowServePlacementDetailView: View {
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     }
-                                    
+
                                     VStack(spacing: 8) {
                                         Text(String(format: "%.2f", Double(item.avgDistance)))
                                             .font(Font.custom("Urbanist-Medium", size: 34))
@@ -277,14 +276,11 @@ struct LowServePlacementDetailView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 17))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        
-                                        
-                                        
-                                        
+
                                     }
                                 }
                                 .padding(.trailing, 90)
-                                
+
                                 VStack(spacing: 10) {
                                     if latestDrill.count >= 2 {
                                         Text(String(format: "%.2f", Double(item.avgDistance - latestDrill[1].avgDistance)))
@@ -306,42 +302,42 @@ struct LowServePlacementDetailView: View {
                                             .foregroundColor(.neutralBlack)
                                     }
                                 }
-                                
+
                                 ThickDividers(thickness: 1, color: .gray)
-                                
+
                                 Text(placementType)
                                     .font(Font.custom("SF Pro", size: 17))
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .foregroundColor(.neutralBlack)
-                                
+
                                 VStack(spacing: 10) {
-                                    if(language == "id"){
+                                    if language == "id"{
                                         Text(item.variance ?? "")
                                             .font(Font.custom("Urbanist-Medium", size: 28))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                    }else{
-                                        if(item.variance == "Sangat Tersebar"){
+                                    } else {
+                                        if item.variance == "Sangat Tersebar"{
                                             Text("Very Scattered")
                                                 .font(Font.custom("Urbanist-Medium", size: 28))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
-                                        }else if(item.variance == "Cukup Tersebar"){
+                                        } else if item.variance == "Cukup Tersebar"{
                                             Text("Quite Scattered")
                                                 .font(Font.custom("Urbanist-Medium", size: 28))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
-                                        }else if(item.variance == "Sangat Terpusat"){
+                                        } else if item.variance == "Sangat Terpusat"{
                                             Text("Very Centralized")
                                                 .font(Font.custom("Urbanist-Medium", size: 28))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
-                                        }else if(item.variance == "Cukup Terpusat"){
+                                        } else if item.variance == "Cukup Terpusat"{
                                             Text("Quite Centralized")
                                                 .font(Font.custom("Urbanist-Medium", size: 28))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
-                                        }else{
+                                        } else {
                                             Text("-")
                                                 .font(Font.custom("Urbanist-Medium", size: 28))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -353,56 +349,56 @@ struct LowServePlacementDetailView: View {
                                         .frame(maxWidth: .infinity, alignment: .topLeading)
                                         .foregroundColor(.neutralBlack)
                                 }
-                                
+
                                 VStack(spacing: 10) {
-                                    if(language == "id"){
-                                        if(previousDrill != ""){
+                                    if language == "id"{
+                                        if previousDrill != ""{
                                             Text(previousDrill)
                                                 .font(Font.custom("Urbanist-Medium", size: 28))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
-                                        }else{
+                                        } else {
                                             Text("-")
                                                 .font(Font.custom("Urbanist-Medium", size: 28))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
                                         }
-                                        
-                                    }else{
-                                        if(previousDrill != ""){
-                                            if(previousDrill == "Sangat Tersebar"){
+
+                                    } else {
+                                        if previousDrill != ""{
+                                            if previousDrill == "Sangat Tersebar"{
                                                 Text("Very Scattered")
                                                     .font(Font.custom("Urbanist-Medium", size: 28))
                                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                                     .foregroundColor(.neutralBlack)
-                                            }else if(previousDrill == "Cukup Tersebar"){
+                                            } else if previousDrill == "Cukup Tersebar"{
                                                 Text("Quite Scattered")
                                                     .font(Font.custom("Urbanist-Medium", size: 28))
                                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                                     .foregroundColor(.neutralBlack)
-                                            }else if(previousDrill == "Sangat Terpusat"){
+                                            } else if previousDrill == "Sangat Terpusat"{
                                                 Text("Very Centralized")
                                                     .font(Font.custom("Urbanist-Medium", size: 28))
                                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                                     .foregroundColor(.neutralBlack)
-                                            }else if(previousDrill == "Cukup Terpusat"){
+                                            } else if previousDrill == "Cukup Terpusat"{
                                                 Text("Quite Centralized")
                                                     .font(Font.custom("Urbanist-Medium", size: 28))
                                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                                     .foregroundColor(.neutralBlack)
-                                            }else{
+                                            } else {
                                                 Text("-")
                                                     .font(Font.custom("Urbanist-Medium", size: 28))
                                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                                     .foregroundColor(.neutralBlack)
                                             }
-                                        }else{
+                                        } else {
                                             Text("-")
                                                 .font(Font.custom("Urbanist-Medium", size: 28))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                                                 .foregroundColor(.neutralBlack)
                                         }
-                                        
+
                                     }
                                     Text(previousDrillText)
                                         .font(Font.custom("Urbanist", size: 17))
@@ -410,13 +406,11 @@ struct LowServePlacementDetailView: View {
                                         .foregroundColor(.neutralBlack)
                                         .padding(.bottom)
                                 }
-                                
-                                
+
                             }
                             //                        .padding(.top)
                             .padding(.top)
-                            
-                            
+
                             //                            .background(Color.greenBasicMain.opacity(0.2))
                         }
                     }
@@ -426,7 +420,7 @@ struct LowServePlacementDetailView: View {
                     .scrollIndicators(.hidden)
                     .ignoresSafeArea(.container, edges: .bottom)
                 }
-                
+
                 .navigationTitle("")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbarColorScheme(.dark, for: .navigationBar)
@@ -461,16 +455,16 @@ struct LowServePlacementDetailView: View {
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                         }
-                        
+
                     }
                 }
-                
+
             }
             .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])
         }
-        
+
     }
-    
+
     func updateItemName() {
         if let selectedItem = database.first(where: { $0 == item }) {
             selectedItem.name = editedName
@@ -486,7 +480,7 @@ struct LowServePlacementDetailView: View {
 struct ThickDividers: View {
     var thickness: CGFloat
     var color: Color
-    
+
     var body: some View {
         Rectangle()
             .fill(color)
@@ -494,11 +488,8 @@ struct ThickDividers: View {
     }
 }
 
-
 extension Color {
     static func backgroundColor(for level: String?) -> Color {
         return Color.greenMain.opacity(0.8)
     }
 }
-
-

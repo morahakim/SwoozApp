@@ -10,9 +10,9 @@ import SwiftUI
 struct CameraGuideView: View {
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("isOnRecord") var isOnRecord = true
-    
+
     @State var step = 0
-    
+
     var body: some View {
         ZStack {
             VStack {
@@ -27,7 +27,7 @@ struct CameraGuideView: View {
                 }
                 .animation(.easeInOut, value: step)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
+
                 BtnPrimary(text: "Continue") {
 //                    if step < 2 {
 //                        step += 1

@@ -10,11 +10,11 @@ import WatchConnectivity
 import AVFoundation
 
 struct ContentView: View {
-    
+
     @State var showingAlert = false
-    
+
     @ObservedObject var counter = Counter.shared
-    
+
     @AppStorage("hitFailApp") var hitFailApp = 0
     @AppStorage("hitTotalApp") var hitTotalApp = 0
     @AppStorage("hitTargetApp") var hitTargetApp = 0
@@ -24,45 +24,44 @@ struct ContentView: View {
     @AppStorage("minApp") var minApp = 0.0
     @AppStorage("menuStateApp") var menuStateApp = ""
     @AppStorage("durationApp") var durationApp = ""
-    
-    
+
     @AppStorage("videoUrlApp") var videoUrlApp = ""
     @AppStorage("typeApp") var typeApp = ""
     @AppStorage("levelApp") var levelApp = ""
-    
+
     @State var countdownTimer: Timer?
     @State var countdownValue = 3
     @State var timer: Timer?
     @State var remainingTime = 10 * 60 + 1
-    
+
     @State var labelCountdown = ""
-    
+
     @State var textCountdown = ""
-    
-    @State var urlVideoSource : AVAsset?
-    @State var urlVideo : URL? {
+
+    @State var urlVideoSource: AVAsset?
+    @State var urlVideo: URL? {
         didSet {
             updateVideoSource()
         }
     }
-    
-    func updateVideoSource(){
-        if(urlVideo != nil){
+
+    func updateVideoSource() {
+        if urlVideo != nil {
             urlVideoSource = AVAsset(url: urlVideo!)
-        }else{
+        } else {
             urlVideoSource = nil
         }
     }
-    
+
     func startCountdown() {
-        
+
         labelCountdown = ""
         textCountdown = ""
         timer?.invalidate()
         countdownTimer?.invalidate()
         countdownValue = 3
         remainingTime = 20 * 60 + 1
-        
+
         if videoUrlApp == "exist" {
             // Start reading the video.
             countdownValue = 0
@@ -71,20 +70,20 @@ struct ContentView: View {
             // Start live camera capture.
             labelCountdown = String(countdownValue)
         }
-        
-        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timerr in
+
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             updateCountdownLabel()
         }
-        
+
     }
-    
+
     func updateCountdownLabel() {
         countdownValue -= 1
         if countdownValue > 0 {
             labelCountdown = String(countdownValue)
         } else if countdownValue == 0 {
             labelCountdown = goText
-        }else {
+        } else {
             labelCountdown = ""
             remainingTime -= 1
             if remainingTime > -1 {
@@ -101,17 +100,17 @@ struct ContentView: View {
         print(labelCountdown)
         print(textCountdown)
     }
-    
-    func stop(){
+
+    func stop() {
         print("DBUG : STOP")
         counter.menuStateSend(menuState: "result")
     }
-    
+
     var body: some View {
-        VStack(){
-            if(menuStateApp == "placement" || menuStateApp == ""){
+        VStack {
+            if menuStateApp == "placement" || menuStateApp == ""{
                 //                StartPage()
-                VStack(spacing:0) {
+                VStack(spacing: 0) {
                     ZStack {
                         Circle()
                             .frame(width: 140, height: 140)
@@ -124,7 +123,7 @@ struct ContentView: View {
                         Circle()
                             .frame(width: 110, height: 110)
                             .foregroundColor(Color.greenMain.opacity(0.3))
-                        
+
                         Circle()
                             .frame(width: 90, height: 90)
                             .foregroundColor(Color.greenMain.opacity(0.5))
@@ -141,15 +140,15 @@ struct ContentView: View {
                                     .font(.system(size: 24))
                             }
                             .buttonStyle(.plain)
-                        }else{
+                        } else {
                             Text(
                                 waitingText)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.white)
                             .font(.system(size: 12))
-                            
+
                         }
-                        
+
                     }
                     if menuStateApp == "placement" && typeApp != "" && levelApp != ""{
 //                        Text(typeApp)
@@ -160,7 +159,7 @@ struct ContentView: View {
                             .font(.system(size: 12)).lineLimit(nil)
                             .padding(.bottom, 0)
                             .foregroundColor(Color.greenMain)
-                    }else{
+                    } else {
                         Text(pleaseChooseText)
                             .font(.system(size: 12)).lineLimit(nil)
                             .padding(.bottom, 0)
@@ -168,33 +167,33 @@ struct ContentView: View {
                     }
                 }
                 .navigationBarBackButtonHidden(true)
-                .navigationTitle("SWOOZ").navigationBarTitleDisplayMode(.inline).onAppear{
-                    
+                .navigationTitle("SWOOZ").navigationBarTitleDisplayMode(.inline).onAppear {
+
                 }
-            }else if((menuStateApp == "stillPlay" || menuStateApp == "restart") && videoUrlApp != ""){
-                VStack(){
-                    if(labelCountdown == "3" || labelCountdown == "2" || labelCountdown == "1" || labelCountdown == goText){
-                        VStack(){
+            } else if (menuStateApp == "stillPlay" || menuStateApp == "restart") && videoUrlApp != ""{
+                VStack {
+                    if labelCountdown == "3" || labelCountdown == "2" || labelCountdown == "1" || labelCountdown == goText {
+                        VStack {
                             Text(labelCountdown)
                                 .foregroundColor(Color.greenMain)
                                 .font(.system(size: 48))
                                 .fontWeight(.semibold)
                         }
-                        
-                    }else{
+
+                    } else {
                         CountingPageView(textCountdown: $textCountdown)
                     }
-                }.onAppear(){
+                }.onAppear {
                     startCountdown()
-                }.onDisappear(){
+                }.onDisappear {
                     timer?.invalidate()
                     countdownTimer?.invalidate()
                 }
-                
-            }else if(menuStateApp == "result"){
+
+            } else if menuStateApp == "result"{
 
                 NavigationView(content: {
-                    ScrollView(){
+                    ScrollView {
                         VStack(alignment: .leading, spacing: 15) {
                             HStack(spacing: 20) {
                                 VStack(alignment: .leading) {
@@ -215,47 +214,46 @@ struct ContentView: View {
                                     Text(tryingText)
                                 }
                             }
-                            
-                            if(typeApp == "0"){
+
+                            if typeApp == "0"{
                                 VStack(alignment: .leading) {
                                     Text(String(format: "%.2f cm", averageApp))
                                         .font(.system(size: 23))
                                     Text(averageHeightText)
-                                    
+
                                 }
-                            }else if(typeApp == "1"){
+                            } else if typeApp == "1"{
                                 VStack(alignment: .leading) {
                                     Text(String(format: "%.2f cm", averageApp))
                                         .font(.system(size: 23))
                                     Text(averageDistance)
-                                    
+
                                 }
                             }
-                            
-                            if(typeApp == "0"){
+
+                            if typeApp == "0"{
                                 VStack(alignment: .leading) {
                                     Text(String(format: "%.2f cm", minApp))
                                         .font(.system(size: 23))
                                     Text(lowestShotText)
-                                    
+
                                 }
-                            }else if(typeApp == "1"){
+                            } else if typeApp == "1"{
                                 VStack(alignment: .leading) {
                                     Text(String(format: "%.2f cm", minApp))
                                         .font(.system(size: 23))
                                     Text(closestText)
-                                    
+
                                 }
                             }
-                            
+
                             VStack(alignment: .leading) {
                                 Text(durationApp)
                                     .font(.system(size: 23))
                                 Text(durationText)
-                                
+
                             }
-                            
-                            
+
                             Button {
                                 counter.menuStateSend(menuState: "")
                                 menuStateApp = ""
@@ -265,24 +263,24 @@ struct ContentView: View {
                             } label: {
                                 Text(doneText)
                             }
-                            
+
                         }
                         .foregroundColor(Color.greenMain)
                     }
-                    
+
                 })
-                
-            }else{
+
+            } else {
                 StartPage()
             }
         }
-        .onAppear{
+        .onAppear {
             menuStateApp = ""
             typeApp = ""
             levelApp = ""
             counter.menuStateSend(menuState: "")
         }
-        
+
     }
 }
 

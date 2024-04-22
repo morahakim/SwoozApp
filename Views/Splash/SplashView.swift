@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SplashView: View {
     @Binding var isShow: Bool
-    
+
     var body: some View {
         ZStack {
             Color(red: 0.13, green: 0.75, blue: 0.45)
@@ -33,7 +33,7 @@ struct SplashView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 isShow = false
             }
-        } 
+        }
     }
 }
 
