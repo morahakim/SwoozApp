@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavbarBack: View {
     let action: () -> Void
-    let bg: Color
+    let color: Color
 
     var body: some View {
         HStack(spacing: 15) {
@@ -24,7 +24,7 @@ struct NavbarBack: View {
         }
         .padding(.top, getSafeArea().top + 10)
         .padding([.horizontal, .bottom], 15)
-        .background(bg)
+        .background(color)
         .ignoresSafeArea(.container, edges: .top)
     }
 }

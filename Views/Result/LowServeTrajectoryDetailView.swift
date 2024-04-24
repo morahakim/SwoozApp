@@ -26,7 +26,9 @@ struct LowServeTrajectoryDetailView: View {
     @State private var attempData: [HitStatistics] = []
 
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: RecordSkill.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)]) var database: FetchedResults<RecordSkill>
+    @FetchRequest(entity: RecordSkill.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)])
+    var database: FetchedResults<RecordSkill>
 
     private struct HitStatistics: Identifiable {
         var id = UUID().uuidString
@@ -89,7 +91,7 @@ struct LowServeTrajectoryDetailView: View {
                         VStack {
                             VStack {
                                 HStack {
-                                    Text(chooseLevelTextOne ?? "-")
+                                    Text(chooseLevelTextOne )
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundColor(.white)
                                         .padding(.horizontal, 6)
@@ -143,14 +145,19 @@ struct LowServeTrajectoryDetailView: View {
                                     if attempData.count > 0 {
                                         ForEach(0..<((attempData.count + 9) / 10)) { row in
                                             HStack {
-                                                ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
+                                                ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { index in
                                                     VStack {
-                                                        Text(i.hitNumber)
-                                                            .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 20)).frame(maxWidth: itemWidth)
-                                                        Text(String(format: "%.1f", i.netDistance))
-                                                            .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 10)).frame(maxWidth: itemWidth)
+                                                        Text(index.hitNumber)
+                                                            .foregroundStyle(index.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
+                                                            .font(Font.custom(
+                                                                index.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist",
+                                                                              size: 20)).frame(maxWidth: itemWidth)
+                                                        Text(String(format: "%.1f", index.netDistance))
+                                                            .foregroundStyle(
+                                                                index.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
+                                                            .font(Font.custom(
+                                                                index.hitStatus == "Perfect" ?
+                                                                "Urbanist-Medium" : "Urbanist", size: 10)).frame(maxWidth: itemWidth)
                                                     }
                                                 }
                                             }

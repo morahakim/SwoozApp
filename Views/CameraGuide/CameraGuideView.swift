@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CameraGuideView: View {
-    @EnvironmentObject var vm: HomeViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @AppStorage("isOnRecord") var isOnRecord = true
 
     @State var step = 0
@@ -36,7 +36,7 @@ struct CameraGuideView: View {
 //                        vm.path.append(.Record)
 //                    }
                     isOnRecord = true
-                    vm.path.append(.Record)
+                    homeViewModel.path.append(.record)
                 }
                 .frame(width: 300)
             }

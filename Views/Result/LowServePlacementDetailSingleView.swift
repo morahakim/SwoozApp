@@ -27,7 +27,10 @@ struct LowServePlacementDetailSingleView: View {
     @State private var attempData: [HitStatistics] = []
 
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: RecordSkill.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)]) var database: FetchedResults<RecordSkill>
+    @FetchRequest(entity: RecordSkill.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name,
+                                                     ascending: true)])
+    var database: FetchedResults<RecordSkill>
 
     private struct HitStatistics: Identifiable {
         var id = UUID().uuidString
@@ -70,17 +73,6 @@ struct LowServePlacementDetailSingleView: View {
 
                     if item.url != nil {
                         VideoPlayer(player: player) {
-                            //                        if !isPlay {
-                            //                            Image("PlayButton")
-                            //                                .resizable()
-                            //                                .frame(width: 60, height: 60)
-                            //                                .foregroundColor(.greenMain)
-                            //                                .padding()
-                            //                                .onTapGesture {
-                            //                                    isPlay.toggle()
-                            //                                    player?.seek(to: .zero)
-                            //                                }
-                            //                        }
                         }
                     }
                     ZStack {
@@ -100,7 +92,7 @@ struct LowServePlacementDetailSingleView: View {
                             VStack {
                                 VStack {
                                     HStack {
-                                        Text(chooseLevelTextTwo ?? "-")
+                                        Text(chooseLevelTextTwo )
                                             .font(Font.custom("SF Pro", size: 12))
                                             .foregroundColor(.white)
                                             .padding(.horizontal, 6)
@@ -147,11 +139,18 @@ struct LowServePlacementDetailSingleView: View {
                                         if attempData.count > 0 {
                                             ForEach(0..<((attempData.count + 9) / 10)) { row in
                                                 HStack {
-                                                    ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
-                                                        Text(i.hitNumber)
-                                                            .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 20)).frame(maxWidth: itemWidth)
-                                                    }
+                                                    ForEach(
+                                                        attempData[row * 10..<min((row + 1) * 10,
+                                                                                  attempData.count)]) { index in
+                                                                                      Text(index.hitNumber)
+                                                                                          .foregroundStyle(
+                                                                                            index.hitStatus == "Perfect" ?
+                                                                                            Color.neutralBlack : Color.grayStroke6)
+                                                                                          .font(Font.custom(
+                                                                                            index.hitStatus == "Perfect" ?
+                                                                                            "Urbanist-Medium" :
+                                                                                                "Urbanist", size: 20)).frame(maxWidth: itemWidth)
+                                                                                  }
                                                 }
                                             }
                                         } else {
@@ -287,10 +286,12 @@ struct LowServePlacementDetailSingleView: View {
 
                                     VStack(spacing: 10) {
                                         if latestDrill.count >= 2 {
-                                            Text(String(format: "%.2f", Double(item.avgDistance - latestDrill[1].avgDistance)))
-                                                .font(Font.custom("Urbanist", size: 17))
-                                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                                                .foregroundColor(.neutralBlack)
+                                            Text(String(format: "%.2f",
+                                                        Double(item.avgDistance -
+                                                               latestDrill[1].avgDistance)))
+                                            .font(Font.custom("Urbanist", size: 17))
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .foregroundColor(.neutralBlack)
                                             Text("\(averageProgressText) \((item.avgDistance - latestDrill[1].avgDistance) < 0 ? keepDecreasing : keepIncreasing)")
                                                 .font(Font.custom("SF Pro", size: 12))
                                                 .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -338,14 +339,10 @@ struct LowServePlacementDetailSingleView: View {
                                     }
 
                                 }
-                                //                        .padding(.top)
                                 .padding(.top)
-
-                                //                            .background(Color.greenBasicMain.opacity(0.2))
                             }
                         }
                         .padding()
-                        //                .padding(.top, getSafeArea().top + 20)
                     }
 
                     .navigationTitle("")
@@ -380,7 +377,7 @@ struct LowServePlacementDetailSingleView: View {
                 VStack {
                     NavbarBack(action: {
                         isShowDetail.toggle()
-                    }, bg: .greenMain)
+                    }, color: .greenMain)
                     Spacer()
                 }.ignoresSafeArea(.all)
             }

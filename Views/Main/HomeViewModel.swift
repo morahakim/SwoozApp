@@ -8,14 +8,14 @@
 import SwiftUI
 
 enum ViewPath {
-    case RotateToLandscape
-    case CameraGuide
-    case Record
-    case LoadingRecord
-    case RotateToPotrait
-    case Technique
-    case LowServeTrajectory
-    case LowServePlacement
+    case rotateToLandscape
+    case cameraGuide
+    case record
+    case loadingRecord
+    case rotateToPotrait
+    case technique
+    case lowServeTrajectory
+    case lowServePlacement
 }
 
 class HomeViewModel: ObservableObject {
@@ -24,21 +24,21 @@ class HomeViewModel: ObservableObject {
     @ViewBuilder
     static func viewForDestination(_ path: ViewPath) -> some View {
         switch path {
-        case .RotateToLandscape:
+        case .rotateToLandscape:
             RotateToLandscapeView()
-        case .CameraGuide:
+        case .cameraGuide:
             CameraGuideView()
-        case .Record:
+        case .record:
             RecordView()
-        case .LoadingRecord:
+        case .loadingRecord:
             LoadingRecordView()
-        case .RotateToPotrait:
+        case .rotateToPotrait:
             RotateToPotraitView()
-        case .Technique:
+        case .technique:
             TechniqueView()
-        case .LowServeTrajectory:
+        case .lowServeTrajectory:
             LowServeTrajectoryView()
-        case .LowServePlacement:
+        case .lowServePlacement:
             LowServePlacementView()
         }
     }
@@ -60,7 +60,7 @@ class HomeViewModel: ObservableObject {
     }
 
     func goToPage(_ page: ViewPath) {
-        var defaultPath: [ViewPath] = [.CameraGuide, .Record]
+        var defaultPath: [ViewPath] = [.cameraGuide, .record]
         if let index = defaultPath.firstIndex(of: page) {
             defaultPath.removeLast(defaultPath.count - (index + 1))
             path = defaultPath

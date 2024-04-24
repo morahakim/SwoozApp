@@ -365,7 +365,7 @@ struct LowServeTrajectoryDetailSingleView: View {
                 NavbarBack(action: {
                     isDetail.toggle()
                     isMoveToDetail.toggle()
-                }, bg: .greenMain)
+                }, color: .greenMain)
                 Spacer()
             }
         }

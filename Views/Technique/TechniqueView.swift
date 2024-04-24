@@ -37,9 +37,9 @@ struct TechniqueView: View {
                         CardView(action: {
                             if !d.isLock {
                                 if d.id == 0 {
-                                    vm.path.append(.LowServeTrajectory)
+                                    vm.path.append(.lowServeTrajectory)
                                 } else if d.id == 1 {
-                                    vm.path.append(.LowServePlacement)
+                                    vm.path.append(.lowServePlacement)
                                 }
                                 techniqueId = d.id
                                 techniqueName = d.name

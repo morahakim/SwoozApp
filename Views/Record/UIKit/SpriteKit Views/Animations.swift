@@ -101,7 +101,10 @@ extension AnimatedTransitioning where Self: UIView {
             let remainingDurations = Array(durations.dropFirst())
             if remainingTransitions.isEmpty {
                 Timer.scheduledTimer(withTimeInterval: delayBetween, repeats: false) { _ in
-                    view.performTransitions(remainingTransitions, durations: remainingDurations, delayBetween: delayBetween, completion: completion)
+                    view.performTransitions(remainingTransitions,
+                                            durations: remainingDurations,
+                                            delayBetween: delayBetween,
+                                            completion: completion)
                 }
             } else {
                 completion?()

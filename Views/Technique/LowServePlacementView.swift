@@ -392,14 +392,14 @@ struct LowServePlacementView: View {
 
         }
         .onDisappear {
-            if vm.path.last == .Record {
+            if vm.path.last == .record {
                 UIDevice.current.setValue(
                     UIInterfaceOrientation.portrait.rawValue,
                     forKey: "orientation"
                 )
                 AppDelegate.orientationLock = .portrait
                 player?.pause()
-            } else if vm.path.last == .RotateToLandscape {
+            } else if vm.path.last == .rotateToLandscape {
                 UIDevice.current.setValue(
                     UIInterfaceOrientation.landscapeRight.rawValue,
                     forKey: "orientation"
@@ -510,7 +510,7 @@ private struct RepetitionSheet: View {
             BtnPrimary(text: continueText) {
                 hitTargetApp = selectedRepetition
                 isPresented.toggle()
-                vm.path.append(.RotateToLandscape)
+                vm.path.append(.rotateToLandscape)
             }
             .padding(.horizontal, 16)
         }

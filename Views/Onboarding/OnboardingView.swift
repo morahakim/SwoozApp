@@ -66,14 +66,14 @@ struct OnBoardingView: View {
 
                 /** onboarding indicator */
                 VStack {
-                    GeometryReader { gr in
+                    GeometryReader { geometry in
                         HStack(alignment: .center, spacing: 8) {
-                            ForEach(0 ..< onboardingData.count, id: \.self) { i in
+                            ForEach(0 ..< onboardingData.count, id: \.self) { index in
                                 Circle()
                                     .frame(width: 10, height: 10)
                                     .foregroundColor(
                                         Color(red: 0.13, green: 0.75, blue: 0.45)
-                                            .opacity(step == i ? 1 : 0.3)
+                                            .opacity(step == index ? 1 : 0.3)
                                     )
                             }
                         }
@@ -82,8 +82,8 @@ struct OnBoardingView: View {
                         .background(Color(red: 0.98, green: 0.99, blue: 0.98))
                         .cornerRadius(50)
                         .position(
-                            x: gr.size.width * 0.5,
-                            y: gr.size.height * 0.75
+                            x: geometry.size.width * 0.5,
+                            y: geometry.size.height * 0.75
                         )
                     }
                 }

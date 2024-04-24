@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var vm = HomeViewModel()
+    @StateObject var viewModel = HomeViewModel()
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(key: "datetime", ascending: false)
     ]) var list: FetchedResults<RecordSkill>
@@ -46,7 +46,7 @@ struct HomeView: View {
                     }
             }
         } else {
-            NavigationStack(path: $vm.path) {
+            NavigationStack(path: $viewModel.path) {
                 ZStack {
                     if list.count > 0 {
                         VStack {
@@ -76,7 +76,7 @@ struct HomeView: View {
                                         .padding(.bottom)
 
                                         Button {
-                                            vm.path.append(contentsOf: [.Technique, .LowServeTrajectory])
+                                            viewModel.path.append(contentsOf: [.technique, .lowServeTrajectory])
                                         } label: {
                                             ZStack {
                                                 Rectangle()
@@ -97,16 +97,27 @@ struct HomeView: View {
 //                                    Text(item.result!)
                                     if item.level == "0" {
                                         NavigationLink(destination: LowServeTrajectoryDetailView(item: item)) {
-                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitPerfect, hitFail: item.hitFail, level: item.level)
+                                            ItemVideoView(url: item.url,
+                                                          name: item.name, date: item.datetime,
+                                                          hitTarget: item.hitTotal,
+                                                          hitSuccess: item.hitPerfect,
+                                                          hitFail: item.hitFail,
+                                                          level: item.level)
                                         }
                                     } else {
                                         NavigationLink(destination: LowServePlacementDetailView(item: item)) {
-                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitPerfect, hitFail: item.hitFail, level: item.level)
+                                            ItemVideoView(url: item.url,
+                                                          name: item.name,
+                                                          date: item.datetime,
+                                                          hitTarget: item.hitTotal,
+                                                          hitSuccess: item.hitPerfect,
+                                                          hitFail: item.hitFail,
+                                                          level: item.level)
                                         }
                                     }
                                 }
-                                .onDelete { i in
-                                    let itemToDelete = i.map { list[$0] }
+                                .onDelete { index in
+                                    let itemToDelete = index.map { list[$0] }
                                     for item in itemToDelete {
                                         moc.delete(item)
                                     }
@@ -141,7 +152,7 @@ struct HomeView: View {
                         Spacer()
                         VStack(alignment: .center, spacing: 4) {
                             BtnPrimary(text: onBoardingButtonText) {
-                                vm.path.append(.Technique)
+                                viewModel.path.append(.technique)
                             }
                         }
                         .padding(.horizontal, 16)
@@ -176,7 +187,7 @@ struct HomeView: View {
                 }
             }
             .preferredColorScheme(.light)
-            .environmentObject(vm)
+            .environmentObject(viewModel)
         }
     }
 }
