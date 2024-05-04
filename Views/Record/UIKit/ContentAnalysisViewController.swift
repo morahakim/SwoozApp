@@ -13,19 +13,7 @@ import ReplayKit
 
 // TODO: buat delegate function save
 protocol ContentAnalysisDelegate: AnyObject {
-    func saveRecord(url: URL,
-                    duration: String,
-                    hitFail: Int,
-                    hitPerfect: Int,
-                    hitSuccess: Int,
-                    hitTarget: Int,
-                    hitTotal: Int,
-                    level: String,
-                    result: String,
-                    minDistance: Double,
-                    avgDistance: Double,
-                    variance: String
-    )
+    func saveRecord(recordData: RecordData)
 }
 
 class ContentAnalysisViewController: UIViewController,

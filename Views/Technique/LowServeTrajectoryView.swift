@@ -391,8 +391,8 @@ struct LowServeTrajectoryView: View {
             return 0
         } else {
             var total: Double = 0.0
-            for e in data {
-                total += Double(e.hitPerfect)
+            for element in data {
+                total += Double(element.hitPerfect)
             }
             return Double(total/Double(data.count))
         }
