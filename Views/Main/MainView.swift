@@ -8,9 +8,9 @@
 import SwiftUI
 
 enum Path: String {
-    case Recording
-    case Home
-    case Statistic
+    case recording
+    case home
+    case statistic
 }
 
 struct MainView: View {

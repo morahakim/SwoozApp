@@ -134,7 +134,6 @@ struct ContentView: View {
                             Button {
                                 videoUrlApp = ""
                                 counter.menuStateSend(menuState: "stillPlay")
-                                //                                       print("DBUG : ",menuStateApp," DBUG")
                             } label: {
                                 Text(startText)
                                     .font(.system(size: 24))

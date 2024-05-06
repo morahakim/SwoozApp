@@ -1,5 +1,12 @@
 disabled_rules:
 - file_length
+function_body_length:
+ - 100 # warning
+ - 150 #error
+identifier_name:
+  excluded:
+    - x
+    - y
 type_body_length:
   - 350 # warning
   - 400 # error

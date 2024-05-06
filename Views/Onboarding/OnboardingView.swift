@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnBoardingView: View {
     @AppStorage("isOnBoarding") var isOnBoarding: Bool = true
-    @AppStorage("path") var path: Path = .Home
+    @AppStorage("path") var path: Path = .home
     @State private var step = 0
 
     let transition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
@@ -28,7 +28,7 @@ struct OnBoardingView: View {
                         Spacer()
                         Button {
                             isOnBoarding = false
-                            path = .Recording
+                            path = .recording
                         } label: {
                             Text("Skip")
                                 .font(Font.custom("SF Pro", size: 17))
@@ -38,27 +38,6 @@ struct OnBoardingView: View {
 
                     /** onboarding image */
                     TabView(selection: $step) {
-//                        ImgHero(
-//                            tag: 0,
-//                            name: "Onboarding0",
-//                            desc: onboardingData[0],
-//                            transition: transition,
-//                            width: 250
-//                        )
-//                        ImgHero(
-//                            tag: 1,
-//                            name: "Onboarding1",
-//                            desc: onboardingData[1],
-//                            transition: transition,
-//                            width: 350
-//                        )
-//                        ImgHero(
-//                            tag: 2,
-//                            name: "Onboarding2",
-//                            desc: onboardingData[2],
-//                            transition: transition,
-//                            width: 250
-//                        )
                     }
                     .animation(.easeInOut, value: step)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
@@ -93,7 +72,7 @@ struct OnBoardingView: View {
                     Button {
                         if step == 2 {
                             isOnBoarding = false
-                            path = .Recording
+                            path = .recording
                         } else {
                             step += 1
                         }
@@ -107,33 +86,6 @@ struct OnBoardingView: View {
     }
 }
 
-// struct ImgHero: View {
-//    var tag: Int
-//    var name: String
-//    var desc: String
-//    var transition: AnyTransition
-//    
-//    var width: CGFloat = 300
-//    
-//    var body: some View {
-//        VStack {
-//            Image(name)
-//                .resizable()
-//                .scaledToFit()
-//                .frame(width: width)
-//                .padding(.bottom, 24)
-//            
-//            Text(desc)
-//                .font(Font.custom("SF Pro", size: 15))
-//                .multilineTextAlignment(.center)
-//                .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
-//                .frame(width: 358)
-//        }
-//        .offset(y: -100)
-//        .tag(tag)
-//        .transition(transition)
-//    }
-// }
 
 struct BtnNext: View {
     var body: some View {
