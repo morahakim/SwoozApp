@@ -50,7 +50,21 @@ final class Counter: ObservableObject {
 
     init(session: WCSession = .default) {
         print("DBUG : RECEIVED INIT C")
-        self.delegate = SessionDelegater(countSubject: subject, hitTotalSubject: totalSubject, hitTargetSubject: targetSubject, hitSuccessSubject: successSubject, hitPerfectSubject: perfectSubject, hitFailSubject: failSubject, durationSubject: durationSubject, menuStateSubject: menuSubject, videoUrlSubject: videoUrlSubject, typeSubject: typeSubject, levelSubject: levelSubject, averageSubject: averageSubject, minSubject: minSubject)
+        self.delegate = SessionDelegater(
+                            countSubject: subject,
+                            hitTotalSubject: totalSubject,
+                            hitTargetSubject: targetSubject,
+                            hitSuccessSubject: successSubject,
+                            hitPerfectSubject: perfectSubject,
+                            hitFailSubject: failSubject,
+                            durationSubject: durationSubject,
+                            menuStateSubject: menuSubject,
+                            videoUrlSubject: videoUrlSubject,
+                            typeSubject: typeSubject,
+                            levelSubject: levelSubject,
+                            averageSubject: averageSubject,
+                            minSubject: minSubject
+                        )
         self.session = session
         self.session.delegate = self.delegate
         self.session.activate()

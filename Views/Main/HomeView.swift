@@ -105,7 +105,7 @@ struct HomeView: View {
                                                           level: item.level)
                                         }
                                     } else {
-                                        NavigationLink(destination: LowServePlacementDetailView(item: item)) {
+                                        NavigationLink(destination: LowServeDetailView(item: item)) {
                                             ItemVideoView(url: item.url,
                                                           name: item.name,
                                                           date: item.datetime,

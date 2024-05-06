@@ -1,6 +1,6 @@
 /*
  See LICENSE folder for this sample’s licensing information.
- 
+
  Abstract:
  The app's home view controller that displays instructions and camera options.
  */
@@ -31,6 +31,7 @@ protocol HomeDelegate: AnyObject {
 }
 
 class HomeViewController: UIViewController, ContentAnalysisDelegate {
+
     let localStorage = LocalStorage()
 
     let motionManager = CMMotionManager()
@@ -83,8 +84,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             liveCamera()
         } else {
             print("NOT RECORD")
-//            menuStateApp = "placement"
-//            contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
+            //            menuStateApp = "placement"
+            //            contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
             latestStatus = ""
         }
     }
@@ -100,30 +101,19 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         print("Stop Recording!")
     }
 
-    func saveRecord(url: URL,
-                    duration: String,
-                    hitFail: Int,
-                    hitPerfect: Int,
-                    hitSuccess: Int,
-                    hitTarget: Int,
-                    hitTotal: Int,
-                    level: String,
-                    result: String,
-                    minDistance: Double,
-                    avgDistance: Double,
-                    variance: String) {
-        homeDelegate?.saveRecord(url: url,
-                                 duration: duration,
-                                 hitFail: hitFail,
-                                 hitPerfect: hitPerfect,
-                                 hitSuccess: hitSuccess,
-                                 hitTarget: hitTarget,
-                                 hitTotal: hitTotal,
-                                 level: level,
-                                 result: result,
-                                 minDistance: minDistance,
-                                 avgDistance: avgDistance,
-                                 variance: variance)
+    func saveRecord(_ record: Record) {
+        homeDelegate?.saveRecord(url: record.url,
+                                 duration: record.duration,
+                                 hitFail: record.hitFail,
+                                 hitPerfect: record.hitPerfect,
+                                 hitSuccess: record.hitSuccess,
+                                 hitTarget: record.hitTarget,
+                                 hitTotal: record.hitTotal,
+                                 level: record.level,
+                                 result: record.result,
+                                 minDistance: record.minDistance,
+                                 avgDistance: record.avgDistance,
+                                 variance: record.variance)
     }
 
     var homeDelegate: HomeDelegate?
@@ -667,7 +657,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     @objc func skipVideo() {
 
         print("DBUGGGGG : SKIP")
-//        menuStateApp = "placement"
+        //        menuStateApp = "placement"
         contentAnalysisViewController.counter.typeSend(type: String(techniqueId))
         contentAnalysisViewController.counter.levelSend(level: techniqueName)
         contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
@@ -889,9 +879,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 
         }
 
-//                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
-//                view.isUserInteractionEnabled = true
-//                view.addGestureRecognizer(tapGesture)
+        //                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
+        //                view.isUserInteractionEnabled = true
+        //                view.addGestureRecognizer(tapGesture)
 
         let image2 = UIImage(named: "CPButtonID")
         buttonSetUp.setImage(image2, for: .normal)

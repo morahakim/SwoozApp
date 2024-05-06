@@ -10,7 +10,7 @@ import AVKit
 import CoreData
 
 struct LowServePlacementView: View {
-    @EnvironmentObject var vm: HomeViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @Environment(\.managedObjectContext) var moc
 
     @State var showRepetitionSheet = false
@@ -31,6 +31,8 @@ struct LowServePlacementView: View {
     @State var recordOfTheMonth: [RecordSkill] = []
     @State var lowestOfTheMonth: [RecordSkill] = []
     @State var bestAvgOfTheMonth: [RecordSkill] = []
+
+    var dateFormat = "(datetime >= %@) AND (datetime <= %@)"
 
     var body: some View {
         ForceOrientation(.portrait) {
@@ -389,51 +391,9 @@ struct LowServePlacementView: View {
                     tutorial?.play()
                 }
             }
-
         }
-        .onDisappear {
-            if vm.path.last == .record {
-                UIDevice.current.setValue(
-                    UIInterfaceOrientation.portrait.rawValue,
-                    forKey: "orientation"
-                )
-                AppDelegate.orientationLock = .portrait
-                player?.pause()
-            } else if vm.path.last == .rotateToLandscape {
-                UIDevice.current.setValue(
-                    UIInterfaceOrientation.landscapeRight.rawValue,
-                    forKey: "orientation"
-                )
-                AppDelegate.orientationLock = .landscapeRight
-                player?.pause()
-            }
-        }
-        .onAppear {
-            let levelPredicate = NSPredicate(format: "level == %@", "1")
-
-            let request: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
-            request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
-
-            let request2: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate2 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
-            request2.sortDescriptors = [NSSortDescriptor(key: "minDistance", ascending: true)]
-            request2.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate2])
-
-            let request3: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate3 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
-            request3.sortDescriptors = [NSSortDescriptor(key: "avgDistance", ascending: true)]
-            request3.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate3])
-
-            do {
-                recordOfTheMonth = try moc.fetch(request)
-                lowestOfTheMonth = try moc.fetch(request2)
-                bestAvgOfTheMonth = try moc.fetch(request3)
-            } catch {
-                print("Error fetching data: \(error)")
-            }
-        }
+        .onDisappear {disappear()}
+        .onAppear {appear()}
     }
 
     private func getAverate(_ data: [RecordSkill]) -> Double {
@@ -441,8 +401,8 @@ struct LowServePlacementView: View {
             return 0
         } else {
             var total: Double = 0.0
-            for e in data {
-                total += Double(e.hitPerfect)
+            for recordSkill in data {
+                total += Double(recordSkill.hitPerfect)
             }
             return Double(total/Double(data.count))
         }
@@ -479,10 +439,54 @@ struct LowServePlacementView: View {
             return 0
         }
     }
+
+    private func disappear() {
+        if homeViewModel.path.last == .record {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.portrait.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .portrait
+            player?.pause()
+        } else if homeViewModel.path.last == .rotateToLandscape {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.landscapeRight.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .landscapeRight
+            player?.pause()
+        }
+    }
+
+    private func appear() {
+        let levelPredicate = NSPredicate(format: "level == %@", "1")
+
+        let request: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
+        let request2: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
+        let request3: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
+        let predicate = NSPredicate(format: dateFormat, argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+
+        request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
+        request2.sortDescriptors = [NSSortDescriptor(key: "minDistance", ascending: true)]
+        request3.sortDescriptors = [NSSortDescriptor(key: "avgDistance", ascending: true)]
+
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
+        request2.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
+        request3.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
+
+        do {
+            recordOfTheMonth = try moc.fetch(request)
+            lowestOfTheMonth = try moc.fetch(request2)
+            bestAvgOfTheMonth = try moc.fetch(request3)
+        } catch {
+            print("Error fetching data: \(error)")
+        }
+    }
+
 }
 
 private struct RepetitionSheet: View {
-    @EnvironmentObject var vm: HomeViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @Binding var isPresented: Bool
     @Binding var selectedRepetition: Int
 
@@ -510,7 +514,7 @@ private struct RepetitionSheet: View {
             BtnPrimary(text: continueText) {
                 hitTargetApp = selectedRepetition
                 isPresented.toggle()
-                vm.path.append(.rotateToLandscape)
+                homeViewModel.path.append(.rotateToLandscape)
             }
             .padding(.horizontal, 16)
         }

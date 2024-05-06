@@ -1,6 +1,6 @@
 /*
  See LICENSE folder for this sample’s licensing information.
- 
+
  Abstract:
  The app's view controller that handles the trajectory analysis.
  */
@@ -11,21 +11,24 @@ import Vision
 import SwiftUI
 import ReplayKit
 
+struct Record {
+    var url: URL
+    var duration: String
+    var hitFail: Int
+    var hitPerfect: Int
+    var hitSuccess: Int
+    var hitTarget: Int
+    var hitTotal: Int
+    var level: String
+    var result: String
+    var minDistance: Double
+    var avgDistance: Double
+    var variance: String
+}
+
 // TODO: buat delegate function save
 protocol ContentAnalysisDelegate: AnyObject {
-    func saveRecord(url: URL,
-                    duration: String,
-                    hitFail: Int,
-                    hitPerfect: Int,
-                    hitSuccess: Int,
-                    hitTarget: Int,
-                    hitTotal: Int,
-                    level: String,
-                    result: String,
-                    minDistance: Double,
-                    avgDistance: Double,
-                    variance: String
-    )
+    func saveRecord(_ record: Record)
 }
 
 class ContentAnalysisViewController: UIViewController,
@@ -69,110 +72,111 @@ class ContentAnalysisViewController: UIViewController,
 
         try await recorder.stopRecording(withOutput: url)
 
-        cropVideoToSize(inputURL: url, outputURL: urlCropped, cropRect: CGRect(x: -120, y: 0, width: view.frame.width + 210, height: view.frame.height+210))
+        await cropVideoToSize(
+            inputURL: url,
+            outputURL: urlCropped,
+            cropRect: CGRect(x: -120, y: 0, width: view.frame.width + 210, height: view.frame.height+210)
+        )
 
         return urlCropped
         //        return url
     }
 
-    func cropVideoToSize(inputURL: URL, outputURL: URL, cropRect: CGRect) {
-        // Create an AVAsset from the input video URL
-        let asset = AVAsset(url: inputURL)
-
-        // Create an AVAssetTrack for the video track
-        guard let videoTrack = asset.tracks(withMediaType: .video).first else {
-            print("Video track not found")
-            return
-        }
-
-        // Create a mutable composition for the video
-        let composition = AVMutableComposition()
-
-        // Add a video track to the composition
-        guard let compositionVideoTrack = composition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid) else {
-            print("Failed to add video track to composition")
-            return
-        }
-
+    func cropVideoToSize(inputURL: URL, outputURL: URL, cropRect: CGRect) async {
         do {
+            // Create an AVAsset from the input video URL
+            let asset = AVAsset(url: inputURL)
+
+            // Create an AVAssetTrack for the video track
+            guard let videoTrack = try await asset.loadTracks(withMediaType: .video).first else {
+                print("Video track not found")
+                return
+            }
+
+            // Create a mutable composition for the video
+            let composition = AVMutableComposition()
+
+            // Add a video track to the composition
+            guard let compositionVideoTrack = composition.addMutableTrack(
+                                                withMediaType: .video,
+                                                preferredTrackID: kCMPersistentTrackID_Invalid)
+            else {
+                print("Failed to add video track to composition")
+                return
+            }
+
+            let duration = try await asset.load(.duration)
+            let naturalSize = try await videoTrack.load(.naturalSize)
+
             // Insert the video track from the asset into the composition
-            try compositionVideoTrack.insertTimeRange(CMTimeRange(start: .zero, duration: asset.duration),
+            try compositionVideoTrack.insertTimeRange(CMTimeRange(start: .zero, duration: duration),
                                                       of: videoTrack,
                                                       at: .zero)
-        } catch {
-            print("Error inserting video track into composition: \(error)")
-            return
-        }
 
-        // Create a video composition instruction
-        let instruction = AVMutableVideoCompositionInstruction()
-        instruction.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
+            // Create a video composition instruction
+            let instruction = AVMutableVideoCompositionInstruction()
+            instruction.timeRange = CMTimeRange(start: .zero, duration: duration)
 
-        // Set up the transformer to crop the video
-        let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: compositionVideoTrack)
-        let scale = max(cropRect.width / videoTrack.naturalSize.width, cropRect.height / videoTrack.naturalSize.height)
-        let transform = CGAffineTransform(translationX: cropRect.origin.x, y: cropRect.origin.y)
-            .scaledBy(x: scale, y: scale)
-        transformer.setTransform(transform, at: .zero)
+            // Set up the transformer to crop the video
+            let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: compositionVideoTrack)
+            let scale = max(cropRect.width / naturalSize.width, cropRect.height / naturalSize.height)
+            let transform = CGAffineTransform(translationX: cropRect.origin.x, y: cropRect.origin.y)
+                .scaledBy(x: scale, y: scale)
+            transformer.setTransform(transform, at: .zero)
 
-        // Set the instructions for the composition
-        instruction.layerInstructions = [transformer]
+            // Set the instructions for the composition
+            instruction.layerInstructions = [transformer]
 
-        // Create a video composition
-        let videoComposition = AVMutableVideoComposition()
-        videoComposition.instructions = [instruction]
-        videoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30) // Assuming 30 frames per second
-        videoComposition.renderSize = CGSize(width: cropRect.width, height: cropRect.height)
+            // Create a video composition
+            let videoComposition = AVMutableVideoComposition()
+            videoComposition.instructions = [instruction]
+            videoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30) // Assuming 30 frames per second
+            videoComposition.renderSize = CGSize(width: cropRect.width, height: cropRect.height)
 
-        // Export the composition to the output URL
-        guard let exporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality) else {
-            print("Failed to create export session")
-            return
-        }
-
-        exporter.outputURL = outputURL
-        exporter.outputFileType = .mp4
-        exporter.videoComposition = videoComposition
-
-        exporter.exportAsynchronously {
-            switch exporter.status {
-            case .completed:
-                print("Video export successful")
-            case .failed:
-                print("Video export failed: \(exporter.error?.localizedDescription ?? "Unknown error")")
-            case .cancelled:
-                print("Video export cancelled")
-            default:
-                break
+            // Export the composition to the output URL
+            guard let exporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality) else {
+                print("Failed to create export session")
+                return
             }
+
+            exporter.outputURL = outputURL
+            exporter.outputFileType = .mp4
+            exporter.videoComposition = videoComposition
+
+            exporter.exportAsynchronously {
+                switch exporter.status {
+                case .completed:
+                    print("Video export successful")
+                case .failed:
+                    print("Video export failed: \(exporter.error?.localizedDescription ?? "Unknown error")")
+                case .cancelled:
+                    print("Video export cancelled")
+                default:
+                    break
+                }
+            }
+
+        } catch {
+            print("Error", error)
         }
+
     }
 
-    func save(url: URL,
-              duration: String,
-              hitFail: Int,
-              hitPerfect: Int,
-              hitSuccess: Int,
-              hitTarget: Int,
-              hitTotal: Int,
-              level: String,
-              result: String,
-              minDistance: Double,
-              avgDistance: Double,
-              variance: String) {
+    func save(_ record: Record) {
+        let savedRecord = Record(url: record.url,
+                                 duration: record.duration,
+                                 hitFail: record.hitFail,
+                                 hitPerfect: record.hitPerfect,
+                                 hitSuccess: record.hitSuccess,
+                                 hitTarget: record.hitTarget,
+                                 hitTotal: record.hitTotal,
+                                 level: record.level,
+                                 result: record.result,
+                                 minDistance: record.minDistance,
+                                 avgDistance: record.avgDistance,
+                                 variance: record.variance)
 
-        contentAnalysisDelegate?.saveRecord(url: url,
-                                            duration: duration,
-                                            hitFail: hitFail,
-                                            hitPerfect: hitPerfect,
-                                            hitSuccess: hitSuccess,
-                                            hitTarget: hitTarget,
-                                            hitTotal: hitTotal,
-                                            level: level,
-                                            result: result,
-                                            minDistance: minDistance,
-                                            avgDistance: avgDistance,
-                                            variance: variance)
+        contentAnalysisDelegate?.saveRecord(savedRecord)
     }
 
     // MARK: - Static Properties
@@ -267,6 +271,8 @@ class ContentAnalysisViewController: UIViewController,
         var hitVariance: String
     }
 
+    private let setupView1 = UIView()
+
     func setupResultView() {
 
         setupViewParent.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
@@ -278,7 +284,6 @@ class ContentAnalysisViewController: UIViewController,
         setupViewChild.backgroundColor = nil
         view.addSubview(setupViewChild)
 
-        let setupView1 = UIView()
         setupView1.backgroundColor = nil
         setupView1.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.5, height: view.frame.height/1.1)
         setupView1.center = view.center
@@ -321,140 +326,7 @@ class ContentAnalysisViewController: UIViewController,
         //        box1.backgroundColor = UIColor.red
         setupView1.addSubview(box1)
 
-        text1a.text = String(format: "%02d", hitTotal)
-        text1a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text1a.textColor = UIColor.white
-        text1a.textAlignment = .center
-        text1a.frame = CGRect(x: 0, y: 5, width: box1.frame.width, height: 30)
-
-        text1b.text = tryingText
-        text1b.font = UIFont(name: "Urbanist", size: 17)
-        text1b.textColor = UIColor.white
-        text1b.textAlignment = .center
-        text1b.frame = CGRect(x: 0, y: box1.frame.height-20, width: box1.frame.width, height: 20)
-
-        box1.addSubview(text1a)
-        box1.addSubview(text1b)
-
-        box2.frame = CGRect(x: (setupView1.frame.width/4)*1, y: 50, width: setupView1.frame.width/4, height: 65)
-        //        box2.backgroundColor = UIColor.red
-        setupView1.addSubview(box2)
-
-        text2a.text = String(format: "%02d", hitPerfect)
-        text2a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text2a.textColor = UIColor.white
-        text2a.textAlignment = .center
-        text2a.frame = CGRect(x: 0, y: 5, width: box2.frame.width, height: 30)
-
-        text2b.text = goodTextTrajectory
-        text2b.font = UIFont(name: "Urbanist", size: 17)
-        text2b.textColor = UIColor.white
-        text2b.textAlignment = .center
-        text2b.frame = CGRect(x: 0, y: box2.frame.height-20, width: box2.frame.width, height: 20)
-
-        box2.addSubview(text2a)
-        box2.addSubview(text2b)
-
-        box3.frame = CGRect(x: (setupView1.frame.width/4)*2, y: 50, width: setupView1.frame.width/4, height: 65)
-        //        box3.backgroundColor = UIColor.red
-        setupView1.addSubview(box3)
-
-        text3a.text = String(format: "%02d", hitSuccess)
-        text3a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text3a.textColor = UIColor.white
-        text3a.textAlignment = .center
-        text3a.frame = CGRect(x: 0, y: 5, width: box3.frame.width, height: 30)
-
-        text3b.text = riskyTextTrajectory
-        text3b.font = UIFont(name: "Urbanist", size: 17)
-        text3b.textColor = UIColor.white
-        text3b.textAlignment = .center
-        text3b.frame = CGRect(x: 0, y: box3.frame.height-20, width: box3.frame.width, height: 20)
-
-        box3.addSubview(text3a)
-        box3.addSubview(text3b)
-
-        box4.frame = CGRect(x: (setupView1.frame.width/4)*3, y: 50, width: setupView1.frame.width/4, height: 65)
-        //        box4.backgroundColor = UIColor.red
-        setupView1.addSubview(box4)
-
-        text4a.text = String(format: "%02d", hitFail)
-        text4a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text4a.textColor = UIColor.white
-        text4a.textAlignment = .center
-        text4a.frame = CGRect(x: 0, y: 5, width: box4.frame.width, height: 30)
-
-        text4b.text = badTextTrajectory
-        text4b.font = UIFont(name: "Urbanist", size: 17)
-        text4b.textColor = UIColor.white
-        text4b.textAlignment = .center
-        text4b.frame = CGRect(x: 0, y: box4.frame.height-20, width: box4.frame.width, height: 20)
-
-        box4.addSubview(text4a)
-        box4.addSubview(text4b)
-
-        box5.frame = CGRect(x: (setupView1.frame.width/2)*0, y: 50+90, width: setupView1.frame.width/2, height: 65)
-        //        box5.backgroundColor = UIColor.red
-        setupView1.addSubview(box5)
-        text5a.text = String(format: "%.2f cm", minDistance)
-        text5a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text5a.textColor = UIColor.white
-        text5a.textAlignment = .center
-        text5a.frame = CGRect(x: 0, y: 5, width: box5.frame.width, height: 30)
-
-        if techniqueId == 0 {
-            text5b.text = lowestText
-        } else if techniqueId == 1 {
-            text5b.text = closestFrontLine
-        }
-
-        text5b.font = UIFont(name: "Urbanist", size: 17)
-        text5b.textColor = UIColor.white
-        text5b.textAlignment = .center
-        text5b.frame = CGRect(x: 0, y: box5.frame.height-20, width: box5.frame.width, height: 20)
-
-        let text5c = UILabel()
-        text5c.text = "kok di atas net"
-        text5c.font = UIFont(name: "Urbanist", size: 17)
-        text5c.textColor = UIColor.white
-        text5c.textAlignment = .center
-        text5c.frame = CGRect(x: 0, y: box5.frame.height+0, width: box5.frame.width, height: 20)
-
-        box5.addSubview(text5a)
-        box5.addSubview(text5b)
-        //        box5.addSubview(text5c)
-
-        box6.frame = CGRect(x: (setupView1.frame.width/2)*1, y: 50+90, width: setupView1.frame.width/2, height: 65)
-        //        box6.backgroundColor = UIColor.red
-        setupView1.addSubview(box6)
-
-        text6a.text = String(format: "%.2f cm", averageOfDistance)
-        text6a.font = UIFont(name: "Urbanist-Medium", size: 34)
-        text6a.textColor = UIColor.white
-        text6a.textAlignment = .center
-        text6a.frame = CGRect(x: 0, y: 5, width: box6.frame.width, height: 30)
-
-        if techniqueId == 0 {
-            text6b.text = averageHeightText
-        } else if techniqueId == 1 {
-            text6b.text = averageDistance
-        }
-
-        text6b.font = UIFont(name: "Urbanist", size: 17)
-        text6b.textColor = UIColor.white
-        text6b.textAlignment = .center
-        text6b.frame = CGRect(x: 0, y: box6.frame.height-20, width: box6.frame.width, height: 20)
-
-        let text6c = UILabel()
-        text6c.text = "kok di atas net"
-        text6c.font = UIFont(name: "Urbanist", size: 17)
-        text6c.textColor = UIColor.white
-        text6c.textAlignment = .center
-        text6c.frame = CGRect(x: 0, y: box6.frame.height+0, width: box6.frame.width, height: 20)
-
-        box6.addSubview(text6a)
-        box6.addSubview(text6b)
-        //        box6.addSubview(text6c)
+        setupResultText()
 
         //      let imageIconView = UIImageView(frame: CGRect(x: 0, y: box4.frame.height+85+75, width: 14.2227, height: 23.99989))
         //
@@ -521,15 +393,185 @@ class ContentAnalysisViewController: UIViewController,
         boxScore.removeFromSuperview()
         boxNet.removeFromSuperview()
 
+        setupDetail()
+    }
+
+    func setupResultText() {
+        setupFirstText()
+        setupSecondText()
+        setupThirdText()
+        setupFourthText()
+        setupFifthText()
+        setupSixthText()
+    }
+
+    func setupFirstText() {
+        text1a.text = String(format: "%02d", hitTotal)
+        text1a.font = UIFont(name: "Urbanist-Medium", size: 34)
+        text1a.textColor = UIColor.white
+        text1a.textAlignment = .center
+        text1a.frame = CGRect(x: 0, y: 5, width: box1.frame.width, height: 30)
+
+        text1b.text = tryingText
+        text1b.font = UIFont(name: "Urbanist", size: 17)
+        text1b.textColor = UIColor.white
+        text1b.textAlignment = .center
+        text1b.frame = CGRect(x: 0, y: box1.frame.height-20, width: box1.frame.width, height: 20)
+
+        box1.addSubview(text1a)
+        box1.addSubview(text1b)
+    }
+
+    func setupSecondText() {
+        box2.frame = CGRect(x: (setupView1.frame.width/4)*1, y: 50, width: setupView1.frame.width/4, height: 65)
+        //        box2.backgroundColor = UIColor.red
+        setupView1.addSubview(box2)
+
+        text2a.text = String(format: "%02d", hitPerfect)
+        text2a.font = UIFont(name: "Urbanist-Medium", size: 34)
+        text2a.textColor = UIColor.white
+        text2a.textAlignment = .center
+        text2a.frame = CGRect(x: 0, y: 5, width: box2.frame.width, height: 30)
+
+        text2b.text = goodTextTrajectory
+        text2b.font = UIFont(name: "Urbanist", size: 17)
+        text2b.textColor = UIColor.white
+        text2b.textAlignment = .center
+        text2b.frame = CGRect(x: 0, y: box2.frame.height-20, width: box2.frame.width, height: 20)
+
+        box2.addSubview(text2a)
+        box2.addSubview(text2b)
+    }
+
+    func setupThirdText() {
+        box3.frame = CGRect(x: (setupView1.frame.width/4)*2, y: 50, width: setupView1.frame.width/4, height: 65)
+        //        box3.backgroundColor = UIColor.red
+        setupView1.addSubview(box3)
+
+        text3a.text = String(format: "%02d", hitSuccess)
+        text3a.font = UIFont(name: "Urbanist-Medium", size: 34)
+        text3a.textColor = UIColor.white
+        text3a.textAlignment = .center
+        text3a.frame = CGRect(x: 0, y: 5, width: box3.frame.width, height: 30)
+
+        text3b.text = riskyTextTrajectory
+        text3b.font = UIFont(name: "Urbanist", size: 17)
+        text3b.textColor = UIColor.white
+        text3b.textAlignment = .center
+        text3b.frame = CGRect(x: 0, y: box3.frame.height-20, width: box3.frame.width, height: 20)
+
+        box3.addSubview(text3a)
+        box3.addSubview(text3b)
+    }
+
+    func setupFourthText() {
+        box4.frame = CGRect(x: (setupView1.frame.width/4)*3, y: 50, width: setupView1.frame.width/4, height: 65)
+        //        box4.backgroundColor = UIColor.red
+        setupView1.addSubview(box4)
+
+        text4a.text = String(format: "%02d", hitFail)
+        text4a.font = UIFont(name: "Urbanist-Medium", size: 34)
+        text4a.textColor = UIColor.white
+        text4a.textAlignment = .center
+        text4a.frame = CGRect(x: 0, y: 5, width: box4.frame.width, height: 30)
+
+        text4b.text = badTextTrajectory
+        text4b.font = UIFont(name: "Urbanist", size: 17)
+        text4b.textColor = UIColor.white
+        text4b.textAlignment = .center
+        text4b.frame = CGRect(x: 0, y: box4.frame.height-20, width: box4.frame.width, height: 20)
+
+        box4.addSubview(text4a)
+        box4.addSubview(text4b)
+    }
+
+    func setupFifthText() {
+        box5.frame = CGRect(x: (setupView1.frame.width/2)*0, y: 50+90, width: setupView1.frame.width/2, height: 65)
+        //        box5.backgroundColor = UIColor.red
+        setupView1.addSubview(box5)
+        text5a.text = String(format: "%.2f cm", minDistance)
+        text5a.font = UIFont(name: "Urbanist-Medium", size: 34)
+        text5a.textColor = UIColor.white
+        text5a.textAlignment = .center
+        text5a.frame = CGRect(x: 0, y: 5, width: box5.frame.width, height: 30)
+
+        if techniqueId == 0 {
+            text5b.text = lowestText
+        } else if techniqueId == 1 {
+            text5b.text = closestFrontLine
+        }
+
+        text5b.font = UIFont(name: "Urbanist", size: 17)
+        text5b.textColor = UIColor.white
+        text5b.textAlignment = .center
+        text5b.frame = CGRect(x: 0, y: box5.frame.height-20, width: box5.frame.width, height: 20)
+
+        let text5c = UILabel()
+        text5c.text = "kok di atas net"
+        text5c.font = UIFont(name: "Urbanist", size: 17)
+        text5c.textColor = UIColor.white
+        text5c.textAlignment = .center
+        text5c.frame = CGRect(x: 0, y: box5.frame.height+0, width: box5.frame.width, height: 20)
+
+        box5.addSubview(text5a)
+        box5.addSubview(text5b)
+        //        box5.addSubview(text5c)
+    }
+
+    func setupSixthText() {
+        box6.frame = CGRect(x: (setupView1.frame.width/2)*1, y: 50+90, width: setupView1.frame.width/2, height: 65)
+        //        box6.backgroundColor = UIColor.red
+        setupView1.addSubview(box6)
+
+        text6a.text = String(format: "%.2f cm", averageOfDistance)
+        text6a.font = UIFont(name: "Urbanist-Medium", size: 34)
+        text6a.textColor = UIColor.white
+        text6a.textAlignment = .center
+        text6a.frame = CGRect(x: 0, y: 5, width: box6.frame.width, height: 30)
+
+        if techniqueId == 0 {
+            text6b.text = averageHeightText
+        } else if techniqueId == 1 {
+            text6b.text = averageDistance
+        }
+
+        text6b.font = UIFont(name: "Urbanist", size: 17)
+        text6b.textColor = UIColor.white
+        text6b.textAlignment = .center
+        text6b.frame = CGRect(x: 0, y: box6.frame.height-20, width: box6.frame.width, height: 20)
+
+        let text6c = UILabel()
+        text6c.text = "kok di atas net"
+        text6c.font = UIFont(name: "Urbanist", size: 17)
+        text6c.textColor = UIColor.white
+        text6c.textAlignment = .center
+        text6c.frame = CGRect(x: 0, y: box6.frame.height+0, width: box6.frame.width, height: 20)
+
+        box6.addSubview(text6a)
+        box6.addSubview(text6b)
+        //        box6.addSubview(text6c)
+    }
+
+    func setupDetail() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.stopRecording()
 
             let view1 = UIView()
-            view1.frame = CGRect(x: self.setupViewChild.frame.width * 0.19, y: setupView1.frame.height-40, width: setupView1.frame.width/2, height: 50)
+            view1.frame = CGRect(
+                x: self.setupViewChild.frame.width * 0.19,
+                y: self.setupView1.frame.height-40,
+                width: self.setupView1.frame.width/2,
+                height: 50
+            )
             self.setupViewChild.addSubview(view1)
 
             let view2 = UIView()
-            view2.frame = CGRect(x: self.setupViewChild.frame.width * 0.35, y: setupView1.frame.height-40, width: setupView1.frame.width/2, height: 50)
+            view2.frame = CGRect(
+                x: self.setupViewChild.frame.width * 0.35,
+                y: self.setupView1.frame.height-40,
+                width: self.setupView1.frame.width/2,
+                height: 50
+            )
             self.setupViewChild.addSubview(view2)
 
 //            self.doneButton.setTitle(doneText, for: .normal)
@@ -592,13 +634,19 @@ class ContentAnalysisViewController: UIViewController,
             // Start live camera capture.
             labelCountdown.text = String(countdownValue)
         }
-        countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdownLabel), userInfo: nil, repeats: true)
+        countdownTimer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(updateCountdownLabel),
+            userInfo: nil,
+            repeats: true
+        )
     }
 
     func startRecording() {
         startRecordScreen { error in
-            if let e = error {
-                print(e.localizedDescription)
+            if let unwrappedError = error {
+                print(unwrappedError.localizedDescription)
                 return
             }
         }
@@ -609,18 +657,19 @@ class ContentAnalysisViewController: UIViewController,
         Task {
             do {
                 let url = try await stopRecordScreen()
-                save(url: url,
-                     duration: durationApp,
-                     hitFail: hitFailApp,
-                     hitPerfect: hitPerfectApp,
-                     hitSuccess: hitSuccessApp,
-                     hitTarget: hitTargetApp,
-                     hitTotal: hitTotalApp,
-                     level: "\(techniqueId)",
-                     result: arrResult,
-                     minDistance: minDistance,
-                     avgDistance: averageOfDistance,
-                     variance: variance)
+                let record = Record(url: url,
+                                    duration: durationApp,
+                                    hitFail: hitFailApp,
+                                    hitPerfect: hitPerfectApp,
+                                    hitSuccess: hitSuccessApp,
+                                    hitTarget: hitTargetApp,
+                                    hitTotal: hitTotalApp,
+                                    level: "\(techniqueId)",
+                                    result: arrResult,
+                                    minDistance: minDistance,
+                                    avgDistance: averageOfDistance,
+                                    variance: variance)
+                save(record)
             } catch {
                 print(error.localizedDescription)
             }
@@ -736,55 +785,7 @@ class ContentAnalysisViewController: UIViewController,
 
     func setupView() {
 
-        boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        //        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
-        boxNet.layer.cornerRadius = 4
-
-        let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-
-        var netName = "NetLevel2"
-        if techniqueId == 0 {
-//            netName = "NetLevel2"
-//            if let image = UIImage(named: netName) {
-//                imageNetView.image = image
-//            }
-//            boxNet.addSubview(imageNetView)
-//            view.addSubview(boxNet)
-        } else if techniqueId == 1 {
-            netName = "NetLevel3B"
-            if let image = UIImage(named: netName) {
-                imageNetView.image = image
-            }
-            boxNet.addSubview(imageNetView)
-            view.addSubview(boxNet)
-        }
-
-        let duration = "00:00"
-        counter.hitTotalSend(hitTotal: hitTotal)
-        counter.hitTargetSend(hitTarget: hitTargetApp)
-        counter.hitSuccessSend(hitSuccess: hitSuccess)
-        counter.hitPerfectSend(hitPerfect: hitPerfect)
-        counter.hitFailSend(hitFail: hitFail)
-        counter.durationSend(duration: duration)
-        counter.averageSend(average: averageOfDistance)
-        counter.minSend(min: minDistance)
-
-        var menuState = "result"
-
-        if hitTargetApp > 0 {
-            if hitTotal >= hitTargetApp {
-                counter.menuStateSend(menuState: menuState)
-                stop()
-            } else {
-                menuState = "stillPlay"
-                counter.menuStateSend(menuState: menuState)
-            }
-        } else {
-            menuState = "stillPlay"
-            counter.menuStateSend(menuState: menuState)
-        }
-
-        menuStateApp = menuState
+        setupCounter()
 
         //        let buttonClose = UIButton(type: .custom)
         //        buttonClose.frame = CGRect(x: view.frame.width - 20, y: 10, width: 40, height: 40)
@@ -802,50 +803,9 @@ class ContentAnalysisViewController: UIViewController,
         //        iconImageView.frame = CGRect(x:10, y: 10, width: 20, height: 20)
         //        buttonClose.addSubview(iconImageView)
 
-        labelCountdown.textColor = UIColor.white
-        labelCountdown.textAlignment = .center
-        labelCountdown.translatesAutoresizingMaskIntoConstraints = false
-        labelCountdown.font = UIFont(name: "Urbanist-Medium", size: 120)
-        labelCountdown.font = UIFont(name: "Urbanist", size: 120)
-        boxNet.insertSubview(labelCountdown, at: 2)
-
-        labelCountdown.centerXAnchor.constraint(equalTo: boxNet.centerXAnchor).isActive = true
-        labelCountdown.centerYAnchor.constraint(equalTo: boxNet.centerYAnchor).isActive = true
-
-        let boxWidth: CGFloat = 82
-        let boxHeight: CGFloat = 36
-
-        boxCountdown.frame = CGRect(x: (view.frame.width - boxWidth) / 2, y: view.frame.height - boxHeight - 10, width: boxWidth, height: boxHeight)
-        boxCountdown.backgroundColor = nil
-        boxCountdown.layer.cornerRadius = 12
-        boxNet.addSubview(boxCountdown)
-
-        textCountdown.text = ""
-        textCountdown.font = UIFont(name: "Urbanist", size: 20)
-        textCountdown.textColor = UIColor.black
-        textCountdown.alpha = 0.3
-        textCountdown.textAlignment = .center
-        textCountdown.frame = CGRect(x: 0, y: 0, width: boxCountdown.frame.width, height: boxCountdown.frame.height)
-
-        boxCountdown.addSubview(textCountdown)
-
-        buttonWhite.frame = CGRect(x: view.frame.size.width - 70 + 18 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
-        buttonWhite.backgroundColor = nil
-        buttonWhite.layer.cornerRadius = 32
-        buttonWhite.clipsToBounds = true
-        buttonWhite.layer.borderWidth = 0.0
-        buttonWhite.layer.borderColor = UIColor.white.cgColor
-        buttonWhite.addTarget(self, action: #selector(stopManual), for: .touchUpInside)
-        boxNet.addSubview(buttonWhite)
-
-        button.frame = CGRect(x: 5, y: 5, width: 54, height: 54)
-        button.backgroundColor = UIColor(red: 1, green: 0.2, blue: 0.15, alpha: 1.0)
-        button.backgroundColor = nil
-        button.layer.cornerRadius = 27
-        button.clipsToBounds = true
-        button.addTarget(self, action: #selector(stopManual), for: .touchUpInside)
-
-        buttonWhite.addSubview(button)
+        setupCountdown()
+        setupButton()
+        setupText()
 
         //        let netFirstX = view.bounds.maxX * 0.258
         //        let netFirstY = view.bounds.maxY * 0.41
@@ -889,6 +849,35 @@ class ContentAnalysisViewController: UIViewController,
         //                }
         //                boxNet.addSubview(imageNetView)
 
+        setupBoxView()
+        setupText()
+        setupImage()
+    }
+
+    func setupBoxView() {
+        boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        //        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
+        boxNet.layer.cornerRadius = 4
+
+        let imageNetView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+
+        var netName = "NetLevel2"
+        if techniqueId == 0 {
+            //            netName = "NetLevel2"
+            //            if let image = UIImage(named: netName) {
+            //                imageNetView.image = image
+            //            }
+            //            boxNet.addSubview(imageNetView)
+            //            view.addSubview(boxNet)
+        } else if techniqueId == 1 {
+            netName = "NetLevel3B"
+            if let image = UIImage(named: netName) {
+                imageNetView.image = image
+            }
+            boxNet.addSubview(imageNetView)
+            view.addSubview(boxNet)
+        }
+
         if techniqueId == 1 {
             let boxCourtView = UIView()
             boxCourtView.frame = CGRect(x: view.frame.width - 20 - 110 - 75, y: view.frame.height - 20 - 140, width: 110, height: 140)
@@ -902,7 +891,11 @@ class ContentAnalysisViewController: UIViewController,
             boxCourtView.addSubview(imageCourtView)
             boxNet.addSubview(boxCourtView)
 
-            rightArea.frame = CGRect(x: boxCourtView.frame.width * 0.52, y: 20, width: boxCourtView.frame.width * 0.37, height: boxCourtView.frame.height * 0.55)
+            rightArea.frame = CGRect(
+                x: boxCourtView.frame.width * 0.52,
+                y: 20, width: boxCourtView.frame.width * 0.37,
+                height: boxCourtView.frame.height * 0.55
+            )
             print("DBUGG : ", rightArea.frame)
             //                        rightArea.backgroundColor = .blue
             //                        rightArea.layer.opacity = 0.3
@@ -917,6 +910,42 @@ class ContentAnalysisViewController: UIViewController,
         boxScore.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
         boxScore.layer.cornerRadius = 4
 
+        self.view.addSubview(boxScore)
+        self.view.addSubview(boxCourt)
+        self.view.addSubview(boxNet)
+    }
+
+    func setupText() {
+        setupHitText()
+
+        let text4 = UILabel()
+        text4.text = goodTextTrajectory
+        text4.font = UIFont(name: "Urbanist", size: 15)
+        text4.textColor = UIColor.white
+        text4.textAlignment = .center
+        text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width/4) * 1, height: 30)
+
+        let text6 = UILabel()
+        text6.text = riskyTextTrajectory
+        text6.font = UIFont(name: "Urbanist", size: 15)
+        text6.textColor = UIColor.white
+        text6.textAlignment = .center
+        text6.frame = CGRect(x: (boxScore.frame.width/4) * 1, y: 40, width: (boxScore.frame.width/4) * 1, height: 30)
+
+        let text5 = UILabel()
+        text5.text = tryingText
+        text5.font = UIFont(name: "Urbanist", size: 15)
+        text5.textColor = UIColor.white
+        text5.textAlignment = .center
+        text5.frame = CGRect(x: (boxScore.frame.width/4) * 2, y: 40, width: (boxScore.frame.width/4) * 2, height: 30)
+
+        // Add the labels to the boxScore
+        boxScore.addSubview(text4)
+        boxScore.addSubview(text5)
+        boxScore.addSubview(text6)
+    }
+
+    func setupHitText() {
         textClear.text = String(format: "%02d", hitPerfect)
         textClear.font = UIFont(name: "Urbanist-Medium", size: 34)
         textClear.textColor = UIColor.white
@@ -947,27 +976,14 @@ class ContentAnalysisViewController: UIViewController,
         text3.textAlignment = .center
         text3.frame = CGRect(x: (boxScore.frame.width/4) * 3, y: 10, width: (boxScore.frame.width/4), height: 30)
 
-        let text4 = UILabel()
-        text4.text = goodTextTrajectory
-        text4.font = UIFont(name: "Urbanist", size: 15)
-        text4.textColor = UIColor.white
-        text4.textAlignment = .center
-        text4.frame = CGRect(x: 0, y: 40, width: (boxScore.frame.width/4) * 1, height: 30)
+        boxScore.addSubview(textClear)
+        boxScore.addSubview(text1)
+        boxScore.addSubview(text2)
+        boxScore.addSubview(text3)
+        boxScore.addSubview(text7)
+    }
 
-        let text6 = UILabel()
-        text6.text = riskyTextTrajectory
-        text6.font = UIFont(name: "Urbanist", size: 15)
-        text6.textColor = UIColor.white
-        text6.textAlignment = .center
-        text6.frame = CGRect(x: (boxScore.frame.width/4) * 1, y: 40, width: (boxScore.frame.width/4) * 1, height: 30)
-
-        let text5 = UILabel()
-        text5.text = tryingText
-        text5.font = UIFont(name: "Urbanist", size: 15)
-        text5.textColor = UIColor.white
-        text5.textAlignment = .center
-        text5.frame = CGRect(x: (boxScore.frame.width/4) * 2, y: 40, width: (boxScore.frame.width/4) * 2, height: 30)
-
+    func setupImage() {
         let imageView = UIImageView(frame: CGRect(x: (boxScore.frame.width/4)-1, y: 15, width: 2, height: boxScore.frame.height-30))
         if let image = UIImage(named: "Divider") {
             imageView.image = image
@@ -985,22 +1001,86 @@ class ContentAnalysisViewController: UIViewController,
             imageLogo.image = image
         }
         boxNet.addSubview(imageLogo)
-
-        // Add the labels to the boxScore
-        boxScore.addSubview(textClear)
-        boxScore.addSubview(text1)
-        boxScore.addSubview(text2)
-        boxScore.addSubview(text3)
-        boxScore.addSubview(text7)
-        boxScore.addSubview(text4)
-        boxScore.addSubview(text5)
-        boxScore.addSubview(text6)
-
-        self.view.addSubview(boxScore)
-        self.view.addSubview(boxCourt)
-        self.view.addSubview(boxNet)
-
     }
+
+    func setupCounter() {
+        let duration = "00:00"
+        counter.hitTotalSend(hitTotal: hitTotal)
+        counter.hitTargetSend(hitTarget: hitTargetApp)
+        counter.hitSuccessSend(hitSuccess: hitSuccess)
+        counter.hitPerfectSend(hitPerfect: hitPerfect)
+        counter.hitFailSend(hitFail: hitFail)
+        counter.durationSend(duration: duration)
+        counter.averageSend(average: averageOfDistance)
+        counter.minSend(min: minDistance)
+
+        var menuState = "result"
+
+        if hitTargetApp > 0 {
+            if hitTotal >= hitTargetApp {
+                counter.menuStateSend(menuState: menuState)
+                stop()
+            } else {
+                menuState = "stillPlay"
+                counter.menuStateSend(menuState: menuState)
+            }
+        } else {
+            menuState = "stillPlay"
+            counter.menuStateSend(menuState: menuState)
+        }
+
+        menuStateApp = menuState
+    }
+
+    func setupCountdown() {
+        labelCountdown.textColor = UIColor.white
+        labelCountdown.textAlignment = .center
+        labelCountdown.translatesAutoresizingMaskIntoConstraints = false
+        labelCountdown.font = UIFont(name: "Urbanist-Medium", size: 120)
+        labelCountdown.font = UIFont(name: "Urbanist", size: 120)
+        boxNet.insertSubview(labelCountdown, at: 2)
+
+        labelCountdown.centerXAnchor.constraint(equalTo: boxNet.centerXAnchor).isActive = true
+        labelCountdown.centerYAnchor.constraint(equalTo: boxNet.centerYAnchor).isActive = true
+
+        let boxWidth: CGFloat = 82
+        let boxHeight: CGFloat = 36
+
+        boxCountdown.frame = CGRect(x: (view.frame.width - boxWidth) / 2, y: view.frame.height - boxHeight - 10, width: boxWidth, height: boxHeight)
+        boxCountdown.backgroundColor = nil
+        boxCountdown.layer.cornerRadius = 12
+        boxNet.addSubview(boxCountdown)
+
+        textCountdown.text = ""
+        textCountdown.font = UIFont(name: "Urbanist", size: 20)
+        textCountdown.textColor = UIColor.black
+        textCountdown.alpha = 0.3
+        textCountdown.textAlignment = .center
+        textCountdown.frame = CGRect(x: 0, y: 0, width: boxCountdown.frame.width, height: boxCountdown.frame.height)
+
+        boxCountdown.addSubview(textCountdown)
+    }
+
+    func setupButton() {
+        buttonWhite.frame = CGRect(x: view.frame.size.width - 70 + 18 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
+        buttonWhite.backgroundColor = nil
+        buttonWhite.layer.cornerRadius = 32
+        buttonWhite.clipsToBounds = true
+        buttonWhite.layer.borderWidth = 0.0
+        buttonWhite.layer.borderColor = UIColor.white.cgColor
+        buttonWhite.addTarget(self, action: #selector(stopManual), for: .touchUpInside)
+        boxNet.addSubview(buttonWhite)
+
+        button.frame = CGRect(x: 5, y: 5, width: 54, height: 54)
+        button.backgroundColor = UIColor(red: 1, green: 0.2, blue: 0.15, alpha: 1.0)
+        button.backgroundColor = nil
+        button.layer.cornerRadius = 27
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(stopManual), for: .touchUpInside)
+
+        buttonWhite.addSubview(button)
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         urlVideoSource = nil
@@ -1134,8 +1214,7 @@ class ContentAnalysisViewController: UIViewController,
     }
 
     private func getResult(results: [String]) async throws {
-        for (index, val) in existingTrajectory.enumerated() {
-            if !results.contains(val) {
+        for (index, val) in existingTrajectory.enumerated() where !results.contains(val) {
                 currentPoints = trajectoryDictionary[val]!
                 trajectoryView.performTransition(.fadeIn, duration: 0.05)
                 trajectoryView.points = currentPoints
@@ -1156,7 +1235,14 @@ class ContentAnalysisViewController: UIViewController,
                         } else if response.0 == "Fail"{
                             hitFail += 1
                         }
-                        let newData: HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: response.0, hitDistance: response.2, hitMinDistance: 0, hitAverageOfDistance: 0, hitVariance: "")
+                        let newData: HitStatistics = HitStatistics(
+                            hitNumber: String(hitTotal),
+                            hitStatus: response.0,
+                            hitDistance: response.2,
+                            hitMinDistance: 0,
+                            hitAverageOfDistance: 0,
+                            hitVariance: ""
+                        )
                         arrHitStatistics.append(newData)
                     }
                 }
@@ -1202,7 +1288,7 @@ class ContentAnalysisViewController: UIViewController,
                 }
 
                 if index > 0 {
-                    value = value / Double(index)
+                    value /= Double(index)
                     averageOfDistance = value
                 } else {
                     averageOfDistance = 0
@@ -1245,7 +1331,6 @@ class ContentAnalysisViewController: UIViewController,
 
                 menuStateApp = menuState
 
-            }
         }
         //        if(results.count < 1){
         //            existingTrajectory.removeAll()
@@ -1280,16 +1365,16 @@ class ContentAnalysisViewController: UIViewController,
 
             if filterParabolaLevel3(trajectory: trajectory) {
                 currentPoints = trajectoryDictionary[trajectory.uuid.uuidString]!
-                let firstX = currentPoints.first?.x ?? 0.0
-                let lastX = currentPoints.last?.x ?? 0.0
-                let firstY = currentPoints.first?.y ?? 0.0
-                let lastY = currentPoints.last?.y ?? 0.0
-                let trajectoryLength = lastX - firstX
-                let trajectoryHeight = firstY - lastY
+                _ = currentPoints.first?.x ?? 0.0
+                _ = currentPoints.last?.x ?? 0.0
+                _ = currentPoints.first?.y ?? 0.0
+                _ = currentPoints.last?.y ?? 0.0
+                //                let trajectoryLength = lastX - firstX
+                //                let trajectoryHeight = firstY - lastY
 
-//                if(!existingTrajectory.contains(trajectory.uuid.uuidString)
-//                   && (trajectoryHeight > 0.05 || trajectoryLength > 0.05)
-//                ){
+                //                if(!existingTrajectory.contains(trajectory.uuid.uuidString)
+                //                   && (trajectoryHeight > 0.05 || trajectoryLength > 0.05)
+                //                ){
                 if !existingTrajectory.contains(trajectory.uuid.uuidString) {
                     if isCalculate {
                         print("AGUNG \(calculateTimer) - \(remainingTime)")
@@ -1317,8 +1402,8 @@ class ContentAnalysisViewController: UIViewController,
     }
 
     private func getResultLevel3(results: [String]) async throws {
-        for (index, val) in existingTrajectory.enumerated() {
-            if !results.contains(val) {
+        for (index, val) in existingTrajectory.enumerated() where !results.contains(val) {
+
                 currentPoints = trajectoryDictionary[val]!
                 trajectoryView.performTransition(.fadeIn, duration: 0.05)
                 trajectoryView.points = currentPoints
@@ -1339,19 +1424,19 @@ class ContentAnalysisViewController: UIViewController,
 
                         arrHitStatistics = []
 
-                        for i in 0..<response.3.count {
+                        for value in 0..<response.3.count {
                             hitTotal += 1
-                            let x = response.3[i].x
-                            let y = response.3[i].y
+                            let xValue = response.3[value].x
+                            let yValue = response.3[value].y
 
                             let circleNet = CALayer()
                             circleNet.opacity = 1
-                            circleNet.frame = CGRect(x: x-6, y: y-6, width: 6, height: 6)
+                            circleNet.frame = CGRect(x: xValue-6, y: yValue-6, width: 6, height: 6)
                             circleNet.cornerRadius = 5.0
                             circleNet.masksToBounds = true
                             rightArea.layer.addSublayer(circleNet)
                             var status = ""
-                            switch response.4[i] {
+                            switch response.4[value] {
                             case "Perfect":
                                 status = "Perfect"
                                 hitPerfect += 1
@@ -1368,7 +1453,13 @@ class ContentAnalysisViewController: UIViewController,
                                 print(0)
                             }
 
-                            let newData: HitStatistics = HitStatistics(hitNumber: String(hitTotal), hitStatus: status, hitDistance: response.5[i], hitMinDistance: response.6[i], hitAverageOfDistance: response.7[i], hitVariance: response.8[i])
+                            let newData: HitStatistics = HitStatistics(
+                                hitNumber: String(hitTotal),
+                                hitStatus: status, hitDistance: response.5[value],
+                                hitMinDistance: response.6[value],
+                                hitAverageOfDistance: response.7[value],
+                                hitVariance: response.8[value]
+                            )
                             arrHitStatistics.append(newData)
                         }
 
@@ -1422,7 +1513,7 @@ class ContentAnalysisViewController: UIViewController,
                 menuStateApp = menuState
 
             }
-        }
+
         //        if(results.count < 1){
         //            existingTrajectory.removeAll()
         //        }
@@ -1468,18 +1559,18 @@ class ContentAnalysisViewController: UIViewController,
             // Compute the initial trajectory location points based on the average
             // change in the x direction of the first five points.
             var sum = 0.0
-            for i in 0..<5 {
-                sum = sum + basePoints[i + 1].x - basePoints[i].x
+            for index in 0..<5 {
+                sum = sum + basePoints[index + 1].x - basePoints[index].x
             }
             let averageDifferenceInX = sum / 5.0
 
             while basePointX > 0.1 {
                 let nextXValue = basePointX - averageDifferenceInX
                 let aXX = Double(trajectoryToCorrect.equationCoefficients[0]) * nextXValue * nextXValue
-                let bX = Double(trajectoryToCorrect.equationCoefficients[1]) * nextXValue
-                let c = Double(trajectoryToCorrect.equationCoefficients[2])
+                let bXPoint = Double(trajectoryToCorrect.equationCoefficients[1]) * nextXValue
+                let cPoint = Double(trajectoryToCorrect.equationCoefficients[2])
 
-                let nextYValue = aXX + bX + c
+                let nextYValue = aXX + bXPoint + cPoint
                 if nextYValue > 0 {
                     // Insert values into the trajectory path present in the positive Cartesian space.
                     basePoints.insert(VNPoint(x: nextXValue, y: nextYValue), at: 0)
@@ -1523,18 +1614,18 @@ class ContentAnalysisViewController: UIViewController,
             // Compute the initial trajectory location points based on the average
             // change in the x direction of the first five points.
             var sum = 0.0
-            for i in 0..<5 {
-                sum = sum + basePoints[i + 1].x - basePoints[i].x
+            for index in 0..<5 {
+                sum = sum + basePoints[index + 1].x - basePoints[index].x
             }
             let averageDifferenceInX = sum / 5.0
 
             while basePointX > 0.1 {
                 let nextXValue = basePointX - averageDifferenceInX
                 let aXX = Double(trajectoryToCorrect.equationCoefficients[0]) * nextXValue * nextXValue
-                let bX = Double(trajectoryToCorrect.equationCoefficients[1]) * nextXValue
-                let c = Double(trajectoryToCorrect.equationCoefficients[2])
+                let bXPoint = Double(trajectoryToCorrect.equationCoefficients[1]) * nextXValue
+                let cPoint = Double(trajectoryToCorrect.equationCoefficients[2])
 
-                let nextYValue = aXX + bX + c
+                let nextYValue = aXX + bXPoint + cPoint
                 if nextYValue > 0 {
                     // Insert values into the trajectory path present in the positive Cartesian space.
                     basePoints.insert(VNPoint(x: nextXValue, y: nextYValue), at: 0)
@@ -1637,8 +1728,8 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
         do {
             // Following optional bounds by checking for the moving average radius
             // of the trajectories the app is looking for.
-//            detectTrajectoryRequest.objectMinimumNormalizedRadius = 10.0 / Float(1920.0)
-//            detectTrajectoryRequest.objectMaximumNormalizedRadius = 50.0 / Float(1920.0)
+            //            detectTrajectoryRequest.objectMinimumNormalizedRadius = 10.0 / Float(1920.0)
+            //            detectTrajectoryRequest.objectMaximumNormalizedRadius = 50.0 / Float(1920.0)
 
             // Help manage the real-time use case to improve the precision versus delay tradeoff.
             detectTrajectoryRequest.targetFrameTime = CMTimeMake(value: 1, timescale: 60)
