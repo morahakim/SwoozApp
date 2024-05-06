@@ -12,7 +12,7 @@ import CoreData
 
 struct HomeViewRepresentable: UIViewControllerRepresentable {
     var moc: NSManagedObjectContext
-    var vm: HomeViewModel
+    var viewModel: HomeViewModel
 
     @AppStorage("name") var name: String = "Intermediate"
 
@@ -26,18 +26,16 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
 
     }
 
-    // TODO: create makeCoordinator
-    // TODO: create class coordinator, di kelas ini 
     func makeCoordinator() -> Coordinator {
-        Coordinator(moc: moc, vm: vm)
+        Coordinator(moc: moc, viewModel: viewModel)
     }
 
     class Coordinator: NSObject, HomeDelegate {
         var moc: NSManagedObjectContext
-        var vm: HomeViewModel
+        var viewModel: HomeViewModel
 
         func back() {
-            vm.popToRoot()
+            viewModel.popToRoot()
         }
 
         func saveRecord(
@@ -62,9 +60,9 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
             try? moc.save()
         }
 
-        init(moc: NSManagedObjectContext, vm: HomeViewModel) {
+        init(moc: NSManagedObjectContext, viewModel: HomeViewModel) {
             self.moc = moc
-            self.vm = vm
+            self.viewModel = viewModel
         }
     }
 }
