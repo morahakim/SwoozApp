@@ -145,7 +145,6 @@ class CameraViewController: UIViewController {
     }
 
     func startReadingAsset(_ asset: AVAsset) {
-
         videoRenderView = VideoRenderView(frame: view.bounds)
         setupVideoOutputView(videoRenderView)
         videoFileReadingQueue.async { [weak self] in

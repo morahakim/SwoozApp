@@ -19,7 +19,7 @@ struct RecordView: View {
     var body: some View {
         VStack {
             if isOnRecord {
-                HomeViewRepresentable(moc: moc, vm: homeViewModel)
+                HomeViewRepresentable(moc: moc, viewModel: homeViewModel)
             } else {
                 LoadingRecordView()
             }
