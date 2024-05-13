@@ -67,6 +67,8 @@
 		37B5E7662B10EA93003A72DC /* Low Serve - Lintasan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7642B10EA93003A72DC /* Low Serve - Lintasan.gif */; };
 		37B5E7672B10EA93003A72DC /* Low Serve - Penempatan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */; };
 		37B5E76D2B10F1A3003A72DC /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B5E76C2B10F1A3003A72DC /* GifImage.swift */; };
+		A32D3D012BE726F900EB1609 /* RepetitionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32D3D002BE726F900EB1609 /* RepetitionSheet.swift */; };
+		A32D3D032BE727B800EB1609 /* LowServeTrajectoryViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32D3D022BE727B800EB1609 /* LowServeTrajectoryViewHelpers.swift */; };
 		A33B3B442BE6CB24008D1260 /* HomeViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33B3B432BE6CB24008D1260 /* HomeViewController+Extensions.swift */; };
 		BE0A4E762B11AA74005E1518 /* Iphone Portrait to Landscape.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE0A4E742B11AA74005E1518 /* Iphone Portrait to Landscape.gif */; };
 		BE0A4E772B11AA74005E1518 /* Iphone Landscape to Portrait.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE0A4E752B11AA74005E1518 /* Iphone Landscape to Portrait.gif */; };
@@ -190,6 +192,8 @@
 		37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Low Serve - Penempatan.gif"; sourceTree = "<group>"; };
 		37B5E76C2B10F1A3003A72DC /* GifImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
+		A32D3D002BE726F900EB1609 /* RepetitionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepetitionSheet.swift; sourceTree = "<group>"; };
+		A32D3D022BE727B800EB1609 /* LowServeTrajectoryViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectoryViewHelpers.swift; sourceTree = "<group>"; };
 		A33B3B432BE6CB24008D1260 /* HomeViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Extensions.swift"; sourceTree = "<group>"; };
 		BE0A4E742B11AA74005E1518 /* Iphone Portrait to Landscape.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Iphone Portrait to Landscape.gif"; sourceTree = "<group>"; };
 		BE0A4E752B11AA74005E1518 /* Iphone Landscape to Portrait.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Iphone Landscape to Portrait.gif"; sourceTree = "<group>"; };
@@ -497,6 +501,8 @@
 				183B337B2AFA92CC004E023D /* TechniqueView.swift */,
 				BEA1C1362AF0436D00BFF1A4 /* LowServeTrajectoryView.swift */,
 				18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */,
+				A32D3D002BE726F900EB1609 /* RepetitionSheet.swift */,
+				A32D3D022BE727B800EB1609 /* LowServeTrajectoryViewHelpers.swift */,
 			);
 			path = Technique;
 			sourceTree = "<group>";
@@ -757,7 +763,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -773,6 +779,7 @@
 				188062F12AF9536400310F93 /* SFSymbol.swift in Sources */,
 				18EE72CB2B08D04F00DE7BE7 /* LowServePlacementView.swift in Sources */,
 				A33B3B442BE6CB24008D1260 /* HomeViewController+Extensions.swift in Sources */,
+				A32D3D012BE726F900EB1609 /* RepetitionSheet.swift in Sources */,
 				376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */,
 				BEA1C15C2AF0436D00BFF1A4 /* RecordView.swift in Sources */,
 				184E02EE2AF1745C0004C569 /* DataContoller.swift in Sources */,
@@ -792,6 +799,7 @@
 				BEF748342AF02AAF00E8FB8B /* ascentttApp.swift in Sources */,
 				18CD6E152AF953D50087B24D /* Text.swift in Sources */,
 				374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */,
+				A32D3D032BE727B800EB1609 /* LowServeTrajectoryViewHelpers.swift in Sources */,
 				183B337C2AFA92CC004E023D /* TechniqueView.swift in Sources */,
 				18CD6E192AF953EA0087B24D /* Lottie.swift in Sources */,
 				BEA1C16E2AF0436D00BFF1A4 /* HomeViewModel.swift in Sources */,
