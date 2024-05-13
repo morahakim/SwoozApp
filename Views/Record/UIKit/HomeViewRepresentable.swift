@@ -41,24 +41,35 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
         }
 
         func saveRecord(
-            recordData: RecordData
+            url: URL,
+            duration: String,
+            hitFail: Int,
+            hitPerfect: Int,
+            hitSuccess: Int,
+            hitTarget: Int,
+            hitTotal: Int,
+            level: String,
+            result: String,
+            minDistance: Double,
+            avgDistance: Double,
+            variance: String
         ) {
             let data = RecordSkill(context: moc)
             data.datetime = Date()
-            data.duration = recordData.duration
-            data.hitFail = Int16(recordData.hitFail)
-            data.hitPerfect = Int16(recordData.hitPerfect)
-            data.hitSuccess = Int16(recordData.hitSuccess)
-            data.hitTarget = Int16(recordData.hitTarget)
-            data.hitTotal = Int16(recordData.hitTotal)
+            data.duration = duration
+            data.hitFail = Int16(hitFail)
+            data.hitPerfect = Int16(hitPerfect)
+            data.hitSuccess = Int16(hitSuccess)
+            data.hitTarget = Int16(hitTarget)
+            data.hitTotal = Int16(hitTotal)
             data.id = UUID()
-            data.level = recordData.level
-            data.result = recordData.result
+            data.level = level
+            data.result = result
             data.type = "Low Serve"
-            data.url = recordData.url.absoluteString
-            data.minDistance = recordData.minDistance
-            data.avgDistance = recordData.avgDistance
-            data.variance = recordData.variance
+            data.url = url.absoluteString
+            data.minDistance = minDistance
+            data.avgDistance = avgDistance
+            data.variance = variance
             try? moc.save()
         }
 
