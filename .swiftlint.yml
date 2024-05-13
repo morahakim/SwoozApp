@@ -3,9 +3,6 @@ disabled_rules:
 type_body_length:
   - 350 # warning
   - 400 # error
-cyclomatic_complexity:
-  - 15 # warning
-  - 20 # error
 line_length:
   warning: 150
   ignores_function_declarations: true
