@@ -9,7 +9,7 @@ import SwiftUI
 import AVKit
 import CoreData
 
-struct LowServePlacementDetailView: View {
+struct LowServeDetailView: View {
     var item: FetchedResults<RecordSkill>.Element
     @State var isPlay: Bool = false
     @State var player: AVPlayer?
@@ -25,7 +25,10 @@ struct LowServePlacementDetailView: View {
     @State private var attempData: [HitStatistics] = []
 
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: RecordSkill.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)]) var database: FetchedResults<RecordSkill>
+    @FetchRequest(entity: RecordSkill.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)])
+
+    var database: FetchedResults<RecordSkill>
 
     private struct HitStatistics: Identifiable {
         var id = UUID().uuidString
@@ -91,7 +94,7 @@ struct LowServePlacementDetailView: View {
                         VStack {
                             VStack {
                                 HStack {
-                                    Text(chooseLevelTextTwo ?? "-")
+                                    Text(chooseLevelTextTwo )
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundColor(.white)
                                         .padding(.horizontal, 6)
@@ -136,16 +139,20 @@ struct LowServePlacementDetailView: View {
 
                                 VStack(spacing: 15) {
                                     if attempData.count > 0 {
-                                        ForEach(0..<((attempData.count + 9) / 10)) { row in
+                                        ForEach(0..<((attempData.count + 9) / 10), id: \.self) { row in
                                             HStack {
-                                                ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
+                                                ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { attemp in
                                                     VStack {
-                                                        Text(i.hitNumber)
-                                                            .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 20)).frame(maxWidth: itemWidth)
-                                                        Text(String(format: "%.1f", i.netDistance))
-                                                            .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                            .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 10)).frame(maxWidth: itemWidth)
+                                                        Text(attemp.hitNumber)
+                                                            .foregroundStyle(attemp.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
+                                                            .font(
+                                                                Font.custom(attemp.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 20))
+                                                            .frame(maxWidth: itemWidth)
+                                                        Text(String(format: "%.1f", attemp.netDistance))
+                                                            .foregroundStyle(attemp.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
+                                                            .font(
+                                                                Font.custom(attemp.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 10))
+                                                            .frame(maxWidth: itemWidth)
                                                     }
                                                 }
                                             }

@@ -1,6 +1,6 @@
 /*
  See LICENSE folder for this sample’s licensing information.
- 
+
  Abstract:
  The app's home view controller that displays instructions and camera options.
  */
@@ -35,6 +35,7 @@ protocol HomeDelegate: AnyObject {
 }
 
 class HomeViewController: UIViewController, ContentAnalysisDelegate {
+
     let localStorage = LocalStorage()
 
     let motionManager = CMMotionManager()
@@ -106,7 +107,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
-        setupView()
+        setUpHomeView()
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateStateMenu), userInfo: nil, repeats: true)
         contentAnalysisViewController.contentAnalysisDelegate = self
 
@@ -332,7 +333,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     @objc func skipVideo() {
 
         print("DBUGGGGG : SKIP")
-//        menuStateApp = "placement"
+        //        menuStateApp = "placement"
         contentAnalysisViewController.counter.typeSend(type: String(techniqueId))
         contentAnalysisViewController.counter.levelSend(level: techniqueName)
         contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
@@ -411,6 +412,159 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     var guideBox2 = UIView()
     var guideText1 = UILabel()
     var guideText2 = UILabel()
+
+
+    func setUpHomeView() {
+
+        imageNetView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+
+        boxNet.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        //        boxNet.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.4)
+        boxNet.layer.cornerRadius = 4
+
+        if techniqueId == 0 {
+            netName = "NetLevel2"
+            if let image = UIImage(named: netName) {
+                imageNetView.image = image
+            }
+            view.addSubview(imageNetView)
+            view.addSubview(boxNet)
+
+            guideBox1.frame = CGRect(x: view.frame.width * 0.5 - 320/2, y: view.frame.height * 0.1, width: 320, height: 60)
+            guideBox1.alpha = 1
+            guideBox1.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            guideBox1.layer.cornerRadius = 32
+            boxNet.addSubview(guideBox1)
+
+            guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
+            guideText1.text = trajectoryTutorialTextOne
+            guideText1.textColor = UIColor.white
+            guideText1.textAlignment = .center
+            guideText1.font = UIFont(name: "Urbanist", size: 17)
+            guideText1.numberOfLines = 2
+            guideText1.lineBreakMode = .byWordWrapping
+            guideBox1.addSubview(guideText1)
+
+            let pathLine = UIBezierPath()
+            pathLine.move(to: CGPoint(x: view.frame.width * 0.471, y: view.frame.height * 0.45))
+            pathLine.addLine(to: CGPoint(x: view.frame.width * 0.5 + 50, y: view.frame.height * 0.45))
+
+            let shapeLayer = CAShapeLayer()
+            let pathView = UIView()
+
+            shapeLayer.path = pathLine.cgPath
+            shapeLayer.strokeColor = UIColor.white.cgColor
+            shapeLayer.lineWidth = 2.0
+            shapeLayer.fillColor = UIColor.clear.cgColor
+            shapeLayer.lineDashPattern = [4, 2]
+            //            shapeLayer.lineCap = .round
+
+            pathView.layer.addSublayer(shapeLayer)
+
+            boxNet.addSubview(pathView)
+
+            guideBox2.frame = CGRect(x: view.frame.width * 0.5 + 50, y: view.frame.height * 0.4, width: 130, height: 36)
+            guideBox2.alpha = 1
+            guideBox2.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            guideBox2.layer.cornerRadius = 18
+            boxNet.addSubview(guideBox2)
+            guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
+            guideText2.text = trajectoryTutorialTextTwo
+            guideText2.textColor = UIColor.white
+            guideText2.textAlignment = .center
+            guideText2.font = UIFont(name: "Urbanist", size: 17)
+            guideText2.numberOfLines = 2
+            guideText2.lineBreakMode = .byWordWrapping
+            guideBox2.addSubview(guideText2)
+
+        } else if techniqueId == 1 {
+            netName = "NetLevel3"
+            if let image = UIImage(named: netName) {
+                imageNetView.image = image
+            }
+            view.addSubview(imageNetView)
+            view.addSubview(boxNet)
+
+            guideBox1.frame = CGRect(x: view.frame.width - 400 - 97, y: view.frame.height - 90 - 20, width: 400, height: 90)
+            guideBox1.alpha = 0.9
+            guideBox1.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            guideBox1.layer.cornerRadius = 32
+            boxNet.addSubview(guideBox1)
+
+            guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
+            guideText1.text = servePlacementGuidlineText
+            guideText1.textColor = UIColor.white
+            guideText1.textAlignment = .center
+            guideText1.font = UIFont(name: "Urbanist", size: 17)
+            guideText1.numberOfLines = 3
+            guideText1.lineBreakMode = .byWordWrapping
+            guideBox1.addSubview(guideText1)
+
+            //            guideBox2.frame = CGRect(x: view.frame.width * 0.5 - 450/2, y: view.frame.height * 0.5, width: 450, height: 58)
+            //            guideBox2.alpha = 0.9
+            //            guideBox2.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            //            guideBox2.layer.cornerRadius = 32
+            //            boxNet.addSubview(guideBox2)
+            //            guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
+            //            guideText2.text = "Place the tripod facing the shuttlecock placement area.\nAdjust the camera according to the guide lines."
+            //            guideText2.textColor = UIColor.white
+            //            guideText2.textAlignment = .center
+            //            guideText2.font = UIFont(name: "Urbanist", size: 17)
+            //            guideText2.numberOfLines = 2
+            //            guideText2.lineBreakMode = .byWordWrapping
+            //            guideBox2.addSubview(guideText2)
+
+        }
+
+        //                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openDir))
+        //                view.isUserInteractionEnabled = true
+        //                view.addGestureRecognizer(tapGesture)
+
+        let image2 = UIImage(named: "CPButtonID")
+        buttonSetUp.setImage(image2, for: .normal)
+        buttonSetUp.imageView?.contentMode = .scaleAspectFit
+        buttonSetUp.frame = CGRect(x: view.frame.width - 130 - 90, y: 20, width: 130, height: 40)
+        buttonSetUp.addTarget(self, action: #selector(setupSetUp), for: .touchUpInside)
+        view.addSubview(buttonSetUp)
+
+        let image3 = UIImage(named: "CloseButton")
+        buttonClose.setImage(image3, for: .normal)
+        buttonClose.imageView?.contentMode = .scaleAspectFit
+        buttonClose.frame = CGRect(x: 20 + 70, y: 20, width: 40, height: 40)
+        buttonClose.addTarget(self, action: #selector(back), for: .touchUpInside)
+        view.addSubview(buttonClose)
+
+        let image4 = UIImage(named: "PathColorButtonID")
+        buttonPathColor.setImage(image4, for: .normal)
+        buttonPathColor.imageView?.contentMode = .scaleAspectFit
+        buttonPathColor.frame = CGRect(x: 20 + 70, y: view.frame.height-20-40, width: 130, height: 40)
+        buttonPathColor.addTarget(self, action: #selector(setupPathColorView), for: .touchUpInside)
+        view.addSubview(buttonPathColor)
+
+        let iconClose = UIImage(systemName: "xmark")
+        let iconImageView = UIImageView(image: iconClose)
+        iconImageView.tintColor = .white
+        iconImageView.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
+        buttonClose.addSubview(iconImageView)
+
+        buttonWhite.frame = CGRect(x: view.frame.size.width - 70 + 18 - (32/2), y: (view.frame.size.height/2) - (32/2), width: 64, height: 64)
+        buttonWhite.backgroundColor = nil
+        buttonWhite.layer.cornerRadius = 32
+        buttonWhite.clipsToBounds = true
+        buttonWhite.layer.borderWidth = 3.0
+        buttonWhite.layer.borderColor = UIColor.white.cgColor
+        buttonWhite.addTarget(self, action: #selector(startRecording), for: .touchUpInside)
+        view.addSubview(buttonWhite)
+
+        button.frame = CGRect(x: 5, y: 5, width: 54, height: 54)
+        button.backgroundColor = UIColor(red: 1, green: 0.2, blue: 0.15, alpha: 1.0)
+        button.layer.cornerRadius = 27
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(startRecording), for: .touchUpInside)
+
+        buttonWhite.addSubview(button)
+
+    }
 
     @objc func openDir() {
         //        print("Open Dir!")
