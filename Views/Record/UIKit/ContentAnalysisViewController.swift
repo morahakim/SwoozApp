@@ -136,9 +136,31 @@ class ContentAnalysisViewController: UIViewController,
         }
     }
 
-    func save(recordData: RecordData) {
+    func save(url: URL,
+              duration: String,
+              hitFail: Int,
+              hitPerfect: Int,
+              hitSuccess: Int,
+              hitTarget: Int,
+              hitTotal: Int,
+              level: String,
+              result: String,
+              minDistance: Double,
+              avgDistance: Double,
+              variance: String) {
 
-        contentAnalysisDelegate?.saveRecord(recordData: recordData)
+        contentAnalysisDelegate?.saveRecord(url: url,
+                                            duration: duration,
+                                            hitFail: hitFail,
+                                            hitPerfect: hitPerfect,
+                                            hitSuccess: hitSuccess,
+                                            hitTarget: hitTarget,
+                                            hitTotal: hitTotal,
+                                            level: level,
+                                            result: result,
+                                            minDistance: minDistance,
+                                            avgDistance: avgDistance,
+                                            variance: variance)
     }
 
     // MARK: - Static Properties
@@ -575,19 +597,18 @@ class ContentAnalysisViewController: UIViewController,
         Task {
             do {
                 let url = try await stopRecordScreen()
-                let recordedData = RecordData(url: url,
-                                              duration: durationApp,
-                                              hitFail: hitFailApp,
-                                              hitPerfect: hitPerfectApp,
-                                              hitSuccess: hitSuccessApp,
-                                              hitTarget: hitTargetApp,
-                                              hitTotal: hitTotalApp,
-                                              level: "\(techniqueId)",
-                                              result: arrResult,
-                                              minDistance: minDistance,
-                                              avgDistance: averageOfDistance,
-                                              variance: variance)
-                save(recordData: recordedData)
+                save(url: url,
+                     duration: durationApp,
+                     hitFail: hitFailApp,
+                     hitPerfect: hitPerfectApp,
+                     hitSuccess: hitSuccessApp,
+                     hitTarget: hitTargetApp,
+                     hitTotal: hitTotalApp,
+                     level: "\(techniqueId)",
+                     result: arrResult,
+                     minDistance: minDistance,
+                     avgDistance: averageOfDistance,
+                     variance: variance)
             } catch {
                 print(error.localizedDescription)
             }

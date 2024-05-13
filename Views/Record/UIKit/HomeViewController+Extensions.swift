@@ -101,121 +101,95 @@ extension HomeViewController {
         present(colorPicker, animated: true, completion: nil)
     }
 
-    @objc func setUpPathColorViewFirstTechnique() {
-        let size: CGFloat = CGFloat(Float(localStorage.loadSize(forKey: String(techniqueId))!) * 14)
-        let cornerRadius = size / 2
-        let shape: CGFloat = CGFloat((1-((1.1-Float(localStorage.loadSize(forKey: String(techniqueId))!)) * 2.5)) * 8)
-
-        pathGreen.move(to: CGPoint(x: pathColorView.frame.width/4, y: pathColorView.frame.height/1.7))
-        pathGreen.addQuadCurve(to: CGPoint(x: pathColorView.frame.width/1.5, y: pathColorView.frame.height/1.8),
-                               controlPoint: CGPoint(x: pathColorView.frame.width/2.5, y: pathColorView.frame.height/4))
-
-        shapeLayerGreen.path = pathGreen.cgPath
-        shapeLayerGreen.strokeColor = localStorage.loadColor(forKey: "Green")?.cgColor
-        shapeLayerGreen.lineWidth = shape
-        shapeLayerGreen.fillColor = UIColor.clear.cgColor
-        pathColorView.layer.addSublayer(shapeLayerGreen)
-
-        pathYellow.move(to: CGPoint(x: pathColorView.frame.width/5, y: pathColorView.frame.height/1.7))
-        pathYellow.addQuadCurve(to: CGPoint(x: pathColorView.frame.width/1.6, y: pathColorView.frame.height/2.3),
-                                controlPoint: CGPoint(x: pathColorView.frame.width/1.8, y: pathColorView.frame.height/8))
-
-        shapeLayerYellow.path = pathYellow.cgPath
-        shapeLayerYellow.strokeColor = localStorage.loadColor(forKey: "Yellow")?.cgColor
-        shapeLayerYellow.lineWidth = shape
-        shapeLayerYellow.fillColor = UIColor.clear.cgColor
-        pathColorView.layer.addSublayer(shapeLayerYellow)
-
-        pathRed.move(to: CGPoint(x: pathColorView.frame.width/3.5, y: pathColorView.frame.height/1.7))
-        pathRed.addQuadCurve(to: CGPoint(x: pathColorView.frame.width/2.2, y: pathColorView.frame.height/1.9),
-                             controlPoint: CGPoint(x: pathColorView.frame.width/2.7, y: pathColorView.frame.height/1.8))
-
-        shapeLayerRed.path = pathRed.cgPath
-        shapeLayerRed.strokeColor = localStorage.loadColor(forKey: "Red")?.cgColor
-        shapeLayerRed.lineWidth = shape
-        shapeLayerRed.fillColor = UIColor.clear.cgColor
-        pathColorView.layer.addSublayer(shapeLayerRed)
-
-        circleGreen.frame = CGRect(
-            x: (pathColorView.frame.width/2.4) - size/2, y: (pathColorView.frame.height/2.44) - size/2,
-            width: size, height: size)
-        circleGreen.layer.cornerRadius = cornerRadius
-        circleGreen.layer.masksToBounds = true
-        circleGreen.backgroundColor = localStorage.loadColor(forKey: "Green")
-        pathColorView.addSubview(circleGreen)
-
-        circleYellow.frame = CGRect(
-            x: (pathColorView.frame.width/1.9) - size/2, y: (pathColorView.frame.height/3.22) - size/2,
-            width: size, height: size)
-        circleYellow.layer.opacity = 1
-        circleYellow.layer.cornerRadius = cornerRadius
-        circleYellow.layer.masksToBounds = true
-        circleYellow.backgroundColor = localStorage.loadColor(forKey: "Yellow")
-        pathColorView.addSubview(circleYellow)
-
-        circleRed.frame = CGRect(
-            x: (pathColorView.frame.width/2.2) - size/2, y: (pathColorView.frame.height/1.90) - size/2,
-            width: size, height: size)
-        circleRed.layer.cornerRadius = cornerRadius
-        circleRed.layer.masksToBounds = true
-        circleRed.backgroundColor = localStorage.loadColor(forKey: "Red")
-
-    }
-
-    @objc func setViewsToPathColorView() {
-        pathColorView.addSubview(circleRed)
-        pathColorView.addSubview(circleGreen)
-        pathColorView.addSubview(circleYellow)
-        pathColorView.addSubview(circleRed)
-    }
-
-    @objc func setUpPathColorViewSecondTechnique() {
-        let size: CGFloat = CGFloat(Float(localStorage.loadSize(forKey: String(techniqueId))!) * 20)
-        let cornerRadius = size / 2
-
-        circleGreen.frame = CGRect(
-            x: (pathColorView.frame.width * 0.28) - size/2,
-            y: (pathColorView.frame.height * 0.4) - size/2,
-            width: size,
-            height: size)
-
-        circleGreen.layer.cornerRadius = cornerRadius
-        circleGreen.layer.masksToBounds = true
-        circleGreen.backgroundColor = localStorage.loadColor(forKey: "Green")
-        pathColorView.addSubview(circleGreen)
-
-        circleYellow.frame = CGRect(
-            x: (pathColorView.frame.width * 0.38) - size/2,
-            y: (pathColorView.frame.height * 0.4) - size/2,
-            width: size,
-            height: size)
-        circleYellow.layer.opacity = 1
-        circleYellow.layer.cornerRadius = cornerRadius
-        circleYellow.layer.masksToBounds = true
-        circleYellow.backgroundColor = localStorage.loadColor(forKey: "Yellow")
-        pathColorView.addSubview(circleYellow)
-
-        circleRed.frame = CGRect(
-            x: (pathColorView.frame.width * 0.18) - size/2,
-            y: (pathColorView.frame.height * 0.4) - size/2,
-            width: size,
-            height: size)
-        circleRed.layer.opacity = 1
-        circleRed.layer.cornerRadius = cornerRadius
-        circleRed.layer.masksToBounds = true
-        circleRed.backgroundColor = localStorage.loadColor(forKey: "Red")
-        pathColorView.addSubview(circleRed)
-
-        pathColorView.addSubview(circleGreen)
-        pathColorView.addSubview(circleYellow)
-        pathColorView.addSubview(circleRed)
-    }
-
     @objc func setUpPathColorViewBasedOnTechnique(techniqueId: Int) {
         if techniqueId == 0 {
-            self.setUpPathColorViewFirstTechnique()
+
+            let size: CGFloat = CGFloat(Float(localStorage.loadSize(forKey: String(techniqueId))!) * 14)
+            let cornerRadius = size / 2
+            let shape: CGFloat = CGFloat((1-((1.1-Float(localStorage.loadSize(forKey: String(techniqueId))!)) * 2.5)) * 8)
+
+            pathGreen.move(to: CGPoint(x: pathColorView.frame.width/4, y: pathColorView.frame.height/1.7))
+            pathGreen.addQuadCurve(to: CGPoint(x: pathColorView.frame.width/1.5, y: pathColorView.frame.height/1.8),
+                                   controlPoint: CGPoint(x: pathColorView.frame.width/2.5, y: pathColorView.frame.height/4))
+
+            shapeLayerGreen.path = pathGreen.cgPath
+            shapeLayerGreen.strokeColor = localStorage.loadColor(forKey: "Green")?.cgColor
+            shapeLayerGreen.lineWidth = shape
+            shapeLayerGreen.fillColor = UIColor.clear.cgColor
+            pathColorView.layer.addSublayer(shapeLayerGreen)
+
+            pathYellow.move(to: CGPoint(x: pathColorView.frame.width/5, y: pathColorView.frame.height/1.7))
+            pathYellow.addQuadCurve(to: CGPoint(x: pathColorView.frame.width/1.6, y: pathColorView.frame.height/2.3),
+                                    controlPoint: CGPoint(x: pathColorView.frame.width/1.8, y: pathColorView.frame.height/8))
+
+            shapeLayerYellow.path = pathYellow.cgPath
+            shapeLayerYellow.strokeColor = localStorage.loadColor(forKey: "Yellow")?.cgColor
+            shapeLayerYellow.lineWidth = shape
+            shapeLayerYellow.fillColor = UIColor.clear.cgColor
+            pathColorView.layer.addSublayer(shapeLayerYellow)
+
+            pathRed.move(to: CGPoint(x: pathColorView.frame.width/3.5, y: pathColorView.frame.height/1.7))
+            pathRed.addQuadCurve(to: CGPoint(x: pathColorView.frame.width/2.2, y: pathColorView.frame.height/1.9),
+                                 controlPoint: CGPoint(x: pathColorView.frame.width/2.7, y: pathColorView.frame.height/1.8))
+
+            shapeLayerRed.path = pathRed.cgPath
+            shapeLayerRed.strokeColor = localStorage.loadColor(forKey: "Red")?.cgColor
+            shapeLayerRed.lineWidth = shape
+            shapeLayerRed.fillColor = UIColor.clear.cgColor
+            pathColorView.layer.addSublayer(shapeLayerRed)
+
+            circleGreen.frame = CGRect(x: (pathColorView.frame.width/2.4) - size/2, y: (pathColorView.frame.height/2.44) - size/2, width: size, height: size)
+            circleGreen.layer.cornerRadius = cornerRadius
+            circleGreen.layer.masksToBounds = true
+            circleGreen.backgroundColor = localStorage.loadColor(forKey: "Green")
+            pathColorView.addSubview(circleGreen)
+
+            circleYellow.frame = CGRect(x: (pathColorView.frame.width/1.9) - size/2, y: (pathColorView.frame.height/3.22) - size/2, width: size, height: size)
+            circleYellow.layer.opacity = 1
+            circleYellow.layer.cornerRadius = cornerRadius
+            circleYellow.layer.masksToBounds = true
+            circleYellow.backgroundColor = localStorage.loadColor(forKey: "Yellow")
+            pathColorView.addSubview(circleYellow)
+
+            circleRed.frame = CGRect(x: (pathColorView.frame.width/2.2) - size/2, y: (pathColorView.frame.height/1.90) - size/2, width: size, height: size)
+            circleRed.layer.cornerRadius = cornerRadius
+            circleRed.layer.masksToBounds = true
+            circleRed.backgroundColor = localStorage.loadColor(forKey: "Red")
+            pathColorView.addSubview(circleRed)
+
+            pathColorView.addSubview(circleGreen)
+            pathColorView.addSubview(circleYellow)
+            pathColorView.addSubview(circleRed)
+
         } else if techniqueId == 1 {
-            self.setUpPathColorViewSecondTechnique()
+
+            let size: CGFloat = CGFloat(Float(localStorage.loadSize(forKey: String(techniqueId))!) * 20)
+            let cornerRadius = size / 2
+
+            circleGreen.frame = CGRect(x: (pathColorView.frame.width * 0.28) - size/2, y: (pathColorView.frame.height * 0.4) - size/2, width: size, height: size)
+
+            circleGreen.layer.cornerRadius = cornerRadius
+            circleGreen.layer.masksToBounds = true
+            circleGreen.backgroundColor = localStorage.loadColor(forKey: "Green")
+            pathColorView.addSubview(circleGreen)
+
+            circleYellow.frame = CGRect(x: (pathColorView.frame.width * 0.38) - size/2, y: (pathColorView.frame.height * 0.4) - size/2, width: size, height: size)
+            circleYellow.layer.opacity = 1
+            circleYellow.layer.cornerRadius = cornerRadius
+            circleYellow.layer.masksToBounds = true
+            circleYellow.backgroundColor = localStorage.loadColor(forKey: "Yellow")
+            pathColorView.addSubview(circleYellow)
+
+            circleRed.frame = CGRect(x: (pathColorView.frame.width * 0.18) - size/2, y: (pathColorView.frame.height * 0.4) - size/2, width: size, height: size)
+            circleRed.layer.opacity = 1
+            circleRed.layer.cornerRadius = cornerRadius
+            circleRed.layer.masksToBounds = true
+            circleRed.backgroundColor = localStorage.loadColor(forKey: "Red")
+            pathColorView.addSubview(circleRed)
+
+            pathColorView.addSubview(circleGreen)
+            pathColorView.addSubview(circleYellow)
+            pathColorView.addSubview(circleRed)
         }
     }
 
@@ -296,13 +270,30 @@ extension HomeViewController {
         self.buttonPathColor.isHidden = true
     }
 
-    @objc func addFirstAndSecondToBoxPathColor() {
-        let box1 = UIView(), box2 = UIView()
-        let text1 = UILabel(), text2 = UILabel()
-        let arrow1 = UIImageView(), arrow2 = UIImageView()
+    @objc func setupPathColorView() {
 
+        self.setHiddenViews()
+
+        pathColorView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        view.addSubview(pathColorView)
+
+        self.setUpPathColorViewBasedOnTechnique(techniqueId: techniqueId)
+
+        boxPathColor.frame = CGRect(x: 0, y: pathColorView.frame.height - 20, width: pathColorView.frame.width / 1.5, height: 154)
+        boxPathColor.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        boxPathColor.layer.cornerRadius = 12
+        pathColorView.addSubview(boxPathColor)
+        boxPathColor.translatesAutoresizingMaskIntoConstraints = false
+        boxPathColor.widthAnchor.constraint(equalToConstant: pathColorView.frame.width / 1.5).isActive = true
+        boxPathColor.heightAnchor.constraint(equalToConstant: 154).isActive = true
+        boxPathColor.centerXAnchor.constraint(equalTo: pathColorView.centerXAnchor, constant: -0.47).isActive = true
+        boxPathColor.bottomAnchor.constraint(equalTo: pathColorView.bottomAnchor, constant: -20).isActive = true
+
+        let box1 = UIView()
         box1.frame = CGRect(x: 0, y: 15, width: boxPathColor.frame.width/3, height: 34)
+        //        box1.backgroundColor = .blue
 
+        let text1 = UILabel()
         text1.text = goodTextTrajectory
         text1.font = UIFont(name: "Urbanist", size: 20)
         text1.textColor = UIColor.white
@@ -319,14 +310,17 @@ extension HomeViewController {
 
         select1.addSubview(self.circleGreenPath)
 
+        let arrow1 = UIImageView()
         arrow1.frame = CGRect(x: select1.frame.width - 20 - (select1.frame.height-24)/2, y: (select1.frame.height-12)/2, width: 20, height: 12)
         arrow1.image = UIImage(systemName: "chevron.down")
         arrow1.tintColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1)
         arrow1.contentMode = .scaleAspectFit
         select1.addSubview(arrow1)
 
+        let box2 = UIView()
         box2.frame = CGRect(x: (boxPathColor.frame.width/3) * 1, y: 15, width: boxPathColor.frame.width/3, height: 34)
 
+        let text2 = UILabel()
         text2.text = riskyTextTrajectory
         text2.font = UIFont(name: "Urbanist", size: 20)
         text2.textColor = UIColor.white
@@ -343,25 +337,13 @@ extension HomeViewController {
 
         select2.addSubview(self.circleYellowPath)
 
+        let arrow2 = UIImageView()
         arrow2.frame = CGRect(x: select2.frame.width - 20 - (select2.frame.height-24)/2, y: (select2.frame.height-12)/2, width: 20, height: 12)
         arrow2.image = UIImage(systemName: "chevron.down")
         arrow2.tintColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1)
         arrow2.contentMode = .scaleAspectFit
         select2.addSubview(arrow2)
 
-        let tap1 = UITapGestureRecognizer(target: self, action: #selector(setColorGreen))
-        box1.addGestureRecognizer(tap1)
-        box1.isUserInteractionEnabled = true
-
-        let tap2 = UITapGestureRecognizer(target: self, action: #selector(setColorYellow))
-        box2.addGestureRecognizer(tap2)
-        box2.isUserInteractionEnabled = true
-
-        self.boxPathColor.addSubview(box1)
-        self.boxPathColor.addSubview(box2)
-    }
-
-    @objc func andThirdAndFourthToBoxPathColor() {
         let box3 = UIView()
         box3.frame = CGRect(x: (boxPathColor.frame.width/3) * 2, y: 15, width: boxPathColor.frame.width/3, height: 34)
         let text3 = UILabel()
@@ -388,60 +370,34 @@ extension HomeViewController {
         arrow3.contentMode = .scaleAspectFit
         select3.addSubview(arrow3)
 
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(setColorGreen))
+        box1.addGestureRecognizer(tap1)
+        box1.isUserInteractionEnabled = true
+
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(setColorYellow))
+        box2.addGestureRecognizer(tap2)
+        box2.isUserInteractionEnabled = true
+
         let tap3 = UITapGestureRecognizer(target: self, action: #selector(setColorRed))
         box3.addGestureRecognizer(tap3)
         box3.isUserInteractionEnabled = true
 
-        let box4 = UIView()
+        let box4 = self.setFourthBox(sizeTrajectoryText: sizeTrajectoryText, xValue: 0, yValue: 35, width: boxPathColor.frame.width / 3.0, height: 34)
 
-        box4.frame = CGRect(x: 0, y: 35, width: boxPathColor.frame.width / 3.0, height: 34)
-        //        box1.backgroundColor = .blue
-
-        let text4 = UILabel()
-        text4.text = sizeTrajectoryText
-        text4.font = UIFont(name: "Urbanist", size: 20)
-        text4.textColor = UIColor.white
-        text4.textAlignment = .right
-        text4.frame = CGRect(x: 0, y: 20, width: box4.frame.width/2 - 10, height: 34)
-        box4.addSubview(text4)
-
-        self.boxPathColor.addSubview(box3)
-        self.boxPathColor.addSubview(box4)
-    }
-
-    @objc func setupPathColorView() {
-        self.setHiddenViews()
-
-        pathColorView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        view.addSubview(pathColorView)
-
-        self.setUpPathColorViewBasedOnTechnique(techniqueId: techniqueId)
-
-        boxPathColor.frame = CGRect(x: 0, y: pathColorView.frame.height - 20, width: pathColorView.frame.width / 1.5, height: 154)
-        boxPathColor.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        boxPathColor.layer.cornerRadius = 12
-        pathColorView.addSubview(boxPathColor)
-        boxPathColor.translatesAutoresizingMaskIntoConstraints = false
-        boxPathColor.widthAnchor.constraint(equalToConstant: pathColorView.frame.width / 1.5).isActive = true
-        boxPathColor.heightAnchor.constraint(equalToConstant: 154).isActive = true
-        boxPathColor.centerXAnchor.constraint(equalTo: pathColorView.centerXAnchor, constant: -0.47).isActive = true
-        boxPathColor.bottomAnchor.constraint(equalTo: pathColorView.bottomAnchor, constant: -20).isActive = true
-
-        let slider = self.setSlider(
-            xValue: pathColorView.frame.width * 0.275, yValue: pathColorView.frame.height * 0.7,
-            width: pathColorView.frame.width * 0.525, height: 34)
+        let slider = self.setSlider(xValue: pathColorView.frame.width * 0.275, yValue: pathColorView.frame.height * 0.7, width: pathColorView.frame.width * 0.525, height: 34)
         pathColorView.addSubview(slider)
 
-        self.addFirstAndSecondToBoxPathColor()
-        self.andThirdAndFourthToBoxPathColor()
+        boxPathColor.addSubview(box1)
+        boxPathColor.addSubview(box2)
+        boxPathColor.addSubview(box3)
+        boxPathColor.addSubview(box4)
 
-        let doneButton = self.setDoneButton( buttonSaveText: buttonSaveText,
-            xValue: (boxPathColor.frame.width-350)/2, yValue: 90,
-            width: 350, height: 50)
+        let doneButton = self.setDoneButton(buttonSaveText: buttonSaveText, xValue: (boxPathColor.frame.width-350)/2, yValue: 90, width: 350, height: 50)
 
         doneButton.addTarget(self, action: #selector(save), for: .touchUpInside)
 
         boxPathColor.addSubview(doneButton)
+
     }
 
     @objc func sliderValueChanged(_ sender: UISlider) {
@@ -455,15 +411,9 @@ extension HomeViewController {
             shapeLayerGreen.lineWidth = shape
             shapeLayerYellow.lineWidth = shape
             shapeLayerRed.lineWidth = shape
-            circleGreen.frame = CGRect(
-                x: (pathColorView.frame.width/2.4) - size/2, y: (pathColorView.frame.height/2.44) - size/2,
-                width: size, height: size)
-            circleYellow.frame = CGRect(
-                x: (pathColorView.frame.width/1.9) - size/2, y: (pathColorView.frame.height/3.22) - size/2,
-                width: size, height: size)
-            circleRed.frame = CGRect(
-                x: (pathColorView.frame.width/2.2) - size/2, y: (pathColorView.frame.height/1.90) - size/2,
-                width: size, height: size)
+            circleGreen.frame = CGRect(x: (pathColorView.frame.width/2.4) - size/2, y: (pathColorView.frame.height/2.44) - size/2, width: size, height: size)
+            circleYellow.frame = CGRect(x: (pathColorView.frame.width/1.9) - size/2, y: (pathColorView.frame.height/3.22) - size/2, width: size, height: size)
+            circleRed.frame = CGRect(x: (pathColorView.frame.width/2.2) - size/2, y: (pathColorView.frame.height/1.90) - size/2, width: size, height: size)
             circleGreen.layer.cornerRadius = cornerRadius
             circleYellow.layer.cornerRadius = cornerRadius
             circleRed.layer.cornerRadius = cornerRadius
@@ -471,15 +421,9 @@ extension HomeViewController {
             localStorage.saveSize(sender.value, forKey: String(techniqueId))
             let size: CGFloat = CGFloat(Float(localStorage.loadSize(forKey: String(techniqueId))!) * 20)
             let cornerRadius = size / 2
-            circleGreen.frame = CGRect(
-                x: (pathColorView.frame.width * 0.28) - size/2, y: (pathColorView.frame.height * 0.4) - size/2,
-                width: size, height: size)
-            circleYellow.frame = CGRect(
-                x: (pathColorView.frame.width * 0.38) - size/2, y: (pathColorView.frame.height * 0.4) - size/2,
-                width: size, height: size)
-            circleRed.frame = CGRect(
-                x: (pathColorView.frame.width * 0.18) - size/2, y: (pathColorView.frame.height * 0.4) - size/2,
-                width: size, height: size)
+            circleGreen.frame = CGRect(x: (pathColorView.frame.width * 0.28) - size/2, y: (pathColorView.frame.height * 0.4) - size/2, width: size, height: size)
+            circleYellow.frame = CGRect(x: (pathColorView.frame.width * 0.38) - size/2, y: (pathColorView.frame.height * 0.4) - size/2, width: size, height: size)
+            circleRed.frame = CGRect(x: (pathColorView.frame.width * 0.18) - size/2, y: (pathColorView.frame.height * 0.4) - size/2, width: size, height: size)
 
             circleGreen.layer.cornerRadius = cornerRadius
             circleYellow.layer.cornerRadius = cornerRadius
@@ -487,105 +431,99 @@ extension HomeViewController {
         }
     }
 
-    func setUpViewFirstTechnique() {
-        netName = "NetLevel2"
-        if let image = UIImage(named: netName) {
-            imageNetView.image = image
-        }
-        view.addSubview(imageNetView)
-        view.addSubview(boxNet)
-
-        guideBox1.frame = CGRect(x: view.frame.width * 0.5 - 320/2, y: view.frame.height * 0.1, width: 320, height: 60)
-        guideBox1.alpha = 1
-        guideBox1.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        guideBox1.layer.cornerRadius = 32
-        boxNet.addSubview(guideBox1)
-
-        guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
-        guideText1.text = trajectoryTutorialTextOne
-        guideText1.textColor = UIColor.white
-        guideText1.textAlignment = .center
-        guideText1.font = UIFont(name: "Urbanist", size: 17)
-        guideText1.numberOfLines = 2
-        guideText1.lineBreakMode = .byWordWrapping
-        guideBox1.addSubview(guideText1)
-
-        let pathLine = UIBezierPath()
-        pathLine.move(to: CGPoint(x: view.frame.width * 0.471, y: view.frame.height * 0.45))
-        pathLine.addLine(to: CGPoint(x: view.frame.width * 0.5 + 50, y: view.frame.height * 0.45))
-
-        let shapeLayer = CAShapeLayer()
-        let pathView = UIView()
-
-        shapeLayer.path = pathLine.cgPath
-        shapeLayer.strokeColor = UIColor.white.cgColor
-        shapeLayer.lineWidth = 2.0
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineDashPattern = [4, 2]
-        //            shapeLayer.lineCap = .round
-
-        pathView.layer.addSublayer(shapeLayer)
-
-        boxNet.addSubview(pathView)
-
-        guideBox2.frame = CGRect(x: view.frame.width * 0.5 + 50, y: view.frame.height * 0.4, width: 130, height: 36)
-        guideBox2.alpha = 1
-        guideBox2.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        guideBox2.layer.cornerRadius = 18
-        boxNet.addSubview(guideBox2)
-        guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
-        guideText2.text = trajectoryTutorialTextTwo
-        guideText2.textColor = UIColor.white
-        guideText2.textAlignment = .center
-        guideText2.font = UIFont(name: "Urbanist", size: 17)
-        guideText2.numberOfLines = 2
-        guideText2.lineBreakMode = .byWordWrapping
-        guideBox2.addSubview(guideText2)
-    }
-
-    func setUpViewSecondTechnique() {
-        netName = "NetLevel3"
-        if let image = UIImage(named: netName) {
-            imageNetView.image = image
-        }
-        view.addSubview(imageNetView)
-        view.addSubview(boxNet)
-
-        guideBox1.frame = CGRect(x: view.frame.width - 400 - 97, y: view.frame.height - 90 - 20, width: 400, height: 90)
-        guideBox1.alpha = 0.9
-        guideBox1.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        guideBox1.layer.cornerRadius = 32
-        boxNet.addSubview(guideBox1)
-
-        guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
-        guideText1.text = servePlacementGuidlineText
-        guideText1.textColor = UIColor.white
-        guideText1.textAlignment = .center
-        guideText1.font = UIFont(name: "Urbanist", size: 17)
-        guideText1.numberOfLines = 3
-        guideText1.lineBreakMode = .byWordWrapping
-        guideBox1.addSubview(guideText1)
-
-        //            guideBox2.frame = CGRect(x: view.frame.width * 0.5 - 450/2, y: view.frame.height * 0.5, width: 450, height: 58)
-        //            guideBox2.alpha = 0.9
-        //            guideBox2.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        //            guideBox2.layer.cornerRadius = 32
-        //            boxNet.addSubview(guideBox2)
-        //            guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
-        //            guideText2.text = "Place the tripod facing the shuttlecock placement area.\nAdjust the camera according to the guide lines."
-        //            guideText2.textColor = UIColor.white
-        //            guideText2.textAlignment = .center
-        //            guideText2.font = UIFont(name: "Urbanist", size: 17)
-        //            guideText2.numberOfLines = 2
-        //            guideText2.lineBreakMode = .byWordWrapping
-        //            guideBox2.addSubview(guideText2)
-    }
-
     func setupViewBasedOnTechnique(techniqueID: Int) {
         if techniqueId == 0 {
-            self.setUpViewFirstTechnique()
+            netName = "NetLevel2"
+            if let image = UIImage(named: netName) {
+                imageNetView.image = image
+            }
+            view.addSubview(imageNetView)
+            view.addSubview(boxNet)
+
+            guideBox1.frame = CGRect(x: view.frame.width * 0.5 - 320/2, y: view.frame.height * 0.1, width: 320, height: 60)
+            guideBox1.alpha = 1
+            guideBox1.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            guideBox1.layer.cornerRadius = 32
+            boxNet.addSubview(guideBox1)
+
+            guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
+            guideText1.text = trajectoryTutorialTextOne
+            guideText1.textColor = UIColor.white
+            guideText1.textAlignment = .center
+            guideText1.font = UIFont(name: "Urbanist", size: 17)
+            guideText1.numberOfLines = 2
+            guideText1.lineBreakMode = .byWordWrapping
+            guideBox1.addSubview(guideText1)
+
+            let pathLine = UIBezierPath()
+            pathLine.move(to: CGPoint(x: view.frame.width * 0.471, y: view.frame.height * 0.45))
+            pathLine.addLine(to: CGPoint(x: view.frame.width * 0.5 + 50, y: view.frame.height * 0.45))
+
+            let shapeLayer = CAShapeLayer()
+            let pathView = UIView()
+
+            shapeLayer.path = pathLine.cgPath
+            shapeLayer.strokeColor = UIColor.white.cgColor
+            shapeLayer.lineWidth = 2.0
+            shapeLayer.fillColor = UIColor.clear.cgColor
+            shapeLayer.lineDashPattern = [4, 2]
+            //            shapeLayer.lineCap = .round
+
+            pathView.layer.addSublayer(shapeLayer)
+
+            boxNet.addSubview(pathView)
+
+            guideBox2.frame = CGRect(x: view.frame.width * 0.5 + 50, y: view.frame.height * 0.4, width: 130, height: 36)
+            guideBox2.alpha = 1
+            guideBox2.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            guideBox2.layer.cornerRadius = 18
+            boxNet.addSubview(guideBox2)
+            guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
+            guideText2.text = trajectoryTutorialTextTwo
+            guideText2.textColor = UIColor.white
+            guideText2.textAlignment = .center
+            guideText2.font = UIFont(name: "Urbanist", size: 17)
+            guideText2.numberOfLines = 2
+            guideText2.lineBreakMode = .byWordWrapping
+            guideBox2.addSubview(guideText2)
+
         } else if techniqueId == 1 {
-            self.setUpViewSecondTechnique()
+            netName = "NetLevel3"
+            if let image = UIImage(named: netName) {
+                imageNetView.image = image
+            }
+            view.addSubview(imageNetView)
+            view.addSubview(boxNet)
+
+            guideBox1.frame = CGRect(x: view.frame.width - 400 - 97, y: view.frame.height - 90 - 20, width: 400, height: 90)
+            guideBox1.alpha = 0.9
+            guideBox1.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            guideBox1.layer.cornerRadius = 32
+            boxNet.addSubview(guideBox1)
+
+            guideText1 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox1.frame.width, height: guideBox1.frame.height))
+            guideText1.text = servePlacementGuidlineText
+            guideText1.textColor = UIColor.white
+            guideText1.textAlignment = .center
+            guideText1.font = UIFont(name: "Urbanist", size: 17)
+            guideText1.numberOfLines = 3
+            guideText1.lineBreakMode = .byWordWrapping
+            guideBox1.addSubview(guideText1)
+
+            //            guideBox2.frame = CGRect(x: view.frame.width * 0.5 - 450/2, y: view.frame.height * 0.5, width: 450, height: 58)
+            //            guideBox2.alpha = 0.9
+            //            guideBox2.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            //            guideBox2.layer.cornerRadius = 32
+            //            boxNet.addSubview(guideBox2)
+            //            guideText2 = UILabel(frame: CGRect(x: 0, y: 0, width: guideBox2.frame.width, height: guideBox2.frame.height))
+            //            guideText2.text = "Place the tripod facing the shuttlecock placement area.\nAdjust the camera according to the guide lines."
+            //            guideText2.textColor = UIColor.white
+            //            guideText2.textAlignment = .center
+            //            guideText2.font = UIFont(name: "Urbanist", size: 17)
+            //            guideText2.numberOfLines = 2
+            //            guideText2.lineBreakMode = .byWordWrapping
+            //            guideBox2.addSubview(guideText2)
+
         }
     }
 

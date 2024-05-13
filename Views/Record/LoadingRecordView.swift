@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoadingRecordView: View {
-    @EnvironmentObject var viewModel: HomeViewModel
+    @EnvironmentObject var vm: HomeViewModel
     @State private var isShowAlerRotate = true
 
     var body: some View {
@@ -18,7 +18,7 @@ struct LoadingRecordView: View {
         .padding(16)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                viewModel.popToRoot()
+                vm.popToRoot()
             }
         }
     }

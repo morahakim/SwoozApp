@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecordView: View {
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var viewModel: HomeViewModel
+    @EnvironmentObject var vm: HomeViewModel
 
     @AppStorage("isOnRecord") var isOnRecord = true
     @AppStorage("hitTarget") var hitTarget: Int = 0
@@ -19,7 +19,7 @@ struct RecordView: View {
     var body: some View {
         VStack {
             if isOnRecord {
-                HomeViewRepresentable(moc: moc, viewModel: viewModel)
+                HomeViewRepresentable(moc: moc, vm: vm)
             } else {
                 LoadingRecordView()
             }

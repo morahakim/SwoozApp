@@ -10,9 +10,8 @@ import AVKit
 import CoreData
 
 struct LowServeTrajectoryView: View {
-    @EnvironmentObject var viewModel: HomeViewModel
+    @EnvironmentObject var vm: HomeViewModel
     @Environment(\.managedObjectContext) var moc
-    @State var viewHelper = LowServeTrajectoryViewHelpers()
 
     @State var showRepetitionSheet = false
     @State var selectedRepetition = 0
@@ -190,7 +189,7 @@ struct LowServeTrajectoryView: View {
                                             HStack {
                                                 TextAlignLeading(latestDrill.count > 0 ? "\(latestDrill[0].hitPerfect)" : "-")
                                                 Spacer()
-                                                TextAlignLeading(String(format: "%.2f", viewHelper.getAverate(recordOfTheMonth)))
+                                                TextAlignLeading(String(format: "%.2f", getAverate(recordOfTheMonth)))
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
@@ -223,9 +222,9 @@ struct LowServeTrajectoryView: View {
 
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("\(String(format: "%.2f", viewHelper.getLatestLowest(latestDrill))) cm")
+                                                TextAlignLeading("\(String(format: "%.2f", getLatestLowest(latestDrill))) cm")
                                                 Spacer()
-                                                TextAlignLeading("\(String(format: "%.2f", viewHelper.getLatesAvg(latestDrill))) cm")
+                                                TextAlignLeading("\(String(format: "%.2f", getLatesAvg(latestDrill))) cm")
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
@@ -240,9 +239,9 @@ struct LowServeTrajectoryView: View {
 
                                         VStack(spacing: 2) {
                                             HStack {
-                                                TextAlignLeading("\(String(format: "%.2f", viewHelper.getMonthLowest(lowestOfTheMonth))) cm")
+                                                TextAlignLeading("\(String(format: "%.2f", getMonthLowest(lowestOfTheMonth))) cm")
                                                 Spacer()
-                                                TextAlignLeading("\(String(format: "%.2f", viewHelper.getMonthBestAvg(bestAvgOfTheMonth))) cm")
+                                                TextAlignLeading("\(String(format: "%.2f", getMonthBestAvg(bestAvgOfTheMonth))) cm")
                                             }
                                             .font(Font.custom("Urbanist", size: 28))
                                             .fontWeight(.semibold)
@@ -343,14 +342,14 @@ struct LowServeTrajectoryView: View {
 
         }
         .onDisappear {
-            if viewModel.path.last == .record {
+            if vm.path.last == .record {
                 UIDevice.current.setValue(
                     UIInterfaceOrientation.portrait.rawValue,
                     forKey: "orientation"
                 )
                 AppDelegate.orientationLock = .portrait
                 player?.pause()
-            } else if viewModel.path.last == .rotateToLandscape {
+            } else if vm.path.last == .rotateToLandscape {
                 UIDevice.current.setValue(
                     UIInterfaceOrientation.landscapeRight.rawValue,
                     forKey: "orientation"
@@ -363,23 +362,17 @@ struct LowServeTrajectoryView: View {
             let levelPredicate = NSPredicate(format: "level == %@", "0")
 
             let request: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate = NSPredicate(
-                format: "(datetime >= %@) AND (datetime <= %@)",
-                argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            let predicate = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
 
             let request2: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate2 = NSPredicate(
-                format: "(datetime >= %@) AND (datetime <= %@)",
-                argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            let predicate2 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request2.sortDescriptors = [NSSortDescriptor(key: "minDistance", ascending: true)]
             request2.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate2])
 
             let request3: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate3 = NSPredicate(
-                format: "(datetime >= %@) AND (datetime <= %@)",
-                argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
+            let predicate3 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
             request3.sortDescriptors = [NSSortDescriptor(key: "avgDistance", ascending: true)]
             request3.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate3])
 
@@ -393,6 +386,99 @@ struct LowServeTrajectoryView: View {
         }
     }
 
+    private func getAverate(_ data: [RecordSkill]) -> Double {
+        if data.count == 0 {
+            return 0
+        } else {
+            var total: Double = 0.0
+            for element in data {
+                total += Double(element.hitPerfect)
+            }
+            return Double(total/Double(data.count))
+        }
+    }
+
+    private func getLatestLowest(_ data: FetchedResults<RecordSkill>) -> Double {
+        if data.count > 0 {
+            return data[0].minDistance
+        } else {
+            return 0
+        }
+    }
+
+    private func getLatesAvg(_ data: FetchedResults<RecordSkill>) -> Double {
+        if data.count > 0 {
+            return data[0].avgDistance
+        } else {
+            return 0
+        }
+    }
+
+    private func getMonthBestAvg(_ data: [RecordSkill]) -> Double {
+        if data.count > 0 {
+            return data[0].avgDistance
+        } else {
+            return 0
+        }
+    }
+
+    private func getMonthLowest(_ data: [RecordSkill]) -> Double {
+        if data.count > 0 {
+            return data[0].minDistance
+        } else {
+            return 0
+        }
+    }
+}
+
+private struct RepetitionSheet: View {
+    @EnvironmentObject var vm: HomeViewModel
+    @Binding var isPresented: Bool
+    @Binding var selectedRepetition: Int
+
+    @AppStorage("hitTargetApp") var hitTargetApp: Int = 0
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            TextAlignLeading(repetitionText)
+                .font(Font.custom("SF Pro", size: 20).bold())
+                .foregroundColor(.neutralBlack)
+                .padding(.top, 18)
+                .padding(.horizontal, 16)
+
+            Picker("", selection: $selectedRepetition) {
+                Text(unlimitedText).tag(0)
+                Text("5").tag(5)
+                Text("10").tag(10)
+                Text("15").tag(15)
+                Text("20").tag(20)
+            }
+            .pickerStyle(.wheel)
+            .padding(.horizontal, 16)
+
+            Divider()
+            BtnPrimary(text: continueText) {
+                hitTargetApp = selectedRepetition
+                isPresented.toggle()
+                vm.path.append(.rotateToLandscape)
+            }
+            .padding(.horizontal, 16)
+        }
+        .onAppear {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.portrait.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .portrait
+        }
+        .onDisappear {
+            UIDevice.current.setValue(
+                UIInterfaceOrientation.landscapeRight.rawValue,
+                forKey: "orientation"
+            )
+            AppDelegate.orientationLock = .landscapeRight
+        }
+    }
 }
 
 #Preview {

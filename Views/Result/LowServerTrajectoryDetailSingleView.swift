@@ -102,7 +102,7 @@ struct LowServeTrajectoryDetailSingleView: View {
                         VStack {
                             VStack {
                                 HStack {
-                                    Text(chooseLevelTextOne)
+                                    Text(chooseLevelTextOne ?? "-")
                                         .font(Font.custom("SF Pro", size: 12))
                                         .foregroundColor(.white)
                                         .padding(.horizontal, 6)
@@ -156,17 +156,12 @@ struct LowServeTrajectoryDetailSingleView: View {
 
                                 VStack(spacing: 15) {
                                     if attempData.count > 0 {
-                                        ForEach(0..<((attempData.count + 9) / 10), id: \.self) { row in
+                                        ForEach(0..<((attempData.count + 9) / 10)) { row in
                                             HStack {
                                                 ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { index in
                                                     Text(index.hitNumber)
                                                         .foregroundStyle(index.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                        .font(
-                                                            Font.custom(
-                                                                index.hitStatus == "Perfect" ?
-                                                                "Urbanist-Medium" : "Urbanist",
-                                                            size: 20))
-                                                        .frame(maxWidth: itemWidth)
+                                                        .font(Font.custom(index.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist", size: 20)).frame(maxWidth: itemWidth)
                                                 }
                                             }
                                         }

@@ -201,7 +201,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
 
     var player = AVPlayer()
 
-    @objc func setViewsHidden() {
+    @objc func setupSetUp() {
+
         buttonClose.isHidden = true
         buttonPathColor.isHidden = true
         buttonWhite.isHidden = true
@@ -210,45 +211,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         boxView.isHidden = true
 
         boxNet.isHidden = true
-    }
-
-    @objc func setResetButton(xValue: Double, yValue: Double, width: Double, height: Double) -> UIButton {
-        let resetButton = UIButton()
-        resetButton.setTitle(skipText, for: .normal)
-        resetButton.titleLabel?.font = UIFont(name: "Urbanist", size: 17)
-        resetButton.setTitleColor(UIColor.white, for: .normal)
-        resetButton.frame = CGRect(x: xValue, y: yValue, width: width, height: height)
-        resetButton.addTarget(self, action: #selector(skipVideo), for: .touchUpInside)
-        resetButton.addTarget(self, action: #selector(skipVideo), for: .touchUpInside)
-        return resetButton
-    }
-
-    @objc func setTextLevel(xValue: Double, yValue: Double, width: Double, height: Double) -> UILabel {
-        let textLevel = UILabel()
-        textLevel.text = "\(setupText) "+techniqueName
-        textLevel.font = UIFont(name: "Urbanist", size: 17)
-        textLevel.textColor = UIColor.white
-        textLevel.textAlignment = .center
-        textLevel.frame = CGRect(x: xValue, y: yValue, width: width, height: height)
-        return textLevel
-    }
-
-    @objc func setFirstViewChild() -> UIView {
-        let setupView1 = UIView()
-        setupView1.backgroundColor = nil
-        setupView1.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.5, height: view.frame.height/1.5)
-        setupView1.center = view.center
-
-        setupView1.translatesAutoresizingMaskIntoConstraints = false
-        setupView1.heightAnchor.constraint(equalToConstant: view.frame.height/1.5).isActive = true
-        setupView1.widthAnchor.constraint(equalToConstant: view.frame.width/1.5).isActive = true
-        setupView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        setupView1.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        return setupView1
-    }
-
-    @objc func setupSetUp() {
-        self.setViewsHidden()
 
         print("setupSetUp")
         //        view.backgroundColor = .blue
@@ -262,8 +224,17 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         setupViewChild.backgroundColor = nil
         view.addSubview(setupViewChild)
 
-        let setupView1 = self.setFirstViewChild()
+        let setupView1 = UIView()
+        setupView1.backgroundColor = nil
+        setupView1.frame = CGRect(x: 0, y: 0, width: view.frame.width/1.5, height: view.frame.height/1.5)
+        setupView1.center = view.center
         setupViewChild.addSubview(setupView1)
+
+        setupView1.translatesAutoresizingMaskIntoConstraints = false
+        setupView1.heightAnchor.constraint(equalToConstant: view.frame.height/1.5).isActive = true
+        setupView1.widthAnchor.constraint(equalToConstant: view.frame.width/1.5).isActive = true
+        setupView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        setupView1.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 
         var setupName = "Trajectory"
         if techniqueId == 0 {
@@ -314,10 +285,22 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
             print("Video file not found in the app's bundle.")
         }
 
-        let resetButton = self.setResetButton(xValue: 0, yValue: setupView1.frame.maxY + 5.0, width: setupViewChild.frame.width, height: 40)
+        let resetButton = UIButton()
+        resetButton.setTitle(skipText, for: .normal)
+        resetButton.titleLabel?.font = UIFont(name: "Urbanist", size: 17)
+        resetButton.setTitleColor(UIColor.white, for: .normal)
+        resetButton.frame = CGRect(x: 0, y: setupView1.frame.maxY + 5, width: setupViewChild.frame.width, height: 40)
+        resetButton.addTarget(self, action: #selector(skipVideo), for: .touchUpInside)
+        resetButton.addTarget(self, action: #selector(skipVideo), for: .touchUpInside)
+
         setupViewChild.addSubview(resetButton)
 
-        let textLevel = self.setTextLevel(xValue: 0, yValue: setupView1.frame.minY - 50.0, width: setupViewChild.frame.width, height: 40)
+        let textLevel = UILabel()
+        textLevel.text = "\(setupText) "+techniqueName
+        textLevel.font = UIFont(name: "Urbanist", size: 17)
+        textLevel.textColor = UIColor.white
+        textLevel.textAlignment = .center
+        textLevel.frame = CGRect(x: 0, y: setupView1.frame.minY - 50, width: setupViewChild.frame.width, height: 40)
         setupViewChild.addSubview(textLevel)
 
     }
