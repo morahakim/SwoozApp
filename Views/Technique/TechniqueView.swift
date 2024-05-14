@@ -33,33 +33,33 @@ struct TechniqueView: View {
                 Color.greenMain.ignoresSafeArea(.all)
 
                 ScrollView {
-                    ForEach(data, id: \.self) { d in
+                    ForEach(data, id: \.self) { index in
                         CardView(action: {
-                            if !d.isLock {
-                                if d.id == 0 {
+                            if !index.isLock {
+                                if index.id == 0 {
                                     vm.path.append(.lowServeTrajectory)
-                                } else if d.id == 1 {
+                                } else if index.id == 1 {
                                     vm.path.append(.lowServePlacement)
                                 }
-                                techniqueId = d.id
-                                techniqueName = d.name
+                                techniqueId = index.id
+                                techniqueName = index.name
                             }
                         }, content: {
                             VStack(spacing: 6) {
-                                Image(d.img)
+                                Image(index.img)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(height: 100)
                                     .padding(.horizontal, 16)
                                     .padding(.top, 16)
                                 HStack {
-                                    Text(d.name)
+                                    Text(index.name)
                                         .font(Font.custom("Urbanist", size: 20).weight(.medium))
                                         .foregroundStyle(.neutralBlack)
                                     Spacer()
                                 }
                                 .padding(.horizontal, 16)
-                                if d.isLock {
+                                if index.isLock {
 //                                    HStack {
 //                                        Image(systemName: "lock.fill")
 //                                            .resizable()
@@ -75,7 +75,7 @@ struct TechniqueView: View {
 //                                    .padding(.horizontal, 16)
                                 } else {
                                     HStack {
-                                        Text(d.desc)
+                                        Text(index.desc)
                                             .font(Font.custom("SF Pro", size: 15))
                                             .multilineTextAlignment(.leading)
                                             .foregroundStyle(.grayStroke6)
@@ -87,7 +87,7 @@ struct TechniqueView: View {
                             .padding(.bottom, 16)
                         })
                         .overlay {
-                            if d.isLock {
+                            if index.isLock {
                                 RoundedRectangle(cornerRadius: 12)
                                     .fill(Color.grayStroke3)
                                     .opacity(0.5)

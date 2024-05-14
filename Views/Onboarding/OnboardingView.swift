@@ -86,7 +86,6 @@ struct OnBoardingView: View {
     }
 }
 
-
 struct BtnNext: View {
     var body: some View {
         HStack(alignment: .center, spacing: 4) {

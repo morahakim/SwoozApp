@@ -371,7 +371,7 @@ struct LowServePlacementView: View {
             .toolbarBackground(.greenMain, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .sheet(isPresented: $showRepetitionSheet) {
-                RepetitionSheet(
+                RepetitionSheetLowServe(
                     isPresented: $showRepetitionSheet,
                     selectedRepetition: $selectedRepetition
                 )
@@ -485,7 +485,7 @@ struct LowServePlacementView: View {
 
 }
 
-private struct RepetitionSheet: View {
+private struct RepetitionSheetLowServe: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Binding var isPresented: Bool
     @Binding var selectedRepetition: Int

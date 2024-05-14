@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct ascentttApp: App {
+struct AscentttApp: App {
     private let dataController = DataController.shared
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 

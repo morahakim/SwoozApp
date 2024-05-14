@@ -98,7 +98,7 @@
 		BEA1C1722AF0436D00BFF1A4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1422AF0436D00BFF1A4 /* OnboardingView.swift */; };
 		BEAAB9A12AF0476C00277B45 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAB9A02AF0476C00277B45 /* StartPage.swift */; };
 		BEAAB9A32AF0477300277B45 /* ActivityRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAB9A22AF0477300277B45 /* ActivityRingView.swift */; };
-		BEF748342AF02AAF00E8FB8B /* ascentttApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */; };
+		BEF748342AF02AAF00E8FB8B /* AscentttApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF748332AF02AAF00E8FB8B /* AscentttApp.swift */; };
 		BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF748372AF02AB000E8FB8B /* Assets.xcassets */; };
 		BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF7483A2AF02AB000E8FB8B /* Preview Assets.xcassets */; };
 		BEF748412AF02AB000E8FB8B /* Swooz.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BEF748402AF02AB000E8FB8B /* Swooz.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -223,7 +223,7 @@
 		BEAAB9A02AF0476C00277B45 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
 		BEAAB9A22AF0477300277B45 /* ActivityRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingView.swift; sourceTree = "<group>"; };
 		BEF748302AF02AAF00E8FB8B /* ascenttt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ascenttt.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ascentttApp.swift; sourceTree = "<group>"; };
+		BEF748332AF02AAF00E8FB8B /* AscentttApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AscentttApp.swift; sourceTree = "<group>"; };
 		BEF748372AF02AB000E8FB8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEF7483A2AF02AB000E8FB8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BEF748402AF02AB000E8FB8B /* Swooz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swooz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -573,7 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				18CEF7292B02317E00952E16 /* Info.plist */,
-				BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */,
+				BEF748332AF02AAF00E8FB8B /* AscentttApp.swift */,
 				18CD6E222AF957DA0087B24D /* Assets */,
 				BEF748392AF02AB000E8FB8B /* Preview Content */,
 			);
@@ -796,7 +796,7 @@
 				BEA1C1682AF0436D00BFF1A4 /* LoadingRecordView.swift in Sources */,
 				18CD6E172AF953E20087B24D /* SheetShare.swift in Sources */,
 				183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */,
-				BEF748342AF02AAF00E8FB8B /* ascentttApp.swift in Sources */,
+				BEF748342AF02AAF00E8FB8B /* AscentttApp.swift in Sources */,
 				18CD6E152AF953D50087B24D /* Text.swift in Sources */,
 				374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */,
 				A32D3D032BE727B800EB1609 /* LowServeTrajectoryViewHelpers.swift in Sources */,

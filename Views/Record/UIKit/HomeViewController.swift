@@ -35,6 +35,9 @@ protocol HomeDelegate: AnyObject {
 }
 
 class HomeViewController: UIViewController, ContentAnalysisDelegate {
+    func saveRecord(_ record: Record) {
+
+    }
 
     let localStorage = LocalStorage()
 
@@ -412,7 +415,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     var guideBox2 = UIView()
     var guideText1 = UILabel()
     var guideText2 = UILabel()
-
 
     func setUpHomeView() {
 

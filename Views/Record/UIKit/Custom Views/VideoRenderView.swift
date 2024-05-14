@@ -37,7 +37,7 @@ class VideoRenderView: UIView, NormalizedRectConverting {
         guard let contents = renderLayer.contents else {
             return .zero
         }
-        let image = contents as! CGImage
+        let image = contents as! CGImage  // swiftlint:disable:this force_cast
         let layerRect = renderLayer.bounds
         let imgHeight = CGFloat(image.height)
         let imgWidth = CGFloat(image.width)
