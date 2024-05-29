@@ -477,16 +477,29 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         boxPathColor.addSubview(box4)
         
         
+        let buttonWidth = boxPathColor.frame.width / 2 - 50
+        
         let doneButton = UIButton(type: .system)
         doneButton.setTitle(buttonSaveText, for: .normal)
         doneButton.setTitleColor(.white, for: .normal)
         doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         doneButton.backgroundColor = UIColor(red: 33/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0)
-        doneButton.layer.cornerRadius = 12
+        doneButton.layer.cornerRadius = 40/2
         
-        doneButton.frame = CGRect(x: (boxPathColor.frame.width-350)/2, y: 90, width: 350, height: 50)
+//        doneButton.frame = CGRect(x: (boxPathColor.frame.width-350)/2, y: 90, width: 350, height: 50)
+        doneButton.frame = CGRect(x: buttonWidth + 74, y: 100, width: buttonWidth, height: 40)
         doneButton.addTarget(self, action: #selector(save), for: .touchUpInside)
         
+        let closeButton = UIButton(type: .system)
+        closeButton.setTitle(closeButtonText, for: .normal)
+        closeButton.setTitleColor(UIColor(red: 36/255.0, green: 191/255.0, blue: 115/255.0, alpha: 1.0), for: .normal)
+        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        closeButton.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+        closeButton.layer.cornerRadius = 40 / 2
+        
+        closeButton.frame = CGRect(x: 30, y: 100, width: buttonWidth, height: 40)
+        
+        boxPathColor.addSubview(closeButton)
         boxPathColor.addSubview(doneButton)
         
         
