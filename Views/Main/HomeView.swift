@@ -13,26 +13,30 @@ struct HomeView: View {
         NSSortDescriptor(key: "datetime", ascending: false)
     ]) var list: FetchedResults<RecordSkill>
     @Environment(\.managedObjectContext) var moc
-    
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "hitPerfect", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "0")
     ) var trajectoryList: FetchedResults<RecordSkill>
-    
+
     @AppStorage("isDetail") var isDetail = false
-    
+
     @AppStorage("menuStateApp") var menuStateApp = ""
-    
+
     @State var isMoveToDetail = false
-    
-    
+
+
     let contentAnalysisViewController = ContentAnalysisViewController()
-    
+
+
     var body: some View {
         if isMoveToDetail {
+
             if list.count > 0 {
+
                 LowServeTrajectoryDetailSingleView(item: list[0], isMoveToDetail: $isMoveToDetail)
                     .onAppear {
+
                         UIDevice.current.setValue(
                             UIInterfaceOrientation.portrait.rawValue,
                             forKey: "orientation"
@@ -52,30 +56,22 @@ struct HomeView: View {
                     if list.count > 0 {
                         VStack {
                             if trajectoryList.count > 0 {
-                                ZStack {
-                                    Image("Challenge")
-                                        .resizable()
-                                        .frame(height: 190)
-                                        .cornerRadius(12)
-                                    
-                                    VStack(spacing: 10) {
-                                        Image("Icon")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 16)
-                                        Text(weeklyChallengeText)
-                                            .font(Font.custom("SF Pro", size: 20))
-                                            .foregroundStyle(Color.white)
-                                        VStack {
-                                            Text("\(performText) \(trajectoryList[0].hitPerfect) \(goodServe).")
-                                                .font(Font.custom("SF Pro", size: 15))
-                                                .foregroundStyle(Color.white)
-                                            Text(chooseLevelTextOne)
-                                                .font(Font.custom("SF Pro", size: 15))
-                                                .foregroundStyle(Color.white)
+                                HStack(){
+                                    VStack(alignment: .leading, spacing: 16){
+                                        VStack(alignment: .leading, spacing: 4){
+                                            Text(weeklyChallengeText)
+                                                .font(Font.custom("SF Pro", size: 16))
+                                                .foregroundStyle(Color.grayStroke6)
+                                            VStack {
+                                                Text("\(performText) \(trajectoryList[0].hitPerfect) \(goodServe).")
+                                                    .font(Font.custom("SF Pro", size: 20))
+                                                    .foregroundStyle(Color.black)
+                                                Text("(\(chooseLevelTextOne))")
+                                                    .font(Font.custom("SF Pro", size:  20))
+                                                    .foregroundStyle(Color.black)
+                                            }
                                         }
-                                        .padding(.bottom)
-                                        
+
                                         Button {
                                             vm.path.append(contentsOf: [.Technique, .LowServeTrajectory])
                                         } label: {
@@ -89,20 +85,35 @@ struct HomeView: View {
                                                     .foregroundStyle(Color.white)
                                             }
                                         }
-                                    }
-                                }
-                                .padding(.horizontal)
+
+                                    }.padding(.leading, 17)
+                                    Spacer()
+                                    VStack(){
+                                        Image("ForehandExColored").resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                    }.frame(width: 116, height: 125)
+                                }.padding(.top, 24)
                             }
+                            HStack{
+                                Spacer()
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 313, height: 6)
+                                    .background(Color(red: 0.13, green: 0.75, blue: 0.45))
+                                    .cornerRadius(4)
+                            }.padding(.top, 8)
+
                             List {
                                 ForEach(list) { item in
-//                                    Text(item.result!)
+                                    //                                    Text(item.result!)
                                     if item.level == "0" {
+
                                         NavigationLink(destination: LowServeTrajectoryDetailView(item: item)) {
-                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitPerfect, hitFail: item.hitFail, level: item.level)
+                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitPerfect: item.hitPerfect, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
                                         }
                                     } else {
                                         NavigationLink(destination: LowServePlacementDetailView(item: item)) {
-                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitSuccess: item.hitPerfect, hitFail: item.hitFail, level: item.level)
+                                            ItemVideoView(url: item.url, name: item.name, date: item.datetime, hitTarget: item.hitTotal, hitPerfect: item.hitPerfect, hitSuccess: item.hitSuccess, hitFail: item.hitFail, level: item.level)
                                         }
                                     }
                                 }
@@ -137,7 +148,7 @@ struct HomeView: View {
                             .offset(y: -50)
                         }
                     }
-                    
+
                     VStack {
                         Spacer()
                         VStack(alignment: .center, spacing: 4) {
