@@ -516,3 +516,13 @@ let sizeTrajectoryText = NSLocalizedString(
     "size_trajectory_text",
     comment: ""
 )
+
+let buttonHighServeOnBoard = NSLocalizedString(
+    "button_high_serve_onBoard",
+    comment: ""
+)
+
+let highServeText = NSLocalizedString(
+    "high_serve_text",
+    comment: ""
+)

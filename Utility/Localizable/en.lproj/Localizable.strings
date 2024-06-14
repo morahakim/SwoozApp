@@ -110,3 +110,5 @@ and the video will automatically stop.";
 "good_serve" = "good serves";
 "try_again_text" = "Try Again";
 "size_trajectory_text" = "Size";
+"high_serve_text" = "Ready to assess your high serve?";
+"button_high_serve_onBoard" = "Start with acing the low serve.";

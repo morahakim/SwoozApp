@@ -109,3 +109,5 @@ dan video akan otomatis berhenti.";
 "good_serve" = "servis bagus";
 "try_again_text" = "Coba Lagi";
 "size_trajectory_text" = "Ukuran";
+"high_serve_text" = "Siap menilai servis tinggimu?";
+"button_high_serve_onBoard" = "Tuntaskan servis rendahmu.";
