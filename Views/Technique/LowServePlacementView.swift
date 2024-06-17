@@ -32,6 +32,14 @@ struct LowServePlacementView: View {
     @State var lowestOfTheMonth: [RecordSkill] = []
     @State var bestAvgOfTheMonth: [RecordSkill] = []
     
+    var fixed: Bool = true
+    var tabs: [Tab] = [
+        Tab(title: "Description"),
+        Tab(title: "Drill Summary")
+    ]
+    var geoWidth: CGFloat = 375
+    @State var selectedTab: Int = 0
+    
     var body: some View {
         ForceOrientation(.portrait) {
             ZStack(alignment: .top) {
@@ -77,269 +85,41 @@ struct LowServePlacementView: View {
                                 .frame(width: 358, height: 173)
                                 .cornerRadius(12)
                             
-                            ScrollView {
-                                VStack(spacing: 4) {
-                                    HStack {
-                                        Circle()
-                                            .frame(width: 12)
-                                        Text(goodTextTrajectory)
-                                            .font(Font.custom("SF Pro", size: 17))
-                                        Spacer()
-                                    }
-                                    .foregroundStyle(.success)
-                                    TextAlignLeading("Placement near the front service line.")
-                                        .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading("The closer to the front service line, the better.")
-                                        .font(Font.custom("SF Pro", size: 12))
-                                        .foregroundStyle(.grayStroke6)
-                                        .padding(.bottom, 8)
-                                    Divider()
-                                }
-                                .padding(.top, 12)
-                                
-                                VStack(spacing: 4) {
-                                    HStack {
-                                        Circle()
-                                            .frame(width: 12)
-                                        Text(riskyTextTrajectory)
-                                            .font(Font.custom("SF Pro", size: 17))
-                                        Spacer()
-                                    }
-                                    .foregroundStyle(.warning)
-                                    TextAlignLeading("Placement above average.")
-                                        .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading("Your service succeeds but is still easily countered.")
-                                        .font(Font.custom("SF Pro", size: 12))
-                                        .foregroundStyle(.grayStroke6)
-                                        .padding(.bottom, 8)
-                                    Divider()
-                                }
-                                .padding(.top, 12)
-                                
-                                VStack(spacing: 4) {
-                                    HStack {
-                                        Circle()
-                                            .frame(width: 12)
-                                        Text(badTextTrajectory)
-                                            .font(Font.custom("SF Pro", size: 17))
-                                        Spacer()
-                                    }
-                                    .foregroundStyle(.danger)
-                                    TextAlignLeading("Placement outside the intended area.")
-                                        .foregroundStyle(.neutralBlack)
-                                    TextAlignLeading("Your service fails.")
-                                        .font(Font.custom("SF Pro", size: 12))
-                                        .foregroundStyle(.grayStroke6)
-                                        .padding(.bottom, 8)
-                                    Divider()
-                                }
-                                .padding(.top, 12)
-                                
-                                VStack(alignment: .leading, spacing: 4) {
-                                    HStack {
-                                        HStack(alignment: .top, spacing: 4) {
-                                            Text(tipsText)
-                                                .font(Font.custom("SF Pro", size: 17))
-                                                .fontWeight(.semibold)
-                                                .foregroundColor(.white)
-                                        }
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .background(Color(red: 1, green: 0.69, blue: 0))
-                                        .cornerRadius(12)
-                                    }
-                                    
-                                    Text("Diversify the shuttlecock target to make your serve unpredictable.")
-                                        .font(Font.custom("SF Pro", size: 15))
-                                        .foregroundStyle(.grayStroke6)
-                                        .padding(.bottom, 8)
-                                    Divider()
-                                }
-                                .padding(.top, 12)
-                                
-                                CardView(action: {}, content: {
-                                    VStack(alignment: .leading, spacing: 12) {
-                                        VStack(alignment: .leading) {
-                                            Text(chooseLevelTextTwo)
-                                                .font(Font.custom("SF Pro", size: 17))
-                                                .fontWeight(.semibold)
-                                            Text(keepAchieving)
-                                                .font(Font.custom("SF Pro", size: 15))
-                                                .foregroundStyle(.grayStroke6)
-                                        }
-                                        
-                                        VStack(spacing: 2) {
-                                            HStack {
-                                                TextAlignLeading(latestDrill.count > 0 ? "\(latestDrill[0].hitPerfect)" : "-")
-                                                Spacer()
-                                                TextAlignLeading(String(format: "%.2f", getAverate(recordOfTheMonth)))
+                            VStack(spacing: 0) {
+                                HStack(spacing: 0) {
+                                    ForEach(0 ..< tabs.count, id: \.self) { row in
+                                        Button(action: {
+                                            withAnimation {
+                                                selectedTab = row
                                             }
-                                            .font(Font.custom("Urbanist", size: 28))
-                                            .fontWeight(.semibold)
-                                            
-                                            HStack {
-                                                TextAlignLeading(latestDrillText)
-                                                Spacer()
-                                                TextAlignLeading(averageDrillText)
-                                            }
-                                            .font(Font.custom("SF Pro", size: 15))
-                                        }
-                                        
-                                        VStack(spacing: 2) {
-                                            HStack {
-                                                TextAlignLeading(recordOfAllTime.count > 0 ? "\(recordOfAllTime[0].hitPerfect)" : "-")
-                                                Spacer()
-                                                TextAlignLeading(recordOfTheMonth.count > 0 ? "\(recordOfTheMonth[0].hitPerfect)" : "-")
-                                            }
-                                            .font(Font.custom("Urbanist", size: 28))
-                                            .fontWeight(.semibold)
-                                            
-                                            HStack {
-                                                TextAlignLeading(recordAllTimeText)
-                                                Spacer()
-                                                TextAlignLeading(recordOfMonthText)
-                                            }
-                                            .font(Font.custom("SF Pro", size: 15))
-                                        }
-                                    }
-                                    .foregroundStyle(.neutralBlack)
-                                    
-                                })
-                                .frame(height: 150)
-                                .padding(.bottom, 26)
-                                .padding(.top, 24)
-                                
-                                CardView(action: {}, content: {
-                                    VStack(alignment: .leading, spacing: 12) {
-                                        VStack(alignment: .leading) {
-                                            Text(shuttlecockDistanceLineText)
-                                                .font(Font.custom("SF Pro", size: 17))
-                                                .fontWeight(.semibold)
-                                            Text(theCloserBetter)
-                                                .font(Font.custom("SF Pro", size: 15))
-                                                .foregroundStyle(.grayStroke6)
-                                        }
-                                        
-                                        VStack(spacing: 2) {
-                                            HStack {
-                                                TextAlignLeading("\(String(format: "%.2f", getLatestLowest(latestDrill))) cm")
-                                                Spacer()
-                                                TextAlignLeading("\(String(format: "%.2f", getLatesAvg(latestDrill))) cm")
-                                            }
-                                            .font(Font.custom("Urbanist", size: 28))
-                                            .fontWeight(.semibold)
-                                            
-                                            HStack {
-                                                TextAlignLeading(latestClosest)
-                                                Spacer()
-                                                TextAlignLeading(latestAvg)
-                                            }
-                                            .font(Font.custom("SF Pro", size: 15))
-                                        }
-                                        
-                                        VStack(spacing: 2) {
-                                            HStack {
-                                                TextAlignLeading("\(String(format: "%.2f", getMonthLowest(lowestOfTheMonth))) cm")
-                                                Spacer()
-                                                TextAlignLeading("\(String(format: "%.2f", getMonthBestAvg(bestAvgOfTheMonth))) cm")
-                                            }
-                                            .font(Font.custom("Urbanist", size: 28))
-                                            .fontWeight(.semibold)
-                                            
-                                            HStack {
-                                                VStack{
-                                                    TextAlignLeading(closestText)
-                                                    TextAlignLeading(thisMonth)
+                                        }, label: {
+                                            VStack(spacing: 0) {
+                                                HStack {
+                                                    Text(tabs[row].title)
+                                                        .font(Font.system(size: 17, weight: .semibold))
+                                                        .foregroundColor(selectedTab == row ? Color("GreenMain") : Color("GrayStroke3"))
+                                                        .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
                                                 }
-                                                Spacer()
-                                                VStack {
-                                                    TextAlignLeading(bestAvg)
-                                                    TextAlignLeading(thisMonth)
-                                                }
-                                            }
-                                            .font(Font.custom("SF Pro", size: 15))
-                                        }
+                                                .frame(width: fixed ? (geoWidth / CGFloat(tabs.count)) : .none, height: 40)
+                                                Rectangle().fill(selectedTab == row ? Color("GreenMain") : Color.clear)
+                                                    .frame(height: 3)
+                                            }.fixedSize()
+                                        })
+                                            .accentColor(Color.white)
+                                            .buttonStyle(PlainButtonStyle())
                                     }
-                                    .foregroundStyle(.neutralBlack)
-                                    
-                                })
-                                .frame(height: 150)
-                                .padding(.bottom, 36)
-                                .padding(.top, 24)
-                                
-                                CardView(action: {}, content: {
-                                    VStack(alignment: .leading, spacing: 12) {
-                                        Text(chooseLevelTextTwo)
-                                            .font(Font.custom("SF Pro", size: 17))
-                                            .fontWeight(.semibold)
-                                        
-                                        VStack {
-                                            TextAlignLeading(latestDrill.count > 0 ? latestDrill[0].variance ?? "-" : "-")
-                                              .font(
-                                                Font.custom("Urbanist", size: 28)
-                                                  .weight(.semibold)
-                                              )
-                                              .foregroundColor(.black)
-                                            
-                                            TextAlignLeading(latestDrillText)
-                                              .font(Font.custom("SF Pro", size: 15))
-                                              .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
-                                        }
-                                        
-                                        VStack {
-                                            TextAlignLeading(latestDrill.count > 0 ? latestDrill[0].variance ?? "-" : "-")
-                                              .font(
-                                                Font.custom("Urbanist", size: 28)
-                                                  .weight(.semibold)
-                                              )
-                                              .foregroundColor(.black)
-                                            
-                                            TextAlignLeading(frequentMonthText)
-                                              .font(Font.custom("SF Pro", size: 15))
-                                              .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
-                                              .frame(maxWidth: .infinity, alignment: .bottomLeading)
-                                        }
-                                        
-                                        VStack {
-                                            TextAlignLeading("- \(veryScatteredText)")
-                                            TextAlignLeading("  \(variedPlacementText)")
-                                            TextAlignLeading("- \(quiteScattered)")
-                                            TextAlignLeading("- \(quiteCentralized)")
-                                            TextAlignLeading("- \(veryCentralizedText)")
-                                            TextAlignLeading("  \(recommendedTrainBeginner)")
-                                        }
-                                        .font(Font.custom("SF Pro", size: 12))
-                                        .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.56))
-                                    }
-                                    .foregroundStyle(.neutralBlack)
-                                    
-                                })
-                                .frame(height: 150)
-                                .padding(.bottom, 64)
-                                .padding(.top, 48)
-                                
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        HStack(alignment: .top, spacing: 4) {
-                                            Text("Tutorial")
-                                                .font(Font.custom("SF Pro", size: 17))
-                                                .fontWeight(.semibold)
-                                                .foregroundColor(.white)
-                                        }
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .background(Color.greenMain)
-                                        .cornerRadius(12)
-                                    }
-                                    
-                                    VideoPlayer(player: tutorial)
-                                        .frame(width: 358, height: 173)
-                                        .cornerRadius(12)
-                                    
+                                }
+//                                .onChange(of: selectedTab) { target in
+//                                    withAnimation {
+//                                        proxy.scrollTo(target)
+//                                    }
+//                                }
+                                if selectedTab == 0 {
+                                    LowServePlacementDescriptionView()
+                                } else if selectedTab == 1 {
+                                    LowServePlacementSummaryView()
                                 }
                             }
-                            .scrollIndicators(.hidden)
-                            .padding(.bottom, getSafeArea().bottom + 12)
                         }
                         .font(Font.custom("SF Pro", size: 15))
                         .padding(16)
@@ -383,13 +163,6 @@ struct LowServePlacementView: View {
                 }
             }
             
-            .onAppear {
-                if let url = Bundle.main.url(forResource: "Tutorial", withExtension: "mp4") {
-                    tutorial = AVPlayer(url: url)
-                    tutorial?.play()
-                }
-            }
-            
             
         }
         .onDisappear {
@@ -408,76 +181,6 @@ struct LowServePlacementView: View {
                 AppDelegate.orientationLock = .landscapeRight
                 player?.pause()
             }
-        }
-        .onAppear {
-            let levelPredicate = NSPredicate(format: "level == %@", "1")
-            
-            let request: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
-            request.sortDescriptors = [NSSortDescriptor(key: "hitPerfect", ascending: false)]
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate])
-            
-            let request2: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate2 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
-            request2.sortDescriptors = [NSSortDescriptor(key: "minDistance", ascending: true)]
-            request2.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate2])
-            
-            let request3: NSFetchRequest<RecordSkill> = RecordSkill.fetchRequest()
-            let predicate3 = NSPredicate(format: "(datetime >= %@) AND (datetime <= %@)", argumentArray: [getStartMonth() as NSDate, getLastMonth() as NSDate])
-            request3.sortDescriptors = [NSSortDescriptor(key: "avgDistance", ascending: true)]
-            request3.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [levelPredicate, predicate3])
-            
-            do {
-                recordOfTheMonth = try moc.fetch(request)
-                lowestOfTheMonth = try moc.fetch(request2)
-                bestAvgOfTheMonth = try moc.fetch(request3)
-            } catch {
-                print("Error fetching data: \(error)")
-            }
-        }
-    }
-    
-    private func getAverate(_ data: [RecordSkill]) -> Double {
-        if data.count == 0 {
-            return 0
-        } else {
-            var total: Double = 0.0
-            for e in data {
-                total += Double(e.hitPerfect)
-            }
-            return Double(total/Double(data.count))
-        }
-    }
-    
-    private func getLatestLowest(_ data: FetchedResults<RecordSkill>) -> Double {
-        if data.count > 0 {
-            return data[0].minDistance
-        } else {
-            return 0
-        }
-    }
-    
-    private func getLatesAvg(_ data: FetchedResults<RecordSkill>) -> Double {
-        if data.count > 0 {
-            return data[0].avgDistance
-        } else {
-            return 0
-        }
-    }
-    
-    private func getMonthBestAvg(_ data: [RecordSkill]) -> Double {
-        if data.count > 0 {
-            return data[0].avgDistance
-        } else {
-            return 0
-        }
-    }
-    
-    private func getMonthLowest(_ data: [RecordSkill]) -> Double {
-        if data.count > 0 {
-            return data[0].minDistance
-        } else {
-            return 0
         }
     }
 }

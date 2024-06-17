@@ -158,17 +158,23 @@ struct LowServeTrajectoryDetailSingleView: View {
                                 
                                 VStack(spacing: 15) {
                                     if attempData.count > 0 {
-                                        ForEach(0..<((attempData.count + 9) / 10)) { row in
-                                            HStack(){
-                                                ForEach(attempData[row * 10..<min((row + 1) * 10, attempData.count)]) { i in
-                                                    Text(i.hitNumber)
-                                                        .foregroundStyle(i.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
-                                                        .font(Font.custom(i.hitStatus == "Perfect" ? "Urbanist-Medium" : "Urbanist",size: 20)).frame(maxWidth:itemWidth)
+                                        let itemCount = min(attempData.count, 17)
+                                        ForEach(0..<((itemCount + 9) / 10), id: \.self) { row in
+                                            HStack {
+                                                ForEach(attempData[row * 10..<min((row + 1) * 10, itemCount)]) { index in
+                                                    Text(index.hitNumber)
+                                                        .foregroundStyle(index.hitStatus == "Perfect" ? Color.neutralBlack : Color.grayStroke6)
+                                                        .font(
+                                                            Font.custom(
+                                                                index.hitStatus == "Perfect" ?
+                                                                "Urbanist-Medium" : "Urbanist",
+                                                            size: 20))
+                                                        .frame(maxWidth: itemWidth)
                                                 }
                                             }
                                         }
                                     } else {
-                                        Text(noDataText).font(Font.custom( "Urbanist",size: 20))
+                                        Text(noDataText).font(Font.custom( "Urbanist", size: 20))
                                     }
                                 }
                                 

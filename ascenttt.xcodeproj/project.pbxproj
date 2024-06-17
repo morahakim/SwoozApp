@@ -60,12 +60,18 @@
 		374C436E2B0E7CA2007A4F1A /* Trajectory.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C43702B0E7CA2007A4F1A /* Trajectory.mov */; };
 		374C43722B0E8671007A4F1A /* ServeTrajectory.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */; };
 		376D3E6D2AFAA3E6006A7A4A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		379419CF2C15DDC200CAB0FA /* HighServeTrajectoryOnBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379419CE2C15DDC200CAB0FA /* HighServeTrajectoryOnBoardView.swift */; };
 		37ADDF512B4A03880016EB07 /* Tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37ADDF502B4A03880016EB07 /* Tutorial.mp4 */; };
 		37B5E7622B0F4AC0003A72DC /* LowServe-Lintasan.json in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */; };
 		37B5E7632B0F4AC0003A72DC /* LowServe-Penempatan.json in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */; };
 		37B5E7662B10EA93003A72DC /* Low Serve - Lintasan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7642B10EA93003A72DC /* Low Serve - Lintasan.gif */; };
 		37B5E7672B10EA93003A72DC /* Low Serve - Penempatan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */; };
 		37B5E76D2B10F1A3003A72DC /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B5E76C2B10F1A3003A72DC /* GifImage.swift */; };
+		A3D3F8852C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F8842C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift */; };
+		A3FE9C6E2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9C6D2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift */; };
+		A3FE9C702C065135006B8B15 /* LowServePlacementDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9C6F2C065134006B8B15 /* LowServePlacementDescriptionView.swift */; };
+		A3FE9C722C065141006B8B15 /* LowServePlacementSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9C712C065141006B8B15 /* LowServePlacementSummaryView.swift */; };
+		A3FE9C742C0652DB006B8B15 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9C732C0652DB006B8B15 /* Tab.swift */; };
 		BE0A4E762B11AA74005E1518 /* Iphone Portrait to Landscape.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE0A4E742B11AA74005E1518 /* Iphone Portrait to Landscape.gif */; };
 		BE0A4E772B11AA74005E1518 /* Iphone Landscape to Portrait.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE0A4E752B11AA74005E1518 /* Iphone Landscape to Portrait.gif */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
@@ -180,6 +186,7 @@
 		374C436F2B0E7CA2007A4F1A /* id */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = id; path = id.lproj/Trajectory.mov; sourceTree = "<group>"; };
 		374C43712B0E8671007A4F1A /* ServeTrajectory.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ServeTrajectory.mp4; sourceTree = "<group>"; };
 		3782C9512B074A4F00D0C4C5 /* ascenttt-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ascenttt-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		379419CE2C15DDC200CAB0FA /* HighServeTrajectoryOnBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighServeTrajectoryOnBoardView.swift; sourceTree = "<group>"; };
 		37ADDF502B4A03880016EB07 /* Tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tutorial.mp4; sourceTree = "<group>"; };
 		37B5E7602B0F4AC0003A72DC /* LowServe-Lintasan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Lintasan.json"; sourceTree = "<group>"; };
 		37B5E7612B0F4AC0003A72DC /* LowServe-Penempatan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "LowServe-Penempatan.json"; sourceTree = "<group>"; };
@@ -187,6 +194,11 @@
 		37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Low Serve - Penempatan.gif"; sourceTree = "<group>"; };
 		37B5E76C2B10F1A3003A72DC /* GifImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
+		A3D3F8842C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectoryDescriptionView.swift; sourceTree = "<group>"; };
+		A3FE9C6D2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectorySummaryView.swift; sourceTree = "<group>"; };
+		A3FE9C6F2C065134006B8B15 /* LowServePlacementDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementDescriptionView.swift; sourceTree = "<group>"; };
+		A3FE9C712C065141006B8B15 /* LowServePlacementSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementSummaryView.swift; sourceTree = "<group>"; };
+		A3FE9C732C0652DB006B8B15 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		BE0A4E742B11AA74005E1518 /* Iphone Portrait to Landscape.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Iphone Portrait to Landscape.gif"; sourceTree = "<group>"; };
 		BE0A4E752B11AA74005E1518 /* Iphone Landscape to Portrait.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Iphone Landscape to Portrait.gif"; sourceTree = "<group>"; };
 		BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -305,6 +317,7 @@
 			children = (
 				188062F02AF9536400310F93 /* SFSymbol.swift */,
 				188062F22AF9537E00310F93 /* ActionEnum.swift */,
+				A3FE9C732C0652DB006B8B15 /* Tab.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -492,6 +505,11 @@
 				183B337B2AFA92CC004E023D /* TechniqueView.swift */,
 				BEA1C1362AF0436D00BFF1A4 /* LowServeTrajectoryView.swift */,
 				18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */,
+				A3D3F8842C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift */,
+				A3FE9C6D2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift */,
+				A3FE9C6F2C065134006B8B15 /* LowServePlacementDescriptionView.swift */,
+				A3FE9C712C065141006B8B15 /* LowServePlacementSummaryView.swift */,
+				379419CE2C15DDC200CAB0FA /* HighServeTrajectoryOnBoardView.swift */,
 			);
 			path = Technique;
 			sourceTree = "<group>";
@@ -762,6 +780,7 @@
 				18CD6E152AF953D50087B24D /* Text.swift in Sources */,
 				374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */,
 				183B337C2AFA92CC004E023D /* TechniqueView.swift in Sources */,
+				379419CF2C15DDC200CAB0FA /* HighServeTrajectoryOnBoardView.swift in Sources */,
 				18CD6E192AF953EA0087B24D /* Lottie.swift in Sources */,
 				BEA1C16E2AF0436D00BFF1A4 /* HomeViewModel.swift in Sources */,
 				18922FF62AFD2EBC001B68EF /* LowServeTrajectoryDetailView.swift in Sources */,
@@ -769,6 +788,7 @@
 				184E02EB2AF174480004C569 /* View+Ext.swift in Sources */,
 				BEA1C1712AF0436D00BFF1A4 /* MainView.swift in Sources */,
 				1828EBC12B0F64200080BB51 /* LowServePlacementDetailSingleView.swift in Sources */,
+				A3FE9C722C065141006B8B15 /* LowServePlacementSummaryView.swift in Sources */,
 				1828EBBF2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift in Sources */,
 				BEA1C1672AF0436D00BFF1A4 /* HomeViewRepresentable.swift in Sources */,
 				BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */,
@@ -779,10 +799,14 @@
 				BEA1C1722AF0436D00BFF1A4 /* OnboardingView.swift in Sources */,
 				BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */,
 				BEA1C1622AF0436D00BFF1A4 /* CameraViewController.swift in Sources */,
+				A3D3F8852C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift in Sources */,
 				BEA1C1652AF0436D00BFF1A4 /* VideoRenderView.swift in Sources */,
+				A3FE9C742C0652DB006B8B15 /* Tab.swift in Sources */,
 				BEA1C15A2AF0436D00BFF1A4 /* SplashView.swift in Sources */,
+				A3FE9C6E2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift in Sources */,
 				BEA1C15E2AF0436D00BFF1A4 /* Animations.swift in Sources */,
 				18CD6E1D2AF955250087B24D /* Counter.swift in Sources */,
+				A3FE9C702C065135006B8B15 /* LowServePlacementDescriptionView.swift in Sources */,
 				374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */,
 				18AD0C132AF95ADB0019DD60 /* Database.xcdatamodeld in Sources */,
 				184E02EC2AF174480004C569 /* Date+Ext.swift in Sources */,
@@ -990,18 +1014,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = NYP6NH36S6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.swooz;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.swooz.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
 				PRODUCT_NAME = Swooz;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1020,18 +1044,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = NYP6NH36S6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.swooz;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.swooz.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
 				PRODUCT_NAME = Swooz;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1052,7 +1076,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = NYP6NH36S6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1071,7 +1095,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.swooz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1092,7 +1116,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = S3Z84JBVGM;
+				DEVELOPMENT_TEAM = NYP6NH36S6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1111,7 +1135,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.swooz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
