@@ -263,7 +263,7 @@ class TrajectoryView: SKView, AnimatedTransitioning {
           let size:CGFloat = CGFloat(Float(localStorage.loadSize(forKey: String(techniqueId))!) * 14)
           let cornerRadius = size / 2
           
-            yNet = 0.53 * bounds.height
+          yNet = 0.53 * bounds.height
           xNet = bounds.width/2.7
 //          xNet = bounds.width/2.75
             
@@ -290,8 +290,6 @@ class TrajectoryView: SKView, AnimatedTransitioning {
             let y = (1 - selectedPoint.y) * bounds.maxY
             let circlePoint = CALayer()
             circlePoint.frame = CGRect(x: x-(size/2), y: y-(size/2), width: size, height: size)
-            
-//            circlePoint.opacity = 0.5
             circlePoint.cornerRadius = 7.0
             circlePoint.masksToBounds = true
             

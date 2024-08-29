@@ -146,6 +146,8 @@ struct HomeView: View {
                                 desc: onBoardingDesc
                             )
                             .offset(y: -50)
+                            
+//                            Text(Bundle.main.object(forInfoDictionaryKey: "server_url") as? String ?? "")
                         }
                     }
 

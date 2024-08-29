@@ -7,5 +7,7 @@
 		<string>Urbanist.ttf</string>
 		<string>Urbanist-Medium.ttf</string>
 	</array>
+	<key>server_url</key>
+	<string>$(server_url)</string>
 </dict>
 </plist>

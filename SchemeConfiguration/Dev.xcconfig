@@ -1,0 +1,19 @@
+//
+//  Dev.xcconfig
+//  ascenttt
+//
+//  Created by mora hakim on 18/06/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+//Dev
+//Server Url //dummy url
+server_url = https:/$()/myapp.dev.com
+
+//App Name
+PRODUCT_NAME = ascenttt(DEV)
+
+//Bundle Identifier
+PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.dev

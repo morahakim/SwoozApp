@@ -191,7 +191,7 @@ struct LowServePlacementDetailView: View {
                                 }
                                 .padding(.trailing, 90)
                                 
-                                HStack {
+                                HStack(spacing: 30) {
                                     VStack(spacing: 8) {
                                         Text("\(item.hitPerfect)")
                                             .font(Font.custom("Urbanist-Medium", size: 34))
@@ -223,7 +223,7 @@ struct LowServePlacementDetailView: View {
                                             .foregroundColor(.neutralBlack)
                                     }
                                 }
-                                .padding(.trailing, 90)
+                                
                                 
                                 VStack(spacing: 10) {
                                     if latestDrill.count >= 2 {

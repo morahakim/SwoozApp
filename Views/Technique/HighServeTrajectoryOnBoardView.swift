@@ -16,7 +16,7 @@ struct TechniqueServeData: Hashable {
 }
 
 struct HighServeTrajectoryOnBoardView: View {
-    
+
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("techniqueId") var techniqueId: Int = 0
     @AppStorage("techniqueName") var techniqueName: String = ""
@@ -29,80 +29,21 @@ struct HighServeTrajectoryOnBoardView: View {
         ForceOrientation(.portrait) {
             ZStack {
                 Color.greenMain.ignoresSafeArea(.all)
-                ScrollView {
-                    ForEach(data, id: \.self) { index in
-                        CardView(action: {
-                            if !index.isLock {
-                                if index.id == 0 {
-                                    print("this is trajectory page")
-                                }
-                                techniqueId = index.id
-                                techniqueName = index.name
-                            }
-                        }, content: {
-                            VStack(spacing: 6) {
-                                Image(index.img)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 100)
-                                    .padding(.horizontal, 16)
-                                    .padding(.top, 16)
-                                HStack {
-                                    Text(index.name)
-                                        .font(Font.custom("Urbanist", size: 20).weight(.medium))
-                                        .foregroundStyle(.neutralBlack)
-                                    Spacer()
-                                }
-                                .padding(.horizontal, 16)
-                            }
-                        })
-                    }
-                    .padding(.bottom)
+                
+                let screenHeight = UIScreen.main.bounds.height
+                let screenWidth = UIScreen.main.bounds.width
+                
+                let isSmallScreen = screenHeight <= 568 || screenWidth <= 320
 
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .background(.white)
-                            .clipShape(
-                                .rect(
-                                    topLeadingRadius: 20,
-                                    bottomLeadingRadius: 0,
-                                    bottomTrailingRadius: 0,
-                                    topTrailingRadius: 20
-                                )
-                            )
-
-                        VStack(spacing: 12) {
-                            Image("Smash")
-                                .resizable()
-                                .frame(width: 300, height: 306)
-                                .padding()
-                            Text(highServeText)
-                                .padding(.bottom)
-                                .font(Font.custom("Urbanist", size: 12))
-                                .fontWeight(.bold)
+                Group {
+                    if isSmallScreen {
+                        ScrollView {
+                            contentView
                         }
-                        .font(Font.custom("SF Pro", size: 15))
-                        .padding(.bottom, getSafeArea().bottom + 88)
-
-                        VStack {
-                            Spacer()
-                            VStack(alignment: .center, spacing: 4) {
-                                BtnPrimary(text: buttonHighServeOnBoard) {
-                                    vm.path.append(.LowServePlacement)
-                                }
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.top, 12)
-                            .padding(.bottom, getSafeArea().bottom + 2)
-                            .background(.white)
-                            .cornerRadius(12)
-                            .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
-                        }
-                        .ignoresSafeArea(.container, edges: .bottom)
+                    } else {
+                        contentView
                     }
                 }
-                .scrollDisabled(true)
             }
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbarBackground(.greenMain, for: .navigationBar)
@@ -110,7 +51,92 @@ struct HighServeTrajectoryOnBoardView: View {
             .scrollIndicators(.hidden)
         }
     }
+
+    var contentView: some View {
+        VStack(spacing: 0) {
+            ForEach(data, id: \.self) { index in
+                CardView(action: {
+                    if !index.isLock {
+                        if index.id == 0 {
+                            print("this is trajectory page")
+                        }
+                        techniqueId = index.id
+                        techniqueName = index.name
+                    }
+                }, content: {
+                    VStack(spacing: 6) {
+                        Image(index.img)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 16)
+                            .padding(.top, 16)
+
+                        HStack {
+                            Text(index.name)
+                                .font(Font.custom("Urbanist", size: UIScreen.main.bounds.width * 0.05))
+                                .foregroundStyle(.neutralBlack)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 16)
+                    }
+                })
+                .padding(.vertical, 8)
+                .frame(maxWidth: .infinity)
+            }
+            .padding(.top, 10)
+
+            Spacer()
+
+            ZStack {
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .background(.white)
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: 20,
+                            bottomLeadingRadius: 0,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 20
+                        )
+                    )
+
+                VStack(spacing: 12) {
+                    Image("Smash")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: UIScreen.main.bounds.width * 0.7)
+                        .padding()
+
+                    Text(highServeText)
+                        .padding(.bottom)
+                        .font(Font.custom("Urbanist", size: UIScreen.main.bounds.width * 0.04))
+                        .fontWeight(.bold)
+                }
+                .padding(.bottom, getSafeArea().bottom + 88)
+
+                VStack {
+                    Spacer()
+                    VStack(alignment: .center, spacing: 4) {
+                        BtnPrimary(text: buttonHighServeOnBoard) {
+                            vm.path.append(.LowServePlacement)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 12)
+                    .padding(.bottom, getSafeArea().bottom + 2)
+                    .background(.white)
+                    .cornerRadius(12)
+                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
+                }
+                .ignoresSafeArea(.container, edges: .bottom)
+            }
+        }
+    }
 }
+
+
+
 
 #Preview {
     HighServeTrajectoryOnBoardView()
