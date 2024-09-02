@@ -8,20 +8,27 @@
 import SwiftUI
 
 struct RotateToPotraitView: View {
+    @State private var isAnimationCompleted = false
+
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            LottieView(name: "iPhone Landscape to Portrait").frame(width:600,height:300)
-                .padding(32)
-//            GifImage("Iphone Landscape to Portrait")
-//                .frame(width:330,height: 220)
+            if !isAnimationCompleted {
+                LottieView(name: "iPhone Landscape to Portrait", isAnimationCompleted: $isAnimationCompleted)
+                    .frame(width: 600, height: 300)
+                    .padding(32)
+            }
         }
         .padding(16)
-        .navigationBarBackButtonHidden(true).onAppear{
+        .navigationBarBackButtonHidden(true)
+        .onAppear {
             UIDevice.current.setValue(
                 UIInterfaceOrientation.portrait.rawValue,
                 forKey: "orientation"
             )
             AppDelegate.orientationLock = .portrait
+        }
+        .onDisappear {
+            isAnimationCompleted = true
         }
     }
 }

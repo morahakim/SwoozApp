@@ -10,13 +10,22 @@ import Lottie
 
 struct LottieView: UIViewRepresentable {
     let name: String
+    @Binding var isAnimationCompleted: Bool
     
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
         let animationView = LottieAnimationView(name: name)
-        animationView.loopMode = .loop
+        animationView.loopMode = .playOnce
         animationView.contentMode = .scaleAspectFill
-        animationView.play()
+        
+        animationView.play { (finished) in
+            if finished {
+                DispatchQueue.main.async {
+                    isAnimationCompleted = true
+                }
+            }
+        }
+        
         view.addSubview(animationView)
         
         animationView.translatesAutoresizingMaskIntoConstraints = false
@@ -29,4 +38,8 @@ struct LottieView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIView, context: Context) {}
+
+    static func dismantleUIView(_ uiView: UIView, coordinator: ()) {
+        uiView.subviews.forEach { $0.removeFromSuperview() }
+    }
 }
