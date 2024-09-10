@@ -160,7 +160,7 @@ struct HomeView: View {
                         }
                         .padding(.horizontal, 16)
                         .padding(.top, 12)
-                        .padding(.bottom, getSafeArea().bottom + 2)
+                        .padding(.bottom, getSafeArea().bottom > 0 ? getSafeArea().bottom + 4 : 8)
                         .background(.white)
                         .cornerRadius(12)
                         .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
