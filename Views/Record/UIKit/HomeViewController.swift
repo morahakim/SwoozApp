@@ -180,7 +180,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         contentAnalysisViewController.counter.typeSend(type: String(techniqueId))
         contentAnalysisViewController.counter.levelSend(level: techniqueName)
         
-        // Assuming you are inside a UIViewController or another appropriate context
         let screenWidth = UIScreen.main.bounds.width
         
         setupSetUp()
@@ -203,8 +202,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         boxView.isHidden = true
         
         setupSteady()
-        
-        //        setupPathColorView()
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+           NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -224,14 +224,30 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Menghapus view controller sebelumnya dari hirarki view
         if let presentingVC = self.presentingViewController {
             presentingVC.dismiss(animated: false) {
                 print("Previous view controller has been dismissed")
             }
         }
     }
+    
+    @objc func appDidBecomeActive() {
+        if player != nil && player.timeControlStatus == .paused {
+            player.play()
+        }
+    }
 
+    @objc func appDidEnterBackground() {
+        if player != nil && player.timeControlStatus == .playing {
+            player.pause()
+        }
+    }
+
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
     
     private func removeSubview(_ subview: UIView) {
         subview.removeFromSuperview()
