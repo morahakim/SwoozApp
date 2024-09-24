@@ -20,6 +20,7 @@ struct TechniqueView: View {
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("techniqueId") var techniqueId: Int = 0
     @AppStorage("techniqueName") var techniqueName: String = ""
+    @Environment(\.presentationMode) var presentationMode // For back button action
 
     private let data = [
         TechniqueLevelData(id: 0, name: chooseLevelTextOne, desc: chooseLevelDescOne, img: "Low Serve - Trajectory", isLock: false),
@@ -32,65 +33,91 @@ struct TechniqueView: View {
             ZStack {
                 Color.greenMain.ignoresSafeArea(.all)
 
-                ScrollView {
-                    ForEach(data, id: \.self) { index in
-                        CardView(action: {
-                            if !index.isLock {
-                                if index.id == 0 {
-                                    vm.path.append(.LowServeTrajectory)
-                                } else if index.id == 1 {
-                                    vm.path.append(.LowServePlacement)
-                                }
-                                techniqueId = index.id
-                                techniqueName = index.name
-                            } else if index.isLock {
-                                if index.id == 2 {
-                                    vm.path.append(.HighServeTrajectoryOnBoard)
-                                }
+                VStack {
+                    // custom navigation
+                    HStack() {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss() // Go back
+                        }) {
+                            HStack(spacing: 2) {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 24,weight: .medium))
+                                Text("Welcome")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.white)
+                                    .padding(.leading, 0)
+
                             }
-                        }, content: {
-                            VStack(spacing: 6) {
-                                Image(index.img)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 100)
-                                    .padding(.horizontal, 16)
-                                    .padding(.top, 16)
-                                HStack {
-                                    Text(index.name)
-                                        .font(Font.custom("Urbanist", size: 20).weight(.medium))
-                                        .foregroundStyle(.neutralBlack)
-                                    Spacer()
+                            Spacer()
+                        }
+                    }
+                    .padding(.top, 8)
+                    .padding(.leading, 8)
+                    .background(.greenMain) // Custom background for the nav bar
+
+                    HStack{
+                        Text(navigationTitleTechnique)
+                            .font(.system(size: 34, weight: .bold))
+                            .foregroundColor(.white)
+                        Spacer()
+                    }.padding(.leading, 16).padding(.top, 8)
+
+                    ScrollView {
+                        ForEach(data, id: \.self) { index in
+                            CardView(action: {
+                                if !index.isLock {
+                                    if index.id == 0 {
+                                        vm.path.append(.LowServeTrajectory)
+                                    } else if index.id == 1 {
+                                        vm.path.append(.LowServePlacement)
+                                    }
+                                    techniqueId = index.id
+                                    techniqueName = index.name
+                                } else if index.isLock {
+                                    if index.id == 2 {
+                                        vm.path.append(.HighServeTrajectoryOnBoard)
+                                    }
                                 }
-                                .padding(.horizontal, 16)
-                                if index.isLock {
+                            }, content: {
+                                VStack(spacing: 6) {
+                                    Image(index.img)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 100)
+                                        .padding(.horizontal, 16)
+                                        .padding(.top, 16)
                                     HStack {
-                                        Image(systemName: "lock.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 16)
-                                            .foregroundStyle(.neutralBlack)
-                                        Text(chooseLevelDescThree)
-                                            .font(Font.custom("SF Pro", size: 17))
-                                            .multilineTextAlignment(.leading)
+                                        Text(index.name)
+                                            .font(Font.custom("Urbanist", size: 20).weight(.medium))
                                             .foregroundStyle(.neutralBlack)
                                         Spacer()
                                     }
                                     .padding(.horizontal, 16)
+                                    if index.isLock {
+                                        HStack {
+                                            Image(systemName: "lock.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 16)
+                                                .foregroundStyle(.neutralBlack)
+                                            Text(chooseLevelDescThree)
+                                                .font(Font.custom("SF Pro", size: 17))
+                                                .multilineTextAlignment(.leading)
+                                                .foregroundStyle(.neutralBlack)
+                                            Spacer()
+                                        }
+                                        .padding(.horizontal, 16)
+                                    }
                                 }
-                            }
-                            .padding(.bottom, 16)
-                        })
+                                .padding(.bottom, 16)
+                            })
+                        }
                     }
+                    .scrollIndicators(.hidden)
                 }
-                .scrollIndicators(.hidden)
-                .padding(.top, 10)
             }
-
-            .navigationTitle(navigationTitleTechnique)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.greenMain, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

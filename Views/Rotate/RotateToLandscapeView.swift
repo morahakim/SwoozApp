@@ -10,13 +10,15 @@ import SwiftUI
 struct RotateToLandscapeView: View {
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("isOnRecord") var isOnRecord = true
-    
+    @State private var isAnimationCompleted = false
+
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            LottieView(name: "Iphone Rotate").frame(width:600,height:300)
-                .padding(32)
-//            GifImage("Iphone Portrait to Landscape")
-//                .frame(width:330,height: 220)
+            if !isAnimationCompleted {
+                LottieView(name: "Iphone Rotate", isAnimationCompleted: $isAnimationCompleted)
+                    .frame(width: 600, height: 300)
+                    .padding(32)
+            }
         }
         .padding(16)
         .navigationBarBackButtonHidden(true)
@@ -33,6 +35,9 @@ struct RotateToLandscapeView: View {
                     vm.path.append(.Record)
                 }
             }
+        }
+        .onDisappear {
+            isAnimationCompleted = true
         }
     }
 }

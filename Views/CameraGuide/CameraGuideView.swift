@@ -10,6 +10,7 @@ import SwiftUI
 struct CameraGuideView: View {
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("isOnRecord") var isOnRecord = true
+    @State private var isAnimationCompleted = false
     
     @State var step = 0
     
@@ -20,9 +21,9 @@ struct CameraGuideView: View {
                     if step == 0 {
                         WarningView()
                     } else if step == 1 {
-                        LottieView(name: "CameraPlacementDistance")
+                        LottieView(name: "CameraPlacementDistance", isAnimationCompleted: $isAnimationCompleted)
                     } else if step == 2 {
-                        LottieView(name: "CameraPlacementHeight")
+                        LottieView(name: "CameraPlacementHeight", isAnimationCompleted: $isAnimationCompleted)
                     }
                 }
                 .animation(.easeInOut, value: step)

@@ -41,146 +41,154 @@ struct LowServePlacementView: View {
     @State var selectedTab: Int = 0
     
     var body: some View {
-        ForceOrientation(.portrait) {
-            ZStack(alignment: .top) {
-                Color.greenMain.ignoresSafeArea(.all)
-                
-                VStack {
-                    /** Card animation */
-                    CardPlainView {
-                        ZStack {
-                            GifImage("Low Serve - Penempatan")
-                                .frame(height: 150)
-                            VStack {
-                                Spacer()
-                                HStack {
-                                    Spacer()
-                                    Text(chooseLevelTextTwo)
-                                        .font(Font.custom("Urbanist", size: 20).weight(.medium))
-                                        .foregroundColor(.neutralBlack)
-                                    Spacer()
-                                }
-                            }
-                        }
-                    }
-                    .frame(height: 150)
-                    .padding(.bottom, 16)
+        GeometryReader { geo in
+            ForceOrientation(.portrait) {
+                ZStack(alignment: .top) {
+                    Color.greenMain.ignoresSafeArea(.all)
                     
-                    /** Card description */
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .background(.white)
-                            .clipShape(
-                                .rect(
-                                    topLeadingRadius: 20,
-                                    bottomLeadingRadius: 0,
-                                    bottomTrailingRadius: 0,
-                                    topTrailingRadius: 20
-                                )
-                            )
-                        
-                        VStack(spacing: 12) {
-                            VideoPlayer(player: player)
-                                .frame(width: 358, height: 173)
-                                .cornerRadius(12)
-                            
-                            VStack(spacing: 0) {
-                                HStack(spacing: 0) {
-                                    ForEach(0 ..< tabs.count, id: \.self) { row in
-                                        Button(action: {
-                                            withAnimation {
-                                                selectedTab = row
-                                            }
-                                        }, label: {
-                                            VStack(spacing: 0) {
-                                                HStack {
-                                                    Text(tabs[row].title)
-                                                        .font(Font.system(size: 17, weight: .semibold))
-                                                        .foregroundColor(selectedTab == row ? Color("GreenMain") : Color("GrayStroke3"))
-                                                        .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
-                                                }
-                                                .frame(width: fixed ? (geoWidth / CGFloat(tabs.count)) : .none, height: 40)
-                                                Rectangle().fill(selectedTab == row ? Color("GreenMain") : Color.clear)
-                                                    .frame(height: 3)
-                                            }.fixedSize()
-                                        })
-                                            .accentColor(Color.white)
-                                            .buttonStyle(PlainButtonStyle())
+                    VStack {
+                        /** Card animation */
+                        CardPlainView {
+                            ZStack {
+                                GifImage("Low Serve - Penempatan")
+                                    .frame(height: 150)
+                                VStack {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        Text(chooseLevelTextTwo)
+                                            .font(Font.custom("Urbanist", size: 20).weight(.medium))
+                                            .foregroundColor(.neutralBlack)
+                                        Spacer()
                                     }
                                 }
-//                                .onChange(of: selectedTab) { target in
-//                                    withAnimation {
-//                                        proxy.scrollTo(target)
-//                                    }
-//                                }
-                                if selectedTab == 0 {
-                                    LowServePlacementDescriptionView()
-                                } else if selectedTab == 1 {
-                                    LowServePlacementSummaryView()
-                                }
                             }
                         }
-                        .font(Font.custom("SF Pro", size: 15))
-                        .padding(16)
-                    }
-                }
-                .padding(.top, getSafeArea().top - 24)
-                
-                /** Button record */
-                VStack {
-                    Spacer()
-                    VStack(alignment: .center, spacing: 4) {
-                        BtnPrimary(text: buttonRecordText) {
-                            showRepetitionSheet.toggle()
+                        .frame(height: 150)
+                        .padding(.bottom, 16)
+                        
+                        /** Card description */
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .background(.white)
+                                .clipShape(
+                                    .rect(
+                                        topLeadingRadius: 20,
+                                        bottomLeadingRadius: 0,
+                                        bottomTrailingRadius: 0,
+                                        topTrailingRadius: 20
+                                    )
+                                )
+                            
+                            VStack(spacing: 12) {
+                                VideoPlayer(player: player)
+                                    .frame(
+                                        width: geo.size.width * 0.9,
+                                        height: (geo.size.height > 700 ? 173 : geo.size.height * 0.2)
+                                    )
+                                    .cornerRadius(12)
+                                
+                                VStack(spacing: 0) {
+                                    HStack(spacing: 0) {
+                                        ForEach(0 ..< tabs.count, id: \.self) { row in
+                                            Button(action: {
+                                                withAnimation {
+                                                    selectedTab = row
+                                                }
+                                            }, label: {
+                                                VStack(spacing: 0) {
+                                                    HStack {
+                                                        Text(tabs[row].title)
+                                                            .font(Font.system(size: 17, weight: .semibold))
+                                                            .foregroundColor(selectedTab == row ? Color("GreenMain") : Color("GrayStroke3"))
+                                                            .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
+                                                    }
+                                                    .frame(width: fixed ? (geoWidth / CGFloat(tabs.count)) : .none, height: 40)
+                                                    Rectangle().fill(selectedTab == row ? Color("GreenMain") : Color.clear)
+                                                        .frame(height: 3)
+                                                }.fixedSize()
+                                            })
+                                            .accentColor(Color.white)
+                                            .buttonStyle(PlainButtonStyle())
+                                        }
+                                    }
+                                    //                                .onChange(of: selectedTab) { target in
+                                    //                                    withAnimation {
+                                    //                                        proxy.scrollTo(target)
+                                    //                                    }
+                                    //                                }
+                                    if selectedTab == 0 {
+                                        LowServePlacementDescriptionView()
+                                    } else if selectedTab == 1 {
+                                        LowServePlacementSummaryView()
+                                    }
+                                }
+                                .padding(.bottom, geo.size.height > 700 ? 16 : geo.size.height * 0.08)
+                            }
+                            .font(Font.custom("SF Pro", size: 15))
+                            .padding(16)
                         }
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 12)
-                    .padding(.bottom, getSafeArea().bottom + 2)
-                    .background(.white)
-                    .cornerRadius(12)
-                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
+                    .padding(.top, (geo.size.width * 0.1))
+                    
+                    /** Button record */
+                    VStack {
+                        Spacer()
+                        VStack(alignment: .center, spacing: 4) {
+                            BtnPrimary(text: buttonRecordText) {
+                                showRepetitionSheet.toggle()
+                            }
+                            .padding(.horizontal, geo.size.width * 0.04)
+                        }
+                        .padding(.top, 12)
+                        .padding(.bottom, getSafeArea().bottom > 0 ? getSafeArea().bottom + 4 : 8)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: -2)
+                    }
+                    .frame(width: geo.size.width)
+                    .ignoresSafeArea(.container, edges: .bottom)
                 }
-                .ignoresSafeArea(.container, edges: .bottom)
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.greenMain, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .sheet(isPresented: $showRepetitionSheet) {
-                RepetitionSheet(
-                    isPresented: $showRepetitionSheet,
-                    selectedRepetition: $selectedRepetition
-                )
-                .presentationDetents([.fraction(0.4)])
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbarColorScheme(.dark, for: .navigationBar)
+                .toolbarBackground(.greenMain, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .sheet(isPresented: $showRepetitionSheet) {
+                    RepetitionSheet(
+                        isPresented: $showRepetitionSheet,
+                        selectedRepetition: $selectedRepetition
+                    )
+                    .presentationDetents([.fraction(0.4)])
+                    
+                }
+                .onAppear {
+                    if let url = Bundle.main.url(forResource: "ServePlacement", withExtension: "mp4") {
+                        player = AVPlayer(url: url)
+                        player?.play()
+                    }
+                }
+                
                 
             }
-            .onAppear {
-                if let url = Bundle.main.url(forResource: "ServePlacement", withExtension: "mp4") {
-                    player = AVPlayer(url: url)
-                    player?.play()
+            .onDisappear {
+                if vm.path.last == .Record {
+                    UIDevice.current.setValue(
+                        UIInterfaceOrientation.portrait.rawValue,
+                        forKey: "orientation"
+                    )
+                    AppDelegate.orientationLock = .portrait
+                    player?.pause()
+                } else if vm.path.last == .RotateToLandscape {
+                    UIDevice.current.setValue(
+                        UIInterfaceOrientation.landscapeRight.rawValue,
+                        forKey: "orientation"
+                    )
+                    AppDelegate.orientationLock = .landscapeRight
+                    player?.pause()
                 }
             }
-            
-            
-        }
-        .onDisappear {
-            if vm.path.last == .Record {
-                UIDevice.current.setValue(
-                    UIInterfaceOrientation.portrait.rawValue,
-                    forKey: "orientation"
-                )
-                AppDelegate.orientationLock = .portrait
-                player?.pause()
-            } else if vm.path.last == .RotateToLandscape {
-                UIDevice.current.setValue(
-                    UIInterfaceOrientation.landscapeRight.rawValue,
-                    forKey: "orientation"
-                )
-                AppDelegate.orientationLock = .landscapeRight
-                player?.pause()
-            }
+            .frame(width: geo.size.width, height: geo.size.height)
         }
     }
 }
