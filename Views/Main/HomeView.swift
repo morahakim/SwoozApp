@@ -137,6 +137,12 @@ struct HomeView: View {
                                     EditButton()
                                         .accentColor(.greenMain)
                                 }
+                                ToolbarItem(placement: .navigationBarTrailing) {
+                                    NavigationLink(destination: ActivityView()) {
+                                        Image(systemName: "heart.text.square")
+                                            .accentColor(.greenMain)
+                                    }
+                                }
                             }
                         }
                     } else {
@@ -167,6 +173,7 @@ struct HomeView: View {
                     }
                     .ignoresSafeArea(.container, edges: .bottom)
                 }
+                .navigationBarTitleDisplayMode(list.count > 0 ? .inline : .large)
                 .navigationTitle(list.count > 0 ? yourRecordingText : welcome)
                 .navigationDestination(for: ViewPath.self) { path in
                     HomeViewModel.viewForDestination(path)

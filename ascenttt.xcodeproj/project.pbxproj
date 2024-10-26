@@ -67,6 +67,8 @@
 		37B5E7662B10EA93003A72DC /* Low Serve - Lintasan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7642B10EA93003A72DC /* Low Serve - Lintasan.gif */; };
 		37B5E7672B10EA93003A72DC /* Low Serve - Penempatan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */; };
 		37B5E76D2B10F1A3003A72DC /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B5E76C2B10F1A3003A72DC /* GifImage.swift */; };
+		A3669CE82CC7925900309ABF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3669CE72CC7925900309ABF /* ActivityView.swift */; };
+		A3669CEA2CC798BF00309ABF /* ItemActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3669CE92CC798BF00309ABF /* ItemActivityView.swift */; };
 		A3D3F8852C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F8842C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift */; };
 		A3FE9C6E2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9C6D2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift */; };
 		A3FE9C702C065135006B8B15 /* LowServePlacementDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9C6F2C065134006B8B15 /* LowServePlacementDescriptionView.swift */; };
@@ -196,6 +198,8 @@
 		37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Low Serve - Penempatan.gif"; sourceTree = "<group>"; };
 		37B5E76C2B10F1A3003A72DC /* GifImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
+		A3669CE72CC7925900309ABF /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		A3669CE92CC798BF00309ABF /* ItemActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemActivityView.swift; sourceTree = "<group>"; };
 		A3D3F8842C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectoryDescriptionView.swift; sourceTree = "<group>"; };
 		A3FE9C6D2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectorySummaryView.swift; sourceTree = "<group>"; };
 		A3FE9C6F2C065134006B8B15 /* LowServePlacementDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementDescriptionView.swift; sourceTree = "<group>"; };
@@ -540,6 +544,8 @@
 				BEA1C13E2AF0436D00BFF1A4 /* HomeView.swift */,
 				BEA1C1402AF0436D00BFF1A4 /* MainView.swift */,
 				183C878F2AFD39E100C210AB /* ItemVideoView.swift */,
+				A3669CE72CC7925900309ABF /* ActivityView.swift */,
+				A3669CE92CC798BF00309ABF /* ItemActivityView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -820,8 +826,10 @@
 				18CD6E1D2AF955250087B24D /* Counter.swift in Sources */,
 				A3FE9C702C065135006B8B15 /* LowServePlacementDescriptionView.swift in Sources */,
 				374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */,
+				A3669CE82CC7925900309ABF /* ActivityView.swift in Sources */,
 				18AD0C132AF95ADB0019DD60 /* Database.xcdatamodeld in Sources */,
 				184E02EC2AF174480004C569 /* Date+Ext.swift in Sources */,
+				A3669CEA2CC798BF00309ABF /* ItemActivityView.swift in Sources */,
 				BEA1C16D2AF0436D00BFF1A4 /* CameraGuideView.swift in Sources */,
 				BEA1C15D2AF0436D00BFF1A4 /* BallScene.swift in Sources */,
 				BEA1C1692AF0436D00BFF1A4 /* ProgressView.swift in Sources */,
