@@ -33,6 +33,8 @@ let weeklyData = [
 
 struct ActivityView: View {
     @Environment(\.presentationMode) var presentationMode
+    @State private var showWeekSelection = false
+    @State private var selectedDate = Date()
 
     var body: some View {
         VStack {
@@ -44,13 +46,31 @@ struct ActivityView: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding([.leading, .trailing])
-
-            Text("Calories (kcal)")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-                .padding(.leading)
+            
+            HStack(spacing: 10) {
+                Text("Calories (kcal)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .padding(.leading)
+                    .padding(.top, 20)
+                
+                HStack {
+                    Text("This Week")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    
+                    Button(action: {
+                        showWeekSelection.toggle()
+                    }) {
+                        Image(systemName: "chevron.down")
+                            .foregroundColor(.secondary)
+                    }
+                }
                 .padding(.top, 20)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+            }
+            .padding(.leading)
 
             ZStack {
                 Chart {
@@ -80,25 +100,20 @@ struct ActivityView: View {
                         if value.as(Int.self) == 0 {
                             AxisGridLine()
                         }
-//                        AxisGridLine().foregroundStyle(.clear)
                     }
                 }
                 .chartXAxis {
                     let dateRange = weeklyData.map { $0.date }
                     AxisMarks(values: dateRange) { value in
-//                        AxisGridLine()
                         if let dateValue = value.as(Date.self) {
                             AxisValueLabel(displayDay(for: dateValue))
                         }
                     }
-//                    AxisMarks()
                 }
                 .frame(height: 200)
                 .padding(.horizontal, 20)
             }
-            
-            // BATAS CHART DAN RECENT ACT
-            
+
             Text("Recent Activities")
                 .font(.title2)
                 .padding(.leading)
@@ -118,31 +133,19 @@ struct ActivityView: View {
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.left")
-                        .foregroundColor(.greenMain) 
+                        .foregroundColor(.greenMain)
                 }
             }
         }
+        .sheet(isPresented: $showWeekSelection) {
+            WeekSelectionView(selectedDate: $selectedDate)
+                           .presentationDetents([.fraction(0.5)])
+        }
     }
-    
-//    func displayDay(for date: Date) -> String {
-//        let calendar = Calendar.current
-//        let weekday = calendar.component(.weekday, from: date)
-//
-//        switch weekday {
-//        case 1: return "S"
-//        case 2: return "M"
-//        case 3: return "T"
-//        case 4: return "W"
-//        case 5: return "T"
-//        case 6: return "F"
-//        case 7: return "S"
-//        default: return ""
-//        }
-//    }
-    
+
     func displayDay(for date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E" //ini hari tp 3 huruf
+        dateFormatter.dateFormat = "E"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
         let dayName = dateFormatter.string(from: date)
@@ -153,8 +156,48 @@ struct ActivityView: View {
             return ""
         }
     }
-    
 }
+
+struct WeekSelectionView: View {
+    @Binding var selectedDate: Date
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View {
+        VStack {
+            Text("Select Week")
+                .font(.headline)
+                .padding()
+
+            DatePicker(
+                            "",
+                            selection: $selectedDate,
+                            displayedComponents: .date
+                        )
+                        .datePickerStyle(WheelDatePickerStyle())
+                        .labelsHidden()
+                        .environment(\.locale, Locale(identifier: "en_US"))
+                        .padding()
+
+            Spacer()
+            
+            Button(action: {
+                dismiss()
+            }) {
+                Text("Apply")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color(.greenMain))
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
+            .padding(.bottom, 20)
+        }
+    }
+}
+
+
 
 #Preview {
     ActivityView()

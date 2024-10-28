@@ -13,6 +13,7 @@ import SwiftUI
 import AVKit
 import CoreMotion
 import ReplayKit
+import HealthKit
 
 protocol HomeDelegate: AnyObject {
     func back()
@@ -52,6 +53,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     var countdown = 0
     let boxCountdown = UIView()
     let boxScore = UIView()
+    var calorieCount: Double = 0.0
+    var startTime: Date?
+    var calorieTimer: Timer?
+    let calorieBurnRatePerMinute: Double = 10.0
     
     let playerViewController = AVPlayerViewController()
     
@@ -64,21 +69,23 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         try await recorder.stopRecording(withOutput: url)
         return url
     }
-    @objc func startRecording(){
+
+    @objc func startRecording() {
         startRecordScreen { error in
             if let e = error {
                 print(e.localizedDescription)
                 return
             }
         }
-        print("Start Recording!")
+        self.startCalorieTracking()
+        print("Start Tracking!")
     }
-    
+
     func stopVideoPlayer() {
         playerViewController.player?.pause()
         playerViewController.player = nil
     }
-    
+
     func startRecordScreen(
         enableMic: Bool = false,
         completion: @escaping (Error?) -> ()
@@ -86,18 +93,18 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         let recorder = RPScreenRecorder.shared()
         recorder.isMicrophoneEnabled = enableMic
         recorder.startRecording(handler: completion)
-        if(recorder.isRecording){
+        
+        if recorder.isRecording {
             print("RECORD")
-            stopRecording()
+            self.startCalorieTracking()
             liveCamera()
-        }else{
+        } else {
             print("NOT RECORD")
-//            menuStateApp = "placement"
-//            contentAnalysisViewController.counter.menuStateSend(menuState: "placement")
             latestStatus = ""
         }
     }
-    func stopRecording(){
+
+    func stopRecording() {
         Task {
             do {
                 let url = try await stopRecordScreen()
@@ -106,9 +113,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                 print(error.localizedDescription)
             }
         }
+        self.stopCalorieTracking()
         print("Stop Recording!")
     }
-    
+
     
     func saveRecord(url: URL,
                     duration: String,
@@ -135,6 +143,28 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                                  avgDistance: avgDistance,
                                  variance: variance)
     }
+    
+    func startCalorieTracking() {
+           startTime = Date()
+           calorieCount = 0.0
+           calorieTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+               self?.updateCalorieCount()
+           }
+       }
+       
+    func updateCalorieCount() {
+        guard let startTime = startTime else { return }
+        let elapsedMinutes = Date().timeIntervalSince(startTime) / 60
+        calorieCount = elapsedMinutes * calorieBurnRatePerMinute
+        let roundedCalories = Int(calorieCount)
+        print("Calories burned: \(roundedCalories) kcal")
+    }
+       
+       func stopCalorieTracking() {
+           calorieTimer?.invalidate()
+           calorieTimer = nil
+           print("Final calorie count: \(calorieCount)")
+       }
     
     weak var homeDelegate: HomeDelegate?
     

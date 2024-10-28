@@ -182,6 +182,7 @@
 		370F77282B0213CD00BB2194 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		371156522C2158D10019C61F /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dev.xcconfig; sourceTree = "<group>"; };
 		371156532C2158E50019C61F /* Prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Prod.xcconfig; sourceTree = "<group>"; };
+		3712944C2CCF71BC002337F6 /* ascenttt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ascenttt.entitlements; sourceTree = "<group>"; };
 		374C43572B0B8B30007A4F1A /* LocalizableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableText.swift; sourceTree = "<group>"; };
 		374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementDetailView.swift; sourceTree = "<group>"; };
 		374C43662B0E7C84007A4F1A /* en */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = en; path = en.lproj/Placement.mov; sourceTree = "<group>"; };
@@ -596,6 +597,7 @@
 		BEF748322AF02AAF00E8FB8B /* ascenttt */ = {
 			isa = PBXGroup;
 			children = (
+				3712944C2CCF71BC002337F6 /* ascenttt.entitlements */,
 				18CEF7292B02317E00952E16 /* Info.plist */,
 				BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */,
 				18CD6E222AF957DA0087B24D /* Assets */,
@@ -979,6 +981,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -989,6 +992,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1114,6 +1118,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1124,6 +1129,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1241,6 +1247,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1251,6 +1258,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1370,6 +1378,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1380,6 +1389,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1622,6 +1632,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1632,6 +1643,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1662,6 +1674,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1672,6 +1685,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
