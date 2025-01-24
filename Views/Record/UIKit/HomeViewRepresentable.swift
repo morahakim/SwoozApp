@@ -52,7 +52,9 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
             result: String,
             minDistance: Double,
             avgDistance: Double,
-            variance: String
+            variance: String,
+            caloriesBurned: Double,
+            avgHeartRate: Double
         ) {
             let data = RecordSkill(context: moc)
             data.datetime = Date()
@@ -70,6 +72,8 @@ struct HomeViewRepresentable: UIViewControllerRepresentable {
             data.minDistance = minDistance
             data.avgDistance = avgDistance
             data.variance = variance
+            data.caloriesBurned = caloriesBurned
+            data.avgHeartRate = avgHeartRate
             try? moc.save()
         }
         

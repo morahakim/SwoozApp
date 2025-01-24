@@ -25,7 +25,9 @@ protocol ContentAnalysisDelegate: AnyObject {
                     result: String,
                     minDistance: Double,
                     avgDistance: Double,
-                    variance: String
+                    variance: String,
+                    caloriesBurned: Double,
+                    avgHeartRate: Double
     )
 }
 
@@ -37,6 +39,14 @@ class ContentAnalysisViewController: UIViewController,
     var averageOfDistance: Double = 0.0
     var minDistance: Double = 0.0
     var variance: String = ""
+//    var calorieCount: Double = 0.0
+//    var startTime: Date?
+//    var calorieTimer: Timer?
+//    let calorieBurnRatePerMinute: Double = 10.0
+//    var caloriesBurned = 0.0
+    private let healthDataController = HealthDataController()
+    private var caloriesBurned: Double = 0.0
+    private var avgHeartRate: Double = 0.0
     
     var isCalculate: Bool = true
     
@@ -49,6 +59,54 @@ class ContentAnalysisViewController: UIViewController,
     
     @AppStorage("arrResult") var arrResult: String = ""
     @AppStorage("isDetail") var isDetail: Bool = false
+    
+    func startCalorieTracking() {
+        healthDataController.startTracking()
+        print("LOG: Yes, started tracking calories and heart rate.")
+    }
+
+    func stopCalorieTracking() {
+        healthDataController.stopTracking { [weak self] finalCalories, finalHeartRate in
+            self?.caloriesBurned = finalCalories
+            self?.avgHeartRate = finalHeartRate
+            print("LOG: Final calories burned: \(finalCalories) kcal")
+            print("LOG: Final heart-rate burned: \(finalHeartRate) bpm")
+        }
+    }
+    
+//    func startCalorieTracking() {
+//           startTime = Date()
+//           calorieCount = 0.0
+//           calorieTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+//               self?.updateCalorieCount()
+//           }
+//       }
+//       
+//    func updateCalorieCount() {
+//        guard let startTime = startTime else { return }
+//        let elapsedMinutes = Date().timeIntervalSince(startTime) / 60
+//        calorieCount = elapsedMinutes * calorieBurnRatePerMinute
+//        let roundedCalories = Int(calorieCount)
+////        print("Calories burned: \(roundedCalories) kcal")
+//    }
+//       
+//   func stopCalorieTracking() {
+//       print("Calorie-tracking stop function is called.")
+//       
+//       guard let startTime = startTime else { return }
+//       
+//       let totalElapsedMinutes = Date().timeIntervalSince(startTime) / 60
+//           
+//       calorieTimer?.invalidate()
+//       calorieTimer = nil
+//       
+//       let averageCaloriesBurned = calorieCount / totalElapsedMinutes
+//       print("Final calorie count: \(calorieCount)")
+//       print("Duration: \(totalElapsedMinutes)")
+//       print("AVG Cal: \(averageCaloriesBurned) kcal")
+//       
+//       caloriesBurned = averageCaloriesBurned
+//   }
     
     // TODO: variable delegate untuk panggil function delegate
     var contentAnalysisDelegate: ContentAnalysisDelegate?
@@ -167,7 +225,9 @@ class ContentAnalysisViewController: UIViewController,
               result: String,
               minDistance: Double,
               avgDistance: Double,
-              variance: String) {
+              variance: String,
+              caloriesBurned: Double,
+              avgHeartRate: Double) {
         
         
         contentAnalysisDelegate?.saveRecord(url: url,
@@ -181,7 +241,9 @@ class ContentAnalysisViewController: UIViewController,
                                             result: result,
                                             minDistance: minDistance,
                                             avgDistance: avgDistance,
-                                            variance: variance)
+                                            variance: variance,
+                                            caloriesBurned: caloriesBurned,
+                                            avgHeartRate: avgHeartRate)
     }
     
     // MARK: - Static Properties
@@ -636,6 +698,7 @@ class ContentAnalysisViewController: UIViewController,
                 return
             }
         }
+        self.startCalorieTracking()
         print("Start Recording!")
     }
     
@@ -654,7 +717,9 @@ class ContentAnalysisViewController: UIViewController,
                      result: arrResult,
                      minDistance: minDistance,
                      avgDistance: averageOfDistance,
-                     variance: variance)
+                     variance: variance,
+                     caloriesBurned: caloriesBurned,
+                     avgHeartRate: avgHeartRate)
             } catch {
                 print(error.localizedDescription)
             }
@@ -745,6 +810,8 @@ class ContentAnalysisViewController: UIViewController,
         }
         arrResult = arr
         dismiss(animated: true, completion: nil)
+        
+        self.stopCalorieTracking()
         counter.menuStateSend(menuState: "result")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -1701,7 +1768,7 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
         setUpDetectTrajectoriesRequestWithMaxDimension()
         
         guard let detectTrajectoryRequest = detectTrajectoryRequest else {
-            print("Failed to retrieve a trajectory request.")
+//            print("Failed to retrieve a trajectory request.")
             return
         }
         
@@ -1719,7 +1786,7 @@ extension ContentAnalysisViewController: CameraViewControllerOutputDelegate {
             
             try visionHandler.perform([detectTrajectoryRequest])
         } catch {
-            print("Failed to perform the trajectory request: \(error.localizedDescription)")
+//            print("Failed to perform the trajectory request: \(error.localizedDescription)")
             return
         }
         

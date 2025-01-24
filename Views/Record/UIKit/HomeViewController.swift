@@ -29,7 +29,9 @@ protocol HomeDelegate: AnyObject {
                     result: String,
                     minDistance: Double,
                     avgDistance: Double,
-                    variance: String)
+                    variance: String,
+                    caloriesBurned: Double,
+                    avgHeartRate: Double)
 }
 
 class HomeViewController: UIViewController, ContentAnalysisDelegate {
@@ -53,10 +55,11 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
     var countdown = 0
     let boxCountdown = UIView()
     let boxScore = UIView()
-    var calorieCount: Double = 0.0
-    var startTime: Date?
-    var calorieTimer: Timer?
-    let calorieBurnRatePerMinute: Double = 10.0
+//    var calorieCount: Double = 0.0
+//    var startTime: Date?
+//    var calorieTimer: Timer?
+//    let calorieBurnRatePerMinute: Double = 10.0
+//    var caloriesBurned = 0.0
     
     let playerViewController = AVPlayerViewController()
     
@@ -77,8 +80,8 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                 return
             }
         }
-        self.startCalorieTracking()
-        print("Start Tracking!")
+//        self.startCalorieTracking()
+//        print("Start Tracking!")
     }
 
     func stopVideoPlayer() {
@@ -96,7 +99,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
         
         if recorder.isRecording {
             print("RECORD")
-            self.startCalorieTracking()
+//            self.startCalorieTracking()
             liveCamera()
         } else {
             print("NOT RECORD")
@@ -113,7 +116,6 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                 print(error.localizedDescription)
             }
         }
-        self.stopCalorieTracking()
         print("Stop Recording!")
     }
 
@@ -129,7 +131,9 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                     result: String,
                     minDistance: Double,
                     avgDistance: Double,
-                    variance: String) {
+                    variance: String,
+                    caloriesBurned: Double,
+                    avgHeartRate: Double) {
         homeDelegate?.saveRecord(url: url,
                                  duration: duration,
                                  hitFail: hitFail,
@@ -141,30 +145,10 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                                  result: result,
                                  minDistance: minDistance,
                                  avgDistance: avgDistance,
-                                 variance: variance)
+                                 variance: variance,
+                                 caloriesBurned: caloriesBurned,
+                                 avgHeartRate: avgHeartRate)
     }
-    
-    func startCalorieTracking() {
-           startTime = Date()
-           calorieCount = 0.0
-           calorieTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-               self?.updateCalorieCount()
-           }
-       }
-       
-    func updateCalorieCount() {
-        guard let startTime = startTime else { return }
-        let elapsedMinutes = Date().timeIntervalSince(startTime) / 60
-        calorieCount = elapsedMinutes * calorieBurnRatePerMinute
-        let roundedCalories = Int(calorieCount)
-        print("Calories burned: \(roundedCalories) kcal")
-    }
-       
-       func stopCalorieTracking() {
-           calorieTimer?.invalidate()
-           calorieTimer = nil
-           print("Final calorie count: \(calorieCount)")
-       }
     
     weak var homeDelegate: HomeDelegate?
     
@@ -654,6 +638,7 @@ class HomeViewController: UIViewController, ContentAnalysisDelegate {
                 latestStatus = menuStateApp
                 print("DBUGGGGG : STOP")
                 contentAnalysisViewController.stop()
+//                self.stopCalorieTracking()
             }
         }
     }

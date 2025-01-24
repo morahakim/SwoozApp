@@ -17,23 +17,53 @@ struct RecentActivity: Identifiable {
 }
 
 struct ItemActivityView: View {
-    let recentActivities: [RecentActivity] = [
-        RecentActivity(date: "09/11/2024", name: "Morning Game", duration: "30:00", calories: "725 kcal", heartRate: "90 bpm"),
-        RecentActivity(date: "01/11/2024", name: "Low Serve - Placement", duration: "25:00", calories: "612 kcal", heartRate: "120 bpm"),
-        RecentActivity(date: "20/05/2024", name: "Morning Game", duration: "30:00", calories: "420 kcal", heartRate: "117 bpm")
-    ]
+    @Binding var selectedTab: Int 
     
-    @FetchRequest(sortDescriptors: [
-        NSSortDescriptor(key: "datetime", ascending: false)
-    ]) var activityList: FetchedResults<RecordSkill>
+    @FetchRequest var activityList: FetchedResults<RecordSkill>
+    
+    init(selectedTab: Binding<Int>) {
+        _selectedTab = selectedTab
+        
+        _activityList = FetchRequest(
+            sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
+            predicate: ItemActivityView.predicate(for: selectedTab.wrappedValue)
+        )
+    }
+    
+    static func predicate(for tab: Int) -> NSPredicate {
+        let calendar = Calendar(identifier: .gregorian)
+        let today = calendar.startOfDay(for: Date())
+        
+        switch tab {
+        case 0: // Weekly
+            var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)
+            components.weekday = 2
+            let startOfWeek = calendar.date(from: components) ?? today
+            let startOfTomorrow = calendar.date(byAdding: .day, value: 1, to: today) ?? today
+            return NSPredicate(format: "datetime >= %@ AND datetime < %@", startOfWeek as NSDate, startOfTomorrow as NSDate)
+            
+        case 1: // Monthly
+            let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: today)) ?? today
+            let startOfTomorrow = calendar.date(byAdding: .day, value: 1, to: today) ?? today
+            return NSPredicate(format: "datetime >= %@ AND datetime < %@", startOfMonth as NSDate, startOfTomorrow as NSDate)
+            
+        case 2: // Yearly
+            let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: today)) ?? today
+            let startOfTomorrow = calendar.date(byAdding: .day, value: 1, to: today) ?? today
+            return NSPredicate(format: "datetime >= %@ AND datetime < %@", startOfYear as NSDate, startOfTomorrow as NSDate)
+            
+        default:
+            return NSPredicate(value: true)
+        }
+    }
     
     var body: some View {
-        ScrollView{
+        ScrollView {
             VStack(alignment: .leading) {
                 ForEach(activityList) { item in
                     VStack(alignment: .leading) {
-                        HStack{
-                            VStack{
+                        HStack {
+                            VStack {
                                 Text(dateFormat(item.datetime) == "" ? "-/-/-" : dateFormat(item.datetime))
                                     .font(.subheadline)
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -43,28 +73,28 @@ struct ItemActivityView: View {
                             }
                             VideoThumbnailView(url: URL(string: item.url!))
                                 .foregroundColor(.greenBasicMain)
-                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                                .opacity(0.8)
                                 .frame(width: 50, height: 50)
                                 .background(Color(red: 0.85, green: 0.85, blue: 0.85))
                                 .cornerRadius(5)
                         }
                         HStack {
-                            VStack(alignment: .trailing){
+                            VStack(alignment: .trailing) {
                                 Text(item.duration ?? "30:00")
                                     .font(.title3)
                                 Text("Duration")
                                     .font(.callout)
                             }
                             Spacer()
-                            VStack(alignment: .trailing){
-                                Text("725 kcal")
+                            VStack(alignment: .trailing) {
+                                Text("\(item.caloriesBurned, specifier: "%.01f")")
                                     .font(.title3)
-                                Text("AVG Cal")
+                                Text("Total Cal")
                                     .font(.callout)
                             }
                             Spacer()
-                            VStack(alignment: .trailing){
-                                Text("90 bpm")
+                            VStack(alignment: .trailing) {
+                                Text("\(Int(item.avgHeartRate))")
                                     .font(.title3)
                                 Text("AVG Heart Rate")
                                     .font(.callout)
@@ -82,6 +112,7 @@ struct ItemActivityView: View {
     }
 }
 
-#Preview {
-    ItemActivityView()
-}
+//
+//#Preview {
+//    ItemActivityView()
+//}
