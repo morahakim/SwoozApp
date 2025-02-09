@@ -43,7 +43,7 @@ class HealthDataController {
                 }
             case .failure(let error):
                 print("LOG: Error fetching final calories: \(error.localizedDescription)")
-                completion(177, 75.0)
+                completion(0, 0.0)
             }
         }
     }
