@@ -117,18 +117,15 @@ func getWeeklyData(from records: FetchedResults<RecordSkill>, selectedDate: Date
     let calendar = Calendar(identifier: .gregorian)
     let startOfSelectedDay = calendar.startOfDay(for: selectedDate)
     
-    // Tentukan awal minggu dari `selectedDate`
     var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: startOfSelectedDay)
-    components.weekday = 2 // Senin sebagai hari pertama dalam minggu
+    components.weekday = 2
 
     guard let startOfWeek = calendar.date(from: components) else { return [] }
     
-    // Tentukan akhir minggu (7 hari dari startOfWeek)
     let weekDays = (0..<7).compactMap { offset in
         calendar.date(byAdding: .day, value: offset, to: startOfWeek)
     }
     
-    // Filter data berdasarkan minggu yang dipilih
     let filteredRecords = records.filter { record in
         if let datetime = record.datetime {
             return datetime >= startOfWeek && datetime < calendar.date(byAdding: .day, value: 7, to: startOfWeek)!
@@ -136,7 +133,6 @@ func getWeeklyData(from records: FetchedResults<RecordSkill>, selectedDate: Date
         return false
     }
     
-    // Kelompokkan data berdasarkan hari
     let groupedByDay = Dictionary(grouping: filteredRecords) { record in
         calendar.startOfDay(for: record.datetime ?? Date())
     }
