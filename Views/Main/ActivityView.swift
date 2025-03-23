@@ -64,7 +64,11 @@ struct ActivityView: View {
             .padding([.leading, .trailing])
             
             if selectedTab == 0 {
-                WeeklyChartView(weeklyData: getWeeklyData(from: allRecords), showWeekSelection: $showWeekSelection)
+                WeeklyChartView(
+                    weeklyData: getWeeklyData(from: allRecords, selectedDate: selectedDate),
+                    showWeekSelection: $showWeekSelection,
+                    selectedDate: $selectedDate
+                )
             } else if selectedTab == 1 {
                 MonthlyChartView(monthlyData: getMonthlyDataRaw(from: allRecords))
             } else if selectedTab == 2 {

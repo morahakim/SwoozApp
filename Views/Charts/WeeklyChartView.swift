@@ -12,7 +12,8 @@ import CoreData
 struct WeeklyChartView: View {
     let weeklyData: [ActivityData]
     @Binding var showWeekSelection: Bool
-    
+    @Binding var selectedDate: Date 
+
     var body: some View {
         VStack {
             HStack(spacing: 10) {
@@ -112,46 +113,42 @@ struct WeeklyChartView: View {
     }
 }
 
-func getWeeklyData(from records: FetchedResults<RecordSkill>) -> [ActivityData] {
+func getWeeklyData(from records: FetchedResults<RecordSkill>, selectedDate: Date) -> [ActivityData] {
     let calendar = Calendar(identifier: .gregorian)
-    let today = calendar.startOfDay(for: Date())
+    let startOfSelectedDay = calendar.startOfDay(for: selectedDate)
     
-    guard let startOfTomorrow = calendar.date(byAdding: .day, value: 1, to: today) else { return [] }
-    
-    var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)
-    components.weekday = 2 // gregorian default: Senin ke-2.
-    
+    // Tentukan awal minggu dari `selectedDate`
+    var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: startOfSelectedDay)
+    components.weekday = 2 // Senin sebagai hari pertama dalam minggu
+
     guard let startOfWeek = calendar.date(from: components) else { return [] }
     
+    // Tentukan akhir minggu (7 hari dari startOfWeek)
     let weekDays = (0..<7).compactMap { offset in
         calendar.date(byAdding: .day, value: offset, to: startOfWeek)
     }
     
-    let lastWeekRecords = records.filter { record in
+    // Filter data berdasarkan minggu yang dipilih
+    let filteredRecords = records.filter { record in
         if let datetime = record.datetime {
-            return datetime >= startOfWeek && datetime < startOfTomorrow
+            return datetime >= startOfWeek && datetime < calendar.date(byAdding: .day, value: 7, to: startOfWeek)!
         }
         return false
     }
     
-    let groupedByDay = Dictionary(grouping: lastWeekRecords) { record in
+    // Kelompokkan data berdasarkan hari
+    let groupedByDay = Dictionary(grouping: filteredRecords) { record in
         calendar.startOfDay(for: record.datetime ?? Date())
     }
     
     return weekDays.map { day in
         let recordsForDay = groupedByDay[day] ?? []
-        
-//        print("Processing day: \(day)")
-//        print("Records for day: \(recordsForDay)")
-        
         let totalCalories = recordsForDay.compactMap { $0.caloriesBurned }.reduce(0, +)
         let averageCalories = recordsForDay.isEmpty ? 0 : totalCalories / Double(recordsForDay.count)
-        
-//        print("Total calories: \(totalCalories), Average calories: \(averageCalories)")
-        
         return ActivityData(date: day, calories: averageCalories)
     }
 }
+
 
 
 struct WeekSelectionView: View {
