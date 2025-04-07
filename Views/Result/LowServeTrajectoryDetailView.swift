@@ -14,35 +14,37 @@ struct LowServeTrajectoryDetailView: View {
     @State var isPlay: Bool = false
     @State var player: AVPlayer?
     @State private var isPresenting = false
-    
+
     @State private var itemWidth:Double = 0
     @State private var screenWith = UIScreen.main.bounds.width
-    
+
     @State private var isEditing = false
     @State private var editedName = ""
     @State private var isShare: Bool = false
     @FocusState private var keyboardFocused: Bool
-    
+
     @State private var attempData: [HitStatistics] = []
-    
+
+    @State private var navigateToDetail = false
+
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: RecordSkill.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \RecordSkill.name, ascending: true)]) var database: FetchedResults<RecordSkill>
-    
+
     private struct HitStatistics: Identifiable {
         var id = UUID().uuidString
         var hitNumber: String
         var hitStatus: String
         var netDistance: Double
     }
-    
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(key: "datetime", ascending: false)],
         predicate: NSPredicate(format: "level == %@", "0")
     ) private var latestDrill: FetchedResults<RecordSkill>
-    
+
     private func parseAttemp(_ data: String) -> [HitStatistics] {
         var hitStatisticsArray: [HitStatistics] = []
-        
+
         let components = data.components(separatedBy: ",")
         for component in components {
             // Split each component by colon
@@ -53,14 +55,14 @@ struct LowServeTrajectoryDetailView: View {
                 let hitNumber = keyValue[0]
                 let hitStatus = keyValue[1]
                 let netDistance = Double(keyValue[2]) ?? 0.0
-                
+
                 let hitStat = HitStatistics(hitNumber: hitNumber, hitStatus: hitStatus, netDistance: netDistance)
                 hitStatisticsArray.append(hitStat)
             }
         }
         return hitStatisticsArray
     }
-    
+
     var body: some View {
         ZStack {
             Color.greenMain.ignoresSafeArea(.container, edges: .top)
@@ -71,7 +73,7 @@ struct LowServeTrajectoryDetailView: View {
                         .frame(height: getScreenBound().width * 0.5)
                         .padding(.horizontal, 16)
                 }
-                
+
                 ZStack {
                     Rectangle()
                         .foregroundColor(.clear)
@@ -84,8 +86,8 @@ struct LowServeTrajectoryDetailView: View {
                                 topTrailingRadius: 20
                             )
                         )
-                    
-                    
+
+
                     ScrollView {
                         VStack {
                             VStack {
@@ -117,7 +119,7 @@ struct LowServeTrajectoryDetailView: View {
                                             .font(Font.custom("Urbanist-Medium", size: 22))
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
-                                        
+
                                         Button {
                                             isEditing.toggle()
                                             updateItemName()
@@ -134,12 +136,12 @@ struct LowServeTrajectoryDetailView: View {
                                     }
                                 }
                             }
-                            
+
                             VStack(spacing: 15) {
                                 TextAlignLeading("\(goodServePerformText) *cm")
                                     .font(Font.custom("Urbanist", size: 15))
                                     .foregroundColor(.grayStroke6)
-                                
+
                                 VStack(spacing: 15) {
                                     if attempData.count > 0 {
                                         let itemCount = min(attempData.count, 17)  
@@ -161,11 +163,11 @@ struct LowServeTrajectoryDetailView: View {
                                         Text(noDataText).font(Font.custom( "Urbanist", size: 20))
                                     }
                                 }
-                                
+
                                 ThickDivider(thickness: 1, color: .gray)
                             }
                             .padding(.top)
-                            
+
                             VStack(spacing: 25) {
                                 Text(trajectoryQualityText)
                                     .font(Font.custom("SF Pro", size: 17))
@@ -183,7 +185,7 @@ struct LowServeTrajectoryDetailView: View {
                                             .frame(maxWidth: .infinity, alignment: .topLeading)
                                             .foregroundColor(.neutralBlack)
                                     }
-                                    
+
                                     VStack(spacing: 8) {
                                         Text(item.duration ?? "00:00")
                                             .font(Font.custom("Urbanist-Medium", size: 34))
@@ -196,7 +198,7 @@ struct LowServeTrajectoryDetailView: View {
                                     }
                                 }
                                 .padding(.trailing, 90)
-                                
+
                                 HStack {
                                     VStack(spacing: 8) {
                                         Text("\(item.hitPerfect)")
@@ -230,7 +232,7 @@ struct LowServeTrajectoryDetailView: View {
                                     }
                                 }
                                 .padding(.trailing, 90)
-                                
+
                                 VStack(spacing: 10) {
                                     if latestDrill.count >= 2 {
                                         Text("\(item.hitPerfect - latestDrill[1].hitPerfect)")
@@ -252,12 +254,12 @@ struct LowServeTrajectoryDetailView: View {
                                             .foregroundColor(.neutralBlack)
                                     }
                                 }
-                                
+
                                 ThickDivider(thickness: 1, color: .gray)
                             }
                             .padding(.top)
-                            
-                            
+
+
                             VStack(spacing: 25) {
                                 Text(shuttlecockOverNetText)
                                     .font(Font.custom("SF Pro", size: 17))
@@ -340,12 +342,15 @@ struct LowServeTrajectoryDetailView: View {
                 .toolbar {
                     ToolbarItem {
                         Button {
-                            isShare.toggle()
+                            navigateToDetail = true
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                         }
-                        
+
                     }
+                }
+                .navigationDestination(isPresented: $navigateToDetail) {
+                    DetailActivityView(item: self.item)
                 }
             }
             .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])
@@ -371,7 +376,7 @@ struct LowServeTrajectoryDetailView: View {
 struct ThickDivider: View {
     var thickness: CGFloat
     var color: Color
-    
+
     var body: some View {
         Rectangle()
             .fill(color)
