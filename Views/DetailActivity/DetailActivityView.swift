@@ -69,7 +69,7 @@ struct DetailActivityView: View {
                     Spacer()
                     Spacer()
                     VStack(alignment:.trailing){
-                        Text("725 kcal")
+                        Text("\(item.caloriesBurned, specifier: "%.01f")")
                             .font(Font.custom("SF Pro", size: 15))
                             .foregroundColor(.neutralBlack)
                         Text(avgCal)
@@ -78,7 +78,7 @@ struct DetailActivityView: View {
                     }
                     Spacer()
                     VStack(alignment:.trailing){
-                        Text("90 bpm")
+                        Text("\(Int(item.avgHeartRate))")
                             .font(Font.custom("SF Pro", size: 15))
                             .foregroundColor(.neutralBlack)
                         Text(avgHeartRate)
