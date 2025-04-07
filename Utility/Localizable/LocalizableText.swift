@@ -526,3 +526,53 @@ let highServeText = NSLocalizedString(
     "high_serve_text",
     comment: ""
 )
+
+let morningGame = NSLocalizedString(
+    "morning_game",
+    comment: ""
+)
+
+let avgCal = NSLocalizedString(
+    "avg_cal",
+    comment: ""
+)
+
+let avgHeartRate = NSLocalizedString(
+    "avg_heart_rate",
+    comment: ""
+)
+
+let avgDistance = NSLocalizedString(
+    "avg_distance",
+    comment: ""
+)
+
+let successRate = NSLocalizedString(
+    "success_rate",
+    comment: ""
+)
+
+let inputBadmintonPhotoText = NSLocalizedString(
+    "input_badminton_photo_text",
+    comment: ""
+)
+
+let racquetName = NSLocalizedString(
+    "racquet_name",
+    comment: ""
+)
+
+let location = NSLocalizedString(
+    "location",
+    comment: ""
+)
+
+let racquetNamePlaceholder = NSLocalizedString(
+    "racquet_name_placeholder",
+    comment: ""
+)
+
+let locationPlaceholder = NSLocalizedString(
+    "location_placeholder",
+    comment: ""
+)
