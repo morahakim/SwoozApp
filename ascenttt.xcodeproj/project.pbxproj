@@ -69,6 +69,12 @@
 		37B5E7662B10EA93003A72DC /* Low Serve - Lintasan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7642B10EA93003A72DC /* Low Serve - Lintasan.gif */; };
 		37B5E7672B10EA93003A72DC /* Low Serve - Penempatan.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */; };
 		37B5E76D2B10F1A3003A72DC /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B5E76C2B10F1A3003A72DC /* GifImage.swift */; };
+		A32293292D433FBE0009CF7F /* MonthlyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32293282D433FBD0009CF7F /* MonthlyChartView.swift */; };
+		A322932B2D4340310009CF7F /* WeeklyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322932A2D4340310009CF7F /* WeeklyChartView.swift */; };
+		A322932D2D43407F0009CF7F /* YearlyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322932C2D43407F0009CF7F /* YearlyChartView.swift */; };
+		A3669CE82CC7925900309ABF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3669CE72CC7925900309ABF /* ActivityView.swift */; };
+		A3669CEA2CC798BF00309ABF /* ItemActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3669CE92CC798BF00309ABF /* ItemActivityView.swift */; };
+		A39C4B8D2D4136A600A716B5 /* HealthDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39C4B8C2D4136A600A716B5 /* HealthDataController.swift */; };
 		A3D3F8852C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F8842C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift */; };
 		A3FE9C6E2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9C6D2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift */; };
 		A3FE9C702C065135006B8B15 /* LowServePlacementDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9C6F2C065134006B8B15 /* LowServePlacementDescriptionView.swift */; };
@@ -184,6 +190,7 @@
 		370F77282B0213CD00BB2194 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		371156522C2158D10019C61F /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dev.xcconfig; sourceTree = "<group>"; };
 		371156532C2158E50019C61F /* Prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Prod.xcconfig; sourceTree = "<group>"; };
+		3712944C2CCF71BC002337F6 /* ascenttt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ascenttt.entitlements; sourceTree = "<group>"; };
 		374C43572B0B8B30007A4F1A /* LocalizableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableText.swift; sourceTree = "<group>"; };
 		374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementDetailView.swift; sourceTree = "<group>"; };
 		374C43662B0E7C84007A4F1A /* en */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = en; path = en.lproj/Placement.mov; sourceTree = "<group>"; };
@@ -200,6 +207,14 @@
 		37B5E7652B10EA93003A72DC /* Low Serve - Penempatan.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Low Serve - Penempatan.gif"; sourceTree = "<group>"; };
 		37B5E76C2B10F1A3003A72DC /* GifImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		37D903AD2AFEA853007C8F50 /* iPhone Landscape to Portrait.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "iPhone Landscape to Portrait.json"; sourceTree = "<group>"; };
+		A32293282D433FBD0009CF7F /* MonthlyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyChartView.swift; sourceTree = "<group>"; };
+		A322932A2D4340310009CF7F /* WeeklyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChartView.swift; sourceTree = "<group>"; };
+		A322932C2D43407F0009CF7F /* YearlyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlyChartView.swift; sourceTree = "<group>"; };
+		A3669CE72CC7925900309ABF /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		A3669CE92CC798BF00309ABF /* ItemActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemActivityView.swift; sourceTree = "<group>"; };
+		A3784B702D409DEA006F43D9 /* Database_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database_v2.xcdatamodel; sourceTree = "<group>"; };
+		A39C4B8C2D4136A600A716B5 /* HealthDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataController.swift; sourceTree = "<group>"; };
+		A39C4B8E2D41462200A716B5 /* Database_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database_v3.xcdatamodel; sourceTree = "<group>"; };
 		A3D3F8842C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectoryDescriptionView.swift; sourceTree = "<group>"; };
 		A3FE9C6D2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServeTrajectorySummaryView.swift; sourceTree = "<group>"; };
 		A3FE9C6F2C065134006B8B15 /* LowServePlacementDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementDescriptionView.swift; sourceTree = "<group>"; };
@@ -396,6 +411,24 @@
 			path = Localizable;
 			sourceTree = "<group>";
 		};
+		A32293272D433FAD0009CF7F /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				A32293282D433FBD0009CF7F /* MonthlyChartView.swift */,
+				A322932A2D4340310009CF7F /* WeeklyChartView.swift */,
+				A322932C2D43407F0009CF7F /* YearlyChartView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		A3907AAC2D4135D3004636DA /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				A39C4B8C2D4136A600A716B5 /* HealthDataController.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
 		BE8F8DF12AF044A900616288 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				32DCBECA2CAB03B10088B078 /* DetailActivity */,
+				A32293272D433FAD0009CF7F /* Charts */,
 				BEA1C13A2AF0436D00BFF1A4 /* CameraGuide */,
 				BEA1C13C2AF0436D00BFF1A4 /* Main */,
 				BEA1C1412AF0436D00BFF1A4 /* Onboarding */,
@@ -554,6 +588,8 @@
 				BEA1C13E2AF0436D00BFF1A4 /* HomeView.swift */,
 				BEA1C1402AF0436D00BFF1A4 /* MainView.swift */,
 				183C878F2AFD39E100C210AB /* ItemVideoView.swift */,
+				A3669CE72CC7925900309ABF /* ActivityView.swift */,
+				A3669CE92CC798BF00309ABF /* ItemActivityView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -580,6 +616,7 @@
 		BEF748272AF02AAF00E8FB8B = {
 			isa = PBXGroup;
 			children = (
+				A3907AAC2D4135D3004636DA /* Health */,
 				371156512C2158A10019C61F /* SchemeConfiguration */,
 				371240D22AF1628F009C8021 /* CoreData */,
 				BEA1C1492AF0436D00BFF1A4 /* Utility */,
@@ -604,6 +641,7 @@
 		BEF748322AF02AAF00E8FB8B /* ascenttt */ = {
 			isa = PBXGroup;
 			children = (
+				3712944C2CCF71BC002337F6 /* ascenttt.entitlements */,
 				18CEF7292B02317E00952E16 /* Info.plist */,
 				BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */,
 				18CD6E222AF957DA0087B24D /* Assets */,
@@ -817,8 +855,10 @@
 				1828EBC12B0F64200080BB51 /* LowServePlacementDetailSingleView.swift in Sources */,
 				A3FE9C722C065141006B8B15 /* LowServePlacementSummaryView.swift in Sources */,
 				1828EBBF2B0F3C2C0080BB51 /* LowServerTrajectoryDetailSingleView.swift in Sources */,
+				A39C4B8D2D4136A600A716B5 /* HealthDataController.swift in Sources */,
 				BEA1C1672AF0436D00BFF1A4 /* HomeViewRepresentable.swift in Sources */,
 				BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */,
+				A32293292D433FBE0009CF7F /* MonthlyChartView.swift in Sources */,
 				37B5E76D2B10F1A3003A72DC /* GifImage.swift in Sources */,
 				18CD6E0F2AF953AC0087B24D /* Card.swift in Sources */,
 				BEA1C16A2AF0436D00BFF1A4 /* LowServeTrajectoryView.swift in Sources */,
@@ -826,6 +866,7 @@
 				BEA1C1722AF0436D00BFF1A4 /* OnboardingView.swift in Sources */,
 				BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */,
 				BEA1C1622AF0436D00BFF1A4 /* CameraViewController.swift in Sources */,
+				A322932B2D4340310009CF7F /* WeeklyChartView.swift in Sources */,
 				A3D3F8852C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift in Sources */,
 				BEA1C1652AF0436D00BFF1A4 /* VideoRenderView.swift in Sources */,
 				32DCBECC2CAB040B0088B078 /* DetailActivityView.swift in Sources */,
@@ -835,9 +876,12 @@
 				BEA1C15E2AF0436D00BFF1A4 /* Animations.swift in Sources */,
 				18CD6E1D2AF955250087B24D /* Counter.swift in Sources */,
 				A3FE9C702C065135006B8B15 /* LowServePlacementDescriptionView.swift in Sources */,
+				A322932D2D43407F0009CF7F /* YearlyChartView.swift in Sources */,
 				374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */,
+				A3669CE82CC7925900309ABF /* ActivityView.swift in Sources */,
 				18AD0C132AF95ADB0019DD60 /* Database.xcdatamodeld in Sources */,
 				184E02EC2AF174480004C569 /* Date+Ext.swift in Sources */,
+				A3669CEA2CC798BF00309ABF /* ItemActivityView.swift in Sources */,
 				BEA1C16D2AF0436D00BFF1A4 /* CameraGuideView.swift in Sources */,
 				BEA1C15D2AF0436D00BFF1A4 /* BallScene.swift in Sources */,
 				BEA1C1692AF0436D00BFF1A4 /* ProgressView.swift in Sources */,
@@ -987,6 +1031,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -997,6 +1042,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1009,7 +1055,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1034,13 +1080,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.han.swooz.mora;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora.watchkitapp;
 				PRODUCT_NAME = Swooz;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1122,6 +1168,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1132,6 +1179,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1144,7 +1192,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1169,13 +1217,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.han.swooz.mora;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora.watchkitapp;
 				PRODUCT_NAME = Swooz;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1249,6 +1297,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1259,6 +1308,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1271,7 +1321,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1297,13 +1347,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.han.swooz.mora;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora.watchkitapp;
 				PRODUCT_NAME = Swooz;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1378,6 +1428,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1388,6 +1439,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1400,7 +1452,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1426,13 +1478,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.han.swooz.mora;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora.watchkitapp;
 				PRODUCT_NAME = Swooz;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1576,13 +1628,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.han.swooz.mora;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora.watchkitapp;
 				PRODUCT_NAME = Swooz;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1606,13 +1658,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.han.swooz.mora;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora.watchkitapp;
 				PRODUCT_NAME = Swooz;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1630,6 +1682,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1640,6 +1693,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1652,7 +1706,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1670,6 +1724,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ascenttt/ascenttt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
@@ -1680,6 +1735,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Swooz;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app wants to read your health data";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You microphone will be used to record your speech when you press the \"Start Recording\" button";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SWOOZ records and analyzes your drill, providing data results.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1692,7 +1748,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.han.swooz.mora;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1772,9 +1828,11 @@
 		18AD0C112AF95ADB0019DD60 /* Database.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A39C4B8E2D41462200A716B5 /* Database_v3.xcdatamodel */,
+				A3784B702D409DEA006F43D9 /* Database_v2.xcdatamodel */,
 				18AD0C122AF95ADB0019DD60 /* Database.xcdatamodel */,
 			);
-			currentVersion = 18AD0C122AF95ADB0019DD60 /* Database.xcdatamodel */;
+			currentVersion = A39C4B8E2D41462200A716B5 /* Database_v3.xcdatamodel */;
 			path = Database.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
