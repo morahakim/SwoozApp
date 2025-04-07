@@ -49,6 +49,8 @@
 		18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CEF7242B022ACA00952E16 /* Urbanist.ttf */; };
 		18EE72C92B08797700DE7BE7 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72C82B08797700DE7BE7 /* LocalStorage.swift */; };
 		18EE72CB2B08D04F00DE7BE7 /* LowServePlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */; };
+		32DCBECC2CAB040B0088B078 /* DetailActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCBECB2CAB040B0088B078 /* DetailActivityView.swift */; };
+		32FE24212CD2918F007CDF0D /* EditableTextSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE24202CD2918F007CDF0D /* EditableTextSheet.swift */; };
 		370F77252B0213CC00BB2194 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
 		374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43572B0B8B30007A4F1A /* LocalizableText.swift */; };
 		374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */; };
@@ -176,6 +178,8 @@
 		18CEF7292B02317E00952E16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		18EE72C82B08797700DE7BE7 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementView.swift; sourceTree = "<group>"; };
+		32DCBECB2CAB040B0088B078 /* DetailActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActivityView.swift; sourceTree = "<group>"; };
+		32FE24202CD2918F007CDF0D /* EditableTextSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextSheet.swift; sourceTree = "<group>"; };
 		370F77262B0213CC00BB2194 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		370F77282B0213CD00BB2194 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		371156522C2158D10019C61F /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dev.xcconfig; sourceTree = "<group>"; };
@@ -356,6 +360,15 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		32DCBECA2CAB03B10088B078 /* DetailActivity */ = {
+			isa = PBXGroup;
+			children = (
+				32DCBECB2CAB040B0088B078 /* DetailActivityView.swift */,
+				32FE24202CD2918F007CDF0D /* EditableTextSheet.swift */,
+			);
+			path = DetailActivity;
+			sourceTree = "<group>";
+		};
 		371156512C2158A10019C61F /* SchemeConfiguration */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +429,7 @@
 		BEA1C11A2AF0436D00BFF1A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				32DCBECA2CAB03B10088B078 /* DetailActivity */,
 				BEA1C13A2AF0436D00BFF1A4 /* CameraGuide */,
 				BEA1C13C2AF0436D00BFF1A4 /* Main */,
 				BEA1C1412AF0436D00BFF1A4 /* Onboarding */,
@@ -785,6 +799,7 @@
 				BEA1C1612AF0436D00BFF1A4 /* HomeViewController.swift in Sources */,
 				18CD6E112AF953B70087B24D /* ImageHero.swift in Sources */,
 				183C87902AFD39E100C210AB /* ItemVideoView.swift in Sources */,
+				32FE24212CD2918F007CDF0D /* EditableTextSheet.swift in Sources */,
 				BEA1C1682AF0436D00BFF1A4 /* LoadingRecordView.swift in Sources */,
 				18CD6E172AF953E20087B24D /* SheetShare.swift in Sources */,
 				183B337A2AFA8B59004E023D /* ForceOrientation.swift in Sources */,
@@ -813,6 +828,7 @@
 				BEA1C1622AF0436D00BFF1A4 /* CameraViewController.swift in Sources */,
 				A3D3F8852C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift in Sources */,
 				BEA1C1652AF0436D00BFF1A4 /* VideoRenderView.swift in Sources */,
+				32DCBECC2CAB040B0088B078 /* DetailActivityView.swift in Sources */,
 				A3FE9C742C0652DB006B8B15 /* Tab.swift in Sources */,
 				BEA1C15A2AF0436D00BFF1A4 /* SplashView.swift in Sources */,
 				A3FE9C6E2C06432D006B8B15 /* LowServeTrajectorySummaryView.swift in Sources */,
@@ -974,7 +990,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1013,7 +1029,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -1109,7 +1125,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1148,7 +1164,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -1236,7 +1252,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1276,7 +1292,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -1365,7 +1381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1405,7 +1421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -1555,7 +1571,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -1585,7 +1601,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
@@ -1617,7 +1633,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
@@ -1657,7 +1673,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ascenttt/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
+				DEVELOPMENT_TEAM = NJYYRNFLHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ascenttt/Info.plist;
