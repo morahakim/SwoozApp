@@ -49,6 +49,7 @@
 		18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CEF7242B022ACA00952E16 /* Urbanist.ttf */; };
 		18EE72C92B08797700DE7BE7 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72C82B08797700DE7BE7 /* LocalStorage.swift */; };
 		18EE72CB2B08D04F00DE7BE7 /* LowServePlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */; };
+		32D603942DB2A8CC001FB501 /* DetailActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D603932DB2A8C4001FB501 /* DetailActivityViewModel.swift */; };
 		32DCBECC2CAB040B0088B078 /* DetailActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCBECB2CAB040B0088B078 /* DetailActivityView.swift */; };
 		32FE24212CD2918F007CDF0D /* EditableTextSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE24202CD2918F007CDF0D /* EditableTextSheet.swift */; };
 		370F77252B0213CC00BB2194 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
@@ -184,6 +185,8 @@
 		18CEF7292B02317E00952E16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		18EE72C82B08797700DE7BE7 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		18EE72CA2B08D04F00DE7BE7 /* LowServePlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowServePlacementView.swift; sourceTree = "<group>"; };
+		321895582DAD441F0042D4F0 /* Database_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database_v4.xcdatamodel; sourceTree = "<group>"; };
+		32D603932DB2A8C4001FB501 /* DetailActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActivityViewModel.swift; sourceTree = "<group>"; };
 		32DCBECB2CAB040B0088B078 /* DetailActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActivityView.swift; sourceTree = "<group>"; };
 		32FE24202CD2918F007CDF0D /* EditableTextSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextSheet.swift; sourceTree = "<group>"; };
 		370F77262B0213CC00BB2194 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -378,6 +381,7 @@
 		32DCBECA2CAB03B10088B078 /* DetailActivity */ = {
 			isa = PBXGroup;
 			children = (
+				32D603932DB2A8C4001FB501 /* DetailActivityViewModel.swift */,
 				32DCBECB2CAB040B0088B078 /* DetailActivityView.swift */,
 				32FE24202CD2918F007CDF0D /* EditableTextSheet.swift */,
 			);
@@ -867,6 +871,7 @@
 				BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */,
 				BEA1C1622AF0436D00BFF1A4 /* CameraViewController.swift in Sources */,
 				A322932B2D4340310009CF7F /* WeeklyChartView.swift in Sources */,
+				32D603942DB2A8CC001FB501 /* DetailActivityViewModel.swift in Sources */,
 				A3D3F8852C063E7700E4604F /* LowServeTrajectoryDescriptionView.swift in Sources */,
 				BEA1C1652AF0436D00BFF1A4 /* VideoRenderView.swift in Sources */,
 				32DCBECC2CAB040B0088B078 /* DetailActivityView.swift in Sources */,
@@ -1828,11 +1833,12 @@
 		18AD0C112AF95ADB0019DD60 /* Database.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				321895582DAD441F0042D4F0 /* Database_v4.xcdatamodel */,
 				A39C4B8E2D41462200A716B5 /* Database_v3.xcdatamodel */,
 				A3784B702D409DEA006F43D9 /* Database_v2.xcdatamodel */,
 				18AD0C122AF95ADB0019DD60 /* Database.xcdatamodel */,
 			);
-			currentVersion = A39C4B8E2D41462200A716B5 /* Database_v3.xcdatamodel */;
+			currentVersion = 321895582DAD441F0042D4F0 /* Database_v4.xcdatamodel */;
 			path = Database.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

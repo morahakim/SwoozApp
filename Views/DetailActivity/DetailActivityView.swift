@@ -7,10 +7,13 @@
 
 import SwiftUI
 import PhotosUI
+import CoreData
 
 struct DetailActivityView: View {
     var item: FetchedResults<RecordSkill>.Element
     @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject var vm: DetailActivityViewModel
     
     @State private var isEditingTitle = false
     @State private var editedTitle = ""
@@ -21,7 +24,7 @@ struct DetailActivityView: View {
     @State private var racquetTextCharacter: Int = 0
     
     @State private var isEditingLocation = false
-    @State private var editedLocation = ""
+    @State private var editedLocation: String = ""
     @State private var locationTextCharacter: Int = 0
     
     @State private var showingPicker: Bool = false
@@ -33,6 +36,12 @@ struct DetailActivityView: View {
     @State private var badmintonItem: PhotosPickerItem?
     @State private var badmintonImage: Image? = nil
     
+    init(item: FetchedResults<RecordSkill>.Element, context: NSManagedObjectContext) {
+        self.item = item
+        _vm = StateObject(wrappedValue: DetailActivityViewModel(context: context, selectedItem: item))
+    }
+    
+    
     var body: some View {
         ScrollView{
             VStack{
@@ -42,7 +51,7 @@ struct DetailActivityView: View {
                     Spacer()
                 }
                 HStack{
-                    Text(editedTitle.isEmpty ? morningGame : editedTitle)
+                    Text(editedTitle.isEmpty ? morningGame : editedTitle )
                         .font(Font.custom("SF Pro", size: 15))
                         .foregroundColor(.gray)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -117,19 +126,21 @@ struct DetailActivityView: View {
                 }.padding(.top, 12)
                 
                 ZStack{
-                    Rectangle().fill(.grayStroke1)
-                    VStack(spacing: 8){
-                        Image(systemName: "camera.fill")
-                            .font(.title)
-                            .foregroundStyle(.neutralBlack)
-                        Text(inputBadmintonPhotoText)
-                            .font(Font.custom("SF Pro", size: 12))
-                            .foregroundColor(.gray)
+                    if let path = item.imageUrl, let uiImage = UIImage(contentsOfFile: path) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .frame(height: 289)
+                    } else {
+                        Rectangle().fill(.grayStroke1)
+                        VStack(spacing: 8){
+                            Image(systemName: "camera.fill")
+                                .font(.title)
+                                .foregroundStyle(.neutralBlack)
+                            Text(inputBadmintonPhotoText)
+                                .font(Font.custom("SF Pro", size: 12))
+                                .foregroundColor(.gray)
+                        }
                     }
-                    
-                    badmintonImage?
-                        .resizable()
-                        .frame(height: 289)
                 }
                 .frame(height: 289)
                 .padding(.top, 24)
@@ -149,7 +160,7 @@ struct DetailActivityView: View {
                     Button("Cancel", role: .cancel) {
                     }
                 }.sheet(isPresented: $showImagePicker) {
-                    ImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: $badmintonImage)
+                    DetailActivityImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, vm: vm, image: $badmintonImage)
                     
                 }
                 
@@ -187,7 +198,11 @@ struct DetailActivityView: View {
                         text: $editedLocation,
                         placeholder: locationPlaceholder,
                         maxCharacters: 32
-                    )
+                        
+                    ){ newText in
+                        vm.saveTextToCoreData(newText, for: .location)
+                    }
+                    
                 }
                 .sheet(isPresented: $isEditingRacquet) {
                     EditableTextSheet(
@@ -195,7 +210,9 @@ struct DetailActivityView: View {
                         text: $editedRacquetName,
                         placeholder: racquetNamePlaceholder,
                         maxCharacters: 32
-                    )
+                    ){ newText in
+                        vm.saveTextToCoreData(newText, for: .racquetName)
+                    }
                 }
                 .sheet(isPresented: $isEditingTitle) {
                     EditableTextSheet(
@@ -203,7 +220,9 @@ struct DetailActivityView: View {
                         text: $editedTitle,
                         placeholder: morningGame,
                         maxCharacters: 32
-                    )
+                    ){ newText in
+                        vm.saveTextToCoreData(newText, for: .title)
+                    }
                 }
                 
             }
@@ -211,7 +230,19 @@ struct DetailActivityView: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 24)
-        
+        .onAppear{
+            if let itemName = item.name {
+                editedTitle = itemName
+            }
+            
+            if let racquetName = item.racquetName {
+                editedRacquetName = racquetName
+            }
+            
+            if let location = item.location {
+                editedLocation = location
+            }
+        }
         .navigationTitle("Details")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
@@ -228,21 +259,27 @@ struct DetailActivityView: View {
     }
 }
 
-struct ImagePicker: UIViewControllerRepresentable {
+struct DetailActivityImagePicker: UIViewControllerRepresentable {
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    var vm: DetailActivityViewModel
     @Binding var image: Image?
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        var parent: ImagePicker
+        var parent: DetailActivityImagePicker
+        var vm: DetailActivityViewModel
         
-        init(parent: ImagePicker) {
+        init(parent: DetailActivityImagePicker, vm: DetailActivityViewModel) {
             self.parent = parent
+            self.vm = vm
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let uiImage = info[.originalImage] as? UIImage {
-                parent.image = Image(uiImage: uiImage)
-            }
+            
+            guard let uiImage = info[.originalImage] as? UIImage else { return }
+            
+            parent.image = Image(uiImage: uiImage)
+            vm.saveImageToCoreData(uiImage)
+            
             picker.dismiss(animated: true)
         }
         
@@ -252,7 +289,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
+        Coordinator(parent: self, vm: vm)
     }
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -267,6 +304,4 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 }
 
-//#Preview {
-//    DetailActivityView()
-//}
+

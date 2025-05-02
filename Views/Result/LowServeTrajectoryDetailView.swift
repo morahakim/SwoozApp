@@ -350,7 +350,7 @@ struct LowServeTrajectoryDetailView: View {
                     }
                 }
                 .navigationDestination(isPresented: $navigateToDetail) {
-                    DetailActivityView(item: self.item)
+                    DetailActivityView(item: self.item, context: viewContext)
                 }
             }
             .shareSheet(show: $isShare, items: [URL(string: item.url ?? "")])

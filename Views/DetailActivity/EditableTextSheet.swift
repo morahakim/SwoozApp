@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+
+
 struct EditableTextSheet: View {
     @Binding var isPresented: Bool
     @Binding var text: String
     let placeholder: String
     let maxCharacters: Int
+
+    let onFinishEditing: (String) -> Void
 
     @State private var textCharacterCount = 0
 
@@ -40,6 +44,7 @@ struct EditableTextSheet: View {
             Spacer()
 
             Button {
+                onFinishEditing(text)
                 isPresented = false
             } label: {
                 Text(buttonSaveText)
