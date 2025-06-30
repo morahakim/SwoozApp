@@ -43,8 +43,6 @@
 		18CD6E1B2AF953FC0087B24D /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1A2AF953FC0087B24D /* Thumbnail.swift */; };
 		18CD6E1D2AF955250087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
 		18CD6E1F2AF955580087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
-		18CD6E202AF9571E0087B24D /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1C2AF955250087B24D /* Counter.swift */; };
-		18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD6E1E2AF955580087B24D /* SessionDelegator.swift */; };
 		18CEF7252B022ACA00952E16 /* Urbanist-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CEF7232B022ACA00952E16 /* Urbanist-Medium.ttf */; };
 		18CEF7262B022ACA00952E16 /* Urbanist.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CEF7242B022ACA00952E16 /* Urbanist.ttf */; };
 		18EE72C92B08797700DE7BE7 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE72C82B08797700DE7BE7 /* LocalStorage.swift */; };
@@ -52,8 +50,6 @@
 		370F77252B0213CC00BB2194 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
 		374C43582B0B8B30007A4F1A /* LocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43572B0B8B30007A4F1A /* LocalizableText.swift */; };
 		374C435A2B0BD8C4007A4F1A /* LowServePlacementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43592B0BD8C4007A4F1A /* LowServePlacementDetailView.swift */; };
-		374C435B2B0BED86007A4F1A /* Localizable.strings in Sources */ = {isa = PBXBuildFile; fileRef = 370F77272B0213CC00BB2194 /* Localizable.strings */; };
-		374C435C2B0BED86007A4F1A /* LocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C43572B0B8B30007A4F1A /* LocalizableText.swift */; };
 		374C43652B0E7C84007A4F1A /* Placement.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C43672B0E7C84007A4F1A /* Placement.mov */; };
 		374C43682B0E7C92007A4F1A /* Placement.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C436A2B0E7C92007A4F1A /* Placement.mov */; };
 		374C436B2B0E7C9C007A4F1A /* Trajectory.mov in Resources */ = {isa = PBXBuildFile; fileRef = 374C436D2B0E7C9C007A4F1A /* Trajectory.mov */; };
@@ -75,7 +71,6 @@
 		BE0A4E762B11AA74005E1518 /* Iphone Portrait to Landscape.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE0A4E742B11AA74005E1518 /* Iphone Portrait to Landscape.gif */; };
 		BE0A4E772B11AA74005E1518 /* Iphone Landscape to Portrait.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE0A4E752B11AA74005E1518 /* Iphone Landscape to Portrait.gif */; };
 		BE8F8DF32AF044A900616288 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE8F8DF22AF044A900616288 /* Lottie */; };
-		BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C0AA2AF031A300BFF1A4 /* ComplicationController.swift */; };
 		BEA1C1582AF0436D00BFF1A4 /* RotateToLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11C2AF0436D00BFF1A4 /* RotateToLandscapeView.swift */; };
 		BEA1C1592AF0436D00BFF1A4 /* RotateToPotraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11D2AF0436D00BFF1A4 /* RotateToPotraitView.swift */; };
 		BEA1C15A2AF0436D00BFF1A4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C11F2AF0436D00BFF1A4 /* SplashView.swift */; };
@@ -98,27 +93,10 @@
 		BEA1C16F2AF0436D00BFF1A4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C13E2AF0436D00BFF1A4 /* HomeView.swift */; };
 		BEA1C1712AF0436D00BFF1A4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1402AF0436D00BFF1A4 /* MainView.swift */; };
 		BEA1C1722AF0436D00BFF1A4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1C1422AF0436D00BFF1A4 /* OnboardingView.swift */; };
-		BEAAB9A12AF0476C00277B45 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAB9A02AF0476C00277B45 /* StartPage.swift */; };
-		BEAAB9A32AF0477300277B45 /* ActivityRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAAB9A22AF0477300277B45 /* ActivityRingView.swift */; };
 		BEF748342AF02AAF00E8FB8B /* ascentttApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */; };
 		BEF748382AF02AB000E8FB8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF748372AF02AB000E8FB8B /* Assets.xcassets */; };
 		BEF7483B2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF7483A2AF02AB000E8FB8B /* Preview Assets.xcassets */; };
-		BEF748412AF02AB000E8FB8B /* Swooz.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BEF748402AF02AB000E8FB8B /* Swooz.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BEF748462AF02AB000E8FB8B /* ascentttApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF748452AF02AB000E8FB8B /* ascentttApp.swift */; };
-		BEF748482AF02AB000E8FB8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF748472AF02AB000E8FB8B /* ContentView.swift */; };
-		BEF7484A2AF02AB000E8FB8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF748492AF02AB000E8FB8B /* Assets.xcassets */; };
-		BEF7484D2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF7484C2AF02AB000E8FB8B /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		BEF748422AF02AB000E8FB8B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BEF748282AF02AAF00E8FB8B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BEF7483F2AF02AB000E8FB8B;
-			remoteInfo = "ascenttt Watch App";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		BEF748532AF02AB000E8FB8B /* Embed Watch Content */ = {
@@ -127,7 +105,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				BEF748412AF02AB000E8FB8B /* Swooz.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,7 +209,6 @@
 		BEF748332AF02AAF00E8FB8B /* ascentttApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ascentttApp.swift; sourceTree = "<group>"; };
 		BEF748372AF02AB000E8FB8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEF7483A2AF02AB000E8FB8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		BEF748402AF02AB000E8FB8B /* Swooz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swooz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF748452AF02AB000E8FB8B /* ascentttApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ascentttApp.swift; sourceTree = "<group>"; };
 		BEF748472AF02AB000E8FB8B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BEF748492AF02AB000E8FB8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -245,13 +221,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE8F8DF32AF044A900616288 /* Lottie in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BEF7483D2AF02AB000E8FB8B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,7 +551,6 @@
 			isa = PBXGroup;
 			children = (
 				BEF748302AF02AAF00E8FB8B /* ascenttt.app */,
-				BEF748402AF02AB000E8FB8B /* Swooz.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -644,7 +612,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				BEF748432AF02AB000E8FB8B /* PBXTargetDependency */,
 			);
 			name = ascenttt;
 			packageProductDependencies = (
@@ -652,25 +619,6 @@
 			);
 			productName = ascenttt;
 			productReference = BEF748302AF02AAF00E8FB8B /* ascenttt.app */;
-			productType = "com.apple.product-type.application";
-		};
-		BEF7483F2AF02AB000E8FB8B /* ascenttt Watch App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BEF748502AF02AB000E8FB8B /* Build configuration list for PBXNativeTarget "ascenttt Watch App" */;
-			buildPhases = (
-				BEF7483C2AF02AB000E8FB8B /* Sources */,
-				BEF7483D2AF02AB000E8FB8B /* Frameworks */,
-				BEF7483E2AF02AB000E8FB8B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "ascenttt Watch App";
-			packageProductDependencies = (
-			);
-			productName = "ascenttt Watch App";
-			productReference = BEF748402AF02AB000E8FB8B /* Swooz.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -684,9 +632,6 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					BEF7482F2AF02AAF00E8FB8B = {
-						CreatedOnToolsVersion = 15.0;
-					};
-					BEF7483F2AF02AB000E8FB8B = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -709,7 +654,6 @@
 			projectRoot = "";
 			targets = (
 				BEF7482F2AF02AAF00E8FB8B /* ascenttt */,
-				BEF7483F2AF02AB000E8FB8B /* ascenttt Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -748,15 +692,6 @@
 				18361F3D2AFF878700CBD1D8 /* LowServeIntermediate.json in Resources */,
 				184E02FD2AF192F60004C569 /* Smash.json in Resources */,
 				18361F3F2AFF878700CBD1D8 /* iPhone Landscape to Portrait.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BEF7483E2AF02AB000E8FB8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BEF7484D2AF02AB000E8FB8B /* Preview Assets.xcassets in Resources */,
-				BEF7484A2AF02AB000E8FB8B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,31 +764,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BEF7483C2AF02AB000E8FB8B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				374C435B2B0BED86007A4F1A /* Localizable.strings in Sources */,
-				374C435C2B0BED86007A4F1A /* LocalizableText.swift in Sources */,
-				BEAAB9A12AF0476C00277B45 /* StartPage.swift in Sources */,
-				BEAAB9A32AF0477300277B45 /* ActivityRingView.swift in Sources */,
-				18CD6E202AF9571E0087B24D /* Counter.swift in Sources */,
-				18CD6E212AF957210087B24D /* SessionDelegator.swift in Sources */,
-				BEF748482AF02AB000E8FB8B /* ContentView.swift in Sources */,
-				BEF748462AF02AB000E8FB8B /* ascentttApp.swift in Sources */,
-				BEA1C0AB2AF031A300BFF1A4 /* ComplicationController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		BEF748432AF02AB000E8FB8B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BEF7483F2AF02AB000E8FB8B /* ascenttt Watch App */;
-			targetProxy = BEF748422AF02AB000E8FB8B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		370F77272B0213CC00BB2194 /* Localizable.strings */ = {
@@ -1005,36 +916,6 @@
 			};
 			name = "Debug(Prod)";
 		};
-		371156472C2156DE0019C61F /* Debug(Prod) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
-				PRODUCT_NAME = Swooz;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = "Debug(Prod)";
-		};
 		371156482C2156F20019C61F /* Debug(Dev) */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 371156522C2158D10019C61F /* Dev.xcconfig */;
@@ -1140,36 +1021,6 @@
 			};
 			name = "Debug(Dev)";
 		};
-		3711564A2C2156F20019C61F /* Debug(Dev) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
-				PRODUCT_NAME = Swooz;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = "Debug(Dev)";
-		};
 		3711564B2C2157020019C61F /* Release(Dev) */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 371156522C2158D10019C61F /* Dev.xcconfig */;
@@ -1268,37 +1119,6 @@
 			};
 			name = "Release(Dev)";
 		};
-		3711564D2C2157020019C61F /* Release(Dev) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
-				PRODUCT_NAME = Swooz;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = "Release(Dev)";
-		};
 		3711564E2C2157120019C61F /* Release(Prod) */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 371156532C2158E50019C61F /* Prod.xcconfig */;
@@ -1394,37 +1214,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release(Prod)";
-		};
-		371156502C2157120019C61F /* Release(Prod) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
-				PRODUCT_NAME = Swooz;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = "Release(Prod)";
 		};
@@ -1547,67 +1336,6 @@
 			};
 			name = Release;
 		};
-		BEF748512AF02AB000E8FB8B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
-				PRODUCT_NAME = Swooz;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Debug;
-		};
-		BEF748522AF02AB000E8FB8B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ascenttt Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = QQVZLC397C;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ascenttt-Watch-App-Info.plist";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ascent.mora.swooz;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ascent.mora.swooz.watchkitapp;
-				PRODUCT_NAME = Swooz;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Release;
-		};
 		BEF748552AF02AB000E8FB8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1701,19 +1429,6 @@
 				BEF7484F2AF02AB000E8FB8B /* Release */,
 				3711564E2C2157120019C61F /* Release(Prod) */,
 				3711564B2C2157020019C61F /* Release(Dev) */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BEF748502AF02AB000E8FB8B /* Build configuration list for PBXNativeTarget "ascenttt Watch App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BEF748512AF02AB000E8FB8B /* Debug */,
-				3711564A2C2156F20019C61F /* Debug(Dev) */,
-				371156472C2156DE0019C61F /* Debug(Prod) */,
-				BEF748522AF02AB000E8FB8B /* Release */,
-				371156502C2157120019C61F /* Release(Prod) */,
-				3711564D2C2157020019C61F /* Release(Dev) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
