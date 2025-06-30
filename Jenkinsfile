@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               git branch: 'tesJenkins', credentialsId: 'git-clima-credential', url: 'git@github.com:morahakim/Clima-App.git'
+               git branch: 'tesJenkins', credentialsId: 'git-clima-credential', url: 'git@github.com:morahakim/SwoozApp.git/'
             }
         }
 
